@@ -1,11 +1,4 @@
 #!/bin/bash
 
-
-# Create the necessary directories
-if [ ! -d "$CANDLE" ]; then
-    mkdir "$CANDLE"
-else
-    echo "ERROR: Directory '$CANDLE' already exists"
-    exit 1
-fi
-mkdir "$CANDLE"/{bin,checkouts,builds}
+# Create the necessary directories not already created using the instructions in README.md
+mkdir "$CANDLE"/{bin,builds}

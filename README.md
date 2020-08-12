@@ -18,18 +18,22 @@ export DEFAULT_R_MODULE="R/4.0.0"
 export USE_OPENMPI="1"
 ```
 
-Create and enter the `$CANDLE/checkouts` directory:
+Create the `$CANDLE` and `checkouts` directories:
 
 ```bash
 mkdir "$CANDLE"
 cd "$CANDLE"
-mkdir "checkouts"
-cd "checkouts"
+mkdir "$CANDLE/checkouts"
 ```
 
 Clone this repository (you may need to do the cloning *not* on a compute node):
 
 ```bash
-git clone git@github.com:andrew-weisman/candle_wrappers.git wrappers
-cd wrappers
+git clone git@github.com:andrew-weisman/candle_wrappers.git "$CANDLE/checkouts/wrappers"
+```
+
+Run `setup.sh`:
+
+```bash
+bash "$CANDLE/checkouts/wrappers/setup.sh"
 ```
