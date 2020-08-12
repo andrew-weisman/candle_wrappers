@@ -31,4 +31,5 @@ Clone this repository (you may need to do the cloning *not* on a compute node):
 
 ```bash
 git clone git@github.com:andrew-weisman/candle_wrappers.git wrappers
+cd wrappers
 ```
