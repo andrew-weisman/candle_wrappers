@@ -42,9 +42,9 @@ source "$CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh"
 
 # Test MPI communications
 mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.c"
-#srun -n 3 "$CANDLE/wrappers/test_files/hello"
 mpirun -n 3 "$CANDLE/wrappers/test_files/hello"
 mpiexec -n 3 "$CANDLE/wrappers/test_files/hello"
+srun -n 3 "$CANDLE/wrappers/test_files/hello"
 
 # Print whether the previous commands were successful
 set +x
