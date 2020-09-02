@@ -6,6 +6,9 @@ set -x
 # Exit when any command fails
 set -e
 
+# Load the best Python module
+module load "$DEFAULT_PYTHON_MODULE"
+
 # Create the necessary directories not already created using the instructions in README.md
 [ -d "$CANDLE/bin" ] || mkdir "$CANDLE/bin"
 [ -d "$CANDLE/builds" ] || mkdir "$CANDLE/builds"
@@ -42,9 +45,18 @@ source "$CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh"
 
 # Test MPI communications
 mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.c"
-mpirun -n 3 "$CANDLE/wrappers/test_files/hello"
-mpiexec -n 3 "$CANDLE/wrappers/test_files/hello"
-srun -n 3 "$CANDLE/wrappers/test_files/hello"
+#mpirun -n 3 "$CANDLE/wrappers/test_files/hello"
+#mpiexec -n 3 "$CANDLE/wrappers/test_files/hello"
+#srun -n 3 "$CANDLE/wrappers/test_files/hello"
+srun --mpi=pmix --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" --mem=0 "$CANDLE/wrappers/test_files/hello"
+
+
+# Install the R packages needed for the Supervisor workflows
+# Yes, it may appear that the wrong version of GCC is being used (probably due to the R paths) but so far we've found this is fine
+LOCAL_DIR="/lscratch/$SLURM_JOB_ID"
+cd "$LOCAL_DIR" && "$CANDLE/Supervisor/workflows/common/R/install-candle.sh" |& tee -a "$LOCAL_DIR/candle-r_installation_out_and_err.txt"
+mv "$LOCAL_DIR/candle-r_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
+
 
 # Print whether the previous commands were successful
 set +x
