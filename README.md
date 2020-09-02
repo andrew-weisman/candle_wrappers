@@ -3,7 +3,7 @@
 Run an interactive session like:
 
 ```bash
-sinteractive -n 3 -N 3 --ntasks-per-core=1 --cpus-per-task=16 --gres=gpu:k20x:1,lscratch:400 --mem=60G --no-gres-shell
+sinteractive -n 3 -N 3 --ntasks-per-core=1 --cpus-per-task=16 --gres=gpu:k80:1,lscratch:400 --mem=20G --no-gres-shell
 ```
 
 Set up the environment for a brand new CANDLE installation (this can and probably should be put in an `lmod` module):
