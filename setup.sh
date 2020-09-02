@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# The point of this script is for it to automatically complete new or even partial installations of CANDLE but to not re-install anything; that must be done explicitly if that's desired
+# It should therefore run pretty quickly if everything is already installed, not changing anything significant
+
 # Print commands just before execution
 set -x
 
@@ -50,13 +53,12 @@ mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.
 #srun -n 3 "$CANDLE/wrappers/test_files/hello"
 srun --mpi=pmix --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" --mem=0 "$CANDLE/wrappers/test_files/hello"
 
-
 # Install the R packages needed for the Supervisor workflows
-# Yes, it may appear that the wrong version of GCC is being used (probably due to the R paths) but so far we've found this is fine
-LOCAL_DIR="/lscratch/$SLURM_JOB_ID"
-cd "$LOCAL_DIR" && "$CANDLE/Supervisor/workflows/common/R/install-candle.sh" |& tee -a "$LOCAL_DIR/candle-r_installation_out_and_err.txt"
-mv "$LOCAL_DIR/candle-r_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
-
+if [ "$(find "$CANDLE/builds/R/libs" -maxdepth 1 | wc -l)" -eq 1 ]; then # && echo "empty" || echo "greater"
+    LOCAL_DIR="/lscratch/$SLURM_JOB_ID"
+    cd "$LOCAL_DIR" && "$CANDLE/Supervisor/workflows/common/R/install-candle.sh" |& tee -a "$LOCAL_DIR/candle-r_installation_out_and_err.txt"
+    mv "$LOCAL_DIR/candle-r_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
+fi
 
 # Print whether the previous commands were successful
 set +x
