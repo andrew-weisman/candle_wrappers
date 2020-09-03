@@ -78,4 +78,4 @@ fi
 
 # Print whether the previous commands were successful
 set +x
-echo "Success"
+echo "Probably success"
