@@ -2,6 +2,17 @@
 
 # The point of this script is for it to automatically complete new or even partial installations of CANDLE but to not re-install anything; that must be done explicitly if that's desired
 # It should therefore run pretty quickly if everything is already installed, not changing anything significant
+# We should be able to run this script without worrying about it overwritting something already there
+
+check_file_before_continuing() {
+    file_to_check=$1
+    echo -n "Have you thoughly checked '$file_to_check' (y/n)? "
+    read -r response
+    if [ "x$response" != "xy" ]; then
+        echo "Okay, go ahead and thoroughly check '$file_to_check' and re-run this script"
+        exit 1
+    fi
+}
 
 # Print commands just before execution
 set -x
@@ -33,37 +44,36 @@ module load "$DEFAULT_PYTHON_MODULE"
 [ -L "$CANDLE/R" ] || ln -s "$CANDLE/builds/R" "$CANDLE/R"
 [ -L "$CANDLE/swift-t-install" ] || ln -s "$CANDLE/builds/swift-t-install" "$CANDLE/swift-t-install"
 
-# Ensure we've checked through env-biowulf.sh before actually using it
-env_file="$CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh"
-echo -n "Have you thoughly checked '$env_file' (y/n)? "
-read -r response
-if [ "x$response" != "xy" ]; then
-    echo "Okay, go ahead and thoroughly check '$env_file' and re-run this script"
-    exit 1
-fi
-
 # Load the CANDLE environment
+check_file_before_continuing "$CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh"
 # shellcheck source=/dev/null
 source "$CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh"
 
 # Test MPI communications
 mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.c"
-#mpirun -n 3 "$CANDLE/wrappers/test_files/hello"
-#mpiexec -n 3 "$CANDLE/wrappers/test_files/hello"
-#srun -n 3 "$CANDLE/wrappers/test_files/hello"
 srun --mpi=pmix --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" --mem=0 "$CANDLE/wrappers/test_files/hello"
 
+# Set and enter the local scratch directory
+LOCAL_DIR="/lscratch/$SLURM_JOB_ID"
+cd "$LOCAL_DIR"
+
 # Install the R packages needed for the Supervisor workflows
-if [ "$(find "$CANDLE/builds/R/libs" -maxdepth 1 | wc -l)" -eq 1 ]; then # && echo "empty" || echo "greater"
-    LOCAL_DIR="/lscratch/$SLURM_JOB_ID"
-    cd "$LOCAL_DIR" && "$CANDLE/Supervisor/workflows/common/R/install-candle.sh" |& tee -a "$LOCAL_DIR/candle-r_installation_out_and_err.txt"
+if [ "$(find "$CANDLE/builds/R/libs" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
+    "$CANDLE/Supervisor/workflows/common/R/install-candle.sh" |& tee -a "$LOCAL_DIR/candle-r_installation_out_and_err.txt"
     mv "$LOCAL_DIR/candle-r_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
 fi
 
 
-cp -i "$CANDLE/wrappers/swift-t_setup/swift-t-settings-biowulf.sh" "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
-cp -i "$CANDLE/wrappers/swift-t_setup/build-turbine.sh" "$CANDLE/swift-t/dev/build/build-turbine.sh"
-echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate, comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template, if needed"
+# Build Swift/T
+if [ "$(find "$CANDLE/swift-t-install/" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
+    cp -i "$CANDLE/wrappers/swift-t_setup/swift-t-settings-biowulf.sh" "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
+    cp -i "$CANDLE/wrappers/swift-t_setup/build-turbine.sh" "$CANDLE/swift-t/dev/build/build-turbine.sh"
+    echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate, comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template (or comparing that template with $CANDLE/wrappers/swift-t_setup/swift-t-settings.sh.template), if needed"
+    check_file_before_continuing "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
+    export NICE_CMD=""
+    "$CANDLE/swift-t/dev/build/build-swift-t.sh" -v |& tee -a "$LOCAL_DIR/swift-t_installation_out_and_err.txt"
+    mv "$LOCAL_DIR/swift-t_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
+fi
 
 
 # Print whether the previous commands were successful
