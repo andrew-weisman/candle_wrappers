@@ -60,6 +60,12 @@ if [ "$(find "$CANDLE/builds/R/libs" -maxdepth 1 | wc -l)" -eq 1 ]; then # && ec
     mv "$LOCAL_DIR/candle-r_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
 fi
 
+
+cp -i "$CANDLE/wrappers/swift-t_setup/swift-t-settings-biowulf.sh" "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
+cp -i "$CANDLE/wrappers/swift-t_setup/build-turbine.sh" "$CANDLE/swift-t/dev/build/build-turbine.sh"
+echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate, comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template, if needed"
+
+
 # Print whether the previous commands were successful
 set +x
 echo "Success"
