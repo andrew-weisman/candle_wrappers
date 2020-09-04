@@ -1,12 +1,5 @@
 #!/bin/bash
 
-mympiroot="/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0"
-mytclroot="/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0"
-mypyroot="/usr/local/Anaconda/envs/py3.7"
-myrroot="/usr/local/apps/R/4.0/4.0.0/lib64/R"
-my_r_site_library="/usr/local/apps/R/4.0/site-library_4.0.0"
-myantroot="/usr/local/apps/ant/1.10.3"
-
 # SWIFT/T SETTINGS
 
 # Settings for building Swift/T
@@ -40,7 +33,7 @@ export SWIFT_T_PREFIX="$SWIFT_T_INSTALL"
 
 # C compiler and flags
 #export CC=mpicc
-export CC="$mympiroot/bin/mpicc"
+export CC="$CANDLE_DEP_MPI/bin/mpicc"
 # export CFLAGS=
 # export LDFLAGS=
 
@@ -50,7 +43,7 @@ export CC="$mympiroot/bin/mpicc"
 
 # Location of Tcl to override autodetected Tcl
 # TCL_INSTALL=${EXM_PREFIX}/tcl
-TCL_INSTALL="$mytclroot"
+TCL_INSTALL="$CANDLE_DEP_TCL"
 # Tcl version: specify in case of multiple competing versions
 # TCL_VERSION=8.6
 TCL_VERSION=8.6
@@ -58,23 +51,23 @@ TCL_VERSION=8.6
 # Specify details of non-standard Tcl layouts
 # name of tclsh runnable on build system
 # TCLSH_LOCAL=/usr/bin/tclsh
-TCLSH_LOCAL="$mytclroot"
+TCLSH_LOCAL="$CANDLE_DEP_TCL"
 # directory containing Tcl library
 # TCL_LIB_DIR=/path/to/tcl/lib
-TCL_LIB_DIR="$mytclroot/lib"
+TCL_LIB_DIR="$CANDLE_DEP_TCL/lib"
 # directory containing tcl.h
 # TCL_INCLUDE_DIR=/path/to/tcl/include
-TCL_INCLUDE_DIR="$mytclroot/include"
+TCL_INCLUDE_DIR="$CANDLE_DEP_TCL/include"
 # tcl system library directory.  Must contain init.tcl in root or
 # tcl${TCL_VERSION} subdirectory
 # TCL_SYSLIB_DIR=/path/to/tcl/lib
-TCL_SYSLIB_DIR="$mytclroot/lib"
+TCL_SYSLIB_DIR="$CANDLE_DEP_TCL/lib"
 
 # Location of MPI install to override autodetected location
 # MPI_INSTALL=${EXM_PREFIX}/mpi
-MPI_INSTALL="$mympiroot"
+MPI_INSTALL="$CANDLE_DEP_MPI"
 # MPE_INSTALL=${EXM_PREFIX}/mpe
-MPE_INSTALL="$mympiroot"
+MPE_INSTALL="$CANDLE_DEP_MPI"
 # Set MPI version
 # (version 3 required for parallel tasks but version 2 is also allowed)
 #MPI_VERSION=3
@@ -87,11 +80,11 @@ SWIFT_T_CHECK_MPICC=1
 #SWIFT_T_CUSTOM_MPI=0
 SWIFT_T_CUSTOM_MPI=1
 # MPI_DIR=/path/to/mpi
-MPI_DIR="$mympiroot"
+MPI_DIR="$CANDLE_DEP_MPI"
 # MPI_INCLUDE=/path/to/mpi/include
-MPI_INCLUDE="$mympiroot/include"
+MPI_INCLUDE="$CANDLE_DEP_MPI/include"
 # MPI_LIB_DIR=/path/to/mpi/lib
-MPI_LIB_DIR="$mympiroot/lib"
+MPI_LIB_DIR="$CANDLE_DEP_MPI/lib"
 # MPI_LIB_NAME=funny.mpi.a
 MPI_LIB_NAME="mpi"
 
@@ -111,7 +104,7 @@ ENABLE_PYTHON=1
 # Specify the Python interpreter executable below;
 # if empty, looks for python in PATH
 #PYTHON_EXE=""
-PYTHON_EXE="$mypyroot/bin/python"
+PYTHON_EXE="$CANDLE_DEP_PY/bin/python"
 # PYTHON_EXE=$HOME/sfw/Python-2.7.10/bin/python
 
 # Enable R integration
@@ -119,12 +112,12 @@ PYTHON_EXE="$mypyroot/bin/python"
 ENABLE_R=1
 # R_INSTALL is the directory returned in R by R.home()
 # R_INSTALL=/path/to/R
-R_INSTALL="$myrroot"
+R_INSTALL="$CANDLE_DEP_R"
 # Define these if Rcpp and RInside are not autodetected
 # RCPP_INSTALL=/path/to/Rcpp
-RCPP_INSTALL="$my_r_site_library/Rcpp"
+RCPP_INSTALL="$CANDLE_DEP_R_SITE/Rcpp"
 # RINSIDE_INSTALL=/path/to/RInside
-RINSIDE_INSTALL="$my_r_site_library/RInside"
+RINSIDE_INSTALL="$CANDLE_DEP_R_SITE/RInside"
 
 # Enable Julia integration
 ENABLE_JULIA=0
@@ -167,7 +160,7 @@ SWIFT_T_DEV=0
 
 # How to call Ant build tool
 #ANT=ant
-ANT="$myantroot/bin/ant"
+ANT="$CANDLE_DEP_ANT/bin/ant"
 
 # Ant arguments for STC build
 STC_ANT_ARGS=""
@@ -189,7 +182,8 @@ MAKE_PARALLELISM=1
 CUSTOM_CFG_ARGS_C_UTILS=""
 CUSTOM_CFG_ARGS_LB=""
 #CUSTOM_CFG_ARGS_TURBINE=""
-CUSTOM_CFG_ARGS_TURBINE="--with-launcher=/usr/local/slurm/bin/srun" # NOTE: Most likely, the line "EXTRA_ARGS=""" in build-turbine.sh must be changed to "EXTRA_ARGS="${CUSTOM_CFG_ARGS_TURBINE:-}"" in order for this setting to have any effect!
+#CUSTOM_CFG_ARGS_TURBINE="--with-launcher=/usr/local/slurm/bin/srun"
+CUSTOM_CFG_ARGS_TURBINE="$CANDLE_LAUNCHER_OPTION"
 
 #+=====================================+
 #|| Optional directory layout control ||
