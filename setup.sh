@@ -65,49 +65,41 @@ fi
 
 # Build Swift/T
 if [ "$(find "$CANDLE/swift-t-install/" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
+
+    # Set up the settings file
     cp -i "$CANDLE/wrappers/swift-t_setup/swift-t-settings-biowulf.sh" "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
-    cp -i "$CANDLE/wrappers/swift-t_setup/build-turbine.sh" "$CANDLE/swift-t/dev/build/build-turbine.sh"
-    echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate, comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template (or comparing that template with $CANDLE/wrappers/swift-t_setup/swift-t-settings.sh.template), if needed"
+    echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh), comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template (or comparing that template with $CANDLE/wrappers/swift-t_setup/swift-t-settings.sh.template), if needed"
     check_file_before_continuing "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
+
+    # Do the build
     export NICE_CMD=""
     "$CANDLE/swift-t/dev/build/build-swift-t.sh" -v |& tee -a "$LOCAL_DIR/swift-t_installation_out_and_err.txt"
     mv "$LOCAL_DIR/swift-t_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
 fi
 
 
-    1. cp settings.template.sh settings.sh # done
-    2. Edit settings.sh to match your setup
-    3. source settings.sh
-    4. ./bootstrap # this runs ``autoconf`` and generates ``./configure``
+# Build EQ-R
+if [ "$(find "$CANDLE/Supervisor/workflows/common/ext/EQ-R/" -maxdepth 1 | wc -l)" -eq 3 ]; then # if the directory is essentially empty (only containing the eqr directory and EQR.swift file)...
 
-    5. ./configure --prefix=$PWD/..
-    * ``--prefix``: EQ.R install location
-    * ``--enable-mac-bsd-sed``: For Mac users
-    * ``--with-tcl-version=8.5``: If you are using Tcl 8.5
+    # Set up the settings file
+    cp -i "$CANDLE/wrappers/swift-t_setup/eqr_settings-biowulf.sh" "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
+    echo "Now edit $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh), comparing with $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.template.sh (or comparing that template with $CANDLE/wrappers/swift-t_setup/eqr_settings.sh.template), if needed"
+    check_file_before_continuing "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
 
-    6. make install
+    # Do the build
+    (
+        # shellcheck source=/dev/null
+        source "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
+        "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/bootstrap" # this runs ``autoconf`` and generates ``./configure``
+        "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/configure" --prefix="$CANDLE/Supervisor/workflows/common/ext/EQ-R"
+        make --directory="$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr" install
+    ) |& tee -a "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/eqr_installation_out_and_err.txt"
+    mv "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/eqr_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
 
+fi
 
-
-    cp -i $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.template.sh $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh
-    echo "(3) CONFIRM there aren't any significant changes between $BUILD_SCRIPTS_DIR/eqr_settings.sh and $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh (make those files the same!)"
-    echo "(4) CONFIRM the settings in $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh are good"
-
-    # Setup
-    source $CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh
-    module list
-    SHARED_DIR=$(pwd)
-
-    cd $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr
-    source settings.sh #|& tee -a eqr_installation_out_and_err.txt --> LEAVE THIS COMMENTED OUT; OTHERWISE THE SOURCE COMMAND DOES NOT WORK!
-    ./bootstrap |& tee -a eqr_installation_out_and_err.txt
-    ./configure --prefix=$PWD/.. |& tee -a eqr_installation_out_and_err.txt
-    make install |& tee -a eqr_installation_out_and_err.txt
-    mv eqr_installation_out_and_err.txt $SHARED_DIR
-
-    # Save the final build environment and ensure permissions are correct
-    env > $SHARED_DIR/final_build_environment.txt
-    chmod -R g=u,o=u-w $CANDLE
+# Ensure permissions are correct
+chmod -R g=u,o=u-w "$CANDLE"
 
 
 # Print whether the previous commands were successful
