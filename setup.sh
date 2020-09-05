@@ -88,11 +88,12 @@ if [ "$(find "$CANDLE/Supervisor/workflows/common/ext/EQ-R/" -maxdepth 1 | wc -l
 
     # Do the build
     (
+        cd "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr"
         # shellcheck source=/dev/null
-        source "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
-        "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/bootstrap" # this runs ``autoconf`` and generates ``./configure``
-        "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/configure" --prefix="$CANDLE/Supervisor/workflows/common/ext/EQ-R"
-        make --directory="$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr" install
+        source ./settings.sh
+        ./bootstrap # this runs ``autoconf`` and generates ``./configure``
+        ./configure --prefix="$PWD/.."
+        make install
     ) |& tee -a "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/eqr_installation_out_and_err.txt"
     mv "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/eqr_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
 
