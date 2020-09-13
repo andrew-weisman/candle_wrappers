@@ -4,7 +4,7 @@
 # It should therefore run pretty quickly if everything is already installed, not changing anything significant
 # We should be able to run this script without worrying about it overwritting something already there
 
-interactive=1
+interactive=0
 
 check_file_before_continuing() {
     file_to_check=$1
