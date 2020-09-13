@@ -5,20 +5,20 @@
 ++ R_LOCAL_LIB=/usr/local/apps/R/4.0/site-library_4.0.0
 ++ R_INSIDE=/usr/local/apps/R/4.0/site-library_4.0.0/RInside
 ++ RCPP=/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp
-++ TCL_INCLUDE=/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include
-++ TCL_LIB=/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib
+++ TCL_INCLUDE=/data/BIDS-HPC/public/software/builds/tcl/include
+++ TCL_LIB=/data/BIDS-HPC/public/software/builds/tcl/lib
 ++ TCL_LIBRARY=tcl8.6
 ++ CPPFLAGS=
-++ CPPFLAGS+='-I/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include '
+++ CPPFLAGS+='-I/data/BIDS-HPC/public/software/builds/tcl/include '
 ++ CPPFLAGS+='-I/usr/local/apps/R/4.0/4.0.0/lib64/R/include '
 ++ CPPFLAGS+='-I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include '
 ++ CPPFLAGS+='-I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include '
-++ CXXFLAGS='-I/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include '
+++ CXXFLAGS='-I/data/BIDS-HPC/public/software/builds/tcl/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include '
 ++ LDFLAGS=
 ++ LDFLAGS+='-L/usr/local/apps/R/4.0/site-library_4.0.0/RInside/lib -lRInside '
 ++ LDFLAGS+='-L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR '
-++ LDFLAGS+='-L/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib -ltcl8.6 '
-++ LDFLAGS+='-Wl,-rpath -Wl,/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib '
+++ LDFLAGS+='-L/data/BIDS-HPC/public/software/builds/tcl/lib -ltcl8.6 '
+++ LDFLAGS+='-Wl,-rpath -Wl,/data/BIDS-HPC/public/software/builds/tcl/lib '
 ++ LDFLAGS+='-Wl,-rpath -Wl,/usr/local/apps/R/4.0/4.0.0/lib64/R/lib '
 ++ LDFLAGS+='-Wl,-rpath -Wl,/usr/local/apps/R/4.0/site-library_4.0.0/RInside/lib'
 ++ export CPPFLAGS CXXFLAGS LDFLAGS
@@ -44,7 +44,7 @@ checking how to run the C preprocessor... /usr/local/GCC/9.2.0/bin/gcc -E
 checking whether make sets $(MAKE)... yes
 checking for swig... /usr/bin/swig
 Using Tcl version: 8.6
-checking for tclsh8.6... /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/bin/tclsh8.6
+checking for tclsh8.6... /data/BIDS-HPC/public/software/builds/tcl/bin/tclsh8.6
 checking how to run the C++ preprocessor... /usr/local/GCC/9.2.0/bin/g++ -E
 checking for grep that handles long lines and -e... /usr/bin/grep
 checking for egrep... /usr/bin/grep -E
@@ -77,15 +77,16 @@ configure: creating ./config.status
 config.status: creating Makefile
 config.status: creating settings.mk
 config.status: creating config.h
+config.status: config.h is unchanged
 + make install
 swig -c++ -pkgversion 0.1 EQR.i
-g++ -c -g -O0 -fPIC -std=c++0x -I/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include  -I/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include  \
+g++ -c -g -O0 -fPIC -std=c++0x -I/data/BIDS-HPC/public/software/builds/tcl/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include  -I/data/BIDS-HPC/public/software/builds/tcl/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include  \
 	EQR_wrap.cxx
-g++ -c -g -O0 -fPIC -std=c++0x -I/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include  -I/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include  \
+g++ -c -g -O0 -fPIC -std=c++0x -I/data/BIDS-HPC/public/software/builds/tcl/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include  -I/data/BIDS-HPC/public/software/builds/tcl/include -I/usr/local/apps/R/4.0/4.0.0/lib64/R/include -I/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include -I/usr/local/apps/R/4.0/site-library_4.0.0/RInside/include  \
 	EQR.cpp
 g++ -shared -o libeqr.so \
 	EQR_wrap.o EQR.o        \
-	-L/usr/local/apps/R/4.0/site-library_4.0.0/RInside/lib -lRInside -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR -L/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib -ltcl8.6 -Wl,-rpath -Wl,/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib -Wl,-rpath -Wl,/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath -Wl,/usr/local/apps/R/4.0/site-library_4.0.0/RInside/lib  \
+	-L/usr/local/apps/R/4.0/site-library_4.0.0/RInside/lib -lRInside -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR -L/data/BIDS-HPC/public/software/builds/tcl/lib -ltcl8.6 -Wl,-rpath -Wl,/data/BIDS-HPC/public/software/builds/tcl/lib -Wl,-rpath -Wl,/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath -Wl,/usr/local/apps/R/4.0/site-library_4.0.0/RInside/lib  \
 	-lRInside
 tclsh8.6 make-package.tcl > pkgIndex.tcl
 cp pkgIndex.tcl /data/BIDS-HPC/public/software/distributions/candle/dev_2/Supervisor/workflows/common/ext/EQ-R/eqr/../pkgIndex.tcl

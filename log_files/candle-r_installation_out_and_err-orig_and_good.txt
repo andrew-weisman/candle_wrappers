@@ -100,21 +100,21 @@ downloaded 718 KB
     print.plotly_figure                     html  
     rangeslider                             html  
     reexports                               html  
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘mutate_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘transmute’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘transmute_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘select_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘rename_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘group_by_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘groups’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘ungroup’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘summarise_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘do_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘arrange_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘distinct_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘slice_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:37: file link ‘filter_’ in package ‘dplyr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexports.Rd:39: file link ‘%>%’ in package ‘magrittr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘mutate_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘transmute’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘transmute_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘select_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘rename_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘group_by_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘groups’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘ungroup’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘summarise_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘do_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘arrange_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘distinct_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘slice_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:37: file link ‘filter_’ in package ‘dplyr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKTvW4M/R.INSTALLcb2a2d0b1ffc/plotly/man/reexports.Rd:39: file link ‘%>%’ in package ‘magrittr’ does not exist and so has been treated as a topic
     schema                                  html  
     signup                                  html  
     style                                   html  
@@ -128,92 +128,13 @@ Rd warning: /lscratch/64803361/Rtmp8YAyGw/R.INSTALL78562bb61b9f/plotly/man/reexp
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (plotly)
-> install.packages("https://cran.r-project.org/src/contrib/Archive/jsonlite/jsonlite_1.7.0.tar.gz") # ALW adding this on 9/12/20 (and removing jsonlite from PKGS list below) because sometime in the first two weeks of Sept 2020 the default jsonlite version became 1.7.1 and this seems to throw an error that looks to me like a bug that should be fixed with time; e.g., while everything worked in early Sept 2020 (probably 9/2/20), now on 9/12/20 I get this error:
-Installing package into ‘/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs’
-(as ‘lib’ is unspecified)
-inferring 'repos = NULL' from 'pkgs'
-trying URL 'https://cran.r-project.org/src/contrib/Archive/jsonlite/jsonlite_1.7.0.tar.gz'
-Content type 'application/x-gzip' length 1057524 bytes (1.0 MB)
-==================================================
-downloaded 1.0 MB
-
-* installing *source* package ‘jsonlite’ ...
-** package ‘jsonlite’ successfully unpacked and MD5 sums checked
-** using staged installation
-** libs
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c base64.c -o base64.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c collapse_array.c -o collapse_array.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c collapse_object.c -o collapse_object.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c collapse_pretty.c -o collapse_pretty.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c escape_chars.c -o escape_chars.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c integer64_to_na.c -o integer64_to_na.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c is_datelist.c -o is_datelist.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c is_recordlist.c -o is_recordlist.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c is_scalarlist.c -o is_scalarlist.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c modp_numtoa.c -o modp_numtoa.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c null_to_na.c -o null_to_na.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c num_to_char.c -o num_to_char.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c parse.c -o parse.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c prettify.c -o prettify.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c push_parser.c -o push_parser.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c r-base64.c -o r-base64.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c register.c -o register.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c row_collapse.c -o row_collapse.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c transpose_list.c -o transpose_list.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c validate.c -o validate.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl.c -o yajl/yajl.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_alloc.c -o yajl/yajl_alloc.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_buf.c -o yajl/yajl_buf.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_encode.c -o yajl/yajl_encode.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_gen.c -o yajl/yajl_gen.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_lex.c -o yajl/yajl_lex.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_parser.c -o yajl/yajl_parser.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_tree.c -o yajl/yajl_tree.o
-ar rcs yajl/libstatyajl.a yajl/yajl.o yajl/yajl_alloc.o yajl/yajl_buf.o yajl/yajl_encode.o yajl/yajl_gen.o yajl/yajl_lex.o yajl/yajl_parser.o yajl/yajl_tree.o
-/usr/local/GCC/9.2.0/bin/gcc -shared -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath=/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -o jsonlite.so base64.o collapse_array.o collapse_object.o collapse_pretty.o escape_chars.o integer64_to_na.o is_datelist.o is_recordlist.o is_scalarlist.o modp_numtoa.o null_to_na.o num_to_char.o parse.o prettify.o push_parser.o r-base64.o register.o row_collapse.o transpose_list.o validate.o -Lyajl -lstatyajl -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR
-installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs/00LOCK-jsonlite/00new/jsonlite/libs
-** R
-** inst
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-  converting help for package ‘jsonlite’
-    finding HTML links ... done
-    base64                                  html  
-    flatten                                 html  
-    fromJSON                                html  
-    prettify                                html  
-    rbind_pages                             html  
-    read_json                               html  
-    serializeJSON                           html  
-    stream_in                               html  
-    unbox                                   html  
-    validate                                html  
-** building package indices
-** installing vignettes
-** testing if installed package can be loaded from temporary location
-** checking absolute paths in shared objects and dynamic libraries
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
-* DONE (jsonlite)
-> # * DONE (jsonlite)
-> # 1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64803361/Rtmpnd5yDC/downloaded_packages/jsonlite_1.7.1.tar.gz''
-> # The downloaded source packages are in
-> # 	‘/lscratch/64803361/Rtmpnd5yDC/downloaded_packages’
-> # [1] ""
-> # LOAD:     jsonlite 
-> # Error in value[[3L]](cond) : 
-> #   Package ‘jsonlite’ version 1.7.0 cannot be unloaded:
-> #  Error in unloadNamespace(package) : namespace ‘jsonlite’ is imported by ‘plotly’ so cannot be unloaded
-> # Calls: library ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
-> # Execution halted
-> # ****NOTE**** that I tried installing both plotly and jsonlite the normal way (in the PKGS below instead of a specific version above) and I got the same error
 > 
 > PKGS <- list(
 +     "smoof",
 +     "rgenoud",
 +     "DiceKriging",
 +     "randomForest",
++     "jsonlite",
 +     "parallelMap",
 +     "RInside",
 +     "mlrMBO"
@@ -234,58 +155,17 @@ INSTALL:  smoof
 Installing package into ‘/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs’
 (as ‘lib’ is unspecified)
 system (cmd0): /usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL
-also installing the dependency ‘mco’
-
-trying URL 'http://cran.wustl.edu/src/contrib/mco_1.0-15.1.tar.gz'
-Content type 'application/x-gzip' length 150778 bytes (147 KB)
-==================================================
-downloaded 147 KB
-
 trying URL 'http://cran.wustl.edu/src/contrib/smoof_1.6.0.2.tar.gz'
 Content type 'application/x-gzip' length 209203 bytes (204 KB)
 ==================================================
 downloaded 204 KB
 
-foundpkgs: mco, smoof, /lscratch/64803361/Rtmp06ISJp/downloaded_packages/mco_1.0-15.1.tar.gz, /lscratch/64803361/Rtmp06ISJp/downloaded_packages/smoof_1.6.0.2.tar.gz
-files: /lscratch/64803361/Rtmp06ISJp/downloaded_packages/mco_1.0-15.1.tar.gz, 
-	/lscratch/64803361/Rtmp06ISJp/downloaded_packages/smoof_1.6.0.2.tar.gz
-begin installing package ‘mco’
-* installing *source* package ‘mco’ ...
-** package ‘mco’ successfully unpacked and MD5 sums checked
-** using staged installation
-** libs
-make[1]: Entering directory `/lscratch/64803361/RtmpiUq9LV/R.INSTALL792f43d0e033/mco/src'
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -DVARIANT=4  -I/usr/local/include   -fpic  -g -O2  -c avl.c -o avl.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -DVARIANT=4  -I/usr/local/include   -fpic  -g -O2  -c eps_ind.c -o eps_ind.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -DVARIANT=4  -I/usr/local/include   -fpic  -g -O2  -c hv.c -o hv.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -DVARIANT=4  -I/usr/local/include   -fpic  -g -O2  -c hv_interface.c -o hv_interface.o
-/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -DVARIANT=4  -I/usr/local/include   -fpic  -g -O2  -c nsga2.c -o nsga2.o
-/usr/local/GCC/9.2.0/bin/gcc -shared -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath=/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -o mco.so avl.o eps_ind.o hv.o hv_interface.o nsga2.o -L/usr/local/GSL/gcc-9.2.0/2.6/lib -lgsl -lgslcblas -lm -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR
-make[1]: Leaving directory `/lscratch/64803361/RtmpiUq9LV/R.INSTALL792f43d0e033/mco/src'
-installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs/00LOCK-mco/00new/mco/libs
-** R
-** byte-compile and prepare package for lazy loading
-** help
-*** installing help indices
-  converting help for package ‘mco’
-    finding HTML links ... done
-    functions                               html  
-    generationalDistance                    html  
-    normalizeFront                          html  
-    nsga2                                   html  
-    paretoFront                             html  
-** building package indices
-** testing if installed package can be loaded from temporary location
-** checking absolute paths in shared objects and dynamic libraries
-** testing if installed package can be loaded from final location
-** testing if installed package keeps a record of temporary installation path
-* DONE (mco)
-begin installing package ‘smoof’
+foundpkgs: smoof, /lscratch/64112198/RtmpxIhg9w/downloaded_packages/smoof_1.6.0.2.tar.gz
+files: /lscratch/64112198/RtmpxIhg9w/downloaded_packages/smoof_1.6.0.2.tar.gz
 * installing *source* package ‘smoof’ ...
 ** package ‘smoof’ successfully unpacked and MD5 sums checked
 ** using staged installation
 ** libs
-make[1]: Entering directory `/lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/src'
 /usr/local/GCC/9.2.0/bin/g++ -std=gnu++11 -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG  -I/usr/local/GSL/gcc-9.2.0/2.6/include  -I'/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include' -I'/usr/local/apps/R/4.0/site-library_4.0.0/RcppArmadillo/include' -I/usr/local/include   -fpic  -fabi-version=11 -fabi-compat-version=2 -fpermissive -g -O2  -c RcppExports.cpp -o RcppExports.o
 /usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG  -I/usr/local/GSL/gcc-9.2.0/2.6/include  -I'/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include' -I'/usr/local/apps/R/4.0/site-library_4.0.0/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c bbob_r_to_c_interface.c -o bbob_r_to_c_interface.o
 /usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG  -I/usr/local/GSL/gcc-9.2.0/2.6/include  -I'/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include' -I'/usr/local/apps/R/4.0/site-library_4.0.0/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c benchmarks.c -o benchmarks.o
@@ -306,7 +186,6 @@ make[1]: Entering directory `/lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb
 /usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG  -I/usr/local/GSL/gcc-9.2.0/2.6/include  -I'/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include' -I'/usr/local/apps/R/4.0/site-library_4.0.0/RcppArmadillo/include' -I/usr/local/include   -fpic  -g -O2  -c mof.viennet.c -o mof.viennet.o
 /usr/local/GCC/9.2.0/bin/g++ -std=gnu++11 -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG  -I/usr/local/GSL/gcc-9.2.0/2.6/include  -I'/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include' -I'/usr/local/apps/R/4.0/site-library_4.0.0/RcppArmadillo/include' -I/usr/local/include   -fpic  -fabi-version=11 -fabi-compat-version=2 -fpermissive -g -O2  -c mof.wfg.cpp -o mof.wfg.o
 /usr/local/GCC/9.2.0/bin/g++ -std=gnu++11 -shared -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath=/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -o smoof.so RcppExports.o bbob_r_to_c_interface.o benchmarks.o benchmarkshelper.o cec09.o cec09_r_to_c_interface.o dtlz.o mof.BK1.o mof.ED.o mof.MOP1.o mof.MOP2.o mof.MOP3.o mof.MOP4.o mof.MOP5.o mof.MOP6.o mof.MOP7.o mof.kursawe.o mof.viennet.o mof.wfg.o -L/usr/local/GSL/gcc-9.2.0/2.6/lib -lgsl -lgslcblas -lm -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR
-make[1]: Leaving directory `/lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/src'
 installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs/00LOCK-smoof/00new/smoof/libs
 ** R
 ** inst
@@ -318,7 +197,7 @@ installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/de
     addCountingWrapper                      html  
     addLoggingWrapper                       html  
     autoplot.smoof_function                 html  
-Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/autoplot.smoof_function.Rd:52: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpOAmgA6/R.INSTALLcbc616606cc7/smoof/man/autoplot.smoof_function.Rd:52: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
     computeExpectedRunningTime              html  
     conversion                              html  
     doesCountEvaluations                    html  
@@ -336,8 +215,8 @@ Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/autopl
     getNumberOfObjectives                   html  
     getNumberOfParameters                   html  
     getParamSet                             html  
-Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/getParamSet.Rd:14: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/getParamSet.Rd:11: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpOAmgA6/R.INSTALLcbc616606cc7/smoof/man/getParamSet.Rd:14: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpOAmgA6/R.INSTALLcbc616606cc7/smoof/man/getParamSet.Rd:11: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
     getRefPoint                             html  
     getTags                                 html  
     getUpperBoxConstraints                  html  
@@ -436,7 +315,7 @@ Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/getPar
     makeMichalewiczFunction                 html  
     makeModifiedRastriginFunction           html  
     makeMultiObjectiveFunction              html  
-Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/makeMultiObjectiveFunction.Rd:33: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpOAmgA6/R.INSTALLcbc616606cc7/smoof/man/makeMultiObjectiveFunction.Rd:33: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
     makePeriodicFunction                    html  
     makePowellSumFunction                   html  
     makePriceN1Function                     html  
@@ -450,7 +329,7 @@ Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/makeMu
     makeShekelFunction                      html  
     makeShubertFunction                     html  
     makeSingleObjectiveFunction             html  
-Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/makeSingleObjectiveFunction.Rd:38: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpOAmgA6/R.INSTALLcbc616606cc7/smoof/man/makeSingleObjectiveFunction.Rd:38: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
     makeSixHumpCamelFunction                html  
     makeSphereFunction                      html  
     makeStyblinkskiTangFunction             html  
@@ -484,7 +363,7 @@ Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/makeSi
     shouldBeMinimized                       html  
     smoof-package                           html  
     smoof_function                          html  
-Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/smoof_function.Rd:17: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpOAmgA6/R.INSTALLcbc616606cc7/smoof/man/smoof_function.Rd:17: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
     snof                                    html  
     violatesConstraints                     html  
     visualizeParetoOptimalFront             html  
@@ -494,9 +373,10 @@ Rd warning: /lscratch/64803361/RtmpwKBiTm/R.INSTALL797e45b278eb/smoof/man/smoof_
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (smoof)
+1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64112198/RtmpxIhg9w/downloaded_packages/smoof_1.6.0.2.tar.gz''
 
 The downloaded source packages are in
-	‘/lscratch/64803361/Rtmp06ISJp/downloaded_packages’
+	‘/lscratch/64112198/RtmpxIhg9w/downloaded_packages’
 [1] ""
 LOAD:     smoof 
 Loading required package: ParamHelpers
@@ -511,8 +391,8 @@ Content type 'application/x-gzip' length 728817 bytes (711 KB)
 ==================================================
 downloaded 711 KB
 
-foundpkgs: rgenoud, /lscratch/64803361/Rtmp06ISJp/downloaded_packages/rgenoud_5.8-3.0.tar.gz
-files: /lscratch/64803361/Rtmp06ISJp/downloaded_packages/rgenoud_5.8-3.0.tar.gz
+foundpkgs: rgenoud, /lscratch/64112198/RtmpxIhg9w/downloaded_packages/rgenoud_5.8-3.0.tar.gz
+files: /lscratch/64112198/RtmpxIhg9w/downloaded_packages/rgenoud_5.8-3.0.tar.gz
 * installing *source* package ‘rgenoud’ ...
 ** package ‘rgenoud’ successfully unpacked and MD5 sums checked
 ** using staged installation
@@ -541,7 +421,7 @@ installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/de
   converting help for package ‘rgenoud’
     finding HTML links ... done
     genoud                                  html  
-Rd warning: /lscratch/64803361/RtmpYKblvO/R.INSTALL7a571249b64a/rgenoud/man/genoud.Rd:450: file link ‘makePSOCKcluster’ in package ‘parallel’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpDAANGb/R.INSTALLcc9712030f7b/rgenoud/man/genoud.Rd:450: file link ‘makePSOCKcluster’ in package ‘parallel’ does not exist and so has been treated as a topic
 ** building package indices
 ** installing vignettes
 ** testing if installed package can be loaded from temporary location
@@ -549,10 +429,10 @@ Rd warning: /lscratch/64803361/RtmpYKblvO/R.INSTALL7a571249b64a/rgenoud/man/geno
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (rgenoud)
-1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64803361/Rtmp06ISJp/downloaded_packages/rgenoud_5.8-3.0.tar.gz''
+1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64112198/RtmpxIhg9w/downloaded_packages/rgenoud_5.8-3.0.tar.gz''
 
 The downloaded source packages are in
-	‘/lscratch/64803361/Rtmp06ISJp/downloaded_packages’
+	‘/lscratch/64112198/RtmpxIhg9w/downloaded_packages’
 [1] ""
 LOAD:     rgenoud 
 ##  rgenoud (Version 5.8-3.0, Build Date: 2019-01-22)
@@ -573,8 +453,8 @@ Content type 'application/x-gzip' length 95925 bytes (93 KB)
 ==================================================
 downloaded 93 KB
 
-foundpkgs: DiceKriging, /lscratch/64803361/Rtmp06ISJp/downloaded_packages/DiceKriging_1.5.6.tar.gz
-files: /lscratch/64803361/Rtmp06ISJp/downloaded_packages/DiceKriging_1.5.6.tar.gz
+foundpkgs: DiceKriging, /lscratch/64112198/RtmpxIhg9w/downloaded_packages/DiceKriging_1.5.6.tar.gz
+files: /lscratch/64112198/RtmpxIhg9w/downloaded_packages/DiceKriging_1.5.6.tar.gz
 * installing *source* package ‘DiceKriging’ ...
 ** package ‘DiceKriging’ successfully unpacked and MD5 sums checked
 ** using staged installation
@@ -651,10 +531,10 @@ Note: ... may be used in an incorrect context
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (DiceKriging)
-1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64803361/Rtmp06ISJp/downloaded_packages/DiceKriging_1.5.6.tar.gz''
+1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64112198/RtmpxIhg9w/downloaded_packages/DiceKriging_1.5.6.tar.gz''
 
 The downloaded source packages are in
-	‘/lscratch/64803361/Rtmp06ISJp/downloaded_packages’
+	‘/lscratch/64112198/RtmpxIhg9w/downloaded_packages’
 [1] ""
 LOAD:     DiceKriging 
 
@@ -674,8 +554,8 @@ Content type 'application/x-gzip' length 80074 bytes (78 KB)
 ==================================================
 downloaded 78 KB
 
-foundpkgs: randomForest, /lscratch/64803361/Rtmp06ISJp/downloaded_packages/randomForest_4.6-14.tar.gz
-files: /lscratch/64803361/Rtmp06ISJp/downloaded_packages/randomForest_4.6-14.tar.gz
+foundpkgs: randomForest, /lscratch/64112198/RtmpxIhg9w/downloaded_packages/randomForest_4.6-14.tar.gz
+files: /lscratch/64112198/RtmpxIhg9w/downloaded_packages/randomForest_4.6-14.tar.gz
 * installing *source* package ‘randomForest’ ...
 ** package ‘randomForest’ successfully unpacked and MD5 sums checked
 ** using staged installation
@@ -724,14 +604,91 @@ installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/de
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (randomForest)
-1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64803361/Rtmp06ISJp/downloaded_packages/randomForest_4.6-14.tar.gz''
+1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64112198/RtmpxIhg9w/downloaded_packages/randomForest_4.6-14.tar.gz''
 
 The downloaded source packages are in
-	‘/lscratch/64803361/Rtmp06ISJp/downloaded_packages’
+	‘/lscratch/64112198/RtmpxIhg9w/downloaded_packages’
 [1] ""
 LOAD:     randomForest 
 randomForest 4.6-14
 Type rfNews() to see new features/changes/bug fixes.
+[1] ""
+INSTALL:  jsonlite 
+Installing package into ‘/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs’
+(as ‘lib’ is unspecified)
+system (cmd0): /usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL
+trying URL 'http://cran.wustl.edu/src/contrib/jsonlite_1.7.0.tar.gz'
+Content type 'application/x-gzip' length 1057524 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+foundpkgs: jsonlite, /lscratch/64112198/RtmpxIhg9w/downloaded_packages/jsonlite_1.7.0.tar.gz
+files: /lscratch/64112198/RtmpxIhg9w/downloaded_packages/jsonlite_1.7.0.tar.gz
+* installing *source* package ‘jsonlite’ ...
+** package ‘jsonlite’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c base64.c -o base64.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c collapse_array.c -o collapse_array.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c collapse_object.c -o collapse_object.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c collapse_pretty.c -o collapse_pretty.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c escape_chars.c -o escape_chars.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c integer64_to_na.c -o integer64_to_na.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c is_datelist.c -o is_datelist.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c is_recordlist.c -o is_recordlist.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c is_scalarlist.c -o is_scalarlist.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c modp_numtoa.c -o modp_numtoa.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c null_to_na.c -o null_to_na.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c num_to_char.c -o num_to_char.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c parse.c -o parse.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c prettify.c -o prettify.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c push_parser.c -o push_parser.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c r-base64.c -o r-base64.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c register.c -o register.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c row_collapse.c -o row_collapse.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c transpose_list.c -o transpose_list.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c validate.c -o validate.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl.c -o yajl/yajl.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_alloc.c -o yajl/yajl_alloc.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_buf.c -o yajl/yajl_buf.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_encode.c -o yajl/yajl_encode.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_gen.c -o yajl/yajl_gen.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_lex.c -o yajl/yajl_lex.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_parser.c -o yajl/yajl_parser.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -Iyajl/api  -I/usr/local/include  -fvisibility=hidden  -fpic  -g -O2  -c yajl/yajl_tree.c -o yajl/yajl_tree.o
+ar rcs yajl/libstatyajl.a yajl/yajl.o yajl/yajl_alloc.o yajl/yajl_buf.o yajl/yajl_encode.o yajl/yajl_gen.o yajl/yajl_lex.o yajl/yajl_parser.o yajl/yajl_tree.o
+/usr/local/GCC/9.2.0/bin/gcc -shared -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath=/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -o jsonlite.so base64.o collapse_array.o collapse_object.o collapse_pretty.o escape_chars.o integer64_to_na.o is_datelist.o is_recordlist.o is_scalarlist.o modp_numtoa.o null_to_na.o num_to_char.o parse.o prettify.o push_parser.o r-base64.o register.o row_collapse.o transpose_list.o validate.o -Lyajl -lstatyajl -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR
+installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs/00LOCK-jsonlite/00new/jsonlite/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package ‘jsonlite’
+    finding HTML links ... done
+    base64                                  html  
+    flatten                                 html  
+    fromJSON                                html  
+    prettify                                html  
+    rbind_pages                             html  
+    read_json                               html  
+    serializeJSON                           html  
+    stream_in                               html  
+    unbox                                   html  
+    validate                                html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (jsonlite)
+1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64112198/RtmpxIhg9w/downloaded_packages/jsonlite_1.7.0.tar.gz''
+
+The downloaded source packages are in
+	‘/lscratch/64112198/RtmpxIhg9w/downloaded_packages’
+[1] ""
+LOAD:     jsonlite 
 [1] ""
 INSTALL:  parallelMap 
 Installing package into ‘/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs’
@@ -742,8 +699,8 @@ Content type 'application/x-gzip' length 29652 bytes (28 KB)
 ==================================================
 downloaded 28 KB
 
-foundpkgs: parallelMap, /lscratch/64803361/Rtmp06ISJp/downloaded_packages/parallelMap_1.5.0.tar.gz
-files: /lscratch/64803361/Rtmp06ISJp/downloaded_packages/parallelMap_1.5.0.tar.gz
+foundpkgs: parallelMap, /lscratch/64112198/RtmpxIhg9w/downloaded_packages/parallelMap_1.5.0.tar.gz
+files: /lscratch/64112198/RtmpxIhg9w/downloaded_packages/parallelMap_1.5.0.tar.gz
 * installing *source* package ‘parallelMap’ ...
 ** package ‘parallelMap’ successfully unpacked and MD5 sums checked
 ** using staged installation
@@ -761,23 +718,23 @@ files: /lscratch/64803361/Rtmp06ISJp/downloaded_packages/parallelMap_1.5.0.tar.g
     parallelLibrary                         html  
     parallelMap                             html  
     parallelRegisterLevels                  html  
-Rd warning: /lscratch/64803361/RtmpBQnk6C/R.INSTALL7b7d3ed8f0ca/parallelMap/man/parallelRegisterLevels.Rd:24: file link ‘.onLoad’ in package ‘base’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpE3vqtP/R.INSTALLce56246d5ea9/parallelMap/man/parallelRegisterLevels.Rd:24: file link ‘.onLoad’ in package ‘base’ does not exist and so has been treated as a topic
     parallelSource                          html  
     parallelStart                           html  
-Rd warning: /lscratch/64803361/RtmpBQnk6C/R.INSTALL7b7d3ed8f0ca/parallelMap/man/parallelStart.Rd:157: file link ‘makePSOCKcluster’ in package ‘parallel’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/RtmpBQnk6C/R.INSTALL7b7d3ed8f0ca/parallelMap/man/parallelStart.Rd:159: file link ‘mcmapply’ in package ‘parallel’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/RtmpBQnk6C/R.INSTALL7b7d3ed8f0ca/parallelMap/man/parallelStart.Rd:180: file link ‘clusterMap’ in package ‘parallel’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpE3vqtP/R.INSTALLce56246d5ea9/parallelMap/man/parallelStart.Rd:157: file link ‘makePSOCKcluster’ in package ‘parallel’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpE3vqtP/R.INSTALLce56246d5ea9/parallelMap/man/parallelStart.Rd:159: file link ‘mcmapply’ in package ‘parallel’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpE3vqtP/R.INSTALLce56246d5ea9/parallelMap/man/parallelStart.Rd:180: file link ‘clusterMap’ in package ‘parallel’ does not exist and so has been treated as a topic
     parallelStop                            html  
-Rd warning: /lscratch/64803361/RtmpBQnk6C/R.INSTALL7b7d3ed8f0ca/parallelMap/man/parallelStop.Rd:16: file link ‘stopCluster’ in package ‘parallel’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpE3vqtP/R.INSTALLce56246d5ea9/parallelMap/man/parallelStop.Rd:16: file link ‘stopCluster’ in package ‘parallel’ does not exist and so has been treated as a topic
 ** building package indices
 ** testing if installed package can be loaded from temporary location
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (parallelMap)
-1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64803361/Rtmp06ISJp/downloaded_packages/parallelMap_1.5.0.tar.gz''
+1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64112198/RtmpxIhg9w/downloaded_packages/parallelMap_1.5.0.tar.gz''
 
 The downloaded source packages are in
-	‘/lscratch/64803361/Rtmp06ISJp/downloaded_packages’
+	‘/lscratch/64112198/RtmpxIhg9w/downloaded_packages’
 [1] ""
 LOAD:     parallelMap 
 [1] ""
@@ -790,8 +747,8 @@ Content type 'application/x-gzip' length 80576 bytes (78 KB)
 ==================================================
 downloaded 78 KB
 
-foundpkgs: RInside, /lscratch/64803361/Rtmp06ISJp/downloaded_packages/RInside_0.2.16.tar.gz
-files: /lscratch/64803361/Rtmp06ISJp/downloaded_packages/RInside_0.2.16.tar.gz
+foundpkgs: RInside, /lscratch/64112198/RtmpxIhg9w/downloaded_packages/RInside_0.2.16.tar.gz
+files: /lscratch/64112198/RtmpxIhg9w/downloaded_packages/RInside_0.2.16.tar.gz
 * installing *source* package ‘RInside’ ...
 ** package ‘RInside’ successfully unpacked and MD5 sums checked
 ** using staged installation
@@ -824,10 +781,10 @@ installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/de
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (RInside)
-1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64803361/Rtmp06ISJp/downloaded_packages/RInside_0.2.16.tar.gz''
+1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64112198/RtmpxIhg9w/downloaded_packages/RInside_0.2.16.tar.gz''
 
 The downloaded source packages are in
-	‘/lscratch/64803361/Rtmp06ISJp/downloaded_packages’
+	‘/lscratch/64112198/RtmpxIhg9w/downloaded_packages’
 [1] ""
 LOAD:     RInside 
 [1] ""
@@ -840,8 +797,8 @@ Content type 'application/x-gzip' length 653029 bytes (637 KB)
 ==================================================
 downloaded 637 KB
 
-foundpkgs: mlrMBO, /lscratch/64803361/Rtmp06ISJp/downloaded_packages/mlrMBO_1.1.4.tar.gz
-files: /lscratch/64803361/Rtmp06ISJp/downloaded_packages/mlrMBO_1.1.4.tar.gz
+foundpkgs: mlrMBO, /lscratch/64112198/RtmpxIhg9w/downloaded_packages/mlrMBO_1.1.4.tar.gz
+files: /lscratch/64112198/RtmpxIhg9w/downloaded_packages/mlrMBO_1.1.4.tar.gz
 * installing *source* package ‘mlrMBO’ ...
 ** package ‘mlrMBO’ successfully unpacked and MD5 sums checked
 ** using staged installation
@@ -860,19 +817,19 @@ installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/de
   converting help for package ‘mlrMBO’
     finding HTML links ... done
     MBOInfillCrit                           html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/MBOInfillCrit.Rd:33: file link ‘WrappedModel’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/MBOInfillCrit.Rd:33: file link ‘WrappedModel’ in package ‘mlr’ does not exist and so has been treated as a topic
     MBOMultiObjResult                       html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/MBOMultiObjResult.Rd:15: file link ‘WrappedModel’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/MBOMultiObjResult.Rd:15: file link ‘WrappedModel’ in package ‘mlr’ does not exist and so has been treated as a topic
     MBOSingleObjResult                      html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/MBOSingleObjResult.Rd:27: file link ‘WrappedModel’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/MBOSingleObjResult.Rd:27: file link ‘WrappedModel’ in package ‘mlr’ does not exist and so has been treated as a topic
     OptProblem                              html  
     OptResult                               html  
     OptState                                html  
     error_handling                          html  
     exampleRun                              html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/exampleRun.Rd:35: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/exampleRun.Rd:35: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
     exampleRunMultiObj                      html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/exampleRunMultiObj.Rd:36: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/exampleRunMultiObj.Rd:36: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
     finalizeSMBO                            html  
     getGlobalOpt                            html  
     getMBOInfillCrit                        html  
@@ -881,18 +838,18 @@ Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/examp
                                             html  
     infillcrits                             html  
     initCrit                                html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/initCrit.Rd:18: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/initCrit.Rd:18: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
     initSMBO                                html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/initSMBO.Rd:18: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/initSMBO.Rd:29: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/initSMBO.Rd:18: file link ‘ParamSet’ in package ‘ParamHelpers’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/initSMBO.Rd:29: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
     makeMBOControl                          html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/makeMBOControl.Rd:104: file link ‘ResampleDesc’ in package ‘mlr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/makeMBOControl.Rd:108: file link ‘Measure’ in package ‘mlr’ does not exist and so has been treated as a topic
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/makeMBOControl.Rd:110: file link ‘mse’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/makeMBOControl.Rd:104: file link ‘ResampleDesc’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/makeMBOControl.Rd:108: file link ‘Measure’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/makeMBOControl.Rd:110: file link ‘mse’ in package ‘mlr’ does not exist and so has been treated as a topic
     makeMBOLearner                          html  
     makeMBOTrafoFunction                    html  
     mbo                                     html  
-Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/mbo.Rd:34: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
+Rd warning: /lscratch/64112198/RtmpKKSu3L/R.INSTALLcf165dc3f328/mlrMBO/man/mbo.Rd:34: file link ‘Learner’ in package ‘mlr’ does not exist and so has been treated as a topic
     mboContinue                             html  
     mboFinalize                             html  
     mbo_OptPath                             html  
@@ -917,10 +874,10 @@ Rd warning: /lscratch/64803361/RtmpljLs3Q/R.INSTALL7c3945a13e13/mlrMBO/man/mbo.R
 ** testing if installed package can be loaded from final location
 ** testing if installed package keeps a record of temporary installation path
 * DONE (mlrMBO)
-1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64803361/Rtmp06ISJp/downloaded_packages/mlrMBO_1.1.4.tar.gz''
+1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64112198/RtmpxIhg9w/downloaded_packages/mlrMBO_1.1.4.tar.gz''
 
 The downloaded source packages are in
-	‘/lscratch/64803361/Rtmp06ISJp/downloaded_packages’
+	‘/lscratch/64112198/RtmpxIhg9w/downloaded_packages’
 [1] ""
 LOAD:     mlrMBO 
 Loading required package: mlr

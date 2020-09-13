@@ -4,7 +4,7 @@
 # It should therefore run pretty quickly if everything is already installed, not changing anything significant
 # We should be able to run this script without worrying about it overwritting something already there
 
-interactive=0
+interactive=1
 
 check_file_before_continuing() {
     file_to_check=$1
@@ -26,7 +26,7 @@ environment_check() {
     echo -e "\n---------------------------------------------------\n\n"
 }
 
-export OMPI_MCA_btl="^openib"
+#export OMPI_MCA_btl="^openib"
 
 # Print commands just before execution
 set -x
@@ -177,8 +177,8 @@ BUILD_SCRIPTS_DIR="/home/weismanal/candle/wrappers/build"
 export TURBINE_LAUNCH_OPTIONS="--mpi=pmix --mem=0"
 swift-t -VV -n 3 $BUILD_SCRIPTS_DIR/mytest2.swift
 
-# # Test 2: time-delayed printouts of some numbers
-# swift-t -VV -n 3 -r $BUILD_SCRIPTS_DIR $BUILD_SCRIPTS_DIR/myextension.swift
+# Test 2: time-delayed printouts of some numbers
+swift-t -VV -n 3 -r $BUILD_SCRIPTS_DIR $BUILD_SCRIPTS_DIR/myextension.swift
 
 
 

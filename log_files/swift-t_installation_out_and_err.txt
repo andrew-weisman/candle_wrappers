@@ -531,7 +531,7 @@ removed ‘config.status’
 Running autoconf...
 Running autoheader...
 Turbine: bootstrap: OK
-+ ./configure --config-cache --prefix=/data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/turbine --with-c-utils=/data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/c-utils --with-adlb=/data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/lb --with-launcher=/usr/local/slurm/bin/srun --with-python-exe=/usr/local/Anaconda/envs/py3.7/bin/python --with-r=/usr/local/apps/R/4.0/4.0.0/lib64/R --with-rinside=/usr/local/apps/R/4.0/site-library_4.0.0/RInside --with-rcpp=/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp --with-tcl=/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0 --with-tcl-version=8.6 --with-tclsh-local=/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0 --with-tcl-lib-dir=/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib --with-tcl-include=/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include --with-tcl-syslib-dir=/usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib --enable-checkpoint=no --disable-static-pkg --with-mpi=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0 --enable-custom-mpi --with-mpi=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0 --with-mpi-include=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/include --with-mpi-lib-dir=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/lib --with-mpi-lib-name=mpi --without-zlib --disable-checkpoint --with-hdf5=no --disable-static --with-launcher=/usr/local/slurm/bin/srun
++ ./configure --config-cache --prefix=/data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/turbine --with-c-utils=/data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/c-utils --with-adlb=/data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/lb --with-python-exe=/usr/local/Anaconda/envs/py3.7/bin/python --with-r=/usr/local/apps/R/4.0/4.0.0/lib64/R --with-rinside=/usr/local/apps/R/4.0/site-library_4.0.0/RInside --with-rcpp=/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp --with-tcl=/data/BIDS-HPC/public/software/builds/tcl --with-tcl-version=8.6 --with-tclsh-local=/data/BIDS-HPC/public/software/builds/tcl --with-tcl-lib-dir=/data/BIDS-HPC/public/software/builds/tcl/lib --with-tcl-include=/data/BIDS-HPC/public/software/builds/tcl/include --with-tcl-syslib-dir=/data/BIDS-HPC/public/software/builds/tcl/lib --enable-checkpoint=no --disable-static-pkg --with-mpi=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0 --enable-custom-mpi --with-mpi=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0 --with-mpi-include=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/include --with-mpi-lib-dir=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/lib --with-mpi-lib-name=mpi --without-zlib --disable-checkpoint --with-hdf5=no --disable-static --with-launcher=/usr/local/slurm/bin/srun
 configure: WARNING: unrecognized options: --with-tcl-syslib-dir
 configure: creating cache config.cache
 Turbine version: 1.2.3
@@ -664,20 +664,20 @@ Coaster integration disabled
 checking for ar... ar
 checking for ranlib... ranlib
 configure: user specified Tcl version 8.6
-using Tcl: /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0
-using Tcl lib dir: /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib
-checking for local Tcl (version: 8.6) executable in: /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0... tclsh8.6
-checking for Tcl 8.6 library at /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib/libtcl8.6.so... yes
+using Tcl: /data/BIDS-HPC/public/software/builds/tcl
+using Tcl lib dir: /data/BIDS-HPC/public/software/builds/tcl/lib
+checking for local Tcl (version: 8.6) executable in: /data/BIDS-HPC/public/software/builds/tcl... tclsh8.6
+checking for Tcl 8.6 library at /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib/libtcl8.6.so... yes
 using Tcl version: 8.6
-Tcl shared library: /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib/libtcl8.6.so
+Tcl shared library: /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib/libtcl8.6.so
 Tcl static library: 
-checking for tclConfig.sh at /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib/tcl8.6... no
-checking for tclConfig.sh at /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib... found
-using tclConfig.sh in: /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/lib/
-using Turbine Tcl executable: /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/bin/tclsh8.6
-checking for /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include/tcl.h... yes
+checking for tclConfig.sh at /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib/tcl8.6... no
+checking for tclConfig.sh at /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib... found
+using tclConfig.sh in: /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib/
+using Turbine Tcl executable: /data/BIDS-HPC/public/software/builds/tcl/bin/tclsh8.6
+checking for /data/BIDS-HPC/public/software/builds/tcl/include/tcl.h... yes
 ./configure: line 7203: [: ==: unary operator expected
-using Tcl include: /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/include/tcl.h
+using Tcl include: /data/BIDS-HPC/public/software/builds/tcl/include/tcl.h
 checking for a sed that does not truncate output... /usr/bin/sed
 checking for gawk... gawk
 HDF5 disabled
@@ -1117,7 +1117,7 @@ jar:
 build.all:
 
 BUILD SUCCESSFUL
-Total time: 7 seconds
+Total time: 9 seconds
 Buildfile: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/checkouts/swift-t/stc/code/build.xml
 
 antlr.generate:
@@ -1146,6 +1146,6 @@ install:
      [copy] Copying 7 files to /data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/stc/lib
 
 BUILD SUCCESSFUL
-Total time: 0 seconds
+Total time: 1 second
 
 Swift/T build successful.
