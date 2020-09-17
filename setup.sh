@@ -67,8 +67,8 @@ echo -e "\n\n :::: Setting up the build environment...\n"
 check_file_before_continuing "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
 
 # shellcheck source=/dev/null
-source "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
 module load "$DEFAULT_PYTHON_MODULE"
+source "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
 ####################################################################################################################################
 
 
@@ -79,7 +79,9 @@ echo -e "\n\n :::: Testing MPI communications...\n"
 echo " ::::: Using mpicc: $(command -v mpicc)"
 echo -e " ::::: Using srun: $(command -v srun)\n"
 mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.c"
-srun "$TURBINE_LAUNCH_OPTIONS" --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$CANDLE/wrappers/test_files/hello"
+#srun "${TURBINE_LAUNCH_OPTIONS[@]}" --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$CANDLE/wrappers/test_files/hello"
+# shellcheck disable=SC2086
+srun $TURBINE_LAUNCH_OPTIONS --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$CANDLE/wrappers/test_files/hello"
 ####################################################################################################################################
 
 
@@ -168,7 +170,9 @@ if [ "x$response" == "xy" ]; then
     echo "Okay, running the benchmark now; hit Ctrl+C to kill the process; then re-run this script"
     echo -e "\n ::::: Using srun: $(command -v srun)"
     echo -e " ::::: Using python: $(command -v python)\n"
-    srun "$TURBINE_LAUNCH_OPTIONS" --ntasks=1 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
+    #srun "${TURBINE_LAUNCH_OPTIONS[@]}" --ntasks=1 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
+    # shellcheck disable=SC2086
+    srun $TURBINE_LAUNCH_OPTIONS --ntasks=1 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
 else
     echo "Okay, skipping the benchmark run"
 fi
@@ -183,10 +187,12 @@ BUILD_SCRIPTS_DIR="$CANDLE/wrappers/test_files"
 echo -e " ::::: Using swift-t: $(command -v swift-t)\n"
 
 # Test 1: Output is a single line saying hello
-swift-t -VV -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
+#swift-t -VV -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
+swift-t -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
 
 # Test 2: Time-delayed printouts of some numbers
-swift-t -VV -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
+#swift-t -VV -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
+swift-t -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
 ####################################################################################################################################
 
 
