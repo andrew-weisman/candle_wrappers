@@ -3,12 +3,13 @@
 # The point of this script is for it to automatically complete new or even partial installations of CANDLE but to not re-install anything; that must be done explicitly if that's desired
 # It should therefore run pretty quickly if everything is already installed, not changing anything significant
 # We should be able to run this script without worrying about it overwritting something already there
+# Only prompt user if the task takes a while
 
 interactive=1
 
 check_file_before_continuing() {
     file_to_check=$1
-    echo -n "Have you thoughly checked '$file_to_check' (y/n)? "
+    echo -e -n "\n **** Have you thoughly checked '$file_to_check' (y/n)? "
     read -r response
     if [ "x$response" != "xy" ]; then
         echo "Okay, go ahead and thoroughly check '$file_to_check' and re-run this script"
@@ -16,28 +17,13 @@ check_file_before_continuing() {
     fi
 }
 
-environment_check() {
-    echo -e "\n\n---------------- ENVIRONMENT CHECK ----------------"
-    echo -e "\nPATH: $PATH"
-    echo -e "\nLD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-    echo -e "\nLD_RUN_PATH: $LD_RUN_PATH"
-    echo -e "\nldd /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/lib/libmpi.so:"
-    ldd /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/lib/libmpi.so
-    echo -e "\n---------------------------------------------------\n\n"
-}
-
-#export OMPI_MCA_btl="^openib"
-
-# Print commands just before execution
-set -x
-
 # Exit when any command fails
 set -e
 
-environment_check
 
-# Load the best Python module
-module load "$DEFAULT_PYTHON_MODULE"
+#### Set up the directory structure and clone the necessary repositories ###########################################################
+####################################################################################################################################
+echo -e "\n\n :::: Setting up directory structure and cloning necessary repositories...\n"
 
 # Create the necessary directories not already created using the instructions in README.md
 [ -d "$CANDLE/bin" ] || mkdir "$CANDLE/bin"
@@ -60,20 +46,27 @@ module load "$DEFAULT_PYTHON_MODULE"
 [ -L "$CANDLE/R" ] || ln -s "$CANDLE/builds/R" "$CANDLE/R"
 [ -L "$CANDLE/swift-t-install" ] || ln -s "$CANDLE/builds/swift-t-install" "$CANDLE/swift-t-install"
 
-environment_check
 
-# Load the CANDLE environment
+#### Set up the environment ########################################################################################################
+echo -e "\n\n :::: Setting up the build environment...\n"
+
+# Check the settings file $CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh
 if [ "x$interactive" == "x1" ]; then
     check_file_before_continuing "$CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh"
 fi
+
 # shellcheck source=/dev/null
 source "$CANDLE/Supervisor/workflows/common/sh/env-biowulf.sh"
+module load "$DEFAULT_PYTHON_MODULE"
 
-environment_check
 
-# Test MPI communications
+#### Test MPI communications using an MPI hello world script #######################################################################
+echo -e "\n\n :::: Testing MPI communications...\n"
+
+# Compile and run MPI hello world
 mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.c"
-srun --mpi=pmix --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" --mem=0 "$CANDLE/wrappers/test_files/hello"
+srun --mpi=pmix --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" --mem=0 "$CANDLE/wrappers/test_files/hello" # this should be done on an interactive node, hence the --mem=0 as needs to be done on Biowulf recently
+
 
 # Set and enter the local scratch directory
 LOCAL_DIR="/lscratch/$SLURM_JOB_ID"
@@ -81,15 +74,12 @@ cd "$LOCAL_DIR"
 
 # Install the R packages needed for the Supervisor workflows
 if [ "$(find "$CANDLE/builds/R/libs" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
-    environment_check
     "$CANDLE/Supervisor/workflows/common/R/install-candle.sh" |& tee -a "$LOCAL_DIR/candle-r_installation_out_and_err.txt"
     mv "$LOCAL_DIR/candle-r_installation_out_and_err.txt" "$CANDLE/wrappers/log_files"
 fi
 
 # Build Swift/T
 if [ "$(find "$CANDLE/swift-t-install/" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
-
-    environment_check
 
     # Set up the settings file
     cp -i "$CANDLE/wrappers/swift-t_setup/swift-t-settings-biowulf.sh" "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
@@ -104,8 +94,6 @@ fi
 
 # Build EQ-R
 if [ "$(find "$CANDLE/Supervisor/workflows/common/ext/EQ-R/" -maxdepth 1 | wc -l)" -eq 3 ]; then # if the directory is essentially empty (only containing the eqr directory and EQR.swift file)...
-
-    environment_check
 
     # Set up the settings file
     cp -i "$CANDLE/wrappers/swift-t_setup/eqr_settings-biowulf.sh" "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
@@ -125,8 +113,6 @@ if [ "$(find "$CANDLE/Supervisor/workflows/common/ext/EQ-R/" -maxdepth 1 | wc -l
 
 fi
 
-environment_check
-
 # Optionally run a CANDLE benchmark just to see if that would work
 echo -n "Would you like to try running a CANDLE benchmark using Python on a single node? (y/n)? "
 if [ "x$interactive" == "x1" ]; then
@@ -142,60 +128,25 @@ else
 fi
 
 
-#/usr/local/slurm/bin/srun -n 1 '--mpi=pmix' '--mem=0' /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/bin/tclsh8.6 /data/BIDS-HPC/public/software/distributions/candle/dev_2/wrappers/test_files/swift-t-mytest2.1kr.tic
-# export TURBINE_HOME=/data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/turbine
-# TCLLIBPATH+=/data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/turbine/lib
-# srun --mpi=pmix --ntasks=1 --mem=0 /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/bin/tclsh8.6 /data/BIDS-HPC/public/software/distributions/candle/dev_2/wrappers/test_files/swift-t-mytest2-andrew.adt.tic
-
-# Test 1: output is a single line saying hello
-#export TURBINE_LAUNCH_OPTIONS="--mpi=pmix --mem=0"
-#export TURBINE_LAUNCH_OPTIONS="--mem=0"
-
-# # RUN THIS IN BATCH
-# #export TURBINE_LAUNCH_OPTIONS="--mpi=pmix" # SET THIS IF SWIFT-T DOESN'T WORK IN BATCH MODE!!!!
-# export TURBINE_LAUNCH_OPTIONS="--mpi=pmix --mem=0"
-# swift-t -VV -n 3 "$CANDLE/wrappers/test_files/mytest2.swift"
-
-#/usr/local/slurm/bin/srun -n 3 '--mpi=pmix' '--mem=0' /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/bin/tclsh8.6 /data/BIDS-HPC/public/software/distributions/candle/dev_2/wrappers/test_files/swift-t-mytest2-andrew.adt.tic
-# cd /data/BIDS-HPC/public/software/distributions/candle/dev_2/swift-t-install/turbine/lib
-# /usr/local/slurm/bin/srun -n 3 --mpi=pmix --mem=0 /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/bin/tclsh8.6 /data/BIDS-HPC/public/software/distributions/candle/dev_2/wrappers/test_files/swift-t-mytest2-andrew.adt.tic
-
-# Make sure the command looks like "srun --mpi=pmix --ntasks=3 --cpus-per-task=16 ./a.out"
-#/usr/local/slurm/bin/srun -n 1 '--mpi=pmix' /usr/local/Tcl_Tk/8.6.8/gcc_7.2.0/bin/tclsh8.6 /data/BIDS-HPC/public/software/distributions/candle/dev_2/wrappers/test_files/swift-t-mytest2.ATe.tic
-
-    # # Test 2: time-delayed printouts of some numbers
-    # swift-t -n 3 -r $BUILD_SCRIPTS_DIR $BUILD_SCRIPTS_DIR/myextension.swift
-
-
-
-environment_check
+#### Test Swift/T hello world scripts ##############################################################################################
+echo -e "\n\n :::: Running two Swift/T hello world tests...\n"
 
 # Setup
-BUILD_SCRIPTS_DIR="/home/weismanal/candle/wrappers/build"
+BUILD_SCRIPTS_DIR="$CANDLE/wrappers/test_files"
 
-# Test 1: output is a single line saying hello
-export TURBINE_LAUNCH_OPTIONS="--mpi=pmix --mem=0"
-swift-t -VV -n 3 $BUILD_SCRIPTS_DIR/mytest2.swift
+# Test 1: Output is a single line saying hello
+swift-t -VV -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
 
-# Test 2: time-delayed printouts of some numbers
-swift-t -VV -n 3 -r $BUILD_SCRIPTS_DIR $BUILD_SCRIPTS_DIR/myextension.swift
-
+# Test 2: Time-delayed printouts of some numbers
+swift-t -VV -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
 
 
-# Ensure permissions are correct
-echo -n "Would you like to recursively set the correct permissions on the \$CANDLE directory? (y/n)? "
-if [ "x$interactive" == "x1" ]; then
-    read -r response
-else
-    response="n"
-fi
-if [ "x$response" == "xy" ]; then
-    echo "Okay, setting permissions..."
-    chmod -R g=u,o=u-w "$CANDLE"
-else
-    echo "Okay, skipping the permissions setting"
-fi
+#### Ensure permissions are correct ################################################################################################
+echo -e "\n\n :::: Setting permissions recursively on CANDLE directory...\n"
+
+chmod -R g=u,o=u-w "$CANDLE"
+
 
 # Print whether the previous commands were successful
-set +x
-echo "Probably success"
+#set +x
+echo "Probably success, but still need to check output"

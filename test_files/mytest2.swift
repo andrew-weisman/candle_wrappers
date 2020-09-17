@@ -5,4 +5,3 @@
 ];
 
 my_output("HELLO");
-
