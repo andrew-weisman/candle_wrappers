@@ -18,6 +18,8 @@ export PATH="$PATH:$CANDLE/bin"
 export SITE="summit"
 export DEFAULT_PYTHON_MODULE="/gpfs/alpine/world-shared/med106/sw/condaenv-200408/bin/python3.6"
 export DEFAULT_R_MODULE="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/R-3.6.1/lib64/R/bin/R"
+export CANDLE_R_LIBS="/gpfs/alpine/world-shared/med106/sw/R-190927/lib64/R/library"
+export CANDLE_SWIFT_T="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/swift-t/2020-09-02"
 ```
 
 Then sourcing that:
@@ -27,9 +29,7 @@ Then sourcing that:
 ```
 
 ```bash
-mkdir "$CANDLE"
-cd "$CANDLE"
-mkdir "$CANDLE/checkouts"
+mkdir -p "$CANDLE/checkouts"
 git clone git@github.com:andrew-weisman/candle_wrappers "$CANDLE/checkouts/wrappers" # have to set up the GitHub ssh key before this line works
 ```
 
