@@ -2,13 +2,13 @@
 
 ## First time
 
-Doing the following on the login node for now.
+On a login node run:
 
 ```bash
 mkdir -p /gpfs/alpine/world-shared/med106/weismana/sw/candle
 ```
 
-Putting the following in `/gpfs/alpine/world-shared/med106/weismana/sw/candle/env-initial.sh`:
+Put the following in `/gpfs/alpine/world-shared/med106/weismana/sw/candle/env-initial.sh` (this is what should ultimately be implemented in an `lmod` module):
 
 ```bash
 #!/bin/bash
@@ -25,11 +25,13 @@ export WORKFLOWS_ROOT="$CANDLE/Supervisor/workflows"
 export PROCS=-1
 ```
 
-Then sourcing that:
+Source that:
 
 ```bash
 source /gpfs/alpine/world-shared/med106/weismana/sw/candle/env-initial.sh
 ```
+
+Clone the wrappers repository into the new CANDLE installation:
 
 ```bash
 mkdir -p "$CANDLE/checkouts"
