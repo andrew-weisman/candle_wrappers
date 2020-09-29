@@ -5,6 +5,8 @@
 On Helix or Biowulf, put the following in `/data/BIDS-HPC/public/software/distributions/candle/env-dev_3.sh` (this is what should ultimately be implemented in an `lmod` module):
 
 ```bash
+#!/bin/bash
+
 version="dev_3" # this is the new installation name
 export CANDLE="/data/BIDS-HPC/public/software/distributions/candle/$version"
 export PATH="$PATH:$CANDLE/bin"
