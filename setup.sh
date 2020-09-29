@@ -20,6 +20,8 @@ check_file_before_continuing() {
     file_to_check=$1
     echo -e -n "\n **** Have you thoughly checked '$file_to_check' (y/n)? "
     if [ "x$interactive" == "x1" ]; then
+        TTY=$(/usr/bin/tty)
+        exec 3<&0 < "$TTY"
         read -r response
     else
         echo -e "\nAssuming file '$file_to_check' has been thoroughly checked\n"
@@ -33,7 +35,15 @@ check_file_before_continuing() {
     fi
 }
 
-interactive=${1:-1}
+# Output the full path to the executable of the inputted program name, or else print out a warning message
+determine_executable() {
+    prog=$1
+    tmp_exec=$(command -v "$prog")
+    [[ "x$tmp_exec" == "x" ]] && echo -e "\nWARNING: Program '$prog' not found\n" || echo -e "\nUsing $prog executable $tmp_exec\n"
+}
+
+run_launcher=1 # default should be 1
+interactive=${1:-1} # default should be 1
 set -e # exit when any command fails
 
 # Determine whether we're on Biowulf
@@ -92,139 +102,182 @@ echo -e "\n\n :::: Setting up the build environment...\n"
 # Check the settings file $CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh
 check_file_before_continuing "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
 
-if [ "x${DEFAULT_PYTHON_MODULE:0:1}" == "x/" ]; then
-    GET RID OF PYTHON AT END OF $DEFAULT_PYTHON_MODULE
-    export PATH="$DEFAULT_PYTHON_MODULE:$PATH"
+# Load the environment
+if [ "x${DEFAULT_PYTHON_MODULE:0:1}" == "x/" ]; then # If $DEFAULT_PYTHON_MODULE actually contains a full path to the executable instead of a module name...
+    path_to_add=$(tmp=$(echo "$DEFAULT_PYTHON_MODULE" | awk -v FS="/" -v OFS="/" '{$NF=""; print}'); echo "${tmp:0:${#tmp}-1}") # this strips the executable from the full path to the python executable set in $DEFAULT_PYTHON_MODULE (if it's not a module name of course)
+    export PATH="$path_to_add:$PATH"
 else
     module load "$DEFAULT_PYTHON_MODULE"
 fi
 # shellcheck source=/dev/null
 source "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
+
+# Output the executables to be used for Swift/T and Python
+determine_executable python
+determine_executable swift-t
 ####################################################################################################################################
 
 
-# #### Test MPI communications using an MPI hello world script #######################################################################
-# echo -e "\n\n :::: Testing MPI communications...\n"
+#### Test MPI communications using an MPI hello world script #######################################################################
+echo -e "\n\n :::: Testing MPI communications...\n"
 
-# # Compile and run MPI hello world
-# echo " ::::: Using mpicc: $(command -v mpicc)"
-# echo -e " ::::: Using srun: $(command -v srun)\n"
-# mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.c"
-# #srun "${TURBINE_LAUNCH_OPTIONS[@]}" --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$CANDLE/wrappers/test_files/hello"
-# # shellcheck disable=SC2086
-# srun $TURBINE_LAUNCH_OPTIONS --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$CANDLE/wrappers/test_files/hello"
-# ####################################################################################################################################
+# Compile and run MPI hello world
+echo " ::::: Using mpicc: $(command -v mpicc)"
+#echo -e " ::::: Using srun: $(command -v srun)\n"
+#mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.c"
+mpicc -o "$LOCAL_DIR/hello" "$CANDLE/wrappers/test_files/hello.c"
 
+if [ "x$run_launcher" == "x1" ]; then
+    if [ "x$SITE" == "xbiowulf" ]; then
+        #srun "${TURBINE_LAUNCH_OPTIONS[@]}" --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$CANDLE/wrappers/test_files/hello"
+        # shellcheck disable=SC2086
+        srun $TURBINE_LAUNCH_OPTIONS --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$LOCAL_DIR/hello"
+        ## Biowulf --> the above srun line indeed corresponds to this!
+        #srun --mpi=pmix --ntasks=3 --cpus-per-task=16 --mem=0 "$CANDLE/wrappers/test_files/hello"
+    elif [ "x$SITE" == "xsummit" ]; then
+        # Summit
+        jsrun --nrs=12 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=6 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7 "$LOCAL_DIR/hello"
+    fi
+else
+    echo "Skipping actual job launching since this was not requested"
+fi
 
-# #### Install the R packages needed for the Supervisor workflows ####################################################################
-# echo -e "\n\n :::: Installing the R packages needed for the Supervisor workflows...\n"
-
-# if [ "$(find "$CANDLE/builds/R/libs" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
-#     curr_date=$(date +%Y-%m-%d_%H%M)
-#     "$CANDLE/Supervisor/workflows/common/R/install-candle.sh" |& tee -a "$LOCAL_DIR/candle-r_installation_out_and_err-$SITE-$curr_date.txt"
-#     mv "$LOCAL_DIR/candle-r_installation_out_and_err-$SITE-$curr_date.txt" "$CANDLE/wrappers/log_files"
-# else
-#     echo "R packages probably already installed"
-# fi
-# ####################################################################################################################################
-
-
-# #### Build Swift/T #################################################################################################################
-# echo -e "\n\n :::: Building Swift/T...\n"
-
-# # Note: To rebuild Swift/T, I can do: “rm -rf $CANDLE/builds/R/libs/* $CANDLE/swift-t-install/* $CANDLE/Supervisor/workflows/common/ext/EQ-R/{libeqr.so,pkgIndex.tcl}"
-# if [ "$(find "$CANDLE/swift-t-install/" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
-
-#     # Set up the settings file
-#     if [ "x$interactive" == "x1" ]; then
-#         cp -i "$CANDLE/wrappers/swift-t_setup/swift-t-settings-$SITE.sh" "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
-#     else
-#         echo -e "\nNOT copying $CANDLE/wrappers/swift-t_setup/swift-t-settings-$SITE.sh to $CANDLE/swift-t/dev/build/swift-t-settings.sh\n"
-#     fi
-#     echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh), comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template (or comparing that template with $CANDLE/wrappers/swift-t_setup/swift-t-settings.sh.template), if needed"
-#     check_file_before_continuing "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
-
-#     # Do the build
-#     curr_date=$(date +%Y-%m-%d_%H%M)
-#     export NICE_CMD=""
-#     "$CANDLE/swift-t/dev/build/build-swift-t.sh" -v |& tee -a "$LOCAL_DIR/swift-t_installation_out_and_err-$SITE-$curr_date.txt"
-#     mv "$LOCAL_DIR/swift-t_installation_out_and_err-$SITE-$curr_date.txt" "$CANDLE/wrappers/log_files"
-# else
-#     echo "Swift/T probably already built"
-# fi
-# ####################################################################################################################################
+rm -f "$LOCAL_DIR/hello"
+####################################################################################################################################
 
 
-# #### Build EQ-R ####################################################################################################################
-# echo -e "\n\n :::: Building EQ-R...\n"
+#### Install the R packages needed for the Supervisor workflows ####################################################################
+echo -e "\n\n :::: Installing the R packages needed for the Supervisor workflows...\n"
 
-# if [ "$(find "$CANDLE/Supervisor/workflows/common/ext/EQ-R/" -maxdepth 1 | wc -l)" -eq 3 ]; then # if the directory is essentially empty (only containing the eqr directory and EQR.swift file)...
-
-#     # Set up the settings file
-#     if [ "x$interactive" == "x1" ]; then
-#         cp -i "$CANDLE/wrappers/swift-t_setup/eqr_settings-$SITE.sh" "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
-#     else
-#         echo -e "\nNOT copying $CANDLE/wrappers/swift-t_setup/eqr_settings-$SITE.sh to $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh\n"
-#     fi
-#     echo "Now edit $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh), comparing with $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.template.sh (or comparing that template with $CANDLE/wrappers/swift-t_setup/eqr_settings.sh.template), if needed"
-#     check_file_before_continuing "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
-
-#     # Do the build
-#     curr_date=$(date +%Y-%m-%d_%H%M)
-#     (
-#         cd "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr"
-#         # shellcheck source=/dev/null
-#         source ./settings.sh
-#         ./bootstrap # this runs ``autoconf`` and generates ``./configure``
-#         ./configure --prefix="$PWD/.."
-#         make install
-#     ) |& tee -a "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/eqr_installation_out_and_err-$SITE-$curr_date.txt"
-#     mv "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/eqr_installation_out_and_err-$SITE-$curr_date.txt" "$CANDLE/wrappers/log_files"
-
-# else
-#     echo "EQ-R probably already built"
-# fi
-# ####################################################################################################################################
+if [ "x$on_biowulf" == "x1" ]; then
+    if [ "$(find "$CANDLE/builds/R/libs" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
+        curr_date=$(date +%Y-%m-%d_%H%M)
+        "$CANDLE/Supervisor/workflows/common/R/install-candle.sh" |& tee -a "$LOCAL_DIR/candle-r_installation_out_and_err-$SITE-$curr_date.txt"
+        mv "$LOCAL_DIR/candle-r_installation_out_and_err-$SITE-$curr_date.txt" "$CANDLE/wrappers/log_files"
+    else
+        echo "R packages probably already installed"
+    fi
+else
+    echo -e "\nSkipping installation of R packages needed for the Supervisor workflows since we are not on Biowulf (and they are therefore already set up)\n"
+fi
+####################################################################################################################################
 
 
-# #### Optionally run a CANDLE benchmark just to see if that would work ##############################################################
-# echo -e "\n\n :::: Running a CANDLE benchmark on a single node...\n"
+#### Build Swift/T #################################################################################################################
+echo -e "\n\n :::: Building Swift/T...\n"
 
-# echo -n "Would you like to try running a CANDLE benchmark using Python on a single node? (y/n)? "
-# if [ "x$interactive" == "x1" ]; then
-#     read -r response
-# else
-#     echo -e "\nNOT running a CANDLE benchmark\n"
-#     response="n"
-# fi
-# if [ "x$response" == "xy" ]; then
-#     echo "Okay, running the benchmark now; hit Ctrl+C to kill the process; then re-run this script"
-#     echo -e "\n ::::: Using srun: $(command -v srun)"
-#     echo -e " ::::: Using python: $(command -v python)\n"
-#     #srun "${TURBINE_LAUNCH_OPTIONS[@]}" --ntasks=1 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
-#     # shellcheck disable=SC2086
-#     srun $TURBINE_LAUNCH_OPTIONS --ntasks=1 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
-# else
-#     echo "Okay, skipping the benchmark run"
-# fi
-# ####################################################################################################################################
+if [ "x$on_biowulf" == "x1" ]; then
+    # Note: To rebuild Swift/T, I can do: “rm -rf $CANDLE/builds/R/libs/* $CANDLE/swift-t-install/* $CANDLE/Supervisor/workflows/common/ext/EQ-R/{libeqr.so,pkgIndex.tcl}"
+    if [ "$(find "$CANDLE/swift-t-install/" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
+
+        # Set up the settings file
+        if [ "x$interactive" == "x1" ]; then
+            cp -i "$CANDLE/wrappers/swift-t_setup/swift-t-settings-$SITE.sh" "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
+        else
+            echo -e "\nNOT copying $CANDLE/wrappers/swift-t_setup/swift-t-settings-$SITE.sh to $CANDLE/swift-t/dev/build/swift-t-settings.sh\n"
+        fi
+        echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh), comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template (or comparing that template with $CANDLE/wrappers/swift-t_setup/swift-t-settings.sh.template), if needed"
+        check_file_before_continuing "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
+
+        # Do the build
+        curr_date=$(date +%Y-%m-%d_%H%M)
+        export NICE_CMD=""
+        "$CANDLE/swift-t/dev/build/build-swift-t.sh" -v |& tee -a "$LOCAL_DIR/swift-t_installation_out_and_err-$SITE-$curr_date.txt"
+        mv "$LOCAL_DIR/swift-t_installation_out_and_err-$SITE-$curr_date.txt" "$CANDLE/wrappers/log_files"
+    else
+        echo "Swift/T probably already built"
+    fi
+else
+    echo -e "\nSkipping build of Swift/T since we are not on Biowulf (and it is therefore already built)\n"
+fi
+####################################################################################################################################
 
 
-# #### Run two Swift/T hello world scripts ###########################################################################################
-# echo -e "\n\n :::: Running two Swift/T hello world tests...\n"
+#### Build EQ-R ####################################################################################################################
+echo -e "\n\n :::: Building EQ-R...\n"
 
-# # Setup
-# BUILD_SCRIPTS_DIR="$CANDLE/wrappers/test_files"
-# echo -e " ::::: Using swift-t: $(command -v swift-t)\n"
+if [ "x$on_biowulf" == "x1" ]; then
+    if [ "$(find "$CANDLE/Supervisor/workflows/common/ext/EQ-R/" -maxdepth 1 | wc -l)" -eq 3 ]; then # if the directory is essentially empty (only containing the eqr directory and EQR.swift file)...
 
-# # Test 1: Output is a single line saying hello
-# #swift-t -VV -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
-# swift-t -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
+        # Set up the settings file
+        if [ "x$interactive" == "x1" ]; then
+            cp -i "$CANDLE/wrappers/swift-t_setup/eqr_settings-$SITE.sh" "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
+        else
+            echo -e "\nNOT copying $CANDLE/wrappers/swift-t_setup/eqr_settings-$SITE.sh to $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh\n"
+        fi
+        echo "Now edit $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh), comparing with $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.template.sh (or comparing that template with $CANDLE/wrappers/swift-t_setup/eqr_settings.sh.template), if needed"
+        check_file_before_continuing "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
 
-# # Test 2: Time-delayed printouts of some numbers
-# #swift-t -VV -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
-# swift-t -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
-# ####################################################################################################################################
+        # Do the build
+        curr_date=$(date +%Y-%m-%d_%H%M)
+        (
+            cd "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr"
+            # shellcheck source=/dev/null
+            source ./settings.sh
+            ./bootstrap # this runs ``autoconf`` and generates ``./configure``
+            ./configure --prefix="$PWD/.."
+            make install
+        ) |& tee -a "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/eqr_installation_out_and_err-$SITE-$curr_date.txt"
+        mv "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/eqr_installation_out_and_err-$SITE-$curr_date.txt" "$CANDLE/wrappers/log_files"
+
+    else
+        echo "EQ-R probably already built"
+    fi
+else
+    echo -e "\nSkipping build of EQ-R since we are not on Biowulf (and it is therefore already built)\n"
+fi
+####################################################################################################################################
+
+
+#### Optionally run a CANDLE benchmark just to see if that would work ##############################################################
+echo -e "\n\n :::: Running a CANDLE benchmark on a single node...\n"
+
+echo -n "Would you like to try running a CANDLE benchmark using Python on a single node? (y/n)? "
+if [ "x$interactive" == "x1" ]; then
+    read -r response 0<&3
+else
+    echo -e "\nNOT running a CANDLE benchmark\n"
+    response="n"
+fi
+if [ "x$response" == "xy" ]; then
+    echo "Okay, running the benchmark now; hit Ctrl+C to kill the process; then re-run this script"
+    #echo -e "\n ::::: Using srun: $(command -v srun)"
+    echo -e " ::::: Using python: $(command -v python)\n"
+
+    if [ "x$run_launcher" == "x1" ]; then
+        if [ "x$SITE" == "xbiowulf" ]; then
+            # shellcheck disable=SC2086
+            srun $TURBINE_LAUNCH_OPTIONS --ntasks=1 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
+        elif [ "x$SITE" == "xsummit" ]; then
+            # Summit
+            #jsrun --nrs=1 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=6 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
+            jsrun --nrs=1 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=1 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
+        fi
+    else
+        echo "Skipping actual job launching since this was not requested"
+    fi
+
+else
+    echo "Okay, skipping the benchmark run"
+fi
+####################################################################################################################################
+
+
+#### Run two Swift/T hello world scripts ###########################################################################################
+echo -e "\n\n :::: Running two Swift/T hello world tests...\n"
+
+# Setup
+BUILD_SCRIPTS_DIR="$CANDLE/wrappers/test_files"
+echo -e " ::::: Using swift-t: $(command -v swift-t)\n"
+
+# Test 1: Output is a single line saying hello
+#swift-t -VV -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
+swift-t -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
+
+# Test 2: Time-delayed printouts of some numbers
+#swift-t -VV -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
+swift-t -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
+####################################################################################################################################
 
 
 # #### Ensure permissions are correct ################################################################################################
