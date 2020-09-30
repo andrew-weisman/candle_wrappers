@@ -1,0 +1,948 @@
+Logging at LOG_DEBUG
+Located Swift/T source root at /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t
+Installing Swift/T into: /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install
+
+Building c-utils
+Running autoconf...
+Running autoheader...
+ExM C-UTILS: bootstrap: OK
++ ./configure --config-cache --prefix=/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils --enable-shared --disable-static
+configure: creating cache config.cache
+c-utils version: 0.5.7
+checking for gcc... /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc accepts -g... yes
+checking for /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc option to accept ISO C89... none needed
+using CC=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc
+checking how to run the C preprocessor... /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking for stdint.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for stdbool.h that conforms to C99... yes
+checking for _Bool... yes
+checking for inline... inline
+checking for pid_t... yes
+checking for int64_t... yes
+checking for uint8_t... yes
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking for off_t... yes
+checking for size_t... yes
+checking for floor... yes
+checking for gettimeofday... yes
+checking for memchr... yes
+checking for memmove... yes
+checking for memset... yes
+checking for strchr... yes
+checking for strdup... yes
+checking for strnlen... yes
+checking for strtol... yes
+checking for strchrnul... yes
+checking for strlcpy... no
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible malloc... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible realloc... yes
+checking for cp that supports -u... yes
+configure: updating cache config.cache
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/module.mk
+config.status: creating tests/module.mk
+config.status: creating src/c-utils.h
+config.status: creating c-utils-config.h
+  CLEAN TESTS:
+  CLEAN DEBIAN
+  CLEAN:
+  DEP		src/list.d
+  DEP		src/list_bp.d
+  DEP		src/table_lp.d
+  DEP		src/ptr_array.d
+  DEP		src/list_i.d
+  DEP		src/profile.d
+  DEP		src/table_bp.d
+  DEP		src/exm-memory.d
+  DEP		src/rbtree_bp.d
+  DEP		src/log.d
+  DEP		src/list2.d
+  DEP		src/vint.d
+  DEP		src/list2_b.d
+  DEP		src/lookup3.d
+  DEP		src/tree.d
+  DEP		src/exm-string.d
+  DEP		src/binkeys.d
+  DEP		src/table_ip.d
+  DEP		src/table.d
+  DEP		src/c-utils.d
+  DEP		src/version.d
+  DEP		src/dyn_array_i.d
+  DEP		src/list_ip.d
+  DEP		src/list_lp.d
+  DEP		src/rbtree.d
+  DEP		src/heap.d
+  DEP		src/list_sp.d
+  DEP		src/strkeys.d
+  DEP		src/tools.d
+  DEP		src/list_d.d
+  DEP		src/reader.d
+  DEP		src/list_l.d
+  DEP		src/list_b.d
+  CC		src/list_b.o
+  CC		src/list_l.o
+  CC		src/reader.o
+  CC		src/list_d.o
+  CC		src/tools.o
+  CC		src/strkeys.o
+  CC		src/list_sp.o
+  CC		src/heap.o
+  CC		src/rbtree.o
+  CC		src/list_lp.o
+  CC		src/list_ip.o
+  CC		src/dyn_array_i.o
+  CC		src/version.o
+  CC		src/c-utils.o
+  CC		src/table.o
+  CC		src/table_ip.o
+  CC		src/binkeys.o
+  CC		src/exm-string.o
+  CC		src/tree.o
+  CC		src/lookup3.o
+  CC		src/list2_b.o
+  CC		src/vint.o
+  CC		src/list2.o
+  CC		src/log.o
+  CC		src/rbtree_bp.o
+  CC		src/exm-memory.o
+  CC		src/table_bp.o
+  CC		src/profile.o
+  CC		src/list_i.o
+  CC		src/ptr_array.o
+  CC		src/table_lp.o
+  CC		src/list_bp.o
+  CC		src/list.o
+  LINK		lib/libexmcutils.so
+
+  INSTALL: /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/lib’
+‘c-utils-config.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/c-utils-config.h’
+‘src/binkeys.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/binkeys.h’
+‘src/c-utils.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/c-utils.h’
+‘src/c-utils-tests.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/c-utils-tests.h’
+‘src/c-utils-types.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/c-utils-types.h’
+‘src/dyn_array_i.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/dyn_array_i.h’
+‘src/exm-memory.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/exm-memory.h’
+‘src/exm-string.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/exm-string.h’
+‘src/heap.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/heap.h’
+‘src/heap_ii.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/heap_ii.h’
+‘src/heap_iu32.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/heap_iu32.h’
+‘src/heap-template.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/heap-template.h’
+‘src/jenkins-hash.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/jenkins-hash.h’
+‘src/list2_b.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list2_b.h’
+‘src/list2.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list2.h’
+‘src/list_b.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list_b.h’
+‘src/list_bp.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list_bp.h’
+‘src/list_d.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list_d.h’
+‘src/list.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list.h’
+‘src/list_i.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list_i.h’
+‘src/list_ip.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list_ip.h’
+‘src/list_l.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list_l.h’
+‘src/list_lp.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list_lp.h’
+‘src/list_sp.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/list_sp.h’
+‘src/log.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/log.h’
+‘src/profile.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/profile.h’
+‘src/ptr_array.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/ptr_array.h’
+‘src/rbtree_bp.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/rbtree_bp.h’
+‘src/rbtree-defs.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/rbtree-defs.h’
+‘src/rbtree.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/rbtree.h’
+‘src/rbtree-template.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/rbtree-template.h’
+‘src/reader.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/reader.h’
+‘src/show.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/show.h’
+‘src/strchrnul.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/strchrnul.h’
+‘src/strkeys.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/strkeys.h’
+‘src/strlcpy.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/strlcpy.h’
+‘src/table_bp.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/table_bp.h’
+‘src/table.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/table.h’
+‘src/table_ip.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/table_ip.h’
+‘src/table_lp.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/table_lp.h’
+‘src/tools.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/tools.h’
+‘src/tree-common.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/tree-common.h’
+‘src/tree.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/tree.h’
+‘src/version.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/version.h’
+‘src/vint.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/vint.h’
+‘lib/libexmcutils.so’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/lib/libexmcutils.so’
+‘install.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/install.txt’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/etc’
+‘version.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/etc/version.txt’
+‘source.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/etc/source.txt’
+‘config.log’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/etc/config.log’
+‘install.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/etc/install.txt’
+
+Building lb
+Running autoheader...
+Running autoconf...
+ADLB: bootstrap: OK
++ ./configure --config-cache --with-c-utils=/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils --prefix=/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb CC=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc --enable-checkpoint=no --without-zlib --disable-checkpoint --disable-static
+configure: creating cache config.cache
+ADLB/X version: 0.9.2
+using CC=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc
+PREFIX: /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb
+SOFTWARE: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/builds/swift-t-install
+checking for gcc... /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc accepts -g... yes
+checking for /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc option to accept ISO C89... none needed
+checking how to run the C preprocessor... /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for int32_t... yes
+checking for int64_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking for off_t... yes
+checking for pid_t... yes
+checking for ssize_t... yes
+checking for clock_gettime... yes
+checking for memchr... yes
+checking for memmove... yes
+checking for memset... yes
+checking for pow... yes
+checking for stpcpy... yes
+checking for strdup... yes
+checking for strtol... yes
+checking for strerror... yes
+checking for uname... yes
+checking for size_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible malloc... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible realloc... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking for inttypes.h... (cached) yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking for memory.h... (cached) yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for stdbool.h that conforms to C99... yes
+checking for _Bool... yes
+checking for inline... inline
+checking for C/C++ restrict keyword... __restrict
+configure: Generating system-libs.txt
+checking for ldconfig... /sbin/ldconfig
+checking for cp that supports -u... yes
+using MPE: no
+checking for /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/c-utils.h... yes
+using ExM c-utils in /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils ...
+checking MPI version... MPI_VERSION == 3
+configure: updating cache config.cache
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/module.mk
+config.status: creating src/adlb-version.h
+config.status: creating tests/module.mk
+config.status: creating config.h
+config.status: creating src/mpe-settings.h
+  CLEAN DEBIAN
+  CLEAN
+  DEP		tests/common/qtests.d
+  DEP		tests/parallel-task.d
+  DEP		tests/workq_bench.d
+  DEP		tests/server_task_bench.d
+  DEP		tests/qs_idle_workers.d
+  DEP		tests/qs_priority.d
+  DEP		tests/early-exit.d
+  DEP		tests/qs_node_target.d
+  DEP		tests/init.d
+  DEP		tests/create-group.d
+  DEP		src/common.d
+  DEP		src/multiset.d
+  DEP		src/sync.d
+  DEP		src/xpt_file.d
+  DEP		src/engine.d
+  DEP		src/adlb.d
+  DEP		src/workqueue.d
+  DEP		src/data_cleanup.d
+  DEP		src/refcount.d
+  DEP		src/debug_symbols.d
+  DEP		src/xpt_index.d
+  DEP		src/debug.d
+  DEP		src/data.d
+  DEP		src/backoffs.d
+  DEP		src/messaging.d
+  DEP		src/steal.d
+  DEP		src/mpe-tools.d
+  DEP		src/handlers.d
+  DEP		src/location.d
+  DEP		src/mpi-tools.d
+  DEP		src/data_structs.d
+  DEP		src/adlb-xpt.d
+  DEP		src/requestqueue.d
+  DEP		src/adlb_prof.d
+  DEP		src/layout.d
+  DEP		src/notifications.d
+  DEP		src/server.d
+  DEP		src/adlb_types.d
+  CC		src/adlb_types.o
+  CC		src/server.o
+  CC		src/notifications.o
+  CC		src/layout.o
+  CC		src/adlb_prof.o
+  CC		src/requestqueue.o
+  CC		src/adlb-xpt.o
+  CC		src/data_structs.o
+  CC		src/mpi-tools.o
+  CC		src/location.o
+  CC		src/handlers.o
+  CC		src/mpe-tools.o
+  CC		src/steal.o
+  CC		src/messaging.o
+  CC		src/backoffs.o
+  CC		src/data.o
+  CC		src/debug.o
+  CC		src/xpt_index.o
+  CC		src/debug_symbols.o
+  CC		src/refcount.o
+  CC		src/data_cleanup.o
+  CC		src/workqueue.o
+  CC		src/adlb.o
+  CC		src/engine.o
+  CC		src/xpt_file.o
+  CC		src/sync.o
+  CC		src/multiset.o
+  CC		src/common.o
+mkdir: created directory ‘lib’
+  LINK		lib/libadlb.so
+
+  INSTALL	/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/etc’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/include’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/lib’
+‘src/adlb.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/include/adlb.h’
+‘src/adlb-defs.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/include/adlb-defs.h’
+‘src/adlb_types.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/include/adlb_types.h’
+‘lib/libadlb.so’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/lib/libadlb.so’
+‘version.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/etc/version.txt’
+‘source.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/etc/source.txt’
+‘config.log’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/etc/config.log’
+
+
+Building Turbine
+Running autoconf...
+Running autoheader...
+Turbine: bootstrap: OK
++ ./configure --config-cache --prefix=/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine --with-c-utils=/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils --with-adlb=/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb --with-python-exe=/usr/local/Anaconda/envs/py3.7/bin/python --with-r=/usr/local/apps/R/4.0/4.0.0/lib64/R --with-rinside=/usr/local/apps/R/4.0/site-library_4.0.0/RInside --with-rcpp=/usr/local/apps/R/4.0/site-library_4.0.0/Rcpp --with-tcl=/data/BIDS-HPC/public/software/builds/tcl --with-tcl-version=8.6 --with-tclsh-local=/data/BIDS-HPC/public/software/builds/tcl --with-tcl-lib-dir=/data/BIDS-HPC/public/software/builds/tcl/lib --with-tcl-include=/data/BIDS-HPC/public/software/builds/tcl/include --with-tcl-syslib-dir=/data/BIDS-HPC/public/software/builds/tcl/lib --enable-checkpoint=no --disable-static-pkg --with-mpi=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0 --enable-custom-mpi --with-mpi=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0 --with-mpi-include=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/include --with-mpi-lib-dir=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/lib --with-mpi-lib-name=mpi --without-zlib --disable-checkpoint --with-hdf5=no --disable-static --with-launcher=/usr/local/slurm/bin/srun
+configure: WARNING: unrecognized options: --with-tcl-syslib-dir
+configure: creating cache config.cache
+Turbine version: 1.2.3
+PREFIX: /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine
+SOFTWARE: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/builds/swift-t-install
+using CC='/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc'
+which CC='/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc'
+checking for gcc... /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc accepts -g... yes
+checking for /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc option to accept ISO C89... none needed
+using CC=/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc
+checking whether ln -s works... yes
+checking for swig... /usr/bin/swig
+checking how to run the C preprocessor... /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking if zlib is wanted... no
+checking for cp that supports -u... yes
+checking for cp that supports --parents... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for inline... inline
+checking for stdbool.h that conforms to C99... yes
+checking for _Bool... yes
+checking for pid_t... yes
+checking for size_t... yes
+checking for int32_t... yes
+checking for int64_t... yes
+checking for mode_t... yes
+checking for uint8_t... yes
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking for ptrdiff_t... yes
+checking vfork.h usability... no
+checking vfork.h presence... no
+checking for vfork.h... no
+checking for fork... yes
+checking for vfork... yes
+checking for working fork... yes
+checking for working vfork... (cached) yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible malloc... yes
+checking for stdlib.h... (cached) yes
+checking for GNU libc compatible realloc... yes
+checking for working strtod... yes
+checking for dup2... yes
+checking for getcwd... yes
+checking for gettimeofday... yes
+checking for mallinfo... yes
+checking for memchr... yes
+checking for memset... yes
+checking for pow... yes
+checking for setenv... yes
+checking for strchr... yes
+checking for strdup... yes
+checking for strerror... yes
+checking for strlen... yes
+checking for strnlen... yes
+checking for strpbrk... yes
+checking for strchrnul... yes
+checking for strlcpy... no
+checking for strstr... yes
+checking for strtol... yes
+checking for strtoul... yes
+checking for strtoull... yes
+checking for uname... yes
+checking for /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/include/c-utils.h... yes
+checking for /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/c-utils/lib/libexmcutils.a... no
+Trying MPI directory: /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0
+checking for /usr/local/slurm/bin/srun... yes
+Using MPI launcher: /usr/local/slurm/bin/srun
+checking for /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/include/mpi.h... yes
+checking for MPI library libmpi at /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/lib... yes
+Setting MPI_LABEL: /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/lib mpi
+checking MPI implementation in /usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/include/mpi.h ... OpenMPI
+checking for /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/lb/include/adlb.h... ok
+checking for /usr/local/Anaconda/envs/py3.7/bin/python... yes
+Python enabled
+Using Python include flags: -I/usr/local/Anaconda/envs/py3.7/include/python3.7m
+Using Python lib flags:     -lpython3.7m -lpthread -ldl -lutil -lrt -lm
+Using Python lib dir:       /usr/local/Anaconda/envs/py3.7/lib
+Adding to PATH: /usr/local/apps/R/4.0/4.0.0/bin 
+checking for Rscript... Rscript
+Using Rscript: /usr/local/apps/R/4.0/4.0.0/bin/Rscript
+[1] "R_IS_OK"
+"Rscript works."
+checking for /usr/local/apps/R/4.0/4.0.0/lib64/R/include/R.h... yes
+Using R include: /usr/local/apps/R/4.0/4.0.0/lib64/R/include
+checking for /usr/local/apps/R/4.0/site-library_4.0.0/RInside/include/RInside.h... yes
+checking for /usr/local/apps/R/4.0/site-library_4.0.0/Rcpp/include/Rcpp.h... yes
+checking whether we are using the GNU C++ compiler... yes
+checking whether /usr/local/GCC/9.2.0/bin/g++ accepts -g... yes
+JVM scripting disabled
+Coaster integration disabled
+checking for ar... ar
+checking for ranlib... ranlib
+configure: user specified Tcl version 8.6
+using Tcl: /data/BIDS-HPC/public/software/builds/tcl
+using Tcl lib dir: /data/BIDS-HPC/public/software/builds/tcl/lib
+checking for local Tcl (version: 8.6) executable in: /data/BIDS-HPC/public/software/builds/tcl... tclsh8.6
+checking for Tcl 8.6 library at /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib/libtcl8.6.so... yes
+using Tcl version: 8.6
+Tcl shared library: /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib/libtcl8.6.so
+Tcl static library: 
+checking for tclConfig.sh at /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib/tcl8.6... no
+checking for tclConfig.sh at /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib... found
+using tclConfig.sh in: /gpfs/gsfs9/users/BIDS-HPC/public/software/builds/tcl/lib/
+using Turbine Tcl executable: /data/BIDS-HPC/public/software/builds/tcl/bin/tclsh8.6
+checking for /data/BIDS-HPC/public/software/builds/tcl/include/tcl.h... yes
+./configure: line 7203: [: ==: unary operator expected
+using Tcl include: /data/BIDS-HPC/public/software/builds/tcl/include/tcl.h
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for gawk... gawk
+HDF5 disabled
+Note: HDF5 is only required if you need Turbine's HDF features.
+configure: Generating system-libs.txt
+checking for ldconfig... /sbin/ldconfig
+
+Preparing config files: please wait...
+configure: updating cache config.cache
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating bin/turbine
+config.status: creating bin/turbine-pilot
+config.status: creating scripts/turbine-config.sh
+config.status: creating scripts/turbine-build-config.sh
+config.status: creating src/turbine/turbine-version.h
+config.status: creating src/turbine/module.mk
+config.status: creating src/util/module.mk
+config.status: creating src/util/debug-tokens.tcl
+config.status: creating src/tcl/module.mk
+config.status: creating src/tcl/adlb/module.mk
+config.status: creating src/tcl/blob/module.mk
+config.status: creating src/tcl/c-utils/module.mk
+config.status: creating src/tcl/mpe/module.mk
+config.status: creating src/tcl/jvm/module.mk
+config.status: creating src/tcl/julia/module.mk
+config.status: creating src/tcl/launch/module.mk
+config.status: creating src/tcl/python/module.mk
+config.status: creating src/tcl/r/module.mk
+config.status: creating src/tcl/static-pkg/module.mk
+config.status: creating src/tcl/turbine/module.mk
+config.status: creating src/executables/module.mk
+config.status: creating lib/module.mk
+config.status: creating scripts/main-wrap/module.mk
+config.status: creating scripts/submit/module.mk
+config.status: creating scripts/submit/cobalt/module.mk
+config.status: creating scripts/submit/cray/module.mk
+config.status: creating scripts/submit/ec2/module.mk
+config.status: creating scripts/submit/lsf/module.mk
+config.status: creating scripts/submit/pbs/module.mk
+config.status: creating scripts/submit/slurm/module.mk
+config.status: creating scripts/submit/sge/module.mk
+config.status: creating scripts/submit/theta/module.mk
+config.status: creating tests/module.mk
+config.status: creating tests/runbin.zsh
+config.status: creating config.h
+configure: WARNING: unrecognized options: --with-tcl-syslib-dir
+  CLEAN tests
+  CLEAN tests
+  CLEAN tests
+  CLEAN DEBIAN
+
+  CLEAN
+  DEP		tests/mpi-io-2.d
+  DEP		tests/mpi-io-1.d
+  DEP		tests/ptasks-1.d
+  DEP		tests/lib-turbine.d
+  DEP		tests/debug.d
+  DEP		src/tcl/turbine/tcl-turbine.d
+  DEP		src/tcl/util.d
+  DEP		src/tcl/jvm/tcl-jvm.d
+  DEP		src/tcl/launch/MPIX_Comm_launch.d
+  DEP		src/tcl/launch/launch.d
+  SWIG 		src/tcl/launch/launch.i
+  DEP		src/tcl/launch/launch_wrap.d
+  DEP		src/tcl/r/tcl-r.d
+  SWIG 		src/tcl/python/python-swig.i
+  DEP		src/tcl/python/python-swig_wrap.d
+  DEP		src/tcl/python/tcl-python.d
+  DEP		src/tcl/julia/tcl-julia.d
+  DEP		src/tcl/mpe/tcl-mpe.d
+  DEP		src/tcl/blob/blob.d
+  SWIG 		src/tcl/blob/blob.i
+  DEP		src/tcl/blob/blob_wrap.d
+  DEP		src/tcl/c-utils/tcl-c-utils.d
+  DEP		src/tcl/adlb/tcl-adlb.d
+  DEP		src/util/debug.d
+  DEP		src/turbine/io.d
+  DEP		src/turbine/executors/noop_executor.d
+  DEP		src/turbine/sync_exec.d
+  DEP		src/turbine/async_exec.d
+  DEP		src/turbine/services.d
+  DEP		src/turbine/worker.d
+  DEP		src/turbine/run.d
+  DEP		src/turbine/cache.d
+  DEP		src/turbine/turbine.d
+  TCL		src/util/debug.h
+  DEP		tests/debug.d
+  DEP		src/tcl/turbine/tcl-turbine.d
+  DEP		src/tcl/jvm/tcl-jvm.d
+  DEP		src/tcl/python/tcl-python.d
+  DEP		src/tcl/julia/tcl-julia.d
+  DEP		src/tcl/adlb/tcl-adlb.d
+  DEP		src/util/debug.d
+  DEP		src/turbine/executors/noop_executor.d
+  DEP		src/turbine/async_exec.d
+  DEP		src/turbine/worker.d
+  DEP		src/turbine/cache.d
+  DEP		src/turbine/turbine.d
+  CC		src/turbine/turbine.o
+  CC		src/turbine/cache.o
+  CC		src/turbine/run.o
+  CC		src/turbine/worker.o
+  CC		src/turbine/services.o
+  CC		src/turbine/async_exec.o
+  CC		src/turbine/sync_exec.o
+  CC		src/turbine/executors/noop_executor.o
+  CC		src/turbine/io.o
+  CC		src/util/debug.o
+  CC		src/tcl/adlb/tcl-adlb.o
+  CC		src/tcl/c-utils/tcl-c-utils.o
+  CC		src/tcl/blob/blob_wrap.o
+  CC		src/tcl/blob/blob.o
+  CC		src/tcl/mpe/tcl-mpe.o
+  CC		src/tcl/julia/tcl-julia.o
+  CC		src/tcl/python/tcl-python.o
+  CC		src/tcl/python/python-swig_wrap.o
+  CC		src/tcl/r/tcl-r.o
+  CC		src/tcl/launch/launch_wrap.o
+  CC		src/tcl/launch/launch.o
+  CC		src/tcl/launch/MPIX_Comm_launch.o
+  CC		src/tcl/jvm/tcl-jvm.o
+  CC		src/tcl/util.o
+  CC		src/tcl/turbine/tcl-turbine.o
+  CXX		src/tcl/r/rinside-adapter.C
+  LINK		lib/libtclturbine.so
+  TCL		lib/pkgIndex.tcl
+
+  INSTALL		/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/bin’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/include’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts’
+mkdir: created directory ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/py’
+‘version.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/version.txt’
+‘source.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/source.txt’
+‘config.log’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/config.log’
+‘bin/turbine’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/bin/turbine’
+‘bin/turbine-pilot’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/bin/turbine-pilot’
+‘bin/turbine-read-doubles’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/bin/turbine-read-doubles’
+‘bin/turbine-write-doubles’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/bin/turbine-write-doubles’
+‘lib/app.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/app.tcl’
+‘lib/arith.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/arith.tcl’
+‘lib/assert.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/assert.tcl’
+‘lib/blob.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/blob.tcl’
+‘lib/checkpoint.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/checkpoint.tcl’
+‘lib/container.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/container.tcl’
+‘lib/data.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/data.tcl’
+‘lib/files.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/files.tcl’
+‘lib/functions.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/functions.tcl’
+‘lib/gemtc_worker.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/gemtc_worker.tcl’
+‘lib/helpers.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/helpers.tcl’
+‘lib/io.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/io.tcl’
+‘lib/json.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/json.tcl’
+‘lib/langs.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/langs.tcl’
+‘lib/launch.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/launch.tcl’
+‘lib/location.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/location.tcl’
+‘lib/logical.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/logical.tcl’
+‘lib/make-package.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/make-package.tcl’
+‘lib/mpe.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/mpe.tcl’
+‘lib/pkgIndex.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/pkgIndex.tcl’
+‘lib/python.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/python.tcl’
+‘lib/rand.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/rand.tcl’
+‘lib/reductions.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/reductions.tcl’
+‘lib/stats.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/stats.tcl’
+‘lib/string.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/string.tcl’
+‘lib/sys.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/sys.tcl’
+‘lib/turbine.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/turbine.tcl’
+‘lib/updateable.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/updateable.tcl’
+‘lib/worker.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/worker.tcl’
+‘lib/libtclturbine.so’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/lib/libtclturbine.so’
+‘py/turbine_helpers.py’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/py/turbine_helpers.py’
+‘scripts/data-log.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/data-log.sh’
+‘scripts/helpers.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/helpers.sh’
+‘scripts/helpers.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/helpers.zsh’
+scripts/main-wrap -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap
+‘scripts/main-wrap/genleaf’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/genleaf’
+scripts/main-wrap/settings -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings
+‘scripts/main-wrap/settings/flags.gcc.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/flags.gcc.sh’
+‘scripts/main-wrap/settings/flags.g++.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/flags.g++.sh’
+‘scripts/main-wrap/settings/flags.xlc.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/flags.xlc.sh’
+‘scripts/main-wrap/settings/machine.mira-gcc.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/machine.mira-gcc.sh’
+‘scripts/main-wrap/settings/machine.mira-g++.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/machine.mira-g++.sh’
+‘scripts/main-wrap/settings/machine.mira-xlc_r.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/machine.mira-xlc_r.sh’
+‘scripts/main-wrap/settings/machine.mira-xlc.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/machine.mira-xlc.sh’
+‘scripts/main-wrap/settings/machine.vanilla-gcc.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/machine.vanilla-gcc.sh’
+‘scripts/main-wrap/settings/machine.vanilla-g++.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/machine.vanilla-g++.sh’
+‘scripts/main-wrap/settings/machine.vesta-gcc.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/machine.vesta-gcc.sh’
+‘scripts/main-wrap/settings/machine.vesta-xlc.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/settings/machine.vesta-xlc.sh’
+scripts/main-wrap/templates -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/templates
+‘scripts/main-wrap/templates/extension-funcs.template.c’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/templates/extension-funcs.template.c’
+‘scripts/main-wrap/templates/extension-main.template.c’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/templates/extension-main.template.c’
+‘scripts/main-wrap/templates/extension-main.template.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/templates/extension-main.template.h’
+‘scripts/main-wrap/templates/extension.template.c’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/templates/extension.template.c’
+‘scripts/main-wrap/templates/leaf-funcs.template.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/templates/leaf-funcs.template.tcl’
+‘scripts/main-wrap/templates/main-leaf.template.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/templates/main-leaf.template.tcl’
+‘scripts/main-wrap/templates/make-package.template.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/main-wrap/templates/make-package.template.tcl’
+scripts/mkstatic -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/mkstatic
+‘scripts/mkstatic/About.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/mkstatic/About.txt’
+‘scripts/mkstatic/example.manifest’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/mkstatic/example.manifest’
+‘scripts/mkstatic/file2array.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/mkstatic/file2array.sh’
+‘scripts/mkstatic/files2arrays_mkhdr.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/mkstatic/files2arrays_mkhdr.sh’
+‘scripts/mkstatic/mkstatic.c.template’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/mkstatic/mkstatic.c.template’
+‘scripts/mkstatic/mkstatic.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/mkstatic/mkstatic.tcl’
+‘scripts/rank.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/rank.zsh’
+scripts/submit -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit
+scripts/submit/cobalt -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/cobalt
+‘scripts/submit/cobalt/turbine-cobalt-run.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/cobalt/turbine-cobalt-run.zsh’
+‘scripts/submit/cobalt/turbine-cobalt.sh.m4’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/cobalt/turbine-cobalt.sh.m4’
+‘scripts/submit/common.m4’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/common.m4’
+scripts/submit/cray -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/cray
+‘scripts/submit/cray/turbine-cray-run.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/cray/turbine-cray-run.zsh’
+‘scripts/submit/cray/turbine-cray.sh.m4’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/cray/turbine-cray.sh.m4’
+scripts/submit/ec2 -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/ec2
+‘scripts/submit/ec2/turbine-setup-ec2.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/ec2/turbine-setup-ec2.zsh’
+scripts/submit/lsf -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/lsf
+‘scripts/submit/lsf/turbine-lsf-run.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/lsf/turbine-lsf-run.zsh’
+‘scripts/submit/lsf/turbine-lsf.sh.m4’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/lsf/turbine-lsf.sh.m4’
+scripts/submit/pbs -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/pbs
+‘scripts/submit/pbs/turbine-pbs-run.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/pbs/turbine-pbs-run.zsh’
+‘scripts/submit/pbs/turbine-pbs.sh.m4’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/pbs/turbine-pbs.sh.m4’
+‘scripts/submit/run-init.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/run-init.zsh’
+scripts/submit/sge -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/sge
+‘scripts/submit/sge/turbine-sge-run.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/sge/turbine-sge-run.zsh’
+‘scripts/submit/sge/turbine-sge.sh.m4’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/sge/turbine-sge.sh.m4’
+scripts/submit/slurm -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/slurm
+‘scripts/submit/slurm/turbine-slurm-run.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/slurm/turbine-slurm-run.zsh’
+‘scripts/submit/slurm/turbine-slurm.sh.m4’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/slurm/turbine-slurm.sh.m4’
+scripts/submit/theta -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/theta
+‘scripts/submit/theta/turbine-theta-run.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/theta/turbine-theta-run.zsh’
+‘scripts/submit/theta/turbine-theta.sh.m4’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/theta/turbine-theta.sh.m4’
+‘scripts/submit/turbine-output-list.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/turbine-output-list.zsh’
+‘scripts/submit/turbine-output-search.zsh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/submit/turbine-output-search.zsh’
+‘scripts/turbine-build-config.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/turbine-build-config.sh’
+‘scripts/turbine-config.sh’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/turbine-config.sh’
+‘scripts/turbine-read-doubles.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/turbine-read-doubles.tcl’
+‘scripts/turbine-write-doubles.tcl’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/scripts/turbine-write-doubles.tcl’
+‘export/assert.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/assert.swift’
+‘export/blob.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/blob.swift’
+‘export/builtins.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/builtins.swift’
+‘export/files.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/files.swift’
+‘export/io.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/io.swift’
+‘export/json.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/json.swift’
+‘export/julia.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/julia.swift’
+‘export/jvm.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/jvm.swift’
+‘export/launch.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/launch.swift’
+‘export/location.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/location.swift’
+‘export/math.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/math.swift’
+‘export/matrix.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/matrix.swift’
+‘export/mpe.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/mpe.swift’
+‘export/python.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/python.swift’
+‘export/random.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/random.swift’
+‘export/reductions.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/reductions.swift’
+‘export/R.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/R.swift’
+‘export/stats.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/stats.swift’
+‘export/string.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/string.swift’
+‘export/sys.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/sys.swift’
+‘export/unix.swift’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/export/unix.swift’
+‘etc/turbine.supp’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/turbine.supp’
+‘src/turbine/turbine.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/include/turbine.h’
+‘src/turbine/turbine-finalizers.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/include/turbine-finalizers.h’
+‘src/tcl/turbine/tcl-turbine.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/include/tcl-turbine.h’
+‘src/tcl/static-pkg/static-pkg.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/include/static-pkg.h’
+‘src/turbine/turbine-defs.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/include/turbine-defs.h’
+‘src/tcl/blob/blob.h’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/include/blob.h’
+etc/help -> /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/help
+‘etc/help/env.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/help/env.txt’
+‘etc/help/footer.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/help/footer.txt’
+‘etc/help/header.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/help/header.txt’
+‘etc/help/options-1.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/help/options-1.txt’
+‘etc/help/options-2.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/etc/help/options-2.txt’
+
+  CREATE  	install.txt
+‘install.txt’ -> ‘/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/install.txt’
+
+Building STC in /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/dev/build
+Ant and Java settings:
+/usr/local/apps/ant/1.10.3/bin/ant
+/usr/local/Java/jdk1.8.0_211/bin/java
+JAVA_HOME: '/usr/local/Java/jdk1.8.0_211'
+ANT_HOME:  '/usr/local/apps/ant/1.10.3'
+
+Buildfile: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/build.xml
+
+clean.java:
+
+clean.tests:
+
+clean.test.out:
+
+clean:
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+Buildfile: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/build.xml
+
+antlr.generate:
+     [java] warning(24):  template error: context [/outputFile /parser /genericParser /region__/genericParser__members /region__/genericParser__members] 32:3 no such property or can't access: org.antlr.tool.Grammar.indirectDelegates
+     [java] Caused by: org.stringtemplate.v4.misc.STNoSuchPropertyException: no such property: org.antlr.tool.Grammar.indirectDelegates
+     [java] 	at org.stringtemplate.v4.misc.ObjectModelAdaptor.throwNoSuchProperty(ObjectModelAdaptor.java:106)
+     [java] 	at org.stringtemplate.v4.misc.ObjectModelAdaptor.lookupMethod(ObjectModelAdaptor.java:99)
+     [java] 	at org.stringtemplate.v4.misc.ObjectModelAdaptor.getProperty(ObjectModelAdaptor.java:67)
+     [java] 	at org.stringtemplate.v4.Interpreter.getObjectProperty(Interpreter.java:1158)
+     [java] 	at org.stringtemplate.v4.Interpreter._exec(Interpreter.java:210)
+     [java] 	at org.stringtemplate.v4.Interpreter.exec(Interpreter.java:145)
+     [java] 	at org.stringtemplate.v4.Interpreter.writeObject(Interpreter.java:703)
+     [java] 	at org.stringtemplate.v4.Interpreter.writeObjectNoOptions(Interpreter.java:635)
+     [java] 	at org.stringtemplate.v4.Interpreter._exec(Interpreter.java:285)
+     [java] 	at org.stringtemplate.v4.Interpreter.exec(Interpreter.java:145)
+     [java] 	at org.stringtemplate.v4.Interpreter.writeObject(Interpreter.java:703)
+     [java] 	at org.stringtemplate.v4.Interpreter.writeObjectNoOptions(Interpreter.java:635)
+     [java] 	at org.stringtemplate.v4.Interpreter._exec(Interpreter.java:285)
+     [java] 	at org.stringtemplate.v4.Interpreter.exec(Interpreter.java:145)
+     [java] 	at org.stringtemplate.v4.Interpreter.writeObject(Interpreter.java:703)
+     [java] 	at org.stringtemplate.v4.Interpreter.writeObjectNoOptions(Interpreter.java:635)
+     [java] 	at org.stringtemplate.v4.Interpreter._exec(Interpreter.java:285)
+     [java] 	at org.stringtemplate.v4.Interpreter.exec(Interpreter.java:145)
+     [java] 	at org.stringtemplate.v4.Interpreter.writeObject(Interpreter.java:703)
+     [java] 	at org.stringtemplate.v4.Interpreter.writeObjectNoOptions(Interpreter.java:635)
+     [java] 	at org.stringtemplate.v4.Interpreter._exec(Interpreter.java:285)
+     [java] 	at org.stringtemplate.v4.Interpreter.exec(Interpreter.java:145)
+     [java] 	at org.stringtemplate.v4.ST.write(ST.java:415)
+     [java] 	at org.antlr.codegen.CodeGenerator.write(CodeGenerator.java:1296)
+     [java] 	at org.antlr.codegen.Target.genRecognizerFile(Target.java:98)
+     [java] 	at org.antlr.codegen.CodeGenerator.genRecognizer(CodeGenerator.java:459)
+     [java] 	at org.antlr.Tool.generateRecognizer(Tool.java:696)
+     [java] 	at org.antlr.Tool.process(Tool.java:509)
+     [java] 	at org.antlr.Tool.main(Tool.java:98)
+     [java] Caused by: java.lang.reflect.InvocationTargetException
+     [java] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [java] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:498)
+     [java] 	at org.stringtemplate.v4.misc.Misc.invokeMethod(Misc.java:218)
+     [java] 	at org.stringtemplate.v4.misc.ObjectModelAdaptor.lookupMethod(ObjectModelAdaptor.java:84)
+     [java] 	... 27 more
+     [java] Caused by: java.lang.NullPointerException
+     [java] 	at java.util.Objects.requireNonNull(Objects.java:203)
+     [java] 	at java.util.ArrayList.removeAll(ArrayList.java:693)
+     [java] 	at org.antlr.tool.CompositeGrammar.getIndirectDelegates(CompositeGrammar.java:226)
+     [java] 	at org.antlr.tool.Grammar.getIndirectDelegates(Grammar.java:2722)
+     [java] 	... 33 more
+     [java] 
+     [echo] ANTLR OK: output in: src/exm/stc/ast/antlr
+
+clean.java:
+
+compile.antlr:
+    [mkdir] Created dir: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes
+    [javac] Compiling 2 source files to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.6
+    [javac] 1 warning
+
+compile:
+    [javac] Compiling 215 source files to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/frontend/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/common/exceptions/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/common/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/ic/refcount/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/tclbackend/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/common/util/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/ui/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/tclbackend/tree/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/frontend/tree/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/ic/opt/valuenumber/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/ic/tree/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/ic/opt/package-info.class
+    [javac] Creating empty /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/classes/exm/stc/ic/package-info.class
+
+jar:
+      [jar] Building jar: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/lib/stc.jar
+
+build.all:
+
+BUILD SUCCESSFUL
+Total time: 10 seconds
+Buildfile: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code/build.xml
+
+antlr.generate:
+
+compile.antlr:
+
+compile:
+
+jar:
+
+source.txt:
+     [echo] Source directory is: /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t/stc/code
+
+install:
+     [echo] INSTALL: dist.dir=/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc
+     [echo] INSTALL: turbine.home=/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine
+    [mkdir] Created dir: /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/bin
+    [mkdir] Created dir: /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/etc
+    [mkdir] Created dir: /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/lib
+     [copy] Copying 3 files to /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/bin
+     [copy] Copying 1 file to /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/etc
+     [copy] Copying 8 files to /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/etc
+     [copy] Copying 1 file to /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/etc
+     [copy] Copying 1 file to /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/etc
+     [copy] Copying 1 file to /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/etc
+     [copy] Copying 7 files to /data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/lib
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+Swift/T build successful.

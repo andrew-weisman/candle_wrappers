@@ -1,0 +1,23 @@
+Logging at LOG_DEBUG
+Located Swift/T source root at /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/checkouts/swift-t
+AAAA
+antjavac
+BBBB
+which: no antjavac in (/usr/local/Anaconda/envs/py3.7/bin:/data/BIDS-HPC/public/software/builds/tcl/bin:/usr/local/GSL/gcc-9.2.0/2.6/bin:/usr/local/pcre2/10.21/bin:/usr/local/Java/jdk1.8.0_211/bin:/usr/local/apps/ant/1.10.3/bin:/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin:/usr/local/CUDA/10.2.89/bin:/usr/local/GCC/9.2.0/bin:/usr/local/slurm/bin:/data/weismanal/miniconda3/condabin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/X11R6/bin:/usr/local/jdk/bin:/usr/bin:/usr/local/mysql/bin:/home/weismanal/bin:/opt/ibutils/bin:/data/BIDS-HPC/public/software/distributions/candle/dev_3/bin:/usr/local/apps/R/4.0/4.0.0/bin:/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/stc/bin:/data/BIDS-HPC/public/software/distributions/candle/dev_3/swift-t-install/turbine/bin)
+AAAA
+autoconf
+BBBB
+AAAA
+make
+BBBB
+AAAA
+/usr/local/OpenMPI/4.0.4/CUDA-10.2/gcc-9.2.0/bin/mpicc
+BBBB
+AAAA
+swig
+BBBB
+AAAA
+zsh
+BBBB
+This system is missing the following required tools:
+antjavac

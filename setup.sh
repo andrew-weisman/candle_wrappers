@@ -38,13 +38,14 @@ check_file_before_continuing() {
 # Output the full path to the executable of the inputted program name, or else print out a warning message
 determine_executable() {
     prog=$1
-    tmp_exec=$(command -v "$prog")
+    tmp_exec=$(command -v "$prog" || junk="assignment" )
     [[ "x$tmp_exec" == "x" ]] && echo -e "\nWARNING: Program '$prog' not found\n" || echo -e "\nUsing $prog executable $tmp_exec\n"
 }
 
 run_launcher=1 # default should be 1
 interactive=${1:-1} # default should be 1
 set -e # exit when any command fails
+#set -x # output commands before executing them
 
 # Determine whether we're on Biowulf
 [[ "x$SITE" == "xbiowulf" ]] && on_biowulf=1 || on_biowulf=0
@@ -96,24 +97,16 @@ fi
 ####################################################################################################################################
 
 
-#### Set up the environment ########################################################################################################
+#### Set up the non-Python environment #############################################################################################
 echo -e "\n\n :::: Setting up the build environment...\n"
 
 # Check the settings file $CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh
 check_file_before_continuing "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
 
-# Load the environment
-if [ "x${DEFAULT_PYTHON_MODULE:0:1}" == "x/" ]; then # If $DEFAULT_PYTHON_MODULE actually contains a full path to the executable instead of a module name...
-    path_to_add=$(tmp=$(echo "$DEFAULT_PYTHON_MODULE" | awk -v FS="/" -v OFS="/" '{$NF=""; print}'); echo "${tmp:0:${#tmp}-1}") # this strips the executable from the full path to the python executable set in $DEFAULT_PYTHON_MODULE (if it's not a module name of course)
-    export PATH="$path_to_add:$PATH"
-else
-    module load "$DEFAULT_PYTHON_MODULE"
-fi
 # shellcheck source=/dev/null
 source "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
 
 # Output the executables to be used for Swift/T and Python
-determine_executable python
 determine_executable swift-t
 ####################################################################################################################################
 
@@ -123,19 +116,17 @@ echo -e "\n\n :::: Testing MPI communications...\n"
 
 # Compile and run MPI hello world
 echo " ::::: Using mpicc: $(command -v mpicc)"
-#echo -e " ::::: Using srun: $(command -v srun)\n"
-#mpicc -o "$CANDLE/wrappers/test_files/hello" "$CANDLE/wrappers/test_files/hello.c"
 mpicc -o "$LOCAL_DIR/hello" "$CANDLE/wrappers/test_files/hello.c"
 
 if [ "x$run_launcher" == "x1" ]; then
     if [ "x$SITE" == "xbiowulf" ]; then
-        #srun "${TURBINE_LAUNCH_OPTIONS[@]}" --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$CANDLE/wrappers/test_files/hello"
+        cd - &> /dev/null
+        cp "$LOCAL_DIR/hello" .
         # shellcheck disable=SC2086
-        srun $TURBINE_LAUNCH_OPTIONS --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" "$LOCAL_DIR/hello"
-        ## Biowulf --> the above srun line indeed corresponds to this!
-        #srun --mpi=pmix --ntasks=3 --cpus-per-task=16 --mem=0 "$CANDLE/wrappers/test_files/hello"
+        srun $TURBINE_LAUNCH_OPTIONS --ntasks="$SLURM_NTASKS" --cpus-per-task="$SLURM_CPUS_PER_TASK" ./hello
+        rm -f ./hello
+        cd - &> /dev/null
     elif [ "x$SITE" == "xsummit" ]; then
-        # Summit
         jsrun --nrs=12 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=6 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7 "$LOCAL_DIR/hello"
     fi
 else
@@ -160,6 +151,23 @@ if [ "x$on_biowulf" == "x1" ]; then
 else
     echo -e "\nSkipping installation of R packages needed for the Supervisor workflows since we are not on Biowulf (and they are therefore already set up)\n"
 fi
+####################################################################################################################################
+
+
+#### Set up Python #################################################################################################################
+# Note on Biowulf we cannot have this loaded while the R packages are installed above, or else we get an error when trying to install the openssl package
+echo -e "\n\n :::: Setting up Python...\n"
+
+# Load the environment
+if [ "x${DEFAULT_PYTHON_MODULE:0:1}" == "x/" ]; then # If $DEFAULT_PYTHON_MODULE actually contains a full path to the executable instead of a module name...
+    path_to_add=$(tmp=$(echo "$DEFAULT_PYTHON_MODULE" | awk -v FS="/" -v OFS="/" '{$NF=""; print}'); echo "${tmp:0:${#tmp}-1}") # this strips the executable from the full path to the python executable set in $DEFAULT_PYTHON_MODULE (if it's not a module name of course)
+    export PATH="$path_to_add:$PATH"
+else
+    module load "$DEFAULT_PYTHON_MODULE"
+fi
+
+# Output the executables to be used for Swift/T and Python
+determine_executable python
 ####################################################################################################################################
 
 
@@ -280,12 +288,12 @@ swift-t -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
 ####################################################################################################################################
 
 
-# #### Ensure permissions are correct ################################################################################################
-# echo -e "\n\n :::: Setting permissions recursively on CANDLE directory...\n"
+#### Ensure permissions are correct ################################################################################################
+echo -e "\n\n :::: Setting permissions recursively on CANDLE directory...\n"
 
-# chmod -R g=u,o=u-w "$CANDLE"
-# ####################################################################################################################################
+chmod -R g=u,o=u-w "$CANDLE"
+####################################################################################################################################
 
 
-# # Print whether the previous commands were successful
-# echo "Probably successful setup, but you still should check the output!"
+# Print whether the previous commands were successful
+echo "Probably successful setup, but you still should check the output!"

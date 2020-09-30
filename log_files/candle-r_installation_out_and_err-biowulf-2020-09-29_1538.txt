@@ -1,0 +1,254 @@
+This will install multiple R packages for CANDLE.
+
+using R:        /usr/local/apps/R/4.0/4.0.0/bin/R
+using gcc:      /usr/local/GCC/9.2.0/bin/gcc
+using gfortran: /usr/local/GCC/9.2.0/bin/gfortran
+
+Press enter to confirm, or Ctrl-C to cancel.
+
+R version 4.0.0 (2020-04-24) -- "Arbor Day"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+> # INSTALL CANDLE R
+> 
+> # Run this via install-candle.sh
+> # Installs all R packages needed for Supervisor workflows
+> 
+> # mlrMBO may need APT packages libxml2-dev libssl-dev curl-dev
+> 
+> NCPUS = 16
+> 
+> r <- getOption("repos")
+> # r["CRAN"] <- "http://cran.cnr.berkeley.edu/"
+> r["CRAN"] <- "http://cran.wustl.edu/"
+> options(repos = r)
+> 
+> # Force Plotly 4.5.6 - not latest! Do not want shiny/httpuv, it does not work on Cooley!
+> #install.packages("https://cran.r-project.org/src/contrib/Archive/plotly/plotly_4.5.6.tar.gz") # On 9/29/20, this throws "ERROR: dependencies ‘ggplot2’, ‘scales’, ‘httr’, ‘jsonlite’, ‘magrittr’, ‘digest’, ‘viridisLite’, ‘base64enc’, ‘htmlwidgets’, ‘tidyr’, ‘dplyr’, ‘tibble’, ‘hexbin’, ‘lazyeval’, ‘purrr’ are not available for package ‘plotly’", so now moving plotly back into PKGS list below
+> #install.packages("https://cran.r-project.org/src/contrib/Archive/jsonlite/jsonlite_1.7.0.tar.gz") # ALW adding this on 9/12/20 (and removing jsonlite from PKGS list below) because sometime in the first two weeks of Sept 2020 the default jsonlite version became 1.7.1 and this seems to throw an error that looks to me like a bug that should be fixed with time; e.g., while everything worked in early Sept 2020 (probably 9/2/20), now on 9/12/20 I get this error:
+> # * DONE (jsonlite)
+> # 1): succeeded '/usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL -l '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_2/builds/R/libs' '/lscratch/64803361/Rtmpnd5yDC/downloaded_packages/jsonlite_1.7.1.tar.gz''
+> # The downloaded source packages are in
+> # 	‘/lscratch/64803361/Rtmpnd5yDC/downloaded_packages’
+> # [1] ""
+> # LOAD:     jsonlite 
+> # Error in value[[3L]](cond) : 
+> #   Package ‘jsonlite’ version 1.7.0 cannot be unloaded:
+> #  Error in unloadNamespace(package) : namespace ‘jsonlite’ is imported by ‘plotly’ so cannot be unloaded
+> # Calls: library ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
+> # Execution halted
+> # ****NOTE**** that I tried installing both plotly and jsonlite the normal way (in the PKGS below instead of a specific version above) and I got the same error
+> 
+> PKGS <- list(
++     "openssl",
++     "plotly",
++     "jsonlite",
++     "smoof",
++     "rgenoud",
++     "DiceKriging",
++     "randomForest",
++     "parallelMap",
++     "RInside",
++     "mlrMBO"
++ )
+> 
+> for (pkg in PKGS) {
++   print("")
++   cat("INSTALL: ", pkg, "\n")
++   # install.packages() does not return an error status
++   install.packages(pkg, Ncpus=NCPUS, verbose=TRUE)
++   print("")
++   # Test that the pkg installed and is loadable
++   cat("LOAD:    ", pkg, "\n")
++   library(package=pkg, character.only=TRUE)
++ }
+[1] ""
+INSTALL:  openssl 
+Installing package into ‘/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/builds/R/libs’
+(as ‘lib’ is unspecified)
+system (cmd0): /usr/local/apps/R/4.0/4.0.0/lib64/R/bin/R CMD INSTALL
+also installing the dependencies ‘sys’, ‘askpass’
+
+trying URL 'http://cran.wustl.edu/src/contrib/sys_3.4.tar.gz'
+Content type 'application/x-gzip' length 20138 bytes (19 KB)
+==================================================
+downloaded 19 KB
+
+trying URL 'http://cran.wustl.edu/src/contrib/askpass_1.1.tar.gz'
+Content type 'application/x-gzip' length 5730 bytes
+==================================================
+downloaded 5730 bytes
+
+trying URL 'http://cran.wustl.edu/src/contrib/openssl_1.4.3.tar.gz'
+Content type 'application/x-gzip' length 1207708 bytes (1.2 MB)
+==================================================
+downloaded 1.2 MB
+
+foundpkgs: sys, askpass, openssl, /lscratch/65874501/RtmpLZaj2s/downloaded_packages/sys_3.4.tar.gz, /lscratch/65874501/RtmpLZaj2s/downloaded_packages/askpass_1.1.tar.gz, /lscratch/65874501/RtmpLZaj2s/downloaded_packages/openssl_1.4.3.tar.gz
+files: /lscratch/65874501/RtmpLZaj2s/downloaded_packages/sys_3.4.tar.gz, 
+	/lscratch/65874501/RtmpLZaj2s/downloaded_packages/askpass_1.1.tar.gz, 
+	/lscratch/65874501/RtmpLZaj2s/downloaded_packages/openssl_1.4.3.tar.gz
+begin installing package ‘sys’
+* installing *source* package ‘sys’ ...
+** package ‘sys’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+make[1]: Entering directory `/lscratch/65874501/RtmpwtPg7e/R.INSTALL3ba5934e12/sys/src'
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG  -I/usr/local/GSL/gcc-9.2.0/2.6/include   -I/usr/local/include   -fpic  -g -O2  -c exec.c -o exec.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG  -I/usr/local/GSL/gcc-9.2.0/2.6/include   -I/usr/local/include   -fpic  -g -O2  -c init.c -o init.o
+/usr/local/GCC/9.2.0/bin/gcc -shared -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath=/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -o sys.so exec.o init.o -L/usr/local/GSL/gcc-9.2.0/2.6/lib -lgsl -lgslcblas -lm -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR
+make[1]: Leaving directory `/lscratch/65874501/RtmpwtPg7e/R.INSTALL3ba5934e12/sys/src'
+installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/builds/R/libs/00LOCK-sys/00new/sys/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package ‘sys’
+    finding HTML links ... done
+    as_text                                 html  
+    deprecated                              html  
+    exec                                    html  
+    exec_r                                  html  
+    quote                                   html  
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sys)
+begin installing package ‘askpass’
+* installing *source* package ‘askpass’ ...
+** package ‘askpass’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+make[1]: Entering directory `/lscratch/65874501/Rtmpisw8fP/R.INSTALL3bee29e1f521/askpass/src'
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG  -I/usr/local/GSL/gcc-9.2.0/2.6/include   -I/usr/local/include   -fpic  -g -O2  -c askpass.c -o askpass.o
+/usr/local/GCC/9.2.0/bin/gcc -shared -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath=/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -o askpass.so askpass.o -L/usr/local/GSL/gcc-9.2.0/2.6/lib -lgsl -lgslcblas -lm -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR
+make[1]: Leaving directory `/lscratch/65874501/Rtmpisw8fP/R.INSTALL3bee29e1f521/askpass/src'
+installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/builds/R/libs/00LOCK-askpass/00new/askpass/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package ‘askpass’
+    finding HTML links ... done
+    askpass                                 html  
+    ssh_askpass                             html  
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (askpass)
+begin installing package ‘openssl’
+make: *** [openssl.ts] Error 1
+make: Target `all' not remade because of errors.
+* installing *source* package ‘openssl’ ...
+** package ‘openssl’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=-I/usr/local/Anaconda/envs/py3.7/include
+Using PKG_LIBS=-L/usr/local/Anaconda/envs/py3.7/lib -l:libssl.so.1.1 -l:libcrypto.so.1.1
+** libs
+make[1]: Entering directory `/lscratch/65874501/RtmpvogEU1/R.INSTALL3c315fca16b2/openssl/src'
+rm -f aes.o base64.o bignum.o cert.o compatibility.o diffie.o envelope.o error.o hash.o info.o keygen.o keys.o onload.o openssh.o password.o pbkdf.o pem.o pkcs12.o pkcs7.o rand.o rsa.o signing.o ssl.o stream.o write.o x25519.o openssl.so bcrypt/libstatbcrypt.a bcrypt/bcrypt_pbkdf.o bcrypt/blowfish.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c aes.c -o aes.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c base64.c -o base64.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c bignum.c -o bignum.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c cert.c -o cert.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c compatibility.c -o compatibility.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c diffie.c -o diffie.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c envelope.c -o envelope.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c error.c -o error.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c hash.c -o hash.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c info.c -o info.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c keygen.c -o keygen.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c keys.c -o keys.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c onload.c -o onload.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c openssh.c -o openssh.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c password.c -o password.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c pbkdf.c -o pbkdf.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c pem.c -o pem.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c pkcs12.c -o pkcs12.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c pkcs7.c -o pkcs7.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c rand.c -o rand.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c rsa.c -o rsa.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c signing.c -o signing.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c ssl.c -o ssl.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c stream.c -o stream.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c write.c -o write.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c x25519.c -o x25519.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c bcrypt/bcrypt_pbkdf.c -o bcrypt/bcrypt_pbkdf.o
+/usr/local/GCC/9.2.0/bin/gcc -I"/usr/local/apps/R/4.0/4.0.0/lib64/R/include" -DNDEBUG -I/usr/local/Anaconda/envs/py3.7/include  -I/usr/local/include   -fpic  -g -O2  -c bcrypt/blowfish.c -o bcrypt/blowfish.o
+ar rcs bcrypt/libstatbcrypt.a bcrypt/bcrypt_pbkdf.o bcrypt/blowfish.o
+/usr/local/GCC/9.2.0/bin/gcc -shared -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -Wl,-rpath=/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -o openssl.so aes.o base64.o bignum.o cert.o compatibility.o diffie.o envelope.o error.o hash.o info.o keygen.o keys.o onload.o openssh.o password.o pbkdf.o pem.o pkcs12.o pkcs7.o rand.o rsa.o signing.o ssl.o stream.o write.o x25519.o -Lbcrypt -lstatbcrypt -L/usr/local/Anaconda/envs/py3.7/lib -l:libssl.so.1.1 -l:libcrypto.so.1.1 -L/usr/local/apps/R/4.0/4.0.0/lib64/R/lib -lR
+make[1]: Leaving directory `/lscratch/65874501/RtmpvogEU1/R.INSTALL3c315fca16b2/openssl/src'
+installing to /gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/builds/R/libs/00LOCK-openssl/00new/openssl/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+  converting help for package ‘openssl’
+    finding HTML links ... done
+    aes_cbc                                 html  
+    base64_encode                           html  
+    bignum                                  html  
+    certificates                            html  
+    curve25519                              html  
+    ec_dh                                   html  
+    encrypt_envelope                        html  
+    fingerprint                             html  
+    hash                                    html  
+    keygen                                  html  
+    my_key                                  html  
+    openssl                                 html  
+    openssl_config                          html  
+    pbkdf                                   html  
+    pkcs12                                  html  
+    rand_bytes                              html  
+    read_key                                html  
+    reexports                               html  
+    rsa_encrypt                             html  
+    signatures                              html  
+    write_pem                               html  
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Error: package or namespace load failed for ‘openssl’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/builds/R/libs/00LOCK-openssl/00new/openssl/libs/openssl.so':
+  libssl.so.1.1: cannot open shared object file: No such file or directory
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/gpfs/gsfs9/users/BIDS-HPC/public/software/distributions/candle/dev_3/builds/R/libs/openssl’
+
+The downloaded source packages are in
+	‘/lscratch/65874501/RtmpLZaj2s/downloaded_packages’
+[1] ""
+LOAD:     openssl 
+Error in library(package = pkg, character.only = TRUE) : 
+  there is no package called ‘openssl’
+In addition: Warning message:
+In install.packages(pkg, Ncpus = NCPUS, verbose = TRUE) :
+  installation of one or more packages failed,
+  probably ‘openssl’
+Execution halted
