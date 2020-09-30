@@ -240,6 +240,12 @@ fi
 #### Optionally run a CANDLE benchmark just to see if that would work ##############################################################
 echo -e "\n\n :::: Running a CANDLE benchmark on a single node...\n"
 
+#benchmark="$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
+#benchmark="$CANDLE/Benchmarks/Pilot1/Uno/uno_baseline_keras2.py"
+#benchmark="$CANDLE/Benchmarks/Pilot1/Combo/combo_baseline_keras2.py"
+#benchmark="$CANDLE/Benchmarks/Pilot1/TC1/tc1_baseline_keras2.py"
+benchmark="$CANDLE/Benchmarks/Pilot1/NT3/nt3_baseline_keras2.py"
+
 echo -n "Would you like to try running a CANDLE benchmark using Python on a single node? (y/n)? "
 if [ "x$interactive" == "x1" ]; then
     read -r response 0<&3
@@ -255,11 +261,11 @@ if [ "x$response" == "xy" ]; then
     if [ "x$run_launcher" == "x1" ]; then
         if [ "x$SITE" == "xbiowulf" ]; then
             # shellcheck disable=SC2086
-            srun $TURBINE_LAUNCH_OPTIONS --ntasks=1 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
+            srun $TURBINE_LAUNCH_OPTIONS --ntasks=1 python "$benchmark"
         elif [ "x$SITE" == "xsummit" ]; then
             # Summit
-            #jsrun --nrs=1 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=6 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
-            jsrun --nrs=1 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=1 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7 python "$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
+            #jsrun --nrs=1 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=6 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7 python "$benchmark"
+            jsrun --nrs=1 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=1 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7 python "$benchmark"
         fi
     else
         echo "Skipping actual job launching since this was not requested"
