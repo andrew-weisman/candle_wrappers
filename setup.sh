@@ -284,6 +284,13 @@ echo -e "\n\n :::: Running two Swift/T hello world tests...\n"
 BUILD_SCRIPTS_DIR="$CANDLE/wrappers/test_files"
 echo -e " ::::: Using swift-t: $(command -v swift-t)\n"
 
+# If on Summit, set $TURBINE_LAUNCHER, which was not set when building Swift/T as I had done for Biowulf. Also, prepend the gcc library to $LD_LIBRARY_PATH as Justin suggested
+if [ "x$SITE" == "xsummit" ]; then
+    echo -e "\nSetting \$TURBINE_LAUNCHER and \$LD_LIBRARY_PATH...\n"
+    export TURBINE_LAUNCHER="jsrun"
+    export LD_LIBRARY_PATH="/sw/summit/gcc/6.4.0/lib64:$LD_LIBRARY_PATH"
+fi
+
 # Test 1: Output is a single line saying hello
 #swift-t -VV -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
 swift-t -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
