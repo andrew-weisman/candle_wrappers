@@ -2,18 +2,13 @@
 
 # The point of this script is for it to automatically complete new or even partial installations of CANDLE but to not re-install anything; that must be done explicitly if that's desired
 # It should therefore run pretty quickly if everything is already installed, not changing anything significant
-# We should be able to run this script without worrying about it overwritting something already there
+# We should be able to run this script without worrying about it overwriting something already there
 # If the task is optional and takes a while, prompt the user whether s/he wants to undertake it
 # All tasks that make modifications should be checked if they've already been done
 # All prompts should have an interactive mode workaround
-
-
-# Assume the HPC system uses srun
-
-
-# This script should be run like 'bash "$CANDLE/checkouts/wrappers/setup.sh"'' with an optional 0 or 1 argument corresponding to whether interactive mode is desired (default interactive, i.e., 1)
+# This script should be run like 'bash "$CANDLE/checkouts/wrappers/setup.sh"''
 # As stated in the READMEs at https://github.com/andrew-weisman/candle_wrappers, before running this setup.sh script we should have already set the environment (some equivalent of module load candle)
-# Only on Biowulf do we build Swift/T
+
 
 # Function asking whether the user has checked a particular configuration file
 check_file_before_continuing() {
@@ -42,8 +37,9 @@ determine_executable() {
     [[ "x$tmp_exec" == "x" ]] && echo -e "\nWARNING: Program '$prog' not found\n" || echo -e "\nUsing $prog executable $tmp_exec\n"
 }
 
-run_launcher=1 # default should be 1
-interactive=${1:-1} # default should be 1
+
+run_launcher=1 # default should be 1. This says whether to run any command using srun or jsrun for example.
+interactive=1 # default should be 1
 set -e # exit when any command fails
 #set -x # output commands before executing them
 
