@@ -75,4 +75,16 @@ if (mode() == "unload") then
 end
 ```
 
-If the filename of this file is `XXXX.lua`, you would load it like `module load candle/XXXX`.
+Then, instead of running e.g. `source /data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh` as above, if the filename of the above file were `XXXX.lua`, you would just load it like `module load candle/XXXX`.
+
+## Directory structure of `/data/BIDS-HPC/public/software/distributions/candle`
+
+* Call each new version a date in the format `2020-09-30`
+* Create the symbolic links `main` and `dev` to chosen versions, e.g.,
+
+```bash
+cd /data/BIDS-HPC/public/software/distributions/candle
+ln -s 2020-09-30 dev
+```
+
+Once this is done, everything else, e.g., the `lmod` modulefiles, will fall into place.
