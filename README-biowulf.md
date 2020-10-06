@@ -2,36 +2,77 @@
 
 ## First time
 
-On Helix or Biowulf, put the following in `/data/BIDS-HPC/public/software/distributions/candle/env-dev_3.sh` (this is what should ultimately be implemented in an `lmod` module):
+Choose a version name, e.g., `2020-09-30`, and set this to the `version` Bash variable:
+
+```bash
+version="2020-09-30"
+```
+
+On Helix or Biowulf, put the following in `/data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh`:
 
 ```bash
 #!/bin/bash
 
-version="dev_3" # this is the new installation name
+version="2020-09-30"
 export CANDLE="/data/BIDS-HPC/public/software/distributions/candle/$version"
 export PATH="$PATH:$CANDLE/bin"
 export SITE="biowulf"
 export DEFAULT_PYTHON_MODULE="python/3.7"
 export DEFAULT_R_MODULE="R/4.0.0"
+export PYTHONPATH="$PYTHONPATH:$CANDLE/Benchmarks/common"
 ```
 
 Source that:
 
 ```bash
-source /data/BIDS-HPC/public/software/distributions/candle/env-dev_3.sh
+source /data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh
 ```
 
 Clone the wrappers repository into the new CANDLE installation:
 
 ```bash
 mkdir -p "$CANDLE/checkouts"
-git clone git@github.com:andrew-weisman/candle_wrappers "$CANDLE/checkouts/wrappers" # have to set up the GitHub ssh key before this line works
+git clone git@github.com:andrew-weisman/candle_wrappers "$CANDLE/checkouts/wrappers" # probably have to set up the GitHub ssh key before this line works
 ```
 
 ## Subsequent times
 
 ```bash
+version="2020-09-30"
 sinteractive -n 3 -N 3 --ntasks-per-core=1 --cpus-per-task=16 --gres=gpu:k80:1,lscratch:400 --mem=20G --no-gres-shell
-source /data/BIDS-HPC/public/software/distributions/candle/env-dev_3.sh
+source /data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh
 bash "$CANDLE/checkouts/wrappers/setup.sh"
 ```
+
+## Setting up the `lmod` module
+
+Put a file named, e.g., `main.lua` or `dev.lua`, in `/data/BIDS-HPC/public/candle_modulefiles` with settings corresponding to `env_for_lmod-$version.sh` above. For example:
+
+```lua
+-- Andrew built this on 9/30/20
+
+whatis("Version: dev")
+whatis("URL: https://cbiit.github.com/sdsi/candle")
+whatis("Description: Open-source software platform providing highly scalable deep learning methodologies, including intelligent hyperparameter optimization. https://cbiit.github.com/sdsi/candle")
+
+local app         = "candle"
+local version     = "dev"
+local base        = pathJoin("/data/BIDS-HPC/public/software/distributions/candle", version)
+
+-- The following block is what should match the "export ..." lines of env_for_lmod-$version.sh
+setenv("CANDLE", base)
+append_path("PATH", pathJoin(base, "bin"))
+setenv("SITE", "biowulf")
+setenv("DEFAULT_PYTHON_MODULE", "python/3.7")
+setenv("DEFAULT_R_MODULE", "R/4.0.0")
+append_path("PYTHONPATH", pathJoin(base, "Benchmarks", "common"))
+
+if (mode() == "load") then
+    LmodMessage("[+] Loading  ", app, version, " ...")
+end
+if (mode() == "unload") then
+    LmodMessage("[-] Unloading ", app, version, " ...")
+end
+```
+
+If the filename of this file is `XXXX.lua`, you would load it like `module load candle/XXXX`.
