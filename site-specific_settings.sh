@@ -2,6 +2,7 @@
 
 # This script should be consistent with the env-$SITE.sh settings
 # $CANDLE_SETUP... variables are those explicitly used in setup.sh
+# It would be nice in this script to only set variables that I have created, such as those that begin with $CANDLE_..., that would be a useful rule for this file
 # ASSUMPTIONS:
 #   (1) The candle module is loaded as usual
 #   (2) The $CANDLE_... variables involving $SLURM_... variables will definitely be set if running setup.sh in interactive or batch mode (i.e., not on a login node)
@@ -26,14 +27,6 @@ if [ "x$SITE" == "xbiowulf" ]; then
     CANDLE_SETUP_R_LIBS=
 
     CANDLE_SETUP_JOB_LAUNCHER="srun"
-    
-    # This is how Tim Miller told me to run interactive and batch MPI jobs on Biowulf GPU nodes recently (Aug/Sep 2020)
-    if [ "x${SLURM_JOB_PARTITION:-batch}" == "xinteractive" ]; then
-        export TURBINE_LAUNCH_OPTIONS+=" --mpi=pmix --mem=0"
-    else
-        export TURBINE_LAUNCH_OPTIONS+=" --mpi=pmix"
-    fi
-
     CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS="$TURBINE_LAUNCH_OPTIONS --ntasks=$SLURM_NTASKS --cpus-per-task=$SLURM_CPUS_PER_TASK"
     CANDLE_SETUP_BENCHMARK_TEST_RUN_LAUNCHER_OPTIONS="$TURBINE_LAUNCH_OPTIONS --ntasks=1"
 
