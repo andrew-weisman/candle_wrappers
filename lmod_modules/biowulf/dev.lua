@@ -12,8 +12,8 @@ local base        = pathJoin("/data/BIDS-HPC/public/software/distributions/candl
 setenv("CANDLE", base)
 append_path("PATH", pathJoin(base, "bin"))
 setenv("SITE", "biowulf")
-setenv("DEFAULT_PYTHON_MODULE", "python/3.7")
-setenv("DEFAULT_R_MODULE", "R/4.0.0")
+-- setenv("DEFAULT_PYTHON_MODULE", "python/3.7")
+-- setenv("DEFAULT_R_MODULE", "R/4.0.0")
 append_path("PYTHONPATH", pathJoin(base, "Benchmarks", "common"))
 -- append_path("PATH", pathJoin(base, "wrappers/templates/scripts"))
 

@@ -17,8 +17,6 @@ version="2020-09-30"
 export CANDLE="/data/BIDS-HPC/public/software/distributions/candle/$version"
 export PATH="$PATH:$CANDLE/bin"
 export SITE="biowulf"
-export DEFAULT_PYTHON_MODULE="python/3.7"
-export DEFAULT_R_MODULE="R/4.0.0"
 export PYTHONPATH="$PYTHONPATH:$CANDLE/Benchmarks/common"
 ```
 
@@ -63,8 +61,6 @@ local base        = pathJoin("/data/BIDS-HPC/public/software/distributions/candl
 setenv("CANDLE", base)
 append_path("PATH", pathJoin(base, "bin"))
 setenv("SITE", "biowulf")
-setenv("DEFAULT_PYTHON_MODULE", "python/3.7")
-setenv("DEFAULT_R_MODULE", "R/4.0.0")
 append_path("PYTHONPATH", pathJoin(base, "Benchmarks", "common"))
 
 if (mode() == "load") then
