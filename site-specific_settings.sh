@@ -2,11 +2,11 @@
 
 # This script should be consistent with the env-$SITE.sh settings
 # $CANDLE_SETUP... variables are those explicitly used in setup.sh
-# It would be nice in this script to only set variables that I have created, such as those that begin with $CANDLE_..., that would be a useful rule for this file
+# It would be nice in this script to only set variables that I have created, such as those that begin with $CANDLE_... that would be a useful rule for this file
 # ASSUMPTIONS:
 #   (1) The candle module is loaded as usual
-#   (2) The $CANDLE_... variables involving $SLURM_... variables will definitely be set if running setup.sh in interactive or batch mode (i.e., not on a login node)
-#   (3) The $CANDLE_... variables involving $TURBINE_LAUNCH_OPTIONS will definitely be set if env-biowulf.sh has been sourced
+#   (2) Running this script in interactive or batch mode (i.e., not on a login node) (the $CANDLE_... variables involving $SLURM_... variables will definitely be set if so)
+#   (3) env-biowulf.sh has been sourced (the $CANDLE_... variables involving $TURBINE_LAUNCH_OPTIONS will definitely be set if so)
 
 
 if [ "x$SITE" == "xbiowulf" ]; then

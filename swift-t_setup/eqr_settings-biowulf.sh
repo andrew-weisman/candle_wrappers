@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# Assumptions:
+#   (1) site-specific_settings.sh has been sourced
+
 # R system-wide install where libraries and includes have
 # a different parent and optional packages are installed within
 # a user's home directory (e.g. Ubuntu 16.04)
