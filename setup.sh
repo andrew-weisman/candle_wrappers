@@ -57,7 +57,7 @@ cd "$CANDLE_SETUP_LOCAL_DIR"
 echo -e "\n\n :::: Setting up directory structure and cloning necessary repositories...\n"
 
 # Create the necessary directories not already created using the instructions in README.md
-[ -d "$CANDLE/bin" ] || mkdir "$CANDLE/bin"
+#[ -d "$CANDLE/bin" ] || mkdir "$CANDLE/bin"
 [ -d "$CANDLE/builds" ] || mkdir "$CANDLE/builds"
 
 # Check out the necessary software from GitHub

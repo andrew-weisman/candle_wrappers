@@ -10,7 +10,8 @@ local base        = pathJoin("/data/BIDS-HPC/public/software/distributions/candl
 
 -- The following block is what should match the "export ..." lines of env_for_lmod-$version.sh
 setenv("CANDLE", base)
-append_path("PATH", pathJoin(base, "bin"))
+-- append_path("PATH", pathJoin(base, "bin"))
+append_path("PATH", pathJoin(base, "wrappers", "bin"))
 setenv("SITE", "biowulf")
 -- setenv("DEFAULT_PYTHON_MODULE", "python/3.7")
 -- setenv("DEFAULT_R_MODULE", "R/4.0.0")

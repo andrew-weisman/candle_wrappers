@@ -15,7 +15,7 @@ On Helix or Biowulf, put the following in `/data/BIDS-HPC/public/software/distri
 
 version="2020-09-30"
 export CANDLE="/data/BIDS-HPC/public/software/distributions/candle/$version"
-export PATH="$PATH:$CANDLE/bin"
+export PATH="$PATH:$CANDLE/wrappers/bin"
 export SITE="biowulf"
 export PYTHONPATH="$PYTHONPATH:$CANDLE/Benchmarks/common"
 ```
