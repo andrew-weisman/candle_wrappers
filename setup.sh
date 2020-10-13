@@ -153,13 +153,8 @@ fi
 # Note on Biowulf we cannot have this loaded while the R packages are installed above, or else we get an error when trying to install the openssl package; that's why we're setting up Python here, after the R package build
 echo -e "\n\n :::: Setting up Python...\n"
 
-# Load the environment
-if [ "x${CANDLE_DEFAULT_PYTHON_MODULE:0:1}" == "x/" ]; then # If $CANDLE_DEFAULT_PYTHON_MODULE actually contains a full path to the executable instead of a module name...
-    path_to_add=$(tmp=$(echo "$CANDLE_DEFAULT_PYTHON_MODULE" | awk -v FS="/" -v OFS="/" '{$NF=""; print}'); echo "${tmp:0:${#tmp}-1}") # this strips the executable from the full path to the python executable set in $CANDLE_DEFAULT_PYTHON_MODULE (if it's not a module name of course)
-    export PATH="$path_to_add:$PATH"
-else
-    module load "$CANDLE_DEFAULT_PYTHON_MODULE"
-fi
+# shellcheck source=/dev/null
+source "$CANDLE/wrappers/utilities.sh"; load_python_env
 
 # Output the executables to be used for Swift/T and Python
 determine_executable python

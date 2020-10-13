@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# For each main (i.e., not "help") "command" of the "candle" program, there should be one corresponding line in the usage() below and one corresponding folder in $CANDLE/wrappers/candle_commands
+# ASSUMPTIONS: The candle module should be loaded
+
 # Function outputting correct usage of this script
 usage() {
 cat << EOF
@@ -22,20 +25,18 @@ create_temp_dir() {
 
 # Delete the temporary directory
 remove_temp_dir() {
-    #mv * ..
     mv ./* ..
     cd ..
     rm -rf candle-temp-dir
 }
 
 # Program option to candle command
-program=$1
+command=$1
 
-# Check for input program validity
-echo "$program" | grep -E "^$|^help$|^import-template$|^generate-grid$|^submit-job$|^aggregate-results$" &> /dev/null
+# Check for input command validity
+if ! (echo "$command" | grep -E "^$|^help$|^import-template$|^generate-grid$|^submit-job$|^aggregate-results$" &> /dev/null); then
 
-# If an invalid program was input...
-if [ ! $? -eq 0 ]; then
+# If an invalid command was input...
     echo "Error: Incorrect usage"
     usage
     exit 1
@@ -43,45 +44,14 @@ if [ ! $? -eq 0 ]; then
 # ...otherwise...
 else
 
-    # If no program or "help" is input, echo the correct usage
-    echo "$program" | grep -E "^$|^help$" &> /dev/null
-    if [ $? -eq 0 ]; then
+    # If no command or "help" is input, echo the correct usage
+    if (echo "$command" | grep -E "^$|^help$" &> /dev/null); then
         usage
         exit 0
-    fi
-
-    # If templates are requested to be imported to the current directory, do so
-    echo "$program" | grep -E "^import-template$" &> /dev/null
-    if [ $? -eq 0 ]; then
-        shift; args_arr=($@) # save all the command arguments to this script to an array called args_arr
-        candle-import-template "${args_arr[@]}"
-        exit 0
-    fi
-
-    # If a hyperparameter grid is requested to be generated, do so
-    echo "$program" | grep -E "^generate-grid$" &> /dev/null
-    if [ $? -eq 0 ]; then
+    else
         create_temp_dir
         shift; args_arr=($@) # save all the command arguments to this script to an array called args_arr
-        candle-generate-grid "${args_arr[@]}"
-	    remove_temp_dir
-        exit 0
-    fi
-
-    # If a job is requested to be submitted, do so
-    echo "$program" | grep -E "^submit-job$" &> /dev/null
-    if [ $? -eq 0 ]; then
-        shift; args_arr=($@) # save all the command arguments to this script to an array called args_arr
-        candle-submit-job "${args_arr[@]}"
-        exit 0
-    fi
-
-    # If CANDLE job results are requested to be aggregated, do so
-    echo "$program" | grep -E "^aggregate-results$" &> /dev/null
-    if [ $? -eq 0 ]; then
-        create_temp_dir
-        shift; args_arr=($@) # save all the command arguments to this script to an array called args_arr
-        candle-aggregate-results "${args_arr[@]}"
+        bash "$CANDLE/wrappers/candle_commands/$command/command_script.sh" "${args_arr[@]}"
 	    remove_temp_dir
         exit 0
     fi

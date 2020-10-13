@@ -1,0 +1,26 @@
+&control
+  model_script="$(pwd)/model_script.sh"
+  workflow="grid"
+  ngpus=2
+  gpu_type="k80"
+  walltime="00:20:00"
+  use_candle = 1
+/
+
+&default_model
+  epochs=2
+  batch_size=128
+  activation='relu'
+  optimizer='rmsprop'
+  num_filters=32
+/
+
+&param_space
+  {"id": "hpset_01", "epochs": 4, "batch_size": 128, "activation": "relu", "optimizer": "rmsprop"}
+  {"id": "hpset_02", "epochs": 30, "activation": "tanh"}
+  {"id": "hpset_03", "epochs": 15, "activation": "relu"}
+  {"id": "hpset_04", "epochs": 30, "activation": "relu"}
+  {"id": "hpset_05", "epochs": 10, "batch_size": 128}
+  {"id": "hpset_06", "epochs": 10, "batch_size": 256}
+  {"id": "hpset_07", "epochs": 10, "batch_size": 512}
+/

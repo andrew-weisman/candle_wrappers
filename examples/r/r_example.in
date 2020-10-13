@@ -1,0 +1,27 @@
+&control
+  model_script="$(pwd)/feature-reduction.R"
+  workflow="grid"
+  nworkers=4
+  worker_type="cpu"
+  walltime="00:20:00"
+  exec_r_module="R/3.6"
+  supp_r_libs="/data/BIDS-HPC/public/software/R/3.6/library"
+/
+
+&default_model
+  mincorr = 0.20
+  maxcorr = 0.80
+  number_cv = 2
+  extfolds=2
+/
+
+&param_space
+  {"id": "hpset_00001", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 2, "extfolds": 5}
+  {"id": "hpset_00002", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 3, "extfolds": 5}
+  {"id": "hpset_00003", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 4, "extfolds": 5}
+  {"id": "hpset_00004", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 5, "extfolds": 5}
+  {"id": "hpset_00005", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 6, "extfolds": 5}
+  {"id": "hpset_00006", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 7, "extfolds": 5}
+  {"id": "hpset_00007", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 8, "extfolds": 5}
+  {"id": "hpset_00008", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 9, "extfolds": 5}
+/
