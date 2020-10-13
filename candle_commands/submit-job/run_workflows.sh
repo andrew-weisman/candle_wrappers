@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# This script is a wrapper that prepares multiple things prior to running the workflows; it is basically a "hidden settings" file... this should be called from submit_candle_job.sh
+# This script is a wrapper that prepares multiple things prior to running the workflows... this should be called from submit_candle_job.sh
+
+# Set the site-specific settings JUST ENOUGH TO SET $CANDLE_DEFAULT_PYTHON_MODULE as needed to run load_python_env() below
+# shellcheck source=/dev/null
+source "$CANDLE/wrapppers/site-specific_settings.sh"
 
 # For running the workflows themselves (and for doing the preprocessing), load the module with which Swift/T was built
 # shellcheck source=/dev/null
@@ -8,7 +12,7 @@ source "$CANDLE/wrappers/utilities.sh"; load_python_env --set-pythonhome
 
 
 # Check the input settings, determine the sbatch settings, and export variables set in Python
-python $CANDLE/wrappers/templates/scripts/preprocess.py
+python $CANDLE/wrappers/candle_commands/submit-job/preprocess.py
 if [ $? -eq 0 ]; then
     source preprocessed_vars_to_export.sh #&& rm -f preprocessed_vars_to_export.sh
 else
