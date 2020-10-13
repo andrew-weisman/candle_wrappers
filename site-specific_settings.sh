@@ -33,7 +33,7 @@ if [ "x$SITE" == "xbiowulf" ]; then
     export CANDLE_DEFAULT_PYTHON_MODULE="python/3.7"
     export CANDLE_DEFAULT_R_MODULE="R/4.0.0"
 
-    export CANDLE_KEYWORDS="model_script, workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu"
+    export CANDLE_POSSIBLE_KEYWORDS="model_script, workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu"
 
 elif [ "x$SITE" == "xsummit" ]; then
 
@@ -59,7 +59,8 @@ elif [ "x$SITE" == "xsummit" ]; then
     export CANDLE_DEFAULT_PYTHON_MODULE="/gpfs/alpine/world-shared/med106/sw/condaenv-200408/bin/python3.6"
     export CANDLE_DEFAULT_R_MODULE="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/R-3.6.1/lib64/R/bin/R"
 
-    export CANDLE_KEYWORDS="model_script, workflow, walltime, nworkers"
+    #export CANDLE_POSSIBLE_KEYWORDS="model_script, workflow, walltime, nworkers, project"
+    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None}"
 
 fi
 

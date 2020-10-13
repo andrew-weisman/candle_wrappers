@@ -1,11 +1,11 @@
+# Convert keywords from a comma-space-separated string in Bash to a set in Python
 def get_keywords_to_check(bash_keyword_var):
     import os
     return(set(os.getenv(bash_keyword_var).split(', ')))
 
 
-def check_input(keywords_to_check):
-
-    # The input we're referring to is basically that from the input file. This current script runs at the start of run_workflows.sh.
+# Check keywords from the input file
+def check_keywords(keywords_to_check):
 
     import os
 
@@ -14,6 +14,7 @@ def check_input(keywords_to_check):
     print('')
     print('Keyword settings:')
 
+    # model_script must be set and readable
     if 'model_script' in keywords_to_check:
         model_script = os.getenv('CANDLE_KEYWORD_MODEL_SCRIPT')
         if model_script is not None:
@@ -44,7 +45,7 @@ def check_input(keywords_to_check):
 
     if 'walltime' in keywords_to_check:
         walltime = os.getenv('CANDLE_KEYWORD_WALLTIME')
-        if walltime is None: # don't do error-checking for walltime
+        if walltime is None:
             print('ERROR: The "walltime" keyword is not set in the &control section of the input file')
             exit(1)
         print('walltime: {}'.format(walltime))
@@ -111,7 +112,16 @@ def check_input(keywords_to_check):
     else:
         mem_per_cpu = None
 
-    return(workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu)
+    if 'project' in keywords_to_check:
+        project = os.getenv('CANDLE_KEYWORD_PROJECT')
+        if project is None:
+            print('ERROR: The "project" keyword is not set in the &control section of the input file')
+            exit(1)
+        print('project: {}'.format(project))
+    else:
+        project = None
+
+    return(workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu, project)
 
 
 def print_homog_job(ntasks, custom_sbatch_args, gres, mem_per_cpu, cpus_per_task, ntasks_per_core, partition, walltime, ntasks_per_node, nodes):
@@ -207,10 +217,10 @@ def export_variables(workflow, ntasks, gres, custom_sbatch_args, mem_per_cpu, cp
 
 
 # Get keywords to check from the Bash environment
-keywords_to_check = get_keywords_to_check('CANDLE_KEYWORDS')
+possible_keywords = get_keywords_to_check('CANDLE_POSSIBLE_KEYWORDS')
 
 # Check the input settings and return the resulting required and optional variables that we'll need later (all required variables are checked but not yet all optional variables)
-workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu = check_input(keywords_to_check)
+workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu = check_keywords(possible_keywords)
 
 # Determine the settings for the arguments to the sbatch, turbine, etc. calls
 ntasks, gres, mem_per_cpu, cpus_per_task, ntasks_per_core, partition, ntasks_per_node, nodes = determine_sbatch_settings(workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu)
