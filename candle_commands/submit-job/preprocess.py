@@ -1,47 +1,99 @@
-# Convert keywords from a comma-space-separated string in Bash to a set in Python
-def get_keywords_to_check(bash_keyword_var):
+# Check a given keyword in a robust, repeatable way
+def check_keyword(keyword_key, possible_keywords_and_defaults, casting_func, is_valid, checked_keywords):
+
+    # Import relevant library
     import os
-    return(set(os.getenv(bash_keyword_var).split(', ')))
+
+    # If keyword_key is a possible keyword...
+    if keyword_key in set(possible_keywords_and_defaults.keys()):
+
+        # Obtain the keyword default value and from that whether it is required (if the default is None, then it must be required)
+        keyword_default_value = possible_keywords_and_defaults[keyword_key]
+        keyword_is_required = keyword_default_value is None
+
+        # Load in the possible keyword value from the corresponding environment variable
+        # If the variable is defined, we get a string, otherwise, we get None
+        env_string = os.getenv('CANDLE_KEYWORD_'+keyword_key.upper())
+
+        # If the keyword wasn't defined in the input file...
+        if env_string is None:
+
+            # If the keyword is required...
+            if keyword_is_required:
+                print('ERROR: Required keyword "{}" has not been set in the &control section of the input file'.format(keyword_key))
+                exit(1)
+
+            # If the keyword is optional...
+            else:
+                print('WARNING: Optional keyword "{}" has not been set in the &control section of the input file; it is being set to its default value of {}'.format(keyword_key, keyword_default_value))
+                keyword_val = keyword_default_value
+
+        # If the keyword WAS defined in the input file, then set its value to the appropriately casted, read-in value
+        else:
+            keyword_val = casting_func(env_string)
+
+        # From the inputted is_valid() function, determine whether the keyword_val (whether read-in or the default value) is valid; if so...
+        if is_valid(keyword_val):
+            print('NOTE: Keyword "{}" has a valid value of {}'.format(keyword_key, keyword_val))
+            checked_keywords[keyword_key] = keyword_val # update the running dictionary of checked keywords
+
+        # If the keyword value is not actually valid...
+        else:
+            print('ERROR: Keyword "{}" has an invalid value of {}'.format(keyword_key, keyword_val))
+            exit(1)
+
+    # Return the running dictionary of checked keywords
+    return(checked_keywords)
 
 
 # Check keywords from the input file
-def check_keywords(keywords_to_check):
+def check_keywords(possible_keywords_and_defaults_bash_var):
 
+    # Import relevant library
     import os
 
-    print('')
-    print('Checking keywords {}'.format(keywords_to_check))
-    print('')
-    print('Keyword settings:')
+    # Constants
+    valid_workflows = ('grid', 'bayesian') # these are the CANDLE workflows (corresponding to upf and mlrMBO) that we've enabled so far
 
-    # model_script must be set and readable
-    if 'model_script' in keywords_to_check:
-        model_script = os.getenv('CANDLE_KEYWORD_MODEL_SCRIPT')
-        if model_script is not None:
-            try:
-                with open(model_script):
-                    pass
-            except IOError:
-                print('ERROR: The file "{}" from the "model_script" keyword cannot be opened'.format(model_script))
-        else:
-            print('ERROR: The "model_script" keyword is not set in the &control section of the input file')
-            exit(1)
-        print('model_script: {}'.format(model_script))
+    # Initialize the running dictionary of checked keywords
+    checked_keywords = dict()
 
-    if 'workflow' in keywords_to_check:
-        workflow = os.getenv('CANDLE_KEYWORD_WORKFLOW')
-        if workflow is not None:
-            workflow = workflow.lower()
-            valid_workflows = ('grid', 'bayesian')
-            if workflow not in valid_workflows:
-                print('ERROR: The "workflow" keyword ({}) in the &control section must be one of'.format(workflow), valid_workflows)
-                exit(1)
+    # Obtain Python dictionary of the possible keywords and their default values
+    possible_keywords_and_defaults_str = os.getenv(possible_keywords_and_defaults_bash_var) # do this normally
+    #possible_keywords_and_defaults_str = "{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None}" # do this just for testing
+    possible_keywords_and_defaults = eval(possible_keywords_and_defaults_str)
+
+    # Validate the model_script keyword
+    def is_valid(keyword_val):
+        try:
+            with open(keyword_val):
+                is_valid2 = True
+        except IOError:
+            print('WARNING: The file "{}" from the "model_script" keyword cannot be opened for reading'.format(keyword_val))
+            is_valid2 = False
+        return(is_valid2)
+    checked_keywords = check_keyword('model_script', possible_keywords_and_defaults, str, is_valid, checked_keywords)
+
+    # Validate the workflow keyword
+    def is_valid(keyword_val):
+        if keyword_val.lower() not in valid_workflows:
+            print('WARNING: The "workflow" keyword ({}) in the &control section must be one of'.format(keyword_val), valid_workflows)
+            is_valid2 = False
         else:
-            print('ERROR: The "workflow" keyword is not set in the &control section of the input file')
-            exit(1)
-        print('workflow: {}'.format(workflow))
-    else:
-        workflow = None
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('workflow', possible_keywords_and_defaults, str, is_valid, checked_keywords)
+
+
+    pass
+
+
+    # Check the checked_keywords dictionary
+    print('checked_keywords: ', checked_keywords)
+
+    return(checked_keywords)
+
+
 
     if 'walltime' in keywords_to_check:
         walltime = os.getenv('CANDLE_KEYWORD_WALLTIME')
@@ -216,11 +268,8 @@ def export_variables(workflow, ntasks, gres, custom_sbatch_args, mem_per_cpu, cp
     f.close()
 
 
-# Get keywords to check from the Bash environment
-possible_keywords = get_keywords_to_check('CANDLE_POSSIBLE_KEYWORDS')
-
 # Check the input settings and return the resulting required and optional variables that we'll need later (all required variables are checked but not yet all optional variables)
-workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu = check_keywords(possible_keywords)
+workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu = check_keywords('CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS')
 
 # Determine the settings for the arguments to the sbatch, turbine, etc. calls
 ntasks, gres, mem_per_cpu, cpus_per_task, ntasks_per_core, partition, ntasks_per_node, nodes = determine_sbatch_settings(workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu)
