@@ -1,5 +1,7 @@
-# Check a given keyword in a robust, repeatable way
 def check_keyword(keyword_key, possible_keywords_and_defaults, casting_func, is_valid, checked_keywords):
+    """
+    Check a given keyword in a robust, repeatable way.
+    """
 
     # Import relevant library
     import os
@@ -46,8 +48,40 @@ def check_keyword(keyword_key, possible_keywords_and_defaults, casting_func, is_
     return(checked_keywords)
 
 
-# Check keywords from the input file
+def no_validation(keyword_key):
+    """
+    Return a function always returning True in order to skip validation if desired.
+    """
+    print('WARNING: No error-checking done on "{}" keyword'.format(keyword_key))
+    return(lambda keyword_val: True)
+
+
+def dict_output(dict_to_output, message_to_output):
+    """
+    Output the contents of a dictionary in a visually appealing way.
+    """
+
+    # Get the maximum key length
+    max_len = 0
+    for key in dict_to_output.keys():
+        if len(key) > max_len:
+            max_len = len(key)
+
+    # Construct the corresponding format string, with five spaces beyond the maximum key length
+    format_str = '  {{:{}s}} {{}}'.format(max_len+5)
+
+    # Output the desired message    
+    print(message_to_output+'\n')
+
+    # Output the dictionary key by key
+    for key in dict_to_output.keys():
+        print(format_str.format(key+':', dict_to_output[key]))
+
+
 def check_keywords(possible_keywords_and_defaults_bash_var):
+    """
+    Check keywords from the input file.
+    """
 
     # Import relevant library
     import os
@@ -62,6 +96,9 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
     possible_keywords_and_defaults_str = os.getenv(possible_keywords_and_defaults_bash_var) # do this normally
     #possible_keywords_and_defaults_str = "{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None}" # do this just for testing
     possible_keywords_and_defaults = eval(possible_keywords_and_defaults_str)
+
+    # Output the possible keywords and their default values
+    dict_output(possible_keywords_and_defaults, 'Possible keywords and their default values:')
 
     # Validate the model_script keyword
     def is_valid(keyword_val):
@@ -84,96 +121,60 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
         return(is_valid2)
     checked_keywords = check_keyword('workflow', possible_keywords_and_defaults, str, is_valid, checked_keywords)
 
+    # Validate the walltime keyword
+    checked_keywords = check_keyword('walltime', possible_keywords_and_defaults, str, no_validation('walltime'), checked_keywords)
 
-    pass
+    # Validate the worker_type keyword
+    def is_valid(keyword_val):
+        valid_worker_types = eval(os.getenv('CANDLE_VALID_WORKER_TYPES'))
+        if keyword_val.lower() not in valid_worker_types:
+            print('WARNING: The "worker_type" keyword ({}) in the &control section must be one of'.format(keyword_val), valid_worker_types)
+            is_valid2 = False
+        else:
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('worker_type', possible_keywords_and_defaults, str, is_valid, checked_keywords)
 
+    # Validate the nworkers keyword
+    def is_valid(keyword_val):
+        if keyword_val < 1:
+            print('WARNING: The "nworkers" keyword ({}) in the &control section must be a positive integer'.format(keyword_val))
+            is_valid2 = False
+        else:
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('nworkers', possible_keywords_and_defaults, int, is_valid, checked_keywords)
 
-    # Check the checked_keywords dictionary
-    print('checked_keywords: ', checked_keywords)
+    # Validate the nthreads keyword
+    def is_valid(keyword_val):
+        if keyword_val < 1:
+            print('WARNING: The "nthreads" keyword ({}) in the &control section must be a positive integer'.format(keyword_val))
+            is_valid2 = False
+        else:
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('nthreads', possible_keywords_and_defaults, int, is_valid, checked_keywords)
+
+    # Validate the custom_sbatch_args keyword
+    checked_keywords = check_keyword('custom_sbatch_args', possible_keywords_and_defaults, str, no_validation('custom_sbatch_args'), checked_keywords)
+
+    # Validate the mem_per_cpu keyword
+    def is_valid(keyword_val):
+        if keyword_val < 1:
+            print('WARNING: The "mem_per_cpu" keyword ({}) in the &control section must be a positive integer (expressing memory size in GB)'.format(keyword_val))
+            is_valid2 = False
+        else:
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('mem_per_cpu', possible_keywords_and_defaults, int, is_valid, checked_keywords)
+
+    # Validate the project keyword
+    checked_keywords = check_keyword('project', possible_keywords_and_defaults, str, no_validation('project'), checked_keywords)
+
+    # Output the checked keywords and their validated values
+    dict_output(checked_keywords, 'Checked and validated keywords from the &control section of the input file:')
 
     return(checked_keywords)
-
-
-
-    if 'walltime' in keywords_to_check:
-        walltime = os.getenv('CANDLE_KEYWORD_WALLTIME')
-        if walltime is None:
-            print('ERROR: The "walltime" keyword is not set in the &control section of the input file')
-            exit(1)
-        print('walltime: {}'.format(walltime))
-    else:
-        walltime = None
-
-    if 'worker_type' in keywords_to_check:
-        worker_type = os.getenv('CANDLE_KEYWORD_WORKER_TYPE')
-        valid_worker_types = ('cpu', 'k20x', 'k80', 'p100', 'v100', 'v100x')
-        if worker_type is not None:
-            worker_type = worker_type.lower()
-            if worker_type not in valid_worker_types:
-                print('WARNING: The "worker_type" keyword ({}) in the &control section must be one of'.format(worker_type), valid_worker_types)
-        else:
-            print('WARNING: The "worker_type" keyword is not set in the &control section of the input file')
-        print('worker_type: {}'.format(worker_type))
-    else:
-        worker_type = None
-
-    if 'nworkers' in keywords_to_check:
-        nworkers = os.getenv('CANDLE_KEYWORD_NWORKERS')
-        if nworkers is not None:
-            nworkers = int(nworkers)
-            if nworkers < 1:
-                print('WARNING: The "nworkers" keyword ({}) in the &control section must be a positive integer'.format(nworkers))
-        else:
-            print('WARNING: The "nworkers" keyword is not set in the &control section of the input file')
-        print('nworkers: {}'.format(nworkers))
-    else:
-        nworkers = None
-
-    if 'nthreads' in keywords_to_check:
-        nthreads = os.getenv('CANDLE_KEYWORD_NTHREADS')
-        if nthreads is not None:
-            nthreads = int(nthreads)
-            if nthreads < 1:
-                print('ERROR: The "nthreads" keyword ({}) in the &control section must be a positive integer'.format(nthreads))
-                exit(1)
-        elif worker_type == 'cpu':
-            print('WARNING: The keyword "nthreads" is not set in &control section; setting it to 1')
-            nthreads = 1
-        else:
-            print('NOTE: The keyword "nthreads" has been automatically set to its default setting of 1')
-            nthreads = 1
-        print('nthreads: {}'.format(nthreads))
-    else:
-        nthreads = None
-
-    if 'custom_sbatch_args' in keywords_to_check:
-        custom_sbatch_args = os.getenv('CANDLE_KEYWORD_CUSTOM_SBATCH_ARGS', '')
-        print('custom_sbatch_args: {}'.format(custom_sbatch_args))
-    else:
-        custom_sbatch_args = None
-
-    if 'mem_per_cpu' in keywords_to_check:
-        mem_per_cpu = os.getenv('CANDLE_KEYWORD_MEM_PER_CPU')
-        if mem_per_cpu is not None:
-            mem_per_cpu = float(mem_per_cpu)
-        else:
-            print('NOTE: The keyword "mem_per_cpu" has been automatically set to its default setting of 7.5 GB')
-            mem_per_cpu = 7.5
-        mem_per_cpu = int(mem_per_cpu)
-        print('mem_per_cpu: {}'.format(mem_per_cpu))
-    else:
-        mem_per_cpu = None
-
-    if 'project' in keywords_to_check:
-        project = os.getenv('CANDLE_KEYWORD_PROJECT')
-        if project is None:
-            print('ERROR: The "project" keyword is not set in the &control section of the input file')
-            exit(1)
-        print('project: {}'.format(project))
-    else:
-        project = None
-
-    return(workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu, project)
 
 
 def print_homog_job(ntasks, custom_sbatch_args, gres, mem_per_cpu, cpus_per_task, ntasks_per_core, partition, walltime, ntasks_per_node, nodes):

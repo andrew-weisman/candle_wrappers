@@ -33,7 +33,9 @@ if [ "x$SITE" == "xbiowulf" ]; then
     export CANDLE_DEFAULT_PYTHON_MODULE="python/3.7"
     export CANDLE_DEFAULT_R_MODULE="R/4.0.0"
 
-    export CANDLE_POSSIBLE_KEYWORDS="model_script, workflow, walltime, worker_type, nworkers, nthreads, custom_sbatch_args, mem_per_cpu"
+    # Note: A keyword is specified to be required by settings its default value to None
+    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05:00', 'worker_type': 'k80', 'nworkers': 1, 'nthreads': 1, 'custom_sbatch_args': '', 'mem_per_cpu': 7}"
+    export CANDLE_VALID_WORKER_TYPES="('cpu', 'k20x', 'k80', 'p100', 'v100', 'v100x')"
 
 elif [ "x$SITE" == "xsummit" ]; then
 
@@ -59,27 +61,27 @@ elif [ "x$SITE" == "xsummit" ]; then
     export CANDLE_DEFAULT_PYTHON_MODULE="/gpfs/alpine/world-shared/med106/sw/condaenv-200408/bin/python3.6"
     export CANDLE_DEFAULT_R_MODULE="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/R-3.6.1/lib64/R/bin/R"
 
-    #export CANDLE_POSSIBLE_KEYWORDS="model_script, workflow, walltime, nworkers, project"
+    # Note: A keyword is specified to be required by settings its default value to None
     export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None}"
 
 fi
 
 
-echo -e "\nSite-specific settings:\n"
-echo "  \$CANDLE_SETUP_LOCAL_DIR:                           $CANDLE_SETUP_LOCAL_DIR"
-echo "  \$CANDLE_SETUP_COMPILE_SWIFT_T:                     $CANDLE_SETUP_COMPILE_SWIFT_T"
-echo "  \$CANDLE_SETUP_SWIFT_T:                             $CANDLE_SETUP_SWIFT_T"
-echo "  \$CANDLE_DEP_MPI:                                   $CANDLE_DEP_MPI"
-echo "  \$CANDLE_DEP_TCL:                                   $CANDLE_DEP_TCL"
-echo "  \$CANDLE_DEP_PY:                                    $CANDLE_DEP_PY"
-echo "  \$CANDLE_DEP_R:                                     $CANDLE_DEP_R"
-echo "  \$CANDLE_DEP_R_SITE:                                $CANDLE_DEP_R_SITE"
-echo "  \$CANDLE_DEP_ANT:                                   $CANDLE_DEP_ANT"
-echo "  \$CANDLE_LAUNCHER_OPTION:                           $CANDLE_LAUNCHER_OPTION"
-echo "  \$CANDLE_SETUP_BUILD_SUPERVISOR_R_PACKAGES:         $CANDLE_SETUP_BUILD_SUPERVISOR_R_PACKAGES"
-echo "  \$CANDLE_SETUP_R_LIBS:                              $CANDLE_SETUP_R_LIBS"
-echo "  \$CANDLE_SETUP_JOB_LAUNCHER:                        $CANDLE_SETUP_JOB_LAUNCHER"
-echo "  \$CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS:    $CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS"
-echo "  \$CANDLE_SETUP_BENCHMARK_TEST_RUN_LAUNCHER_OPTIONS: $CANDLE_SETUP_BENCHMARK_TEST_RUN_LAUNCHER_OPTIONS"
-echo "  \$CANDLE_DEFAULT_PYTHON_MODULE:                     $CANDLE_DEFAULT_PYTHON_MODULE"
-echo "  \$CANDLE_DEFAULT_R_MODULE:                          $CANDLE_DEFAULT_R_MODULE"
+# echo -e "\nSite-specific settings:\n"
+# echo "  \$CANDLE_SETUP_LOCAL_DIR:                           $CANDLE_SETUP_LOCAL_DIR"
+# echo "  \$CANDLE_SETUP_COMPILE_SWIFT_T:                     $CANDLE_SETUP_COMPILE_SWIFT_T"
+# echo "  \$CANDLE_SETUP_SWIFT_T:                             $CANDLE_SETUP_SWIFT_T"
+# echo "  \$CANDLE_DEP_MPI:                                   $CANDLE_DEP_MPI"
+# echo "  \$CANDLE_DEP_TCL:                                   $CANDLE_DEP_TCL"
+# echo "  \$CANDLE_DEP_PY:                                    $CANDLE_DEP_PY"
+# echo "  \$CANDLE_DEP_R:                                     $CANDLE_DEP_R"
+# echo "  \$CANDLE_DEP_R_SITE:                                $CANDLE_DEP_R_SITE"
+# echo "  \$CANDLE_DEP_ANT:                                   $CANDLE_DEP_ANT"
+# echo "  \$CANDLE_LAUNCHER_OPTION:                           $CANDLE_LAUNCHER_OPTION"
+# echo "  \$CANDLE_SETUP_BUILD_SUPERVISOR_R_PACKAGES:         $CANDLE_SETUP_BUILD_SUPERVISOR_R_PACKAGES"
+# echo "  \$CANDLE_SETUP_R_LIBS:                              $CANDLE_SETUP_R_LIBS"
+# echo "  \$CANDLE_SETUP_JOB_LAUNCHER:                        $CANDLE_SETUP_JOB_LAUNCHER"
+# echo "  \$CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS:    $CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS"
+# echo "  \$CANDLE_SETUP_BENCHMARK_TEST_RUN_LAUNCHER_OPTIONS: $CANDLE_SETUP_BENCHMARK_TEST_RUN_LAUNCHER_OPTIONS"
+# echo "  \$CANDLE_DEFAULT_PYTHON_MODULE:                     $CANDLE_DEFAULT_PYTHON_MODULE"
+# echo "  \$CANDLE_DEFAULT_R_MODULE:                          $CANDLE_DEFAULT_R_MODULE"
