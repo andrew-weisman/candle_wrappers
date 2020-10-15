@@ -87,7 +87,7 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
     import os
 
     # Constants
-    valid_workflows = ('grid', 'bayesian') # these are the CANDLE workflows (corresponding to upf and mlrMBO) that we've enabled so far
+    valid_workflows = ('grid', 'bayesian') # these are the CANDLE workflows (corresponding to upf and mlrMBO) that we've tested so far
 
     # Initialize the running dictionary of checked keywords
     checked_keywords = dict()
@@ -175,6 +175,93 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
     dict_output(checked_keywords, 'Checked and validated keywords from the &control section of the input file:')
 
     return(checked_keywords)
+
+
+def export_bash_variables(keywords):
+    """
+    Write a file exporting Bash variables to be sourced by run_workflows.sh to properly run CANDLE jobs on each machine.
+
+    The following can be obtained by reading the HPC system user guides (e.g., [Summit user guide](https://docs.olcf.ornl.gov/systems/summit_user_guide.html), [Biowulf user guide](https://hpc.nih.gov/docs/userguide.html)) and by carefully observing $CANDLE/swift-t/turbine/code/scripts/submit/lsf/turbine-lsf.sh.m4 and $CANDLE/swift-t/turbine/code/scripts/submit/slurm/turbine-slurm.sh.m4. Confirm variable settings by looking in, e.g., $CANDLE/Supervisor/workflows/upf/test.
+
+    Also note that I anticipate some of the CANDLE calls to die upon submission to Summit due to PPN=6 below, as I have noticed Summit's scheduler being sensitive to the --rs_per_host option, to which $PPN gets mapped. This should probably lead to some simple logic in this script, preprocess.py, that checks that a reasonable value for the nworkers keyword is set. (This is probably not currently an issue due to PPN=1 being used by default.)
+    """
+
+    # Import relevant libraries
+    import numpy as np
+    import os
+
+    # Constant
+    file_containing_export_statements = 'generated_files/preprocessed_vars_to_export.sh'
+
+    # General logic
+    if keywords['workflow'] == 'grid':
+        nswift_t_processes = 1
+    elif keywords['workflow'] == 'bayesian':
+        nswift_t_processes = 2
+    ntasks_total = nswift_t_processes + keywords['nworkers']
+
+    # Split into one block for each site
+    site = os.getenv('SITE')
+    if site == 'summit':
+
+        ## Site-dependent logic
+        nnodes = int(np.ceil(ntasks_total/6))
+
+        # Write the file that exports the Bash environment variables
+        with open(file_containing_export_statements, 'w') as f:
+            f.write('export PROCS={}\n'.format(ntasks_total))
+            f.write('export PPN=6\n')
+            f.write('export TURBINE_LAUNCH_OPTIONS="--tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7"\n')
+            f.write('export PROJECT={}\n'.format(keywords['project']))
+            f.write('export NODES={}\n'.format(nnodes))
+            f.write('export WALLTIME={}\n'.format(keywords['walltime'])) # [hours:]minutes
+
+    elif site == 'biowulf':
+
+        ## Site-dependent logic
+
+        # Contants
+        ncores_cutoff = 16 # see more_cpus_tasks_etc.docx and cpus_tasks_etc.docx for justification
+        ntasks_per_core = 1 # Biowulf suggests this for MPI jobs
+
+        # Variables not needed to be customized
+        W = keywords['nworkers']
+        S = nswift_t_processes # number of Swift/T processes S
+
+        # Variables to CONSIDER be customizable
+        ntasks = ntasks_total
+        T = keywords['nthreads']
+        if keywords['worker_type'] == 'cpu': # CPU-only job
+            gres = None
+            nodes = int(np.ceil(ntasks*T/ncores_cutoff))
+            ntasks_per_node = int(np.ceil(ntasks/nodes))
+
+            if (ntasks_per_node*nodes) != ntasks:
+                ntasks = ntasks_per_node * nodes # we may as well fill up all the resources we're allocating (can't do this for a GPU job, where we already ARE using all the resources [GPUs] we're allocating... remember we're reserving <nodes> GPUs)
+                print('NOTE: Requested number of workers has automatically been increased from {} to {} in order to more efficiently use Biowulf\'s resources'.format(W, ntasks-S))
+
+            if nodes == 1: # single-node job
+                partition = 'norm'
+            else: # multi-node job
+                partition = 'multinode'
+        else: # GPU job
+            partition = 'gpu'
+            gres = keywords['worker_type']
+            nodes = W
+            ntasks_per_node = 1 + int(np.ceil(S/W))
+        cpus_per_task = T
+
+        # Write the file that exports the Bash environment variables
+        with open(file_containing_export_statements, 'w') as f:
+            f.write('export PROCS={}\n'.format(ntasks))
+            if gres is not None:
+                f.write('export TURBINE_SBATCH_ARGS="--gres=gpu:{}:1 {} --mem-per-cpu={}G --cpus-per-task={} --ntasks-per-core={} --nodes={}"\n'.format(gres, keywords['custom_sbatch_args'], keywords['mem_per_cpu'], cpus_per_task, ntasks_per_core, nodes))
+                f.write('export TURBINE_LAUNCH_OPTIONS="--ntasks={} --distribution=cyclic"\n'.format(ntasks))
+            else:
+                f.write('export TURBINE_SBATCH_ARGS="{} --mem-per-cpu={}G --cpus-per-task={} --ntasks-per-core={} --nodes={}"\n'.format(keywords['custom_sbatch_args'], keywords['mem_per_cpu'], cpus_per_task, ntasks_per_core, nodes))
+            f.write('export QUEUE={}\n'.format(partition))
+            f.write('export PPN={}\n'.format(ntasks_per_node))
+            f.write('export WALLTIME={}\n'.format(keywords['walltime'])) # hours:minutes:seconds
 
 
 def print_homog_job(ntasks, custom_sbatch_args, gres, mem_per_cpu, cpus_per_task, ntasks_per_core, partition, walltime, ntasks_per_node, nodes):
