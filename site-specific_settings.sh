@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # This script should be consistent with the env-$SITE.sh settings
-# $CANDLE_SETUP... variables are those explicitly used in setup.sh
+# $CANDLE_SETUP... variables are those explicitly used in setup.sh and are not sourced
 # It would be nice in this script to only set variables that I have created, such as those that begin with $CANDLE_... that would be a useful rule for this file
 # ASSUMPTIONS:
 #   (1) The candle module is loaded as usual
@@ -63,6 +63,7 @@ elif [ "x$SITE" == "xsummit" ]; then
 
     # Note: A keyword is specified to be required by settings its default value to None
     export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None}"
+    export CANDLE_VALID_WORKER_TYPES=
 
 fi
 
@@ -85,3 +86,5 @@ fi
 # echo "  \$CANDLE_SETUP_BENCHMARK_TEST_RUN_LAUNCHER_OPTIONS: $CANDLE_SETUP_BENCHMARK_TEST_RUN_LAUNCHER_OPTIONS"
 # echo "  \$CANDLE_DEFAULT_PYTHON_MODULE:                     $CANDLE_DEFAULT_PYTHON_MODULE"
 # echo "  \$CANDLE_DEFAULT_R_MODULE:                          $CANDLE_DEFAULT_R_MODULE"
+# echo "  \$CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS:            $CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS"
+# echo "  \$CANDLE_VALID_WORKER_TYPES:                        $CANDLE_VALID_WORKER_TYPES"
