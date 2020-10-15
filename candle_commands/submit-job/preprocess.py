@@ -181,7 +181,7 @@ def export_bash_variables(keywords):
     """
     Write a file exporting Bash variables to be sourced by run_workflows.sh to properly run CANDLE jobs on each machine.
 
-    The following can be obtained by reading the HPC system user guides (e.g., [Summit user guide](https://docs.olcf.ornl.gov/systems/summit_user_guide.html), [Biowulf user guide](https://hpc.nih.gov/docs/userguide.html)) and by carefully observing $CANDLE/swift-t/turbine/code/scripts/submit/lsf/turbine-lsf.sh.m4 and $CANDLE/swift-t/turbine/code/scripts/submit/slurm/turbine-slurm.sh.m4. Confirm variable settings by looking in, e.g., $CANDLE/Supervisor/workflows/upf/test.
+    The following can be obtained by reading the HPC system user guides (e.g., [Summit user guide](https://docs.olcf.ornl.gov/systems/summit_user_guide.html), [Biowulf user guide](https://hpc.nih.gov/docs/userguide.html)) and by carefully observing $CANDLE/swift-t/turbine/code/scripts/submit/lsf/turbine-lsf.sh.m4 and $CANDLE/swift-t/turbine/code/scripts/submit/slurm/turbine-slurm.sh.m4 (see e.g. `turbine-lsf.sh` and `turbine-slurm.sh` in /home/weismanal/notebook/2020-10-12 on Biowulf/Helix). Confirm variable settings by looking in, e.g., $CANDLE/Supervisor/workflows/upf/test.
 
     Also note that I anticipate some of the CANDLE calls to die upon submission to Summit due to PPN=6 below, as I have noticed Summit's scheduler being sensitive to the --rs_per_host option, to which $PPN gets mapped. This should probably lead to some simple logic in this script, preprocess.py, that checks that a reasonable value for the nworkers keyword is set. (This is probably not currently an issue due to PPN=1 being used by default.)
     """
