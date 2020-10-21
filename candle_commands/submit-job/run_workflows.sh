@@ -20,6 +20,12 @@ else
 fi
 
 
+
+# 
+
+
+
+
 # Export simpler settings that weren't preprocessed in preprocess.py
 export EXPERIMENTS=${EXPERIMENTS:-"./generated_files/experiments"}
 export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/templates/scripts"} # these are constants referring to the CANDLE-compliant wrapper Python script
