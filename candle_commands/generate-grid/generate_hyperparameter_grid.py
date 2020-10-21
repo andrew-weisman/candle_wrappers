@@ -102,5 +102,5 @@ def make_set(variables, set_str_base, ivar, nhpset, f):
 
 
 # Call the make_set() function with initialized settings
-with open(os.path.join('generated_files', 'hyperparameter_grid.txt'), 'w') as f:
+with open(os.path.join('.', 'generated_files', 'hyperparameter_grid.txt'), 'w') as f:
     make_set(variables, '', 0, 0, f)

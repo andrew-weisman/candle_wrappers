@@ -1,27 +1,27 @@
 #!/bin/bash
 
-# This script is a wrapper that prepares multiple things prior to running the workflows... this should be called from submit_candle_job.sh
+# This script is a wrapper that prepares multiple things prior to running the workflows... this should be called from $CANDLE/wrappers/candle_commands/submit-job/command_script.sh
 
-# Set the site-specific settings JUST ENOUGH TO SET $CANDLE_DEFAULT_PYTHON_MODULE as needed to run load_python_env() below
+# Set the site-specific settings (needed for both load_python_env() and preprocess.py below)
 # shellcheck source=/dev/null
 source "$CANDLE/wrapppers/site-specific_settings.sh"
 
-# For running the workflows themselves (and for doing the preprocessing), load the module with which Swift/T was built
+# For running the workflows themselves (and for doing the preprocessing), load the Python module with which Swift/T was built
 # shellcheck source=/dev/null
 source "$CANDLE/wrappers/utilities.sh"; load_python_env --set-pythonhome
 
-
 # Check the input settings, determine the sbatch settings, and export variables set in Python
-python $CANDLE/wrappers/candle_commands/submit-job/preprocess.py
-if [ $? -eq 0 ]; then
-    source preprocessed_vars_to_export.sh #&& rm -f preprocessed_vars_to_export.sh
+if python "$CANDLE/wrappers/candle_commands/submit-job/preprocess.py"; then
+    echo "NOTE: preprocess.py was run successfully; now sourcing the variables it set in ./generated_files/preprocessed_vars_to_export.sh"
+    source "./generated_files/preprocessed_vars_to_export.sh"
 else
+    echo "ERROR: There was an error in preprocess.py"
     exit
 fi
 
-# Simple settings
-#export WORKFLOW_TYPE=${WORKFLOW_TYPE:-$(echo $WORKFLOW_SETTINGS_FILE | awk -v FS="/" '{split($NF,arr,"_workflow-"); print(arr[1])}')}
-export EXPERIMENTS=${EXPERIMENTS:-"$(pwd)/experiments"}
+
+# Export simpler settings that weren't preprocessed in preprocess.py
+export EXPERIMENTS=${EXPERIMENTS:-"./generated_files/experiments"}
 export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/templates/scripts"} # these are constants referring to the CANDLE-compliant wrapper Python script
 export MODEL_PYTHON_SCRIPT=${MODEL_PYTHON_SCRIPT:-"candle_compliant_wrapper"}
 export OBJ_RETURN=${OBJ_RETURN:-"val_loss"}

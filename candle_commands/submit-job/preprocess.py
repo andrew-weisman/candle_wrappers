@@ -191,7 +191,7 @@ def export_bash_variables(keywords):
     import os
 
     # Constant
-    file_containing_export_statements = 'generated_files/preprocessed_vars_to_export.sh'
+    file_containing_export_statements = './generated_files/preprocessed_vars_to_export.sh'
 
     # General logic
     if keywords['workflow'] == 'grid':
@@ -267,7 +267,7 @@ def export_bash_variables(keywords):
 
 def main():
     """
-    Execute main function when run as a script.
+    Preprocess settings and write a file containing resulting variables to be exported.
 
     Assumptions:
       (1) command_script.sh has been run (i.e., candle submit-job ... has been run)
