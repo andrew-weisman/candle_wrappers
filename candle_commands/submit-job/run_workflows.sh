@@ -21,12 +21,15 @@ fi
 
 
 
-# 
+# Note that later we can put these as keywords model_description and prog_name in the input file if we want; for now, we're treating them as if they really don't matter
 export CANDLE_MODEL_DESCRIPTION=${CANDLE_MODEL_DESCRIPTION:-"Dummy model description"}
-export CANDLE_DL_BACKEND=${CANDLE_DL_BACKEND:-"keras"} # default to keras; only other choice is pytorch
 export CANDLE_PROG_NAME=${CANDLE_PROG_NAME:-"Dummy program name"}
 
 
+# Write the run_candle_model_standalone.sh script here
+m4 "$CANDLE/wrappers/candle_commands/submit-job/run_candle_model_standalone.sh.m4" > ./run_candle_model_standalone.sh
+
+########
 
 # Export simpler settings that weren't preprocessed in preprocess.py
 export EXPERIMENTS=${EXPERIMENTS:-"./candle_generated_files/experiments"}

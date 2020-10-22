@@ -20,7 +20,8 @@ function generate_input_files_and_run() {
 
     # Get the filenames of two of the three generated input files
     fn_submission_script="./candle_generated_files/submit_candle_job.sh"
-    fn_default_model="./candle_generated_files/default_model.txt"
+    #fn_default_model="./candle_generated_files/default_model.txt"
+    fn_default_model="candle_generated_files/default_model.txt"
 
     # Generate an "almost" version of the submission script, stored in tmp.txt
     (
@@ -41,7 +42,8 @@ function generate_input_files_and_run() {
     else
         wsf_ext="R"
     fi
-    fn_workflow_settings_file="./candle_generated_files/${workflow}_workflow.${wsf_ext}"
+    #fn_workflow_settings_file="./candle_generated_files/${workflow}_workflow.${wsf_ext}"
+    fn_workflow_settings_file="candle_generated_files/${workflow}_workflow.${wsf_ext}"
 
     # Insert the other two generated input filename settings into the generated submission script
     path_or_not="$(pwd)/"
@@ -74,7 +76,8 @@ function generate_input_files_and_run() {
     rm -f tmp.txt tmp2.txt tmp3.txt
 
     # Run the submission script
-    ./$fn_submission_script
+    #./$fn_submission_script
+    $fn_submission_script
 }
 
 

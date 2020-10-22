@@ -226,6 +226,7 @@ def export_bash_variables(keywords):
             f.write('export PROJECT={}\n'.format(keywords['project']))
             f.write('export NODES={}\n'.format(nnodes))
             f.write('export WALLTIME={}\n'.format(keywords['walltime'])) # [hours:]minutes
+            f.write('export CANDLE_DL_BACKEND={}\n'.format(keywords['dl_backend'])) # note that while we didn't have to export e.g. the workflow keyword, that's because it was mandatory; since dl_backend is an optional keyword, it's not necessarily already exported by command_script.sh as CANDLE_KEYWORD_DL_BACKEND, so we need to make sure we export it, but this time as CANDLE_DL_BACKEND since it's essentially been processed (checked) here
 
     elif site == 'biowulf':
 
@@ -274,6 +275,7 @@ def export_bash_variables(keywords):
             f.write('export QUEUE={}\n'.format(partition))
             f.write('export PPN={}\n'.format(ntasks_per_node))
             f.write('export WALLTIME={}\n'.format(keywords['walltime'])) # hours:minutes:seconds
+            f.write('export CANDLE_DL_BACKEND={}\n'.format(keywords['dl_backend'])) # note that while we didn't have to export e.g. the workflow keyword, that's because it was mandatory; since dl_backend is an optional keyword, it's not necessarily already exported by command_script.sh as CANDLE_KEYWORD_DL_BACKEND, so we need to make sure we export it, but this time as CANDLE_DL_BACKEND since it's essentially been processed (checked) here
 
 
 def main():
