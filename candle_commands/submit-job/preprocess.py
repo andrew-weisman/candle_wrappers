@@ -88,6 +88,7 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
 
     # Constants
     valid_workflows = ('grid', 'bayesian') # these are the CANDLE workflows (corresponding to upf and mlrMBO) that we've tested so far
+    valid_dl_backends = ('keras', 'pytorch')
 
     # Initialize the running dictionary of checked keywords
     checked_keywords = dict()
@@ -171,6 +172,16 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
     # Validate the project keyword
     checked_keywords = check_keyword('project', possible_keywords_and_defaults, str, no_validation('project'), checked_keywords)
 
+    # Validate the dl_backend keyword
+    def is_valid(keyword_val):
+        if keyword_val.lower() not in valid_dl_backends:
+            print('WARNING: The "dl_backend" keyword ({}) in the &control section must be one of'.format(keyword_val), valid_dl_backends)
+            is_valid2 = False
+        else:
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('dl_backend', possible_keywords_and_defaults, str, is_valid, checked_keywords)
+
     # Output the checked keywords and their validated values
     dict_output(checked_keywords, 'Checked and validated keywords from the &control section of the input file:')
 
@@ -191,7 +202,7 @@ def export_bash_variables(keywords):
     import os
 
     # Constant
-    file_containing_export_statements = './generated_files/preprocessed_vars_to_export.sh'
+    file_containing_export_statements = './candle_generated_files/preprocessed_vars_to_export.sh'
 
     # General logic
     if keywords['workflow'] == 'grid':

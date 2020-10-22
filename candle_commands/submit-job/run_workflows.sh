@@ -12,8 +12,8 @@ source "$CANDLE/wrappers/utilities.sh"; load_python_env --set-pythonhome
 
 # Check the input settings, determine the sbatch settings, and export variables set in Python
 if python "$CANDLE/wrappers/candle_commands/submit-job/preprocess.py"; then
-    echo "NOTE: preprocess.py was run successfully; now sourcing the variables it set in ./generated_files/preprocessed_vars_to_export.sh"
-    source "./generated_files/preprocessed_vars_to_export.sh"
+    echo "NOTE: preprocess.py was run successfully; now sourcing the variables it set in ./candle_generated_files/preprocessed_vars_to_export.sh"
+    source "./candle_generated_files/preprocessed_vars_to_export.sh"
 else
     echo "ERROR: There was an error in preprocess.py"
     exit
@@ -22,19 +22,20 @@ fi
 
 
 # 
-
+export CANDLE_MODEL_DESCRIPTION=${CANDLE_MODEL_DESCRIPTION:-"Dummy model description"}
+export CANDLE_DL_BACKEND=${CANDLE_DL_BACKEND:-"keras"} # default to keras; only other choice is pytorch
+export CANDLE_PROG_NAME=${CANDLE_PROG_NAME:-"Dummy program name"}
 
 
 
 # Export simpler settings that weren't preprocessed in preprocess.py
-export EXPERIMENTS=${EXPERIMENTS:-"./generated_files/experiments"}
+export EXPERIMENTS=${EXPERIMENTS:-"./candle_generated_files/experiments"}
 export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/templates/scripts"} # these are constants referring to the CANDLE-compliant wrapper Python script
 export MODEL_PYTHON_SCRIPT=${MODEL_PYTHON_SCRIPT:-"candle_compliant_wrapper"}
 export OBJ_RETURN=${OBJ_RETURN:-"val_loss"}
 export MODEL_NAME=${MODEL_NAME:-"candle_job"}
 #export PPN=${PPN:-"1"} # run one MPI process (GPU process) per node on Biowulf
 export TURBINE_OUTPUT_SOFTLINK=${TURBINE_OUTPUT_SOFTLINK:-"last-exp"} # this is more descriptive than the default turbine-output symbolic link
-export DL_BACKEND=${DL_BACKEND:-"keras"} # default to keras; only other choice is pytorch
 
 # # Set a proportional number of processors and amount of memory to use on the node
 # if [ -z "$CPUS_PER_TASK" ]; then

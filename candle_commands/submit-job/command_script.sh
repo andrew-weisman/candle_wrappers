@@ -19,8 +19,8 @@ function generate_input_files_and_run() {
     source "$CANDLE/wrappers/utilities.sh"; make_generated_files_dir
 
     # Get the filenames of two of the three generated input files
-    fn_submission_script="./generated_files/submit_candle_job.sh"
-    fn_default_model="./generated_files/default_params.txt"
+    fn_submission_script="./candle_generated_files/submit_candle_job.sh"
+    fn_default_model="./candle_generated_files/default_model.txt"
 
     # Generate an "almost" version of the submission script, stored in tmp.txt
     (
@@ -41,12 +41,12 @@ function generate_input_files_and_run() {
     else
         wsf_ext="R"
     fi
-    fn_workflow_settings_file="./generated_files/${workflow}_workflow.${wsf_ext}"
+    fn_workflow_settings_file="./candle_generated_files/${workflow}_workflow.${wsf_ext}"
 
     # Insert the other two generated input filename settings into the generated submission script
     path_or_not="$(pwd)/"
     (
-        echo "export DEFAULT_PARAMS_FILE=\"$(pwd)/${fn_default_model}\"" # must be a full path in order to find the default settings
+        echo "export CANDLE_DEFAULT_MODEL_FILE=\"$(pwd)/${fn_default_model}\"" # must be a full path in order to find the default settings
         echo "export WORKFLOW_SETTINGS_FILE=\"${path_or_not}${fn_workflow_settings_file}\"" # can no longer be a full path in recent develop version of CANDLE
         awk -v split_line="$split_line" '{if(NR>split_line)print}' tmp2.txt # populate the rest of the submission script and make it executable
     ) >> $fn_submission_script

@@ -18,6 +18,6 @@ load_python_env() {
 
 # ASSUMPTIONS: None
 make_generated_files_dir() {
-    dirname="./generated_files"
+    dirname="./candle_generated_files"
     [ -d $dirname ] || mkdir $dirname
 }

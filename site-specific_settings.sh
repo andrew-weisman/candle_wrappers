@@ -34,7 +34,7 @@ if [ "x$SITE" == "xbiowulf" ]; then
     export CANDLE_DEFAULT_R_MODULE="R/4.0.0"
 
     # Note: A keyword is specified to be required by settings its default value to None
-    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05:00', 'worker_type': 'k80', 'nworkers': 1, 'nthreads': 1, 'custom_sbatch_args': '', 'mem_per_cpu': 7}"
+    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05:00', 'worker_type': 'k80', 'nworkers': 1, 'nthreads': 1, 'custom_sbatch_args': '', 'mem_per_cpu': 7, 'dl_backend': 'keras'}"
     export CANDLE_VALID_WORKER_TYPES="('cpu', 'k20x', 'k80', 'p100', 'v100', 'v100x')"
 
 elif [ "x$SITE" == "xsummit" ]; then
@@ -62,7 +62,7 @@ elif [ "x$SITE" == "xsummit" ]; then
     export CANDLE_DEFAULT_R_MODULE="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/R-3.6.1/lib64/R/bin/R"
 
     # Note: A keyword is specified to be required by settings its default value to None
-    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None}"
+    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None, 'dl_backend': 'keras'}"
     export CANDLE_VALID_WORKER_TYPES=
 
 fi
