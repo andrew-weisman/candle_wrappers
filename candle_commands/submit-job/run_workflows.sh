@@ -27,6 +27,7 @@ export CANDLE_PROG_NAME=${CANDLE_PROG_NAME:-"Dummy program name"}
 
 
 # Write the run_candle_model_standalone.sh script here
+# Perhaps put this in candle_generated_files as well, the .sh file?
 m4 "$CANDLE/wrappers/candle_commands/submit-job/run_candle_model_standalone.sh.m4" > ./run_candle_model_standalone.sh
 
 ########
