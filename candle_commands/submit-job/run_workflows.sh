@@ -24,20 +24,19 @@ export CANDLE_MODEL_DESCRIPTION=${CANDLE_MODEL_DESCRIPTION:-"Dummy model descrip
 export CANDLE_PROG_NAME=${CANDLE_PROG_NAME:-"Dummy program name"}
 
 
-# Write the run_candle_model_standalone.sh script here
-# Perhaps put this in candle_generated_files as well, the .sh file?
-m4 "$CANDLE/wrappers/candle_commands/submit-job/run_candle_model_standalone.sh.m4" > ./run_candle_model_standalone.sh
+# # Write the run_candle_model_standalone.sh script here
+# # Perhaps put this in candle_generated_files as well, the .sh file?
+# m4 "$CANDLE/wrappers/candle_commands/submit-job/run_candle_model_standalone.sh.m4" > ./run_candle_model_standalone.sh
 
 ########
 
-# Export simpler settings that weren't preprocessed in preprocess.py
+# Export simpler settings that weren't preprocessed in preprocess.py (i.e., these aren't based on the keywords in the input file)
 export EXPERIMENTS=${EXPERIMENTS:-"./candle_generated_files/experiments"}
-export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/templates/scripts"} # these are constants referring to the CANDLE-compliant wrapper Python script
+export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/candle_commands/submit-job"} # these are constants referring to the CANDLE-compliant wrapper Python script
 export MODEL_PYTHON_SCRIPT=${MODEL_PYTHON_SCRIPT:-"candle_compliant_wrapper"}
 export OBJ_RETURN=${OBJ_RETURN:-"val_loss"}
 export MODEL_NAME=${MODEL_NAME:-"candle_job"}
-#export PPN=${PPN:-"1"} # run one MPI process (GPU process) per node on Biowulf
-export TURBINE_OUTPUT_SOFTLINK=${TURBINE_OUTPUT_SOFTLINK:-"last-exp"} # this is more descriptive than the default turbine-output symbolic link
+export TURBINE_OUTPUT_SOFTLINK=${TURBINE_OUTPUT_SOFTLINK:-"last-job"} # this is more descriptive than the default turbine-output symbolic link
 
 # # Set a proportional number of processors and amount of memory to use on the node
 # if [ -z "$CPUS_PER_TASK" ]; then
