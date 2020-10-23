@@ -27,7 +27,7 @@ function generate_input_files_and_run() {
     (
         echo "#!/bin/bash"
         extract_section "control" "$submission_file" | awk -v FS="=" '{loc=index($0,"="); key=$1; val=substr($0,loc+1); gsub(/ /,"",key); gsub(/^ */,"",val); print "export CANDLE_KEYWORD_" toupper(key) "=" val}'
-        echo "\$CANDLE/wrappers/candle_commands/submit-job/run_workflows.sh"
+        echo "bash \$CANDLE/wrappers/candle_commands/submit-job/run_workflows.sh"
     ) > tmp.txt
 
     # Extract everything but the WORKFLOW line into tmp2.txt and insert everything up to that line into the generated submission script

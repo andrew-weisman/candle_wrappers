@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script is a wrapper that prepares multiple things prior to running the workflows... this should be called from $CANDLE/wrappers/candle_commands/submit-job/command_script.sh
+# This script is a wrapper that prepares multiple things prior to running the workflows (the workflow.sh files in Supervisor/workflows)... this should be called from $CANDLE/wrappers/candle_commands/submit-job/command_script.sh
 
 # Set the site-specific settings (needed for both load_python_env() and preprocess.py below)
 # shellcheck source=/dev/null
@@ -19,9 +19,7 @@ else
     exit
 fi
 
-
-
-# Note that later we can put these as keywords model_description and prog_name in the input file if we want; for now, we're treating them as if they really don't matter
+# Note that later we can put these as keywords model_description and prog_name in the input file if we want; for now, we're treating them as if they really don't matter, which they likely don't actually
 export CANDLE_MODEL_DESCRIPTION=${CANDLE_MODEL_DESCRIPTION:-"Dummy model description"}
 export CANDLE_PROG_NAME=${CANDLE_PROG_NAME:-"Dummy program name"}
 

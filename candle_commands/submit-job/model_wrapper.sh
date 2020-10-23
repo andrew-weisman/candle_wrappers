@@ -1,39 +1,48 @@
 #!/bin/bash
 
 # Function to wrap the input model by wrapper lines of code
+# I know this isn't so elegant but that's okay
 wrap_model() {
     cat "$1"
-    echo ""
+    echo
     cat "$2"
-    echo ""
+    echo
     cat "$3"
 }
+
 
 # Display timing/node/GPU information
 echo "MODEL_WRAPPER.SH START TIME: $(date +%s)"
 echo "HOST: $(hostname)"
 echo "GPU: ${CUDA_VISIBLE_DEVICES:-NA}"
 
-# Unload environment in which we built Swift/T
-module unload $DEFAULT_PYTHON_MODULE
+# Unload environment in which we built Swift/T, as this is no longer needed, since Python is not necessarily used below
+# This reverses in particular the Python loading we ran in run_workflows.sh
+# shellcheck source=/dev/null
+source "$CANDLE/wrappers/utilities.sh"; unload_python_env --unset-pythonhome
 
 # Load a custom, SUPPlementary environment if it's set
-if [ -n "$SUPP_MODULES" ]; then
-    module load $SUPP_MODULES
+if [ -n "$CANDLE_SUPP_MODULES" ]; then
+    module load $CANDLE_SUPP_MODULES
 fi
 
 # Determine language to use to run the model
-suffix=$(echo "$MODEL_SCRIPT" | rev | awk -v FS="." '{print tolower($1)}' | rev)
+suffix=$(echo "$CANDLE_KEYWORD_MODEL_SCRIPT" | rev | awk -v FS="." '{print tolower($1)}' | rev)
 
 # Run a model written in Python
 if [ "x$suffix" == "xpy" ]; then
 
     # Clear PYTHONHOME since historically that's caused us issues
-    unset PYTHONHOME
+    # Note I'm commenting this out for now as it should be done in the unload_python_env() function above, and I can probably delete the current block in the near future
+    #unset PYTHONHOME
 
-    # If $PYTHON_BIN_PATH isn't null, prepend that to our $PATH
-    if [ -n "$PYTHON_BIN_PATH" ]; then
-        export PATH=$PYTHON_BIN_PATH:$PATH
+    # If $CANDLE_PYTHON_BIN_PATH isn't null, prepend that to our $PATH
+    if [ -n "$CANDLE_PYTHON_BIN_PATH" ]; then
+        export PATH="$CANDLE_PYTHON_BIN_PATH:$PATH"
+
+    
+    #### PICK UP HERE!!!!
+
 
     # Otherwise, load the $EXEC_PYTHON_MODULE if it's set, or $DEFAULT_PYTHON_MODULE if it's not
     else

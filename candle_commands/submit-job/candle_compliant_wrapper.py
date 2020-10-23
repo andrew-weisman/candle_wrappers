@@ -55,6 +55,8 @@ def main():
     """
     CANDLE-compliant script that runs the model script by calling a Bash script (model_wrapper.sh) that wraps the model script and calls it.
 
+    Note: The advantage of doing is this way as opposed to just importing the model script is that models written in other langugages (such as R and even Bash) can be used with CANDLE.
+
     Assumptions:
       (1) candle module has been loaded
       (2) Environment variables CANDLE_DEFAULT_MODEL_FILE, CANDLE_MODEL_DESCRIPTION, CANDLE_DL_BACKEND, CANDLE_PROG_NAME have been set

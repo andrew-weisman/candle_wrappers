@@ -182,6 +182,20 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
         return(is_valid2)
     checked_keywords = check_keyword('dl_backend', possible_keywords_and_defaults, str, is_valid, checked_keywords)
 
+    # Valid the supp_modules keyword
+    checked_keywords = check_keyword('supp_modules', possible_keywords_and_defaults, str, no_validation('supp_modules'), checked_keywords)
+
+    # Validate the python_bin_path keyword
+    def is_valid(keyword_val):
+        import os
+        if os.path.isdir(keyword_val):
+            is_valid2 = True
+        else:
+            print('WARNING: The "python_bin_path" keyword ({}) in the &control section does not appear to be a directory'.format(keyword_val))
+            is_valid2 = False
+        return(is_valid2)
+    checked_keywords = check_keyword('python_bin_path', possible_keywords_and_defaults, str, is_valid, checked_keywords)
+
     # Output the checked keywords and their validated values
     dict_output(checked_keywords, 'Checked and validated keywords from the &control section of the input file:')
 
@@ -227,6 +241,8 @@ def export_bash_variables(keywords):
             f.write('export NODES={}\n'.format(nnodes))
             f.write('export WALLTIME={}\n'.format(keywords['walltime'])) # [hours:]minutes
             f.write('export CANDLE_DL_BACKEND={}\n'.format(keywords['dl_backend'])) # note that while we didn't have to export e.g. the workflow keyword, that's because it was mandatory; since dl_backend is an optional keyword, it's not necessarily already exported by command_script.sh as CANDLE_KEYWORD_DL_BACKEND, so we need to make sure we export it, but this time as CANDLE_DL_BACKEND since it's essentially been processed (checked) here
+            f.write('export CANDLE_SUPP_MODULES={}\n'.format(keywords['supp_modules']))
+            f.write('export CANDLE_PYTHON_BIN_PATH={}\n'.format(keywords['python_bin_path']))
 
     elif site == 'biowulf':
 
@@ -276,6 +292,8 @@ def export_bash_variables(keywords):
             f.write('export PPN={}\n'.format(ntasks_per_node))
             f.write('export WALLTIME={}\n'.format(keywords['walltime'])) # hours:minutes:seconds
             f.write('export CANDLE_DL_BACKEND={}\n'.format(keywords['dl_backend'])) # note that while we didn't have to export e.g. the workflow keyword, that's because it was mandatory; since dl_backend is an optional keyword, it's not necessarily already exported by command_script.sh as CANDLE_KEYWORD_DL_BACKEND, so we need to make sure we export it, but this time as CANDLE_DL_BACKEND since it's essentially been processed (checked) here
+            f.write('export CANDLE_SUPP_MODULES={}\n'.format(keywords['supp_modules']))
+            f.write('export CANDLE_PYTHON_BIN_PATH={}\n'.format(keywords['python_bin_path']))
 
 
 def main():
