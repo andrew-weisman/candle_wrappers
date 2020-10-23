@@ -196,6 +196,21 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
         return(is_valid2)
     checked_keywords = check_keyword('python_bin_path', possible_keywords_and_defaults, str, is_valid, checked_keywords)
 
+    # Valid the exec_python_module keyword
+    checked_keywords = check_keyword('exec_python_module', possible_keywords_and_defaults, str, no_validation('exec_python_module'), checked_keywords)
+
+    # Validate the supp_pythonpath keyword
+    checked_keywords = check_keyword('supp_pythonpath', possible_keywords_and_defaults, str, no_validation('supp_pythonpath'), checked_keywords)
+
+    # Validate the extra_script_args keyword
+    checked_keywords = check_keyword('extra_script_args', possible_keywords_and_defaults, str, no_validation('extra_script_args'), checked_keywords)
+
+    # Valid the exec_r_module keyword
+    checked_keywords = check_keyword('exec_r_module', possible_keywords_and_defaults, str, no_validation('exec_r_module'), checked_keywords)
+
+    # Valid the supp_r_libs keyword
+    checked_keywords = check_keyword('supp_r_libs', possible_keywords_and_defaults, str, no_validation('supp_r_libs'), checked_keywords)
+
     # Output the checked keywords and their validated values
     dict_output(checked_keywords, 'Checked and validated keywords from the &control section of the input file:')
 
@@ -243,6 +258,11 @@ def export_bash_variables(keywords):
             f.write('export CANDLE_DL_BACKEND={}\n'.format(keywords['dl_backend'])) # note that while we didn't have to export e.g. the workflow keyword, that's because it was mandatory; since dl_backend is an optional keyword, it's not necessarily already exported by command_script.sh as CANDLE_KEYWORD_DL_BACKEND, so we need to make sure we export it, but this time as CANDLE_DL_BACKEND since it's essentially been processed (checked) here
             f.write('export CANDLE_SUPP_MODULES={}\n'.format(keywords['supp_modules']))
             f.write('export CANDLE_PYTHON_BIN_PATH={}\n'.format(keywords['python_bin_path']))
+            f.write('export CANDLE_EXEC_PYTHON_MODULE={}\n'.format(keywords['exec_python_module']))
+            f.write('export CANDLE_SUPP_PYTHONPATH={}\n'.format(keywords['supp_pythonpath']))
+            f.write('export CANDLE_EXTRA_SCRIPT_ARGS={}\n'.format(keywords['extra_script_args']))
+            f.write('export CANDLE_EXEC_R_MODULE={}\n'.format(keywords['exec_r_module']))
+            f.write('export CANDLE_SUPP_R_LIBS={}\n'.format(keywords['supp_r_libs']))
 
     elif site == 'biowulf':
 
@@ -294,6 +314,11 @@ def export_bash_variables(keywords):
             f.write('export CANDLE_DL_BACKEND={}\n'.format(keywords['dl_backend'])) # note that while we didn't have to export e.g. the workflow keyword, that's because it was mandatory; since dl_backend is an optional keyword, it's not necessarily already exported by command_script.sh as CANDLE_KEYWORD_DL_BACKEND, so we need to make sure we export it, but this time as CANDLE_DL_BACKEND since it's essentially been processed (checked) here
             f.write('export CANDLE_SUPP_MODULES={}\n'.format(keywords['supp_modules']))
             f.write('export CANDLE_PYTHON_BIN_PATH={}\n'.format(keywords['python_bin_path']))
+            f.write('export CANDLE_EXEC_PYTHON_MODULE={}\n'.format(keywords['exec_python_module']))
+            f.write('export CANDLE_SUPP_PYTHONPATH={}\n'.format(keywords['supp_pythonpath']))
+            f.write('export CANDLE_EXTRA_SCRIPT_ARGS={}\n'.format(keywords['extra_script_args']))
+            f.write('export CANDLE_EXEC_R_MODULE={}\n'.format(keywords['exec_r_module']))
+            f.write('export CANDLE_SUPP_R_LIBS={}\n'.format(keywords['supp_r_libs']))
 
 
 def main():

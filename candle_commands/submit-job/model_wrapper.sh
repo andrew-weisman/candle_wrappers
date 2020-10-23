@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# ASSUMPTIONS:
+#   (1) candle module is loaded
+#   (2) These variables are defined:
+#         $CANDLE_SUPP_MODULES
+#         $CANDLE_KEYWORD_MODEL_SCRIPT
+#         $CANDLE_PYTHON_BIN_PATH
+#         $CANDLE_EXEC_PYTHON_MODULE
+#         $CANDLE_EXTRA_SCRIPT_ARGS
+#         $CANDLE_EXEC_R_MODULE
+#         $CANDLE_SUPP_PYTHONPATH
+#         $CANDLE_SUPP_R_LIBS
+
+
 # Function to wrap the input model by wrapper lines of code
 # I know this isn't so elegant but that's okay
 wrap_model() {
@@ -40,26 +53,22 @@ if [ "x$suffix" == "xpy" ]; then
     if [ -n "$CANDLE_PYTHON_BIN_PATH" ]; then
         export PATH="$CANDLE_PYTHON_BIN_PATH:$PATH"
 
-    
-    #### PICK UP HERE!!!!
-
-
-    # Otherwise, load the $EXEC_PYTHON_MODULE if it's set, or $DEFAULT_PYTHON_MODULE if it's not
+    # Otherwise, load the $CANDLE_EXEC_PYTHON_MODULE if it's set, or $CANDLE_DEFAULT_PYTHON_MODULE if it's not
     else
-        module load "${EXEC_PYTHON_MODULE:-$DEFAULT_PYTHON_MODULE}"
+        if [ -n "$CANDLE_EXEC_PYTHON_MODULE" ]; then
+            module load "$CANDLE_EXEC_PYTHON_MODULE"
+        else
+            # shellcheck source=/dev/null
+            source "$CANDLE/wrappers/utilities.sh"; load_python_env
+        fi
     fi
 
-    # ALW: On 6/29/19, moving this from head.py; not sure why I put it there but there may have been a reason!
-    # ALW: On 7/5/19, redoing this, found I did it because if it's an environment variable it gets added to sys.path too early (pretty much first-thing); doing it here appends to the path at the end!
-    # # If it's defined in the environment, append $SUPP_PYTHONPATH to the Python path
-    # export PYTHONPATH+=":$SUPP_PYTHONPATH"
-
     # Create a wrapped version of the model in wrapped_model.py
-    wrap_model "$CANDLE/wrappers/templates/scripts/head.py" "$MODEL_SCRIPT" "$CANDLE/wrappers/templates/scripts/tail.py" > wrapped_model.py
+    wrap_model "$CANDLE/wrappers/candle_commands/submit-job/head.py" "$CANDLE_KEYWORD_MODEL_SCRIPT" "$CANDLE/wrappers/candle_commands/submit-job/tail.py" > wrapped_model.py
 
     # Run wrapped_model.py
     echo "Using Python for execution: $(command -v python)"
-    script_call="python${EXTRA_SCRIPT_ARGS:+ $EXTRA_SCRIPT_ARGS}"
+    script_call="python${CANDLE_EXTRA_SCRIPT_ARGS:+ $CANDLE_EXTRA_SCRIPT_ARGS}"
     $script_call wrapped_model.py
 
 # Run a model written in R
@@ -69,10 +78,15 @@ elif [ "x$suffix" == "xr" ]; then
     unset R_LIBS
 
     # Load the default R module if a different module is not defined
-    module load "${EXEC_R_MODULE:-$DEFAULT_R_MODULE}"
+    if [ -n "$CANDLE_EXEC_R_MODULE" ]; then
+        module load "$CANDLE_EXEC_R_MODULE"
+    else
+        # shellcheck source=/dev/null
+        source "$CANDLE/wrappers/utilities.sh"; load_r_env
+    fi
 
     # Create a wrapped version of the model in wrapped_model.R
-    wrap_model "$CANDLE/wrappers/templates/scripts/head.R" "$MODEL_SCRIPT" "$CANDLE/wrappers/templates/scripts/tail.R" > wrapped_model.R
+    wrap_model "$CANDLE/wrappers/candle_commands/submit-job/head.R" "$CANDLE_KEYWORD_MODEL_SCRIPT" "$CANDLE/wrappers/candle_commands/submit-job/tail.R" > wrapped_model.R
 
     # Run wrapped_model.R
     echo "Using Rscript for execution: $(command -v Rscript)"
@@ -85,9 +99,9 @@ elif [ "x$suffix" == "xsh" ]; then
     #wrap_model "$CANDLE/wrappers/templates/scripts/head.sh" "$MODEL_SCRIPT" "$CANDLE/wrappers/templates/scripts/tail.sh" > wrapped_model.sh
 
     # George prefers it this way
-    echo "source $CANDLE/wrappers/templates/scripts/head.sh" > wrapped_model.sh
-    echo "source $MODEL_SCRIPT" >> wrapped_model.sh
-    echo "source $CANDLE/wrappers/templates/scripts/tail.sh" >> wrapped_model.sh
+    echo "source $CANDLE/wrappers/candle_commands/submit-job/head.sh" > wrapped_model.sh
+    echo "source $CANDLE_KEYWORD_MODEL_SCRIPT" >> wrapped_model.sh
+    echo "source $CANDLE/wrappers/candle_commands/submit-job/tail.sh" >> wrapped_model.sh
 
     # Run wrapped_model.sh
     # echo "Using Bash for execution: /bin/bash"
