@@ -22,3 +22,9 @@ After completing the setup steps outlined in [README-biowulf.md](./README-biowul
 
 * All keywords present in the input file will be prepended with `CANDLE_KEYWORD_` and exported to the environment in `submit-job/command_script.sh`. Thus, all *required* keywords will definitely be present in the environment as `CANDLE_KEYWORD_<KEYWORD>`. Since they will be checked in the `check_keywords()` function of `preprocess.py` as specified above, then, if desired, we can safely use the variable `CANDLE_KEYWORD_<KEYWORD>` in subsequent scripts.
 * On the other hand, *optional* keywords will not necessarily be present in the environment as `CANDLE_KEYWORD_<KEYWORD>`, but as they will be processed for the `$SITE`s to which they apply, they must be present as a key in the `checked_keywords` dictionary in `preprocess.py`. Thus, they can be accessed in the `export_bash_variables()` function in `preprocess.py` to be either processed or exported. And as they will have essentially been processed in `preprocess.py`, it makes sense to export them, if export is desired, with the `CANDLE_` prefix as opposed to `CANDLE_KEYWORD_`, which we may want to reserve for keywords passed directly from the input file.
+
+## How to add new workflows
+
+1. Add to the `valid_workflows` variable in the `check_keywords()` function in `$CANDLE/wrappers/candle_commands/submit-job/preprocess.py`
+1. Add to the two blocks with comments "# ADD HERE WHEN ADDING NEW WORKFLOWS!!" in `$CANDLE/wrappers/candle_commands/submit-job/run_workflows.sh`
+1. Test the new workflow functionality
