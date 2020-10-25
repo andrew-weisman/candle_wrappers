@@ -9,7 +9,7 @@
 # This script should be run like 'bash "$CANDLE/checkouts/wrappers/setup.sh"''
 # ASSUMPTIONS:
 #   (1) The candle module is loaded as usual
-#   (2) Running this script in interactive or batch mode (i.e., not on a login node)
+#   (2) Running this script in interactive or batch mode (i.e., not on a login node) so that srun, jsrun, etc. can be run
 
 
 # Function asking whether the user has checked a particular configuration file
@@ -47,7 +47,7 @@ set -e # exit when any command fails
 
 # Set the site-specific settings
 # shellcheck source=/dev/null
-source "$CANDLE/wrapppers/site-specific_settings.sh"
+source "$CANDLE/wrappers/site-specific_settings.sh"
 
 # Enter the fast-access directory in order to speed up compilation
 cd "$CANDLE_SETUP_LOCAL_DIR"
@@ -103,7 +103,7 @@ source "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
 
 # Set the site-specific settings again now that assumption #3 for sourcing this file has been satisfied
 # shellcheck source=/dev/null
-source "$CANDLE/wrapppers/site-specific_settings.sh"
+#source "$CANDLE/wrappers/site-specific_settings.sh"
 
 # Output the executables to be used for Swift/T and Python
 determine_executable swift-t
@@ -174,7 +174,7 @@ if [ "x$CANDLE_SETUP_COMPILE_SWIFT_T" == "x1" ]; then
         else
             echo -e "\nNOT copying $CANDLE/wrappers/swift-t_setup/swift-t-settings-$SITE.sh to $CANDLE/swift-t/dev/build/swift-t-settings.sh\n"
         fi
-        echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/wrapppers/site-specific_settings.sh), comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template (or comparing that template with $CANDLE/wrappers/swift-t_setup/swift-t-settings.sh.template), if needed"
+        echo "Now edit $CANDLE/swift-t/dev/build/swift-t-settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/wrappers/site-specific_settings.sh), comparing with $CANDLE/swift-t/dev/build/swift-t-settings.sh.template (or comparing that template with $CANDLE/wrappers/swift-t_setup/swift-t-settings.sh.template), if needed"
         check_file_before_continuing "$CANDLE/swift-t/dev/build/swift-t-settings.sh"
 
         # Do the build
@@ -203,7 +203,7 @@ if [ "x$CANDLE_SETUP_COMPILE_SWIFT_T" == "x1" ]; then
         else
             echo -e "\nNOT copying $CANDLE/wrappers/swift-t_setup/eqr_settings-$SITE.sh to $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh\n"
         fi
-        echo "Now edit $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/wrapppers/site-specific_settings.sh), comparing with $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.template.sh (or comparing that template with $CANDLE/wrappers/swift-t_setup/eqr_settings.sh.template), if needed"
+        echo "Now edit $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh as appropriate (or the \$CANDLE_... variables in $CANDLE/wrappers/site-specific_settings.sh), comparing with $CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.template.sh (or comparing that template with $CANDLE/wrappers/swift-t_setup/eqr_settings.sh.template), if needed"
         check_file_before_continuing "$CANDLE/Supervisor/workflows/common/ext/EQ-R/eqr/settings.sh"
 
         # Do the build
@@ -249,7 +249,7 @@ if [ "x$response" == "xy" ]; then
 
     if [ "x$run_launcher" == "x1" ]; then
         # shellcheck disable=SC2086
-        $CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_BENCHMARK_TEST_RUN_LAUNCHER_OPTIONS python "$benchmark"
+        $CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS python "$benchmark"
     else
         echo "Skipping actual job launching since this was not requested"
     fi

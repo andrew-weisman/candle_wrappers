@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# ASSUMPTIONS: site-specific_settings.sh has been sourced
+# ASSUMPTIONS: candle module has been loaded
 load_python_env() {
+
+    # Load site-specific_settings.sh to get the $CANDLE_DEFAULT_PYTHON_MODULE value below
+    # shellcheck source=/dev/null
+    source "$CANDLE/wrappers/site-specific_settings.sh"
+
     if [ "x${CANDLE_DEFAULT_PYTHON_MODULE:0:1}" == "x/" ]; then # If $CANDLE_DEFAULT_PYTHON_MODULE actually contains a full path to the executable instead of a module name...
         path_to_add=$(dirname "$CANDLE_DEFAULT_PYTHON_MODULE")
         export PATH="$path_to_add:$PATH"
@@ -17,8 +22,13 @@ load_python_env() {
 }
 
 
-# ASSUMPTIONS: site-specific_settings.sh has been sourced
+# ASSUMPTIONS: candle module has been loaded
 unload_python_env() {
+
+    # Load site-specific_settings.sh to get the $CANDLE_DEFAULT_PYTHON_MODULE value below
+    # shellcheck source=/dev/null
+    source "$CANDLE/wrappers/site-specific_settings.sh"
+
     if [ "x${CANDLE_DEFAULT_PYTHON_MODULE:0:1}" == "x/" ]; then # If $CANDLE_DEFAULT_PYTHON_MODULE actually contains a full path to the executable instead of a module name...
         path_to_remove=$(dirname "$CANDLE_DEFAULT_PYTHON_MODULE")
         tmp2="$(tmp=$(echo "$PATH" | awk -v RS=":" '{print}' | head -n -1 | grep -v "$path_to_remove" | awk -v ORS=":" '{print}'); echo "${tmp:0:${#tmp}-1}")"
@@ -34,8 +44,12 @@ unload_python_env() {
 }
 
 
-# ASSUMPTIONS: site-specific_settings.sh has been sourced
+# ASSUMPTIONS: candle module has been loaded
 load_r_env() {
+    # Load site-specific_settings.sh to get the $CANDLE_DEFAULT_R_MODULE value below
+    # shellcheck source=/dev/null
+    source "$CANDLE/wrappers/site-specific_settings.sh"
+
     if [ "x${CANDLE_DEFAULT_R_MODULE:0:1}" == "x/" ]; then # If $CANDLE_DEFAULT_R_MODULE actually contains a full path to the executable instead of a module name...
         path_to_add=$(dirname "$CANDLE_DEFAULT_R_MODULE")
         export PATH="$path_to_add:$PATH"
@@ -45,8 +59,12 @@ load_r_env() {
 }
 
 
-# ASSUMPTIONS: site-specific_settings.sh has been sourced
+# ASSUMPTIONS: candle module has been loaded
 unload_r_env() {
+    # Load site-specific_settings.sh to get the $CANDLE_DEFAULT_R_MODULE value below
+    # shellcheck source=/dev/null
+    source "$CANDLE/wrappers/site-specific_settings.sh"
+
     if [ "x${CANDLE_DEFAULT_R_MODULE:0:1}" == "x/" ]; then # If $CANDLE_DEFAULT_R_MODULE actually contains a full path to the executable instead of a module name...
         path_to_remove=$(dirname "$CANDLE_DEFAULT_R_MODULE")
         tmp2="$(tmp=$(echo "$PATH" | awk -v RS=":" '{print}' | head -n -1 | grep -v "$path_to_remove" | awk -v ORS=":" '{print}'); echo "${tmp:0:${#tmp}-1}")"

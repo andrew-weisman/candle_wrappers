@@ -8,10 +8,6 @@ args_arr=($@)
 
 echo -n "Generating hyperparameter grid into file \"hyperparameter_grid.txt\"... "
 
-# Load site-specific settings so we know which Python to load below
-# shellcheck source=/dev/null
-source "$CANDLE/wrapppers/site-specific_settings.sh"
-
 # Load a numpy-containing Python
 # shellcheck source=/dev/null
 source "$CANDLE/wrappers/utilities.sh"; load_python_env

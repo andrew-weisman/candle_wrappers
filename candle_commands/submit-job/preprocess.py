@@ -211,6 +211,16 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
     # Valid the supp_r_libs keyword
     checked_keywords = check_keyword('supp_r_libs', possible_keywords_and_defaults, str, no_validation('supp_r_libs'), checked_keywords)
 
+    # Validate the use_candle keyword
+    def is_valid(keyword_val):
+        if keyword_val not in [0,1]:
+            print('WARNING: The "use_candle" keyword ({}) in the &control section must be either 0 or 1'.format(keyword_val))
+            is_valid2 = False
+        else:
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('use_candle', possible_keywords_and_defaults, int, is_valid, checked_keywords)
+
     # Output the checked keywords and their validated values
     dict_output(checked_keywords, 'Checked and validated keywords from the &control section of the input file:')
 
@@ -263,6 +273,7 @@ def export_bash_variables(keywords):
             f.write('export CANDLE_EXTRA_SCRIPT_ARGS={}\n'.format(keywords['extra_script_args']))
             f.write('export CANDLE_EXEC_R_MODULE={}\n'.format(keywords['exec_r_module']))
             f.write('export CANDLE_SUPP_R_LIBS={}\n'.format(keywords['supp_r_libs']))
+            f.write('export CANDLE_USE_CANDLE={}\n'.format(keywords['use_candle'])) # just repeating the logic here: we must export this because use_candle is just an optional keyword so we need to *ensure* it's in the environment, i.e., we can't just rely on e.g. $CANDLE_KEYWORD_USE_CANDLE, which is not necessarily set
 
     elif site == 'biowulf':
 
@@ -319,6 +330,7 @@ def export_bash_variables(keywords):
             f.write('export CANDLE_EXTRA_SCRIPT_ARGS={}\n'.format(keywords['extra_script_args']))
             f.write('export CANDLE_EXEC_R_MODULE={}\n'.format(keywords['exec_r_module']))
             f.write('export CANDLE_SUPP_R_LIBS={}\n'.format(keywords['supp_r_libs']))
+            f.write('export CANDLE_USE_CANDLE={}\n'.format(keywords['use_candle'])) # just repeating the logic here: we must export this because use_candle is just an optional keyword so we need to *ensure* it's in the environment, i.e., we can't just rely on e.g. $CANDLE_KEYWORD_USE_CANDLE, which is not necessarily set
 
 
 def main():

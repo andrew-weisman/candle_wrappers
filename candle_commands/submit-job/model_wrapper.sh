@@ -42,6 +42,9 @@ fi
 # Determine language to use to run the model
 suffix=$(echo "$CANDLE_KEYWORD_MODEL_SCRIPT" | rev | awk -v FS="." '{print tolower($1)}' | rev)
 
+# Write the run_candle_model_standalone.sh script here so that this job can be run completely standalone in the future if desired
+m4 "$CANDLE/wrappers/candle_commands/submit-job/run_candle_model_standalone.sh.m4" > ./run_candle_model_standalone.sh
+
 # Run a model written in Python
 if [ "x$suffix" == "xpy" ]; then
 

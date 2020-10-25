@@ -3,9 +3,9 @@
 # This script is a wrapper that prepares multiple things prior to running the workflows (the workflow.sh files in Supervisor/workflows)... this should be called from $CANDLE/wrappers/candle_commands/submit-job/command_script.sh
 # This script basically replaces the contents of the test-1.sh examples in the Supervisor/workflows directory that call the workflow.sh files
 
-# Set the site-specific settings (needed for both load_python_env() and preprocess.py below)
+# Set the site-specific settings (needed for preprocess.py below)
 # shellcheck source=/dev/null
-source "$CANDLE/wrapppers/site-specific_settings.sh"
+source "$CANDLE/wrappers/site-specific_settings.sh"
 
 # For running the workflows themselves (and for doing the preprocessing), load the Python module with which Swift/T was built
 # Load a competent version of Python
@@ -24,12 +24,6 @@ fi
 # Note that later we can put these as keywords model_description and prog_name in the input file if we want; for now, we're treating them as if they really don't matter, which they likely don't actually
 export CANDLE_MODEL_DESCRIPTION=${CANDLE_MODEL_DESCRIPTION:-"Dummy model description"}
 export CANDLE_PROG_NAME=${CANDLE_PROG_NAME:-"Dummy program name"}
-
-
-# # Write the run_candle_model_standalone.sh script here
-# # Perhaps put this in candle_generated_files as well, the .sh file?
-# m4 "$CANDLE/wrappers/candle_commands/submit-job/run_candle_model_standalone.sh.m4" > ./run_candle_model_standalone.sh
-
 
 # Set $MODEL_PYTHON_DIR and $MODEL_PYTHON_SCRIPT as appropriate
 if [ "x$(echo "$CANDLE_KEYWORD_MODEL_SCRIPT" | rev | awk -v FS="." '{print $1}' | rev)" == "xpy" ]; then
@@ -100,7 +94,7 @@ bash "$CANDLE/wrappers/candle_commands/submit-job/make_json_from_submit_params.s
 
 # If we want to run the wrapper using CANDLE...
 # ADD HERE WHEN ADDING NEW WORKFLOWS!!
-if [ "${USE_CANDLE:-1}" -eq 1 ]; then
+if [ "${CANDLE_USE_CANDLE:-1}" -eq 1 ]; then
     if [ "x$CANDLE_WORKFLOW" == "xupf" ]; then
         "$CANDLE/Supervisor/workflows/$CANDLE_WORKFLOW/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$WORKFLOW_SETTINGS_FILE"
     elif [ "x$CANDLE_WORKFLOW" == "xmlrMBO" ]; then
@@ -110,13 +104,14 @@ if [ "${USE_CANDLE:-1}" -eq 1 ]; then
         export IGNORE_ERRORS=0
 
         #"$CANDLE/Supervisor/workflows/$WORKFLOW_TYPE/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$WORKFLOW_SETTINGS_FILE" "$MODEL_NAME"
-        "$CANDLE/Supervisor/workflows/$CANDLE_WORKFLOW/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/templates/scripts/dummy_cfg-prm.sh" "$MODEL_NAME"
+        "$CANDLE/Supervisor/workflows/$CANDLE_WORKFLOW/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/candle_commands/submit-job/dummy_cfg-prm.sh" "$MODEL_NAME"
     fi
 # ...otherwise, run the wrapper alone, outside of CANDLE, nominally on an interactive node
 else
     #srun $TURBINE_LAUNCH_OPTIONS --ntasks=1 python "$benchmark"
     #python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
-    TURBINE_LAUNCH_OPTIONS_2="--mpi=pmix --mem=0"
-    echo srun $TURBINE_LAUNCH_OPTIONS_2 --ntasks=1 python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
-    srun $TURBINE_LAUNCH_OPTIONS_2 --ntasks=1 python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
+    # TURBINE_LAUNCH_OPTIONS_2="--mpi=pmix --mem=0"
+    # echo srun $TURBINE_LAUNCH_OPTIONS_2 --ntasks=1 python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
+    # srun $TURBINE_LAUNCH_OPTIONS_2 --ntasks=1 python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
+    $CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
 fi
