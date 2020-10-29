@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Assumptions:
+#   (1) candle module is loaded
+#   (2) This script is called the usual way, via "candle submit-job ..."
+
 # This script is a wrapper that prepares multiple things prior to running the workflows (the workflow.sh files in Supervisor/workflows)... this should be called from $CANDLE/wrappers/candle_commands/submit-job/command_script.sh
 # This script basically replaces the contents of the, e.g., upf-1.sh examples in the Supervisor/workflows directory that call the workflow.sh files
 
@@ -55,13 +59,13 @@ if [ ! -d "$EXPERIMENTS" ]; then
     mkdir -p "$EXPERIMENTS" && echo "Experiments directory created: $EXPERIMENTS"
 fi
 
-# If a restart is requested for a UPF job, then overwrite the WORKFLOW_SETTINGS_FILE accordingly
+# If a restart is requested for a UPF job, then overwrite the CANDLE_WORKFLOW_SETTINGS_FILE accordingly
 if [ -n "$CANDLE_KEYWORD_RESTART_FROM_EXP" ]; then # corresponds to restart_from_exp keyword in input file... note I have not currently validated this keyword in preprocess.py as I am not validating the restart functionality as a whole for the time being
-    export WORKFLOW_TYPE="upf"
+    candle_workflow="upf"
     # Ensure the metadata JSON file from the experiment from which we're restarting exists
-    metadata_file=$EXPERIMENTS/$RESTART_FROM_EXP/metadata.json
+    metadata_file=$EXPERIMENTS/$CANDLE_KEYWORD_RESTART_FROM_EXP/metadata.json
     if [ ! -f "$metadata_file" ]; then
-        echo "Error: metadata.json does not exist in the requested restart experiment $EXPERIMENTS/$RESTART_FROM_EXP"
+        echo "Error: metadata.json does not exist in the requested restart experiment $EXPERIMENTS/$CANDLE_KEYWORD_RESTART_FROM_EXP"
         exit
     fi
     # Create the new restart UPF
@@ -69,7 +73,7 @@ if [ -n "$CANDLE_KEYWORD_RESTART_FROM_EXP" ]; then # corresponds to restart_from
     python "$CANDLE/wrappers/candle_commands/submit-job/restart.py" "$metadata_file" > "$upf_new"
     # If the new UPF is empty, then there's nothing to do, so quit
     if [ -s "$upf_new" ]; then # if it's NOT empty...
-        export WORKFLOW_SETTINGS_FILE="$upf_new"
+        export CANDLE_WORKFLOW_SETTINGS_FILE="$upf_new"
     else
         echo "Error: Job is complete; nothing to do"
         rm -f "$upf_new"
@@ -81,10 +85,10 @@ fi
 # ADD HERE WHEN ADDING NEW WORKFLOWS!!
 if [ "x$CANDLE_KEYWORD_WORKFLOW" == "xgrid" ]; then # if doing the UPF workflow...
     export R_FILE=${R_FILE:-"NA"}
-    export CANDLE_WORKFLOW="upf"
+    candle_workflow="upf"
 elif [ "x$CANDLE_KEYWORD_WORKFLOW" == "xbayesian" ]; then # if doing the mlrMBO workflow...
     export R_FILE=${R_FILE:-"mlrMBO-mbo.R"}
-    export CANDLE_WORKFLOW="mlrMBO"
+    candle_workflow="mlrMBO"
 fi
 
 # Save the job's parameters into a JSON file
@@ -94,16 +98,16 @@ bash "$CANDLE/wrappers/candle_commands/submit-job/make_json_from_submit_params.s
 # If we want to run the wrapper using CANDLE...
 # ADD HERE WHEN ADDING NEW WORKFLOWS!!
 if [ "${CANDLE_USE_CANDLE:-1}" -eq 1 ]; then
-    if [ "x$CANDLE_WORKFLOW" == "xupf" ]; then
-        "$CANDLE/Supervisor/workflows/$CANDLE_WORKFLOW/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$WORKFLOW_SETTINGS_FILE"
-    elif [ "x$CANDLE_WORKFLOW" == "xmlrMBO" ]; then
+    if [ "x$candle_workflow" == "xupf" ]; then
+        "$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE_WORKFLOW_SETTINGS_FILE"
+    elif [ "x$candle_workflow" == "xmlrMBO" ]; then
 
         # From $CANDLE/Supervisor/workflows/mlrMBO/test/cfg-sys-nightly.sh:
         export SH_TIMEOUT=${SH_TIMEOUT:-}
         export IGNORE_ERRORS=0
 
         #"$CANDLE/Supervisor/workflows/$WORKFLOW_TYPE/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$WORKFLOW_SETTINGS_FILE" "$MODEL_NAME"
-        "$CANDLE/Supervisor/workflows/$CANDLE_WORKFLOW/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/candle_commands/submit-job/dummy_cfg-prm.sh" "$MODEL_NAME"
+        "$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/candle_commands/submit-job/dummy_cfg-prm.sh" "$MODEL_NAME"
     fi
 # ...otherwise, run the wrapper alone, outside of CANDLE, nominally on an interactive node
 else

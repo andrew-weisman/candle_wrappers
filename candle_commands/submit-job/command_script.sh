@@ -32,11 +32,13 @@ function generate_input_files_and_run() {
 
     # Extract everything but the WORKFLOW line into tmp2.txt and insert everything up to that line into the generated submission script
     cp tmp.txt tmp2.txt
-    split_line=$(awk 'BEGIN{regex="^export MODEL_SCRIPT=\""} {if($0~regex)print NR}' tmp2.txt)
+    #split_line=$(awk 'BEGIN{regex="^export MODEL_SCRIPT=\""} {if($0~regex)print NR}' tmp2.txt)
+    split_line=$(awk 'BEGIN{regex="^export CANDLE_KEYWORD_MODEL_SCRIPT=\""} {if($0~regex)print NR}' tmp2.txt)
     awk -v split_line="$split_line" '{if(NR<=split_line)print}' tmp2.txt > $fn_submission_script
 
     # From the WORKFLOW line determine filename of the third generated input file
-    workflow=$(grep "^export WORKFLOW=\"" tmp.txt | awk -v FS="=" '{gsub(/"/,""); print tolower($2)}')
+    #workflow=$(grep "^export WORKFLOW=\"" tmp.txt | awk -v FS="=" '{gsub(/"/,""); print tolower($2)}')
+    workflow=$(grep "^export CANDLE_KEYWORD_WORKFLOW=\"" tmp.txt | awk -v FS="=" '{gsub(/"/,""); print tolower($2)}')
     if [ "a$workflow" == "agrid" ]; then
         wsf_ext="txt"
     else
@@ -48,7 +50,7 @@ function generate_input_files_and_run() {
     # Insert the other two generated input filename settings into the generated submission script
     (
         echo "export CANDLE_DEFAULT_MODEL_FILE=\"${fn_default_model}\"" # must be a full path in order to find the default settings
-        echo "export WORKFLOW_SETTINGS_FILE=\"${fn_workflow_settings_file}\"" # can no longer be a full path in recent develop version of CANDLE --> I think this has been fixed
+        echo "export CANDLE_WORKFLOW_SETTINGS_FILE=\"${fn_workflow_settings_file}\"" # can no longer be a full path in recent develop version of CANDLE --> I think this has been fixed
         awk -v split_line="$split_line" '{if(NR>split_line)print}' tmp2.txt # populate the rest of the submission script and make it executable
     ) >> $fn_submission_script
     chmod u+x $fn_submission_script

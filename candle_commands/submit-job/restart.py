@@ -16,7 +16,7 @@ start = "start_time"
 stop = "stop_time"
 eval_key = 'id'
 exp_dir = "EXPERIMENTS"
-upf_space = "WORKFLOW_SETTINGS_FILE"
+upf_space = "CANDLE_WORKFLOW_SETTINGS_FILE"
  
 
 def grep(model_log):
