@@ -51,6 +51,11 @@ else
     else
         create_temp_dir
         shift; args_arr=($@) # save all the command arguments to this script to an array called args_arr
+
+        # Export the submission directory
+        submission_dir=$(pwd)
+        export CANDLE_SUBMISSION_DIR="$submission_dir"
+
         bash "$CANDLE/wrappers/candle_commands/$command/command_script.sh" "${args_arr[@]}"
 	    remove_temp_dir
         exit 0

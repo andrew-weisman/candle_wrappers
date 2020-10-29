@@ -77,6 +77,6 @@ unload_r_env() {
 
 # ASSUMPTIONS: None
 make_generated_files_dir() {
-    dirname="./candle_generated_files"
+    dirname="$CANDLE_SUBMISSION_DIR/candle_generated_files"
     [ -d $dirname ] || mkdir $dirname
 }

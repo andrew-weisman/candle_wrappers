@@ -241,7 +241,7 @@ def export_bash_variables(keywords):
     import os
 
     # Constant
-    file_containing_export_statements = './candle_generated_files/preprocessed_vars_to_export.sh'
+    file_containing_export_statements = os.path.join(os.getenv('CANDLE_SUBMISSION_DIR'), 'candle_generated_files', 'preprocessed_vars_to_export.sh')
 
     # General logic
     if keywords['workflow'] == 'grid':

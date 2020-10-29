@@ -67,7 +67,7 @@ if [ "x$suffix" == "xpy" ]; then
     fi
 
     # Create a wrapped version of the model in wrapped_model.py
-    wrap_model "$CANDLE/wrappers/candle_commands/submit-job/head.py" "$CANDLE_KEYWORD_MODEL_SCRIPT" "$CANDLE/wrappers/candle_commands/submit-job/tail.py" > wrapped_model.py
+    wrap_model "$CANDLE/wrappers/candle_commands/submit-job/head.py" "$CANDLE_KEYWORD_MODEL_SCRIPT" "$CANDLE/wrappers/candle_commands/submit-job/tail.py" > ./wrapped_model.py
 
     # Run wrapped_model.py
     echo "Using Python for execution: $(command -v python)"
@@ -89,7 +89,7 @@ elif [ "x$suffix" == "xr" ]; then
     fi
 
     # Create a wrapped version of the model in wrapped_model.R
-    wrap_model "$CANDLE/wrappers/candle_commands/submit-job/head.R" "$CANDLE_KEYWORD_MODEL_SCRIPT" "$CANDLE/wrappers/candle_commands/submit-job/tail.R" > wrapped_model.R
+    wrap_model "$CANDLE/wrappers/candle_commands/submit-job/head.R" "$CANDLE_KEYWORD_MODEL_SCRIPT" "$CANDLE/wrappers/candle_commands/submit-job/tail.R" > ./wrapped_model.R
 
     # Run wrapped_model.R
     echo "Using Rscript for execution: $(command -v Rscript)"
@@ -102,9 +102,9 @@ elif [ "x$suffix" == "xsh" ]; then
     #wrap_model "$CANDLE/wrappers/templates/scripts/head.sh" "$MODEL_SCRIPT" "$CANDLE/wrappers/templates/scripts/tail.sh" > wrapped_model.sh
 
     # George prefers it this way
-    echo "source $CANDLE/wrappers/candle_commands/submit-job/head.sh" > wrapped_model.sh
+    echo "source $CANDLE/wrappers/candle_commands/submit-job/head.sh" > ./wrapped_model.sh
     echo "source $CANDLE_KEYWORD_MODEL_SCRIPT" >> wrapped_model.sh
-    echo "source $CANDLE/wrappers/candle_commands/submit-job/tail.sh" >> wrapped_model.sh
+    echo "source $CANDLE/wrappers/candle_commands/submit-job/tail.sh" >> ./wrapped_model.sh
 
     # Run wrapped_model.sh
     # echo "Using Bash for execution: /bin/bash"

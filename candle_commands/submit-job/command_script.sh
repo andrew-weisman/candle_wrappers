@@ -19,9 +19,9 @@ function generate_input_files_and_run() {
     source "$CANDLE/wrappers/utilities.sh"; make_generated_files_dir
 
     # Get the filenames of two of the three generated input files
-    fn_submission_script="./candle_generated_files/submit_candle_job.sh"
+    fn_submission_script="$CANDLE_SUBMISSION_DIR/candle_generated_files/submit_candle_job.sh"
     #fn_default_model="./candle_generated_files/default_model.txt"
-    fn_default_model="candle_generated_files/default_model.txt"
+    fn_default_model="$CANDLE_SUBMISSION_DIR/candle_generated_files/default_model.txt"
 
     # Generate an "almost" version of the submission script, stored in tmp.txt
     (
@@ -43,13 +43,12 @@ function generate_input_files_and_run() {
         wsf_ext="R"
     fi
     #fn_workflow_settings_file="./candle_generated_files/${workflow}_workflow.${wsf_ext}"
-    fn_workflow_settings_file="candle_generated_files/${workflow}_workflow.${wsf_ext}"
+    fn_workflow_settings_file="$CANDLE_SUBMISSION_DIR/candle_generated_files/${workflow}_workflow.${wsf_ext}"
 
     # Insert the other two generated input filename settings into the generated submission script
-    path_or_not="$(pwd)/"
     (
-        echo "export CANDLE_DEFAULT_MODEL_FILE=\"$(pwd)/${fn_default_model}\"" # must be a full path in order to find the default settings
-        echo "export WORKFLOW_SETTINGS_FILE=\"${path_or_not}${fn_workflow_settings_file}\"" # can no longer be a full path in recent develop version of CANDLE
+        echo "export CANDLE_DEFAULT_MODEL_FILE=\"${fn_default_model}\"" # must be a full path in order to find the default settings
+        echo "export WORKFLOW_SETTINGS_FILE=\"${fn_workflow_settings_file}\"" # can no longer be a full path in recent develop version of CANDLE --> I think this has been fixed
         awk -v split_line="$split_line" '{if(NR>split_line)print}' tmp2.txt # populate the rest of the submission script and make it executable
     ) >> $fn_submission_script
     chmod u+x $fn_submission_script
@@ -84,6 +83,11 @@ function generate_input_files_and_run() {
 # Input parameter "submission_file"
 submission_file=$1
 
+# Set the CANDLE input file and the directory holding it
+input_file_dir=$(dirname "$(readlink -e "$submission_file")")
+export CANDLE_INPUT_FILE="$submission_file"
+export CANDLE_INPUT_FILE_DIR="$input_file_dir"
+
 # Determine the extension of the submission file
 extension=$(echo "$submission_file" | awk -v FS="." '{print tolower($NF)}')
 
@@ -96,7 +100,6 @@ if [ "a$extension" == "ash" ]; then
 # ...if the submission file is .in, first generate the input files from this single input file, and then execute the generated submission script...
 elif [ "a$extension" == "ain" ]; then
     echo "Submitting the CANDLE input file \"$submission_file\"... "
-    export CANDLE_INPUT_FILE="$submission_file"
     generate_input_files_and_run "$submission_file" && echo "done" || echo "failed"
 
 # ...otherwise, throw an error

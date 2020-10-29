@@ -45,4 +45,4 @@ source "$CANDLE/wrappers/utilities.sh"; make_generated_files_dir
 (
     echo "$header"
     echo "$data" | sort
-) > "./candle_generated_files/candle_results.csv" && echo "done" || echo "failed"
+) > "$CANDLE_SUBMISSION_DIR/candle_generated_files/candle_results.csv" && echo "done" || echo "failed"

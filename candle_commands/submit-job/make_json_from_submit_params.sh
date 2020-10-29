@@ -24,4 +24,4 @@ vars+=" SUPP_MODULES PYTHON_BIN_PATH EXEC_PYTHON_MODULE SUPP_PYTHONPATH EXTRA_SC
 
 # Write the dictionary in JSON format
 tmp=$(output_json_format $(echo $vars | awk -v RS=" " '{print}' | sort -u | grep -v "^$"))
-echo "{${tmp:0:${#tmp}-2}}" > metadata.json
+echo "{${tmp:0:${#tmp}-2}}" > "$CANDLE_SUBMISSION_DIR/candle_generated_files/metadata.json"
