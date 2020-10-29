@@ -84,11 +84,13 @@ fi
 # Do some workflow-dependent things
 # ADD HERE WHEN ADDING NEW WORKFLOWS!!
 if [ "x$CANDLE_KEYWORD_WORKFLOW" == "xgrid" ]; then # if doing the UPF workflow...
+    echo -e "\ngrid workflow has been requested\n"
     export R_FILE=${R_FILE:-"NA"}
-    candle_workflow="upf"
+    candle_workflow="upf" # this is what "grid" maps to in Supervisor
 elif [ "x$CANDLE_KEYWORD_WORKFLOW" == "xbayesian" ]; then # if doing the mlrMBO workflow...
+    echo -e "\nbayesian workflow has been requested\n"
     export R_FILE=${R_FILE:-"mlrMBO-mbo.R"}
-    candle_workflow="mlrMBO"
+    candle_workflow="mlrMBO" # this is what "bayesian" maps to in Supervisor
 fi
 
 # Save the job's parameters into a JSON file
@@ -97,9 +99,11 @@ bash "$CANDLE/wrappers/candle_commands/submit-job/make_json_from_submit_params.s
 
 # If we want to run the wrapper using CANDLE...
 # ADD HERE WHEN ADDING NEW WORKFLOWS!!
-if [ "${CANDLE_USE_CANDLE:-1}" -eq 1 ]; then
+if [ "${CANDLE_RUN_WORKFLOW:-1}" -eq 1 ]; then
+    echo -e "\nRunning the actual workflow has been requested\n"
     if [ "x$candle_workflow" == "xupf" ]; then
-        "$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE_WORKFLOW_SETTINGS_FILE"
+        #"$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE_WORKFLOW_SETTINGS_FILE"
+        cmd_to_run="$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh $SITE -a $CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh $CANDLE_WORKFLOW_SETTINGS_FILE"
     elif [ "x$candle_workflow" == "xmlrMBO" ]; then
 
         # From $CANDLE/Supervisor/workflows/mlrMBO/test/cfg-sys-nightly.sh:
@@ -107,9 +111,22 @@ if [ "${CANDLE_USE_CANDLE:-1}" -eq 1 ]; then
         export IGNORE_ERRORS=0
 
         #"$CANDLE/Supervisor/workflows/$WORKFLOW_TYPE/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$WORKFLOW_SETTINGS_FILE" "$MODEL_NAME"
-        "$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/candle_commands/submit-job/dummy_cfg-prm.sh" "$MODEL_NAME"
+        #"$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/candle_commands/submit-job/dummy_cfg-prm.sh" "$MODEL_NAME"
+        cmd_to_run="$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh $SITE -a $CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh $CANDLE/wrappers/candle_commands/submit-job/dummy_cfg-prm.sh $MODEL_NAME"
     fi
 # ...otherwise, run the wrapper alone, outside of CANDLE, nominally on an interactive node
 else
-    $CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
+    echo -e "\nRunning just the model script has been requested\n"
+    #$CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
+    cmd_to_run="$CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS python $MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
+fi
+
+# Run CANDLE (whether a workflow or just the model script) unless a dry run has been requested
+if [ "$CANDLE_DRY_RUN" -eq 0 ]; then
+    echo -e "\nNow running CANDLE using the command:\n"
+    echo -e "  $cmd_to_run\n"
+    $cmd_to_run
+else
+    echo -e "\nDry run has been requested; command that would otherwise be run next:\n"
+    echo -e "  $cmd_to_run\n"
 fi

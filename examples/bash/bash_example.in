@@ -4,7 +4,7 @@
   ngpus=2
   gpu_type="k80"
   walltime="00:20:00"
-  use_candle = 1
+  run_workflow = 1
 /
 
 &default_model
