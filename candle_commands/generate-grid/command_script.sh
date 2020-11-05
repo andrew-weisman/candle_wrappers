@@ -17,4 +17,4 @@ source "$CANDLE/wrappers/utilities.sh"; load_python_env
 source "$CANDLE/wrappers/utilities.sh"; make_generated_files_dir
 
 # Run the script that generates the hyperparameter grid
-python "$CANDLE/wrappers/candle_commands/generate-grid/generate_hyperparameter_grid.py" "${args_arr[@]}" && echo "done" || echo "failed"
+python "$CANDLE/wrappers/commands/generate-grid/generate_hyperparameter_grid.py" "${args_arr[@]}" && echo "done" || echo "failed"

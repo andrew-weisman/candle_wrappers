@@ -19,7 +19,7 @@ for submit_script in submit_candle_job*.sh; do
     vars+=" $(grep "^export " $submit_script | awk -v FS="export " '{split($2,arr,"="); print arr[1]}')"
 done
 
-vars+=" $(grep "^[ ]*export " $CANDLE/wrappers/candle_commands/submit-job/run_workflows.sh | awk -v FS="export " '{split($2,arr,"="); print arr[1]}')"
+vars+=" $(grep "^[ ]*export " $CANDLE/wrappers/commands/submit-job/run_workflows.sh | awk -v FS="export " '{split($2,arr,"="); print arr[1]}')"
 vars+=" SUPP_MODULES PYTHON_BIN_PATH EXEC_PYTHON_MODULE SUPP_PYTHONPATH EXTRA_SCRIPT_ARGS EXEC_R_MODULE RESTART_FROM_EXP RUN_WORKFLOW" # from $CANDLE/wrappers/templates/scripts/model_wrapper.sh, plus one more from run_workflows.sh
 
 # Write the dictionary in JSON format

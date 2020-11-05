@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # If CANDLE job results are requested to be aggregated, do so
-# Run like "bash $CANDLE/wrappers/candle_commands/aggregate-results/command_script.sh <EXPT-DIR>", e.g.,
-# "bash $CANDLE/wrappers/candle_commands/aggregate-results/command_script.sh /home/weismanal/notebook/2019-07-06/jurgen_benchmarking-upf/experiments/X002"
+# Run like "bash $CANDLE/wrappers/commands/aggregate-results/command_script.sh <EXPT-DIR>", e.g.,
+# "bash $CANDLE/wrappers/commands/aggregate-results/command_script.sh /home/weismanal/notebook/2019-07-06/jurgen_benchmarking-upf/experiments/X002"
 # ASSUMPTIONS: candle module has been loaded
 
 # Function to get all the data from the CANDLE runs

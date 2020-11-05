@@ -8,7 +8,7 @@
 
 function candle_get_param {
     #python ${script_dir}/get_param.py "$@"
-    python "$CANDLE/wrappers/candle_commands/submit-job/get_param.py" "$@"
+    python "$CANDLE/wrappers/commands/submit-job/get_param.py" "$@"
 }
 
 

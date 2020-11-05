@@ -4,7 +4,7 @@
 #   (1) candle module is loaded
 #   (2) This script is called the usual way, via "candle submit-job ..."
 
-# This script is a wrapper that prepares multiple things prior to running the workflows (the workflow.sh files in Supervisor/workflows)... this should be called from $CANDLE/wrappers/candle_commands/submit-job/command_script.sh
+# This script is a wrapper that prepares multiple things prior to running the workflows (the workflow.sh files in Supervisor/workflows)... this should be called from $CANDLE/wrappers/commands/submit-job/command_script.sh
 # This script basically replaces the contents of the, e.g., upf-1.sh examples in the Supervisor/workflows directory that call the workflow.sh files
 
 # Set the site-specific settings (needed for preprocess.py below)
@@ -16,7 +16,7 @@ source "$CANDLE/wrappers/site-specific_settings.sh"
 source "$CANDLE/wrappers/utilities.sh"; load_python_env --set-pythonhome
 
 # Check the input settings, determine the sbatch settings, and export variables set in Python
-if python "$CANDLE/wrappers/candle_commands/submit-job/preprocess.py"; then
+if python "$CANDLE/wrappers/commands/submit-job/preprocess.py"; then
     echo "NOTE: preprocess.py was run successfully; now sourcing the variables it set in $CANDLE_SUBMISSION_DIR/candle_generated_files/preprocessed_vars_to_export.sh"
     source "$CANDLE_SUBMISSION_DIR/candle_generated_files/preprocessed_vars_to_export.sh"
 else
@@ -39,12 +39,12 @@ if [ "x$(echo "$CANDLE_KEYWORD_MODEL_SCRIPT" | rev | awk -v FS="." '{print $1}' 
         export MODEL_PYTHON_SCRIPT="$tmp"
     else
         # echo "NOTE: $CANDLE_KEYWORD_MODEL_SCRIPT is likely NOT CANDLE-compliant"
-        export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/candle_commands/submit-job"}
+        export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/commands/submit-job"}
         export MODEL_PYTHON_SCRIPT=${MODEL_PYTHON_SCRIPT:-"candle_compliant_wrapper"}
     fi
 else
     echo "NOTE: Model script '$CANDLE_KEYWORD_MODEL_SCRIPT' is not a Python file"
-    export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/candle_commands/submit-job"}
+    export MODEL_PYTHON_DIR=${MODEL_PYTHON_DIR:-"$CANDLE/wrappers/commands/submit-job"}
     export MODEL_PYTHON_SCRIPT=${MODEL_PYTHON_SCRIPT:-"candle_compliant_wrapper"}
 fi
 
@@ -70,7 +70,7 @@ if [ -n "$CANDLE_KEYWORD_RESTART_FROM_EXP" ]; then # corresponds to restart_from
     fi
     # Create the new restart UPF
     upf_new="$CANDLE_SUBMISSION_DIR/candle_generated_files/upf_workflow-restart.txt"
-    python "$CANDLE/wrappers/candle_commands/submit-job/restart.py" "$metadata_file" > "$upf_new"
+    python "$CANDLE/wrappers/commands/submit-job/restart.py" "$metadata_file" > "$upf_new"
     # If the new UPF is empty, then there's nothing to do, so quit
     if [ -s "$upf_new" ]; then # if it's NOT empty...
         export CANDLE_WORKFLOW_SETTINGS_FILE="$upf_new"
@@ -95,7 +95,7 @@ fi
 
 # Save the job's parameters into a JSON file
 # This is probably for the restart functionality above
-bash "$CANDLE/wrappers/candle_commands/submit-job/make_json_from_submit_params.sh"
+bash "$CANDLE/wrappers/commands/submit-job/make_json_from_submit_params.sh"
 
 # If we want to run the wrapper using CANDLE...
 # ADD HERE WHEN ADDING NEW WORKFLOWS!!
@@ -111,8 +111,8 @@ if [ "${CANDLE_RUN_WORKFLOW:-1}" -eq 1 ]; then
         export IGNORE_ERRORS=0
 
         #"$CANDLE/Supervisor/workflows/$WORKFLOW_TYPE/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$WORKFLOW_SETTINGS_FILE" "$MODEL_NAME"
-        #"$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/candle_commands/submit-job/dummy_cfg-prm.sh" "$MODEL_NAME"
-        cmd_to_run="$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh $SITE -a $CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh $CANDLE/wrappers/candle_commands/submit-job/dummy_cfg-prm.sh $MODEL_NAME"
+        #"$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/commands/submit-job/dummy_cfg-prm.sh" "$MODEL_NAME"
+        cmd_to_run="$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh $SITE -a $CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh $CANDLE/wrappers/commands/submit-job/dummy_cfg-prm.sh $MODEL_NAME"
     fi
 # ...otherwise, run the wrapper alone, outside of CANDLE, nominally on an interactive node
 else

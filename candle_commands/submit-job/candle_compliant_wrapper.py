@@ -40,7 +40,7 @@ def run(params):
     with open('subprocess_out_and_err.txt', 'w') as myfile:
         import subprocess, os
         print('Starting run of model_wrapper.sh from candle_compliant_wrapper.py...')
-        subprocess.run(['bash', os.getenv('CANDLE')+'/wrappers/candle_commands/submit-job/model_wrapper.sh'], stdout=myfile, stderr=subprocess.STDOUT)
+        subprocess.run(['bash', os.getenv('CANDLE')+'/wrappers/commands/submit-job/model_wrapper.sh'], stdout=myfile, stderr=subprocess.STDOUT)
         print('Finished run of model_wrapper.sh from candle_compliant_wrapper.py')
 
     # Read in the history.history dictionary containing the result from the JSON file created by the model

@@ -17,7 +17,7 @@ if len(arguments) == 0:
     print('A sample call would be:')
     print('')
     print('  module load python/3.7')
-    print('  python $CANDLE/wrappers/candle_commands/generate-grid/generate_hyperparameter_grid.py "[\'john\',np.arange(5,15,2)]" "[\'single_num\',[4]]" "[\'letter\',[\'x\',\'y\',\'z\']]" "[\'arr\',[[2,2],None,[2,2,2],[2,2,2,2]]]" "[\'smith\',np.arange(-1,1,0.2)]"')
+    print('  python $CANDLE/wrappers/commands/generate-grid/generate_hyperparameter_grid.py "[\'john\',np.arange(5,15,2)]" "[\'single_num\',[4]]" "[\'letter\',[\'x\',\'y\',\'z\']]" "[\'arr\',[[2,2],None,[2,2,2],[2,2,2,2]]]" "[\'smith\',np.arange(-1,1,0.2)]"')
     print('')
     exit()
 

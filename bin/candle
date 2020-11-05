@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# For each main (i.e., not "help") "command" of the "candle" program, there should be one corresponding line in the usage() below and one corresponding folder in $CANDLE/wrappers/candle_commands
+# For each main (i.e., not "help") "command" of the "candle" program, there should be one corresponding line in the usage() below and one corresponding folder in $CANDLE/wrappers/commands
 # ASSUMPTIONS: The candle module should be loaded
 
 # Function outputting correct usage of this script
@@ -56,7 +56,7 @@ else
         submission_dir=$(pwd)
         export CANDLE_SUBMISSION_DIR="$submission_dir"
 
-        bash "$CANDLE/wrappers/candle_commands/$command/command_script.sh" "${args_arr[@]}"
+        bash "$CANDLE/wrappers/commands/$command/command_script.sh" "${args_arr[@]}"
 	    remove_temp_dir
         exit 0
     fi

@@ -6,7 +6,7 @@ All site-specific information and settings should be located in only:
 
 1. the site-specific READMEs (e.g., [README-biowulf.md](./README-biowulf.md) or [README-summit.md](./README-summit.md))
 1. the file [site-specific_settings.sh](./site-specific_settings.sh)
-1. the `export_bash_variables()` function in the file [preprocess.py](./candle_commands/submit-job/preprocess.py)
+1. the `export_bash_variables()` function in the file [preprocess.py](./commands/submit-job/preprocess.py)
 
 Note that *all* required or optional keywords based on all the values of the `$CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS` variable in `site-specific_settings.sh` should be checked in the `check_keywords()` function of `preprocess.py`.
 
@@ -26,6 +26,6 @@ After completing the setup steps outlined in [README-biowulf.md](./README-biowul
 
 ## How to add new workflows
 
-1. Add to the `valid_workflows` variable in the `check_keywords()` function in `$CANDLE/wrappers/candle_commands/submit-job/preprocess.py`
-1. Add to the two blocks with comments "# ADD HERE WHEN ADDING NEW WORKFLOWS!!" in `$CANDLE/wrappers/candle_commands/submit-job/run_workflows.sh`
+1. Add to the `valid_workflows` variable in the `check_keywords()` function in `$CANDLE/wrappers/commands/submit-job/preprocess.py`
+1. Add to the two blocks with comments "# ADD HERE WHEN ADDING NEW WORKFLOWS!!" in `$CANDLE/wrappers/commands/submit-job/run_workflows.sh`
 1. Test the new workflow functionality
