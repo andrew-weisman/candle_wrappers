@@ -7,7 +7,7 @@ This repository contains:
 
 ## Setup
 
-See `README-<SITE>.md` for the relevant site (e.g., [README-biowulf.md](./README-biowulf.md), [README-summit.md](./README-summit.md)) in order to set up CANDLE as a central installation.
+See `README-<SITE>.md` for the relevant site (e.g., [setup-biowulf.md](./setup-biowulf.md), [setup-summit.md](./setup-summit.md)) in order to set up CANDLE as a central installation.
 
 ## Usage
 
@@ -24,7 +24,7 @@ in order to output usage information to the screen.
 
 All site-specific information and settings in `candle_wrappers` should be located in only:
 
-1. the site-specific READMEs (e.g., [README-biowulf.md](./README-biowulf.md) or [README-summit.md](./README-summit.md))
+1. the site-specific READMEs (e.g., [setup-biowulf.md](./setup-biowulf.md) or [setup-summit.md](./setup-summit.md))
 1. the file [site-specific_settings.sh](./site-specific_settings.sh)
 1. the `export_bash_variables()` function in the file [preprocess.py](./candle_commands/submit-job/preprocess.py)
 
