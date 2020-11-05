@@ -1,4 +1,4 @@
-# Biowulf installation
+# Biowulf setup
 
 ## First time
 
