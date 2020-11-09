@@ -9,7 +9,7 @@
 # This script should be run like 'bash "$CANDLE/checkouts/wrappers/setup.sh"''
 # ASSUMPTIONS:
 #   (1) The candle module is loaded as usual
-#   (2) Running this script in interactive or batch mode (i.e., not on a login node) so that srun, jsrun, etc. can be run
+#   (2) Running this script in interactive or batch mode (i.e., not on a login node) so that srun, jsrun, etc. (the launchers) can be run
 
 
 # Function asking whether the user has checked a particular configuration file
@@ -56,8 +56,7 @@ cd "$CANDLE_SETUP_LOCAL_DIR"
 #### Set up the directory structure and clone the necessary repositories ###########################################################
 echo -e "\n\n :::: Setting up directory structure and cloning necessary repositories...\n"
 
-# Create the necessary directories not already created using the instructions in README.md
-#[ -d "$CANDLE/bin" ] || mkdir "$CANDLE/bin"
+# Create the necessary directories not already created using the instructions in setup-$SITE.md
 [ -d "$CANDLE/builds" ] || mkdir "$CANDLE/builds"
 
 # Check out the necessary software from GitHub
@@ -100,10 +99,6 @@ check_file_before_continuing "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.s
 
 # shellcheck source=/dev/null
 source "$CANDLE/Supervisor/workflows/common/sh/env-$SITE.sh"
-
-# Set the site-specific settings again now that assumption #3 for sourcing this file has been satisfied
-# shellcheck source=/dev/null
-#source "$CANDLE/wrappers/site-specific_settings.sh"
 
 # Output the executables to be used for Swift/T and Python
 determine_executable swift-t
@@ -264,17 +259,16 @@ fi
 echo -e "\n\n :::: Running two Swift/T hello world tests...\n"
 
 # Setup
-BUILD_SCRIPTS_DIR="$CANDLE/wrappers/test_files"
 echo -e " ::::: Using swift-t: $(command -v swift-t)\n"
 
 # Ensure $TURBINE_LAUNCHER is set so that we can run Swift/T in interactive mode
 export TURBINE_LAUNCHER="$CANDLE_SETUP_JOB_LAUNCHER"
 
 # Test 1: Output is a single line saying hello
-swift-t -n 3 "$BUILD_SCRIPTS_DIR/mytest2.swift"
+swift-t -n 3 "$CANDLE/wrappers/test_files/mytest2.swift"
 
 # Test 2: Time-delayed printouts of some numbers
-swift-t -n 3 -r "$BUILD_SCRIPTS_DIR" "$BUILD_SCRIPTS_DIR/myextension.swift"
+swift-t -n 3 -r "$CANDLE/wrappers/test_files" "$CANDLE/wrappers/test_files/myextension.swift"
 ####################################################################################################################################
 
 

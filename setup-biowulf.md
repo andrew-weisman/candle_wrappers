@@ -1,8 +1,8 @@
 # Biowulf setup
 
-## First time
+## Initial setup &mdash; do this just once
 
-Choose a version name, e.g., `2020-09-30`, and set this to the `version` Bash variable:
+Choose a version name&mdash;going by the date is recommended, e.g., `2020-09-30`&mdash;and set this to the `version` Bash variable:
 
 ```bash
 version="2020-09-30"
@@ -33,7 +33,7 @@ mkdir -p "$CANDLE/checkouts"
 git clone git@github.com:andrew-weisman/candle_wrappers "$CANDLE/checkouts/wrappers" # probably have to set up the GitHub ssh key before this line works
 ```
 
-## Subsequent times
+## Further setup &mdash; once initial setup (above) has been done
 
 ```bash
 version="2020-09-30"
@@ -59,7 +59,7 @@ local base        = pathJoin("/data/BIDS-HPC/public/software/distributions/candl
 
 -- The following block is what should match the "export ..." lines of env_for_lmod-$version.sh
 setenv("CANDLE", base)
-append_path("PATH", pathJoin(base, "bin"))
+append_path("PATH", pathJoin(base, "wrappers", "bin"))
 setenv("SITE", "biowulf")
 append_path("PYTHONPATH", pathJoin(base, "Benchmarks", "common"))
 

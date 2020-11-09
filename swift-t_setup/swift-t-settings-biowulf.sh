@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Assumptions:
-#   (1) env-biowulf.sh has been sourced
-#   (2) site-specific_settings.sh has been sourced
+# Assumptions: env-biowulf.sh has been sourced
 
 # SWIFT/T SETTINGS
 

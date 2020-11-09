@@ -75,8 +75,8 @@ unload_r_env() {
 }
 
 
-# ASSUMPTIONS: None
+# ASSUMPTIONS: The candle command has been called validly ($CANDLE_SUBMISSION_DIR is set in bin/candle)
 make_generated_files_dir() {
     dirname="$CANDLE_SUBMISSION_DIR/candle_generated_files"
-    [ -d $dirname ] || mkdir $dirname
+    [ -d "$dirname" ] || mkdir "$dirname"
 }
