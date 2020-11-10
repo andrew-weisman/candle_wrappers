@@ -1,5 +1,6 @@
 # This script outputs to the screen the entire space of the inputted variables, producing a file suitable to be an unrolled parameter file.
 # Run this script without any arguments in order to see its usage and an example.
+# Assumption: The candle program has been called normally (so that the $CANDLE_SUBMISSION_DIR variable has been defined)
 
 # Import relevant modules
 import numpy as np
@@ -49,9 +50,7 @@ def add_to_set(set_str_base, name, value, dtype):
     python_types = (False, True, None)
     json_types = ("false", "true", "null")
     comparisons = [value is x for x in python_types]
-    #if value in python_types:
     if any(comparisons):
-        #value = json_types[python_types.index(value)]
         value = json_types[comparisons.index(True)]
 
     # Return the formatted string
@@ -60,7 +59,6 @@ def add_to_set(set_str_base, name, value, dtype):
 # Define a function to output each set of hyperparameters
 def print_str(set_str, nhpset, f):
     nhpset += 1
-    #print('{{"id": "hpset_{:05}"{}}}'.format(nhpset, set_str))
     f.write('{{"id": "hpset_{:05}"{}}}\n'.format(nhpset, set_str))
     return(nhpset)
 

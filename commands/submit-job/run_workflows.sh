@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Assumptions:
-#   (1) candle module is loaded
-#   (2) This script is called the usual way, via "candle submit-job ..."
+# ASSUMPTIONS:
+#   (1) candle module has been loaded
+#   (2) the candle program has been called normally (so that the $CANDLE_SUBMISSION_DIR variable has been defined)
 
 # This script is a wrapper that prepares multiple things prior to running the workflows (the workflow.sh files in Supervisor/workflows)... this should be called from $CANDLE/wrappers/commands/submit-job/command_script.sh
 # This script basically replaces the contents of the, e.g., upf-1.sh examples in the Supervisor/workflows directory that call the workflow.sh files
@@ -102,7 +102,6 @@ bash "$CANDLE/wrappers/commands/submit-job/make_json_from_submit_params.sh"
 if [ "${CANDLE_RUN_WORKFLOW:-1}" -eq 1 ]; then
     echo -e "\nRunning the actual workflow has been requested\n"
     if [ "x$candle_workflow" == "xupf" ]; then
-        #"$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE_WORKFLOW_SETTINGS_FILE"
         cmd_to_run="$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh $SITE -a $CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh $CANDLE_WORKFLOW_SETTINGS_FILE"
     elif [ "x$candle_workflow" == "xmlrMBO" ]; then
 
@@ -110,14 +109,11 @@ if [ "${CANDLE_RUN_WORKFLOW:-1}" -eq 1 ]; then
         export SH_TIMEOUT=${SH_TIMEOUT:-}
         export IGNORE_ERRORS=0
 
-        #"$CANDLE/Supervisor/workflows/$WORKFLOW_TYPE/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$WORKFLOW_SETTINGS_FILE" "$MODEL_NAME"
-        #"$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh" "$SITE" -a "$CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh" "$CANDLE/wrappers/commands/submit-job/dummy_cfg-prm.sh" "$MODEL_NAME"
         cmd_to_run="$CANDLE/Supervisor/workflows/$candle_workflow/swift/workflow.sh $SITE -a $CANDLE/Supervisor/workflows/common/sh/cfg-sys-$SITE.sh $CANDLE/wrappers/commands/submit-job/dummy_cfg-prm.sh $MODEL_NAME"
     fi
 # ...otherwise, run the wrapper alone, outside of CANDLE, nominally on an interactive node
 else
     echo -e "\nRunning just the model script has been requested\n"
-    #$CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS python "$MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
     cmd_to_run="$CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS python $MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
 fi
 

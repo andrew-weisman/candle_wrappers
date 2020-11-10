@@ -94,8 +94,7 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
     checked_keywords = dict()
 
     # Obtain Python dictionary of the possible keywords and their default values
-    possible_keywords_and_defaults_str = os.getenv(possible_keywords_and_defaults_bash_var) # do this normally
-    #possible_keywords_and_defaults_str = "{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None}" # do this just for testing
+    possible_keywords_and_defaults_str = os.getenv(possible_keywords_and_defaults_bash_var)
     possible_keywords_and_defaults = eval(possible_keywords_and_defaults_str)
 
     # Output the possible keywords and their default values

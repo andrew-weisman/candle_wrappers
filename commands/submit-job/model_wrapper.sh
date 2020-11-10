@@ -2,15 +2,15 @@
 
 # ASSUMPTIONS:
 #   (1) candle module is loaded
-#   (2) These variables are defined:
-#         $CANDLE_SUPP_MODULES
-#         $CANDLE_KEYWORD_MODEL_SCRIPT
-#         $CANDLE_PYTHON_BIN_PATH
-#         $CANDLE_EXEC_PYTHON_MODULE
-#         $CANDLE_EXTRA_SCRIPT_ARGS
-#         $CANDLE_EXEC_R_MODULE
-#         $CANDLE_SUPP_PYTHONPATH
-#         $CANDLE_SUPP_R_LIBS
+#   (2) candle is run the normal way via "candle submit-job ...", which defines the variables:
+#         $CANDLE_SUPP_MODULES (preprocess.py)
+#         $CANDLE_KEYWORD_MODEL_SCRIPT (input file)
+#         $CANDLE_PYTHON_BIN_PATH (preprocess.py)
+#         $CANDLE_EXEC_PYTHON_MODULE (preprocess.py)
+#         $CANDLE_EXTRA_SCRIPT_ARGS (preprocess.py)
+#         $CANDLE_EXEC_R_MODULE (preprocess.py)
+#         $CANDLE_SUPP_PYTHONPATH (via head.py; preprocess.py)
+#         $CANDLE_SUPP_R_LIBS (via head.R; preprocess.py)
 
 
 # Function to wrap the input model by wrapper lines of code
@@ -93,7 +93,7 @@ elif [ "x$suffix" == "xr" ]; then
 
     # Run wrapped_model.R
     echo "Using Rscript for execution: $(command -v Rscript)"
-    script_call="Rscript${EXTRA_SCRIPT_ARGS:+ $EXTRA_SCRIPT_ARGS}"
+    script_call="Rscript${CANDLE_EXTRA_SCRIPT_ARGS:+ $CANDLE_EXTRA_SCRIPT_ARGS}"
     $script_call wrapped_model.R
 
 elif [ "x$suffix" == "xsh" ]; then

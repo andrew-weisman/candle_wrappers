@@ -1,4 +1,4 @@
-# This file should follow the current standard CANDLE-compliance procedure
+# This file should follow the current standard CANDLE-compliance procedure (what I'm calling to be "canonically CANDLE-compliant" to contrast it with the easier "CANDLE-compliance" that these wrapper scripts enable)
 
 def initialize_parameters():
 
@@ -55,11 +55,11 @@ def main():
     """
     CANDLE-compliant script that runs the model script by calling a Bash script (model_wrapper.sh) that wraps the model script and calls it.
 
-    Note: The advantage of doing is this way as opposed to just importing the model script is that models written in other langugages (such as R and even Bash) can be used with CANDLE.
+    Note: The advantage of doing is this way as opposed to just importing the model script is that models written in other langugages (such as R and even Bash) can be used with CANDLE. Also, less work needs to be done to comply with the new CANDLE-compliance since we further wrap the user's model with heads/tails that they'd otherwise have to do themselves.
 
     Assumptions:
       (1) candle module has been loaded
-      (2) Environment variables CANDLE_DEFAULT_MODEL_FILE, CANDLE_MODEL_DESCRIPTION, CANDLE_DL_BACKEND, CANDLE_PROG_NAME have been set
+      (2) the candle program has been called normally (via e.g. candle submit-job ...)
     """
     params = initialize_parameters()
     run(params)

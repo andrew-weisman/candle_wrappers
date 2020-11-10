@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Must have CANDLE module loaded prior to running this script
 # If there are problems later, it may be that we reference run_workflows.sh below from itself since we call this script from it
+# ASSUMPTIONS:
+#   (1) candle module has been loaded
+#   (2) the candle program has been called normally (so that the $CANDLE_SUBMISSION_DIR variable has been defined)
 
 # Write a function to output the key-value pairs
 output_json_format() {

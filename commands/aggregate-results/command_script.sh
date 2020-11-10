@@ -3,16 +3,16 @@
 # If CANDLE job results are requested to be aggregated, do so
 # Run like "bash $CANDLE/wrappers/commands/aggregate-results/command_script.sh <EXPT-DIR>", e.g.,
 # "bash $CANDLE/wrappers/commands/aggregate-results/command_script.sh /home/weismanal/notebook/2019-07-06/jurgen_benchmarking-upf/experiments/X002"
-# ASSUMPTIONS: candle module has been loaded
+# ASSUMPTIONS:
+#   (1) candle module has been loaded
+#   (2) the candle program has been called normally (so that the $CANDLE_SUBMISSION_DIR variable has been defined)
 
 # Function to get all the data from the CANDLE runs
 function get_data(){
     # For each set of HPs...
-    #for run_dir in $(ls $expt_dir/run); do
     for run_dir in "$expt_dir/run"/*; do
 
         # Get the result
-        #result=$(cat $expt_dir/run/$run_dir/result.txt | awk -v result_format=$result_format '{printf(result_format,$0)}')
         result=$(awk -v result_format="$result_format" '{printf(result_format,$0)}' "$expt_dir/run/$run_dir/result.txt")
 
         # Get the CSV-formatted data
