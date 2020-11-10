@@ -36,17 +36,17 @@ set.seed(1234)
 resultsCORR <- combineFS(features = features, 
                           class = class,
                           univariate = 'corr', 
-                          mincorr = hyperparams[["mincorr"]],
+                          mincorr = candle_params[["mincorr"]],
                           multivariate = 'mcorr', 
-                          maxcorr = hyperparams[["maxcorr"]],
+                          maxcorr = candle_params[["maxcorr"]],
                           wrapper = 'rfe.rf',
-                          number.cv = hyperparams[["number_cv"]],
+                          number.cv = candle_params[["number_cv"]],
                           group.sizes = seq(1,100, 1),
-                          extfolds = hyperparams[["extfolds"]],
+                          extfolds = candle_params[["extfolds"]],
                           verbose = TRUE)
 
 cat("Max accuracy results for X2-CM-RFE-RF workflow", "\n")
 max.acc.testing.resultsCORR <- max(resultsCORR$best.model$results$Kappa)
 max.acc.testing.resultsCORR
 
-val_to_return <- max.acc.testing.resultsCORR
+candle_value_to_return <- max.acc.testing.resultsCORR

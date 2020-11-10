@@ -5,6 +5,8 @@ This repository contains:
 1. Files needed to set up CANDLE as a central installation (so that you can run e.g. `module load candle`; "Setup" section [below](#Setup))
 1. Wrapper scripts around the CANDLE Supervisor that can be used for running the workflows on an arbitrary model ("Usage" section [below](#Usage))
 
+All files in this repository are described and related in [repository_organization.md](./repository_organization.md).
+
 ## Setup
 
 See `setup-<SITE>.md` for the relevant site (e.g., [setup-biowulf.md](./setup-biowulf.md), [setup-summit.md](./setup-summit.md)) in order to set up CANDLE as a central installation at that site.

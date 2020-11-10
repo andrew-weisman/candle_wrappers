@@ -14,12 +14,12 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.optimizers import RMSprop
 
-batch_size = hyperparams['batch_size']
+batch_size = candle_params['batch_size']
 num_classes = 10
-epochs = hyperparams['epochs']
+epochs = candle_params['epochs']
 
-activation = hyperparams['activation']
-optimizer = hyperparams['optimizer']
+activation = candle_params['activation']
+optimizer = candle_params['optimizer']
 
 # the data, split between train and test sets
 (x_train, y_train), (x_test, y_test) = mnist.load_data()

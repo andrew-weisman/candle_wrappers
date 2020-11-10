@@ -1,11 +1,12 @@
 # Repository organization
 
-    .
+This document describes and relates all files in the `candle_wrappers` repository. All file locations are relative to `$CANDLE/wrappers`.
+
     ├── README.md
 
 *Description:* Starting place for learning how to use the files in this `candle_wrappers` repository, including setup/usage instructions and general notes. **Start here!**  
 *Referenced by:* NA; top-level; rendered by default when going to [the current repository](https://github.com/andrew-weisman/candle_wrappers) on GitHub  
-*References:* `setup-$SITE.md`
+*References:* `setup-$SITE.md`, `repository_organization.md`
 
     ├── setup-$SITE.md
 
@@ -177,7 +178,7 @@
 
 *Description:* Nominally a `workflow.sh`-calling script that checks input settings via preprocess.py, sources variables set to be exported in preprocess.py, sets `$MODEL_PYTHON_DIR` and `$MODEL_PYTHON_SCRIPT` to a canonically CANDLE-compliant file, creates the experiments directory if not already present, maps user-friendly workflow keywords to Supervisor workflows, generates the commands to run (the workflow.sh scripts in Supervisor/workflows, or `python` via a launcher on an interactive node), and runs the generated commands or outputs them to screen if a dry run is requested  
 *Referenced by:* `commands/submit-job/command_script.sh`  
-*References:* `site-specific_settings.sh`, `utilities.sh`, `commands/submit-job/preprocess.py`, `utilities.py`, `commands/submit-job/restart.py`, `commands/submit-job/make_json_from_submit_params.sh`, `candle_compliant_wrapper.py` (indirectly through Supervisor)
+*References:* `site-specific_settings.sh`, `utilities.sh`, `commands/submit-job/preprocess.py`, `utilities.py`, `commands/submit-job/restart.py`, `commands/submit-job/make_json_from_submit_params.sh`, `candle_compliant_wrapper.py` (indirectly through Supervisor), `commands/submit-job/dummy_cfg-prm.sh` (indirectly through Supervisor)
 
     │       ├── preprocess.py
 
@@ -207,7 +208,7 @@
 
 *Description:* Script that displays timing/node/GPU information at the beginning and end, unloads the main Python distribution as it's no longer necessarily necessary, loads a supplementary set of modules if desired, writes a script to run the model standalone via `run_candle_model_standalone.sh.m4`, and, for a model script written in Python, R, or Bash, sets the particular Python or R versions desired for execution, wraps the model script in head and tail code snippets, and executes the wrapped model. Note this way of running the model script allows for languages aside from Python to be used and for less CANDLE-compliance explicitly required by the user due to the head and tail snippets bookending the model script  
 *Referenced by:* `commands/submit-job/candle_compliant_wrapper.py`  
-*References:* `utilities.sh`, `commands/submit-job/run_candle_model_standalone.sh.m4`, `commands/submit-job/{head,tail}.{py,R,sh}`
+*References:* `utilities.sh`, `commands/submit-job/run_candle_model_standalone.sh.m4`, `commands/submit-job/{head,tail}.{py,R,sh}`, `$CANDLE_KEYWORD_MODEL_SCRIPT`
 
     │       ├── run_candle_model_standalone.sh.m4
 
@@ -258,6 +259,11 @@
 *References:* NA
 
     │       ├── dummy_cfg-prm.sh
+
+*Description:* This is a dummy `cfg-prm.sh` of the typical format in Supervisor that sets the five variables needed in Supervisor for the mlrMBO workflow to values that are set elsewhere in the `candle_wrappers` workflow  
+*Referenced by:* `commands/submit-job/run_workflows.sh` (indirectly through Supervisor)  
+*References:* NA
+
     │   └── aggregate-results
 
 *DIRECTORY:* Contains the command used to collect the results of the model run on each hyperparameter set alongside the corresponding HP set itself
@@ -289,6 +295,11 @@
 *References:* NA
 
     │   │   └── mnist_mlp.py
+
+*Description:* Sample model script that trains a simple deep neural network on the MNIST dataset  
+*Referenced by:* `commands/submit-job/model_wrapper.sh`  
+*References:* NA
+
     │   ├── bayesian
 
 *DIRECTORY:* Contains an example model script and input file for a Bayesian search
@@ -300,6 +311,11 @@
 *References:* NA
 
     │   │   └── nt3_baseline_keras2.py
+
+*Description:* Sample model script from a version of the NT3 Pilot 1 benchmark  
+*Referenced by:* `commands/submit-job/model_wrapper.sh`  
+*References:* NA
+
     │   └── r
 
 *DIRECTORY:* Contains an example model script written in `R` and input file for a grid search
@@ -311,6 +327,11 @@
 *References:* NA
 
     │       ├── feature-reduction.R
+
+*Description:* Sample model script written in `R` by Ravi Ravichandran that performs simple feature reduction on the triple negative breast cancer dataset  
+*Referenced by:* `commands/submit-job/model_wrapper.sh`  
+*References:* NA
+
     │   ├── bash
 
 *DIRECTORY:* Contains an example model script written in `bash` and input file for a grid search
@@ -321,8 +342,22 @@
 *Referenced by:* `commands/submit-job/command_script.sh`  
 *References:* NA
 
-    │   │   ├── mnist_mlp.py
     │   │   └── model_script.sh
+
+*Description:* Sample model script written in `bash` by George Zaki that executes a simple MNIST model  
+*Referenced by:* `commands/submit-job/model_wrapper.sh`  
+*References:* `examples/bash/mnist_mlp.py`
+
+    │   │   ├── mnist_mlp.py
+
+*Description:* `python` model exemplifying George Zaki's `bash` model script functionality  
+*Referenced by:* `examples/bash/model_script.sh`  
+*References:* NA
+
     ├── repository_organization.md
+
+*Description:* The document that you are reading that describes every file in the `candle_wrappers` repository and defines the relationships between all files  
+*Referenced by:* `README.md`  
+*References:* NA
 
     16 directories

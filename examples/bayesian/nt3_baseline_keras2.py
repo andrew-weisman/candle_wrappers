@@ -16,12 +16,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, MaxAbsScaler
 
 import sys, os
-#sys.path.append(os.getenv("CANDLE")+'/Candle/common')
-#import candle_keras as candle
-sys.path.append(os.getenv("CANDLE")+'/Benchmarks/common')
 import candle
 
-def load_data(train_path, test_path, hyperparams):
+def load_data(train_path, test_path, candle_params):
 
     print('Loading data...')
     df_train = (pd.read_csv(train_path,header=None).values).astype('float32')
@@ -36,14 +33,11 @@ def load_data(train_path, test_path, hyperparams):
     df_y_train = df_train[:,0].astype('int')
     df_y_test = df_test[:,0].astype('int')
 
-    Y_train = np_utils.to_categorical(df_y_train,hyperparams['classes'])
-    Y_test = np_utils.to_categorical(df_y_test,hyperparams['classes'])
+    Y_train = np_utils.to_categorical(df_y_train,candle_params['classes'])
+    Y_test = np_utils.to_categorical(df_y_test,candle_params['classes'])
 
     df_x_train = df_train[:, 1:seqlen].astype(np.float32)
     df_x_test = df_test[:, 1:seqlen].astype(np.float32)
-
-#        X_train = df_x_train.as_matrix()
-#        X_test = df_x_test.as_matrix()
 
     X_train = df_x_train
     X_test = df_x_test
@@ -58,18 +52,16 @@ def load_data(train_path, test_path, hyperparams):
     return X_train, Y_train, X_test, Y_test
 
 
-print ('Params:', hyperparams)
+print ('Params:', candle_params)
 
-file_train = hyperparams['train_data']
-file_test = hyperparams['test_data']
-url = hyperparams['data_url']
+file_train = candle_params['train_data']
+file_test = candle_params['test_data']
+url = candle_params['data_url']
 
-#train_file = candle.get_file(file_train, url+file_train, cache_subdir='Pilot1')
-#test_file = candle.get_file(file_test, url+file_test, cache_subdir='Pilot1')
 train_file = candle.get_file(file_train, url+file_train, datadir=os.getenv("CANDLE")+'/Benchmarks/Data/Pilot1')
 test_file = candle.get_file(file_test, url+file_test, datadir=os.getenv("CANDLE")+'/Benchmarks/Data/Pilot1')
 
-X_train, Y_train, X_test, Y_test = load_data(train_file, test_file, hyperparams)
+X_train, Y_train, X_test, Y_test = load_data(train_file, test_file, candle_params)
 
 print('X_train shape:', X_train.shape)
 print('X_test shape:', X_test.shape)
@@ -89,20 +81,20 @@ print('X_test shape:', X_test.shape)
 
 model = Sequential()
 
-layer_list = list(range(0, len(hyperparams['conv']), 3))
+layer_list = list(range(0, len(candle_params['conv']), 3))
 for l, i in enumerate(layer_list):
-    filters = hyperparams['conv'][i]
-    filter_len = hyperparams['conv'][i+1]
-    stride = hyperparams['conv'][i+2]
+    filters = candle_params['conv'][i]
+    filter_len = candle_params['conv'][i+1]
+    stride = candle_params['conv'][i+2]
     print(int(i/3), filters, filter_len, stride)
-    if hyperparams['pool']:
-        pool_list=hyperparams['pool']
+    if candle_params['pool']:
+        pool_list=candle_params['pool']
         if type(pool_list) != list:
             pool_list=list(pool_list)
 
     if filters <= 0 or filter_len <= 0 or stride <= 0:
             break
-    if 'locally_connected' in hyperparams:
+    if 'locally_connected' in candle_params:
             model.add(LocallyConnected1D(filters, filter_len, strides=stride, padding='valid', input_shape=(x_train_len, 1)))
     else:
         #input layer
@@ -110,20 +102,20 @@ for l, i in enumerate(layer_list):
             model.add(Conv1D(filters=filters, kernel_size=filter_len, strides=stride, padding='valid', input_shape=(x_train_len, 1)))
         else:
             model.add(Conv1D(filters=filters, kernel_size=filter_len, strides=stride, padding='valid'))
-    model.add(Activation(hyperparams['activation']))
-    if hyperparams['pool']:
+    model.add(Activation(candle_params['activation']))
+    if candle_params['pool']:
             model.add(MaxPooling1D(pool_size=pool_list[int(i/3)]))
 
 model.add(Flatten())
 
-for layer in hyperparams['dense']:
+for layer in candle_params['dense']:
     if layer:
         model.add(Dense(layer))
-        model.add(Activation(hyperparams['activation']))
-        if hyperparams['drop']:
-                model.add(Dropout(hyperparams['drop']))
-model.add(Dense(hyperparams['classes']))
-model.add(Activation(hyperparams['out_act']))
+        model.add(Activation(candle_params['activation']))
+        if candle_params['drop']:
+                model.add(Dropout(candle_params['drop']))
+model.add(Dense(candle_params['classes']))
+model.add(Activation(candle_params['out_act']))
 
 #Reference case
 #model.add(Conv1D(filters=128, kernel_size=20, strides=1, padding='valid', input_shape=(P, 1)))
@@ -145,42 +137,41 @@ model.add(Activation(hyperparams['out_act']))
 kerasDefaults = candle.keras_default_config()
 
 # Define optimizer
-optimizer = candle.build_optimizer(hyperparams['optimizer'],
-                                            hyperparams['learning_rate'],
+optimizer = candle.build_optimizer(candle_params['optimizer'],
+                                            candle_params['learning_rate'],
                                             kerasDefaults)
 
 model.summary()
-model.compile(loss=hyperparams['loss'],
+model.compile(loss=candle_params['loss'],
                 optimizer=optimizer,
-                metrics=[hyperparams['metrics']])
+                metrics=[candle_params['metrics']])
 
-output_dir = hyperparams['save']
+output_dir = candle_params['save']
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 # calculate trainable and non-trainable params
-hyperparams.update(candle.compute_trainable_params(model))
+candle_params.update(candle.compute_trainable_params(model))
 
 # set up a bunch of callbacks to do work during model training..
-model_name = hyperparams['model_name']
+model_name = candle_params['model_name']
 path = '{}/{}.autosave.model.h5'.format(output_dir, model_name)
-# checkpointer = ModelCheckpoint(filepath=path, verbose=1, save_weights_only=False, save_best_only=True)
 csv_logger = CSVLogger('{}/training.log'.format(output_dir))
 reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=10, verbose=1, mode='auto', epsilon=0.0001, cooldown=0, min_lr=0)
-candleRemoteMonitor = candle.CandleRemoteMonitor(params=hyperparams)
-timeoutMonitor = candle.TerminateOnTimeOut(hyperparams['timeout'])
+candleRemoteMonitor = candle.CandleRemoteMonitor(params=candle_params)
+timeoutMonitor = candle.TerminateOnTimeOut(candle_params['timeout'])
 
 history2 = model.fit(X_train, Y_train,
-                batch_size=hyperparams['batch_size'],
-                epochs=hyperparams['epochs'],
+                batch_size=candle_params['batch_size'],
+                epochs=candle_params['epochs'],
                 verbose=1,
                 validation_data=(X_test, Y_test),
                 callbacks = [csv_logger, reduce_lr, candleRemoteMonitor, timeoutMonitor])
 
 score = model.evaluate(X_test, Y_test, verbose=0)
 
-val_to_return = score[0]
+candle_value_to_return = score[0]
 
 print(model.metrics_names)
 print(score)

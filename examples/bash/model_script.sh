@@ -16,4 +16,4 @@ echo $script_dir
 python $script_dir/mnist_mlp.py --batch_size="$batch_size" --epochs="$epochs" --activation="$activation" --optimizer="$optimizer"
 
 #Return a value to CANDLE 
-candle_val_to_return=$(cat results.txt) 
+candle_value_to_return=$(cat results.txt) 
