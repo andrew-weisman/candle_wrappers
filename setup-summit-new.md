@@ -8,13 +8,13 @@ Choose a version name&mdash;going by the date is recommended, e.g., `2020-11-11`
 version="2020-11-11"
 ```
 
-Put the following in `/gpfs/alpine/med106/world-shared/weismana/sw/candle/env_for_lmod-$version.sh`:
+Put the following in `/gpfs/alpine/med106/world-shared/candle/env_for_lmod-$version.sh`:
 
 ```bash
 #!/bin/bash
 
 version="2020-11-11"
-export CANDLE="/gpfs/alpine/med106/world-shared/weismana/sw/candle/$version"
+export CANDLE="/gpfs/alpine/med106/world-shared/candle/$version"
 export PATH="$PATH:$CANDLE/wrappers/bin"
 export SITE="summit-tf1"
 export PYTHONPATH="$PYTHONPATH:$CANDLE/Benchmarks/common"
@@ -23,7 +23,7 @@ export PYTHONPATH="$PYTHONPATH:$CANDLE/Benchmarks/common"
 Source that:
 
 ```bash
-source /gpfs/alpine/med106/world-shared/weismana/sw/candle/env_for_lmod-$version.sh
+source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-$version.sh
 ```
 
 Clone the wrappers repository into the new CANDLE installation:
@@ -38,7 +38,7 @@ git clone git@github.com:andrew-weisman/candle_wrappers "$CANDLE/checkouts/wrapp
 ```bash
 export version="2020-11-11"
 bsub -W 01:00 -nnodes 2 -P med106 -q debug -Is /bin/bash
-source /gpfs/alpine/med106/world-shared/weismana/sw/candle/env_for_lmod-$version.sh
+source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-$version.sh
 bash "$CANDLE/checkouts/wrappers/setup.sh"
 ```
 
