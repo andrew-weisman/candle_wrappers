@@ -261,7 +261,7 @@ def export_bash_variables(keywords):
 
     # Split into one block for each site
     site = os.getenv('SITE')
-    if site == 'summit':
+    if site == 'summit-tf1':
 
         ## Site-dependent logic
         nnodes = int(np.ceil(ntasks_total/6))

@@ -47,7 +47,7 @@ set -e # exit when any command fails
 
 # Set the site-specific settings
 # shellcheck source=/dev/null
-source "$CANDLE/wrappers/site-specific_settings.sh"
+source "$CANDLE/checkouts/wrappers/site-specific_settings.sh"
 
 # Enter the fast-access directory in order to speed up compilation
 cd "$CANDLE_SETUP_LOCAL_DIR"
@@ -113,12 +113,20 @@ echo " ::::: Using mpicc: $(command -v mpicc)"
 mpicc -o "$CANDLE_SETUP_LOCAL_DIR/hello" "$CANDLE/wrappers/test_files/hello.c"
 
 if [ "x$run_launcher" == "x1" ]; then
-    cd - &> /dev/null
-    cp "$CANDLE_SETUP_LOCAL_DIR/hello" .
+
+    if [ "$CANDLE_SETUP_LOCAL_DIR" != "$PWD" ]; then
+        cd - &> /dev/null
+        cp "$CANDLE_SETUP_LOCAL_DIR/hello" .
+    fi
+
     # shellcheck disable=SC2086
     $CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS ./hello
-    rm -f ./hello
-    cd - &> /dev/null
+
+    if [ "$CANDLE_SETUP_LOCAL_DIR" != "$PWD" ]; then
+        rm -f ./hello
+        cd - &> /dev/null
+    fi
+
 else
     echo "Skipping actual job launching since this was not requested"
 fi
