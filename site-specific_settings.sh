@@ -42,12 +42,13 @@ if [ "x$SITE" == "xbiowulf" ]; then
     export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05:00', 'worker_type': 'k80', 'nworkers': 1, 'nthreads': 1, 'custom_sbatch_args': '', 'mem_per_cpu': 7, 'dl_backend': 'keras', 'supp_modules': '', 'python_bin_path': '', 'exec_python_module': '', 'supp_pythonpath': '', 'extra_script_args': '', 'exec_r_module': '', 'supp_r_libs': '', 'run_workflow': 1, 'dry_run': 0}"
     export CANDLE_VALID_WORKER_TYPES="('cpu', 'k20x', 'k80', 'p100', 'v100', 'v100x')"
 
-elif [ "x$SITE" == "xsummit" ]; then
+elif [ "x$SITE" == "xsummit-tf1" ]; then
 
     CANDLE_SETUP_LOCAL_DIR=$(pwd)
 
     CANDLE_SETUP_COMPILE_SWIFT_T=0
-    CANDLE_SETUP_SWIFT_T="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/swift-t/2020-09-02"
+    CANDLE_SETUP_SWIFT_T="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/swift-t/2020-09-02" # tf1 version
+    #CANDLE_SETUP_SWIFT_T="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/swift-t/2020-10-22" # tf2 version
     export CANDLE_DEP_MPI=
     export CANDLE_DEP_TCL=
     export CANDLE_DEP_PY=
@@ -64,7 +65,8 @@ elif [ "x$SITE" == "xsummit" ]; then
     CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS="--nrs=12 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=6 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7" # this should be consistent with the call to the interactive scheduler command in setup-$SITE.md
     CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS="--nrs=1 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=1 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7"
 
-    export CANDLE_DEFAULT_PYTHON_MODULE="/gpfs/alpine/world-shared/med106/sw/condaenv-200408/bin/python3.6"
+    export CANDLE_DEFAULT_PYTHON_MODULE="/gpfs/alpine/world-shared/med106/sw/condaenv-200408/bin/python3.6" # tf1 version
+    #export CANDLE_DEFAULT_PYTHON_MODULE="/gpfs/alpine/world-shared/med106/sw2/opence010env/bin/python3.6" # tf2 version
     export CANDLE_DEFAULT_R_MODULE="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/R-3.6.1/lib64/R/bin/R"
 
     # Note: A keyword is specified to be required by setting its default value to None
