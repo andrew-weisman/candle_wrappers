@@ -9,7 +9,7 @@ template=$1
 echo -n "Importing the files for the CANDLE template \"$template\"... "
 
 # Check for validity of the input parameter "template"
-if ! (echo "$template" | grep -E -i "^bayesian$|^grid$|^r$|^bash$" &> /dev/null)
+if ! (echo "$template" | grep -E -i "^bayesian$|^grid$|^r$|^bash$|^grid-summit$" &> /dev/null)
 
 # If it's not a valid input...
 then

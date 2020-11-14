@@ -55,7 +55,7 @@ else
         fi
 
         # Export the submission directory
-        submission_dir=$(pwd)
+        submission_dir=$(readlink -e "$(pwd)")
         export CANDLE_SUBMISSION_DIR="$submission_dir"
 
         # Enter the temporary directory if necessary

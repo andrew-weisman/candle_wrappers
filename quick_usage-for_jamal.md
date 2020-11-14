@@ -19,7 +19,16 @@ asdf
 By example:
 
 ```bash
-cd /gpfs/alpine/med106/scratch/weismana/notebook/2020-11-13/testing_candle_installation/grid3 # enter a possibly empty directory on the alpine FS
-candle import-template grid-summit # import the grid example specialized to Summit (two files will be copied over)
-candle submit-job grid_example.in # submit the job to the queue
+# Enter a possibly empty directory on the alpine FS
+cd /gpfs/alpine/med106/scratch/weismana/notebook/2020-11-13/testing_candle_installation/grid3
+
+# Pre-fetch the MNIST data since Summit compute nodes can't access the Internet (this obviously has nothing to do with the wrapper scripts)
+mkdir candle_generated_files
+/gpfs/alpine/world-shared/med106/sw/condaenv-200408/bin/python -c "from keras.datasets import mnist; import os; (x_train, y_train), (x_test, y_test) = mnist.load_data(os.path.join(os.getcwd(), 'candle_generated_files', 'mnist.npz'))"
+
+# Import the grid example specialized to Summit (two files will be copied over)
+candle import-template grid-summit
+
+# Submit the job to the queue
+candle submit-job grid_example.in
 ```

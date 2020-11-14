@@ -88,7 +88,9 @@ ln -s 2020-11-11 tf1
 
 Once this is done, everything else, e.g., the `lmod` modulefiles, will fall into place.
 
-## Notes on the environment
+## Notes
+
+### `env-summit-tf1.sh`
 
 While `env-summit-tf1.sh` could be modified to get rid of "errors" in the setup scripts (which also occur in the actual CANDLE jobs) that look like...
 
@@ -97,3 +99,30 @@ output.txt:32:/usr/bin/uuidgen: /gpfs/alpine/world-shared/med106/sw/condaenv-200
 ```
 
 ...when doing so, it actually makes the CANDLE jobs die with what appear to be environment issues (importing tensorflow it seems) in `model_runner.py`. It is best to leave `env-summit-tf1.sh` as Justin figured it out to be! The `uuidgen` issues appear to be inconsequential, at least as of 11/13/20.
+
+### Multiple processes per node
+
+Note that on line 185 of `/gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/python3.6/site-packages/keras/utils/data_utils.py` I made the change from
+
+```python
+    datadir = os.path.join(datadir_base, cache_subdir)
+    if not os.path.exists(datadir):
+        os.makedirs(datadir)
+
+    if untar:
+```
+
+to
+
+```python
+    datadir = os.path.join(datadir_base, cache_subdir)
+    if not (os.path.isabs(fname) and untar==False and extract==False):
+        if not os.path.exists(datadir):
+            os.makedirs(datadir)
+
+    if untar:
+```
+
+Without this change, when running `PPN != 1` as I am doing, multiple processes try to create `datadir` at the same time since it doesn't already exist, which can lead to crashing since `os.makedirs()` will die with a `FileExistsError` if the directory it's trying to make already exists (unless we use the `exist_ok=True` argument to `makedirs()`, which is probably too general of a change). While it seems like it checks for this, this is not robust to multiple processes checking the same `datadir` as when `PPN != 1`.
+
+Note that at least for the `grid-summit` example, the condition in parentheses is true, so this matters.
