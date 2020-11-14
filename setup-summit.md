@@ -87,3 +87,13 @@ ln -s 2020-11-11 tf1
 ```
 
 Once this is done, everything else, e.g., the `lmod` modulefiles, will fall into place.
+
+## Notes on the environment
+
+While `env-summit-tf1.sh` could be modified to get rid of "errors" in the setup scripts (which also occur in the actual CANDLE jobs) that look like...
+
+```
+output.txt:32:/usr/bin/uuidgen: /gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/libuuid.so.1: no version information available (required by /usr/bin/uuidgen)
+```
+
+...when doing so, it actually makes the CANDLE jobs die with what appear to be environment issues (importing tensorflow it seems) in `model_runner.py`. It is best to leave `env-summit-tf1.sh` as Justin figured it out to be! The `uuidgen` issues appear to be inconsequential, at least as of 11/13/20.

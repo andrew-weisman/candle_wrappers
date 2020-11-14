@@ -49,16 +49,32 @@ else
         usage
         exit 0
     else
-        create_temp_dir
-        shift; args_arr=($@) # save all the command arguments to this script to an array called args_arr
+        # I believe that if Python is a main program run then it typically helps to run it in an empty, temporary directory
+        if (echo "$command" | grep -E "^generate-grid$|^aggregate-results$" &> /dev/null); then
+            needs_temp_dir=1
+        fi
 
         # Export the submission directory
         submission_dir=$(pwd)
         export CANDLE_SUBMISSION_DIR="$submission_dir"
 
+        # Enter the temporary directory if necessary
+        if [ "x$needs_temp_dir" == "x1" ]; then
+            create_temp_dir
+        fi
+
+        # Shift the arguments
+        shift; args_arr=($@) # save all the command arguments to this script to an array called args_arr
+
         # Run the script associated with the requested CANDLE command
         bash "$CANDLE/wrappers/commands/$command/command_script.sh" "${args_arr[@]}"
-	    remove_temp_dir
+
+        # Exit the temporary directory if necessary
+        if [ "x$needs_temp_dir" == "x1" ]; then
+    	    remove_temp_dir
+        fi
+
+        # Exit cleanly
         exit 0
     fi
 

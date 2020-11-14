@@ -181,21 +181,24 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
         return(is_valid2)
     checked_keywords = check_keyword('dl_backend', possible_keywords_and_defaults, str, is_valid, checked_keywords)
 
-    # Valid the supp_modules keyword
+    # Validate the supp_modules keyword
     checked_keywords = check_keyword('supp_modules', possible_keywords_and_defaults, str, no_validation('supp_modules'), checked_keywords)
 
     # Validate the python_bin_path keyword
     def is_valid(keyword_val):
-        import os
-        if os.path.isdir(keyword_val):
-            is_valid2 = True
+        if keyword_val != '': # remember its default value is probably blank
+            import os
+            if os.path.isdir(keyword_val):
+                is_valid2 = True
+            else:
+                print('WARNING: The "python_bin_path" keyword ({}) in the &control section does not appear to be a directory'.format(keyword_val))
+                is_valid2 = False
         else:
-            print('WARNING: The "python_bin_path" keyword ({}) in the &control section does not appear to be a directory'.format(keyword_val))
-            is_valid2 = False
+            is_valid2 = True
         return(is_valid2)
     checked_keywords = check_keyword('python_bin_path', possible_keywords_and_defaults, str, is_valid, checked_keywords)
 
-    # Valid the exec_python_module keyword
+    # Validate the exec_python_module keyword
     checked_keywords = check_keyword('exec_python_module', possible_keywords_and_defaults, str, no_validation('exec_python_module'), checked_keywords)
 
     # Validate the supp_pythonpath keyword
@@ -204,10 +207,10 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
     # Validate the extra_script_args keyword
     checked_keywords = check_keyword('extra_script_args', possible_keywords_and_defaults, str, no_validation('extra_script_args'), checked_keywords)
 
-    # Valid the exec_r_module keyword
+    # Validate the exec_r_module keyword
     checked_keywords = check_keyword('exec_r_module', possible_keywords_and_defaults, str, no_validation('exec_r_module'), checked_keywords)
 
-    # Valid the supp_r_libs keyword
+    # Validate the supp_r_libs keyword
     checked_keywords = check_keyword('supp_r_libs', possible_keywords_and_defaults, str, no_validation('supp_r_libs'), checked_keywords)
 
     # Validate the run_workflow keyword
@@ -229,6 +232,9 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
             is_valid2 = True
         return(is_valid2)
     checked_keywords = check_keyword('dry_run', possible_keywords_and_defaults, int, is_valid, checked_keywords)
+
+    # Validate the queue keyword
+    checked_keywords = check_keyword('queue', possible_keywords_and_defaults, str, no_validation('queue'), checked_keywords)
 
     # Output the checked keywords and their validated values
     dict_output(checked_keywords, 'Checked and validated keywords from the &control section of the input file:')
@@ -265,6 +271,12 @@ def export_bash_variables(keywords):
 
         ## Site-dependent logic
         nnodes = int(np.ceil(ntasks_total/6))
+        ppn = 6
+        ntasks_total_orig = ntasks_total
+        ntasks_total = ppn * nnodes
+
+        if ntasks_total != ntasks_total_orig:
+            print('NOTE: Requested number of workers ({}) has been increased to {} in order to *fill* the required number of nodes ({})'.format(keywords['nworkers'], ntasks_total-nswift_t_processes, nnodes))
 
         # Write the file that exports the Bash environment variables
         with open(file_containing_export_statements, 'w') as f:
@@ -284,6 +296,7 @@ def export_bash_variables(keywords):
             f.write('export CANDLE_SUPP_R_LIBS={}\n'.format(keywords['supp_r_libs']))
             f.write('export CANDLE_RUN_WORKFLOW={}\n'.format(keywords['run_workflow'])) # just repeating the logic here: we must export this because run_workflow is just an optional keyword so we need to *ensure* it's in the environment, i.e., we can't just rely on e.g. $CANDLE_KEYWORD_RUN_WORKFLOW, which is not necessarily set
             f.write('export CANDLE_DRY_RUN={}\n'.format(keywords['dry_run']))
+            f.write('export QUEUE={}\n'.format(keywords['queue']))
 
     elif site == 'biowulf':
 

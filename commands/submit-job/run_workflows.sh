@@ -31,7 +31,7 @@ export CANDLE_PROG_NAME=${CANDLE_PROG_NAME:-"Dummy program name"}
 # Set $MODEL_PYTHON_DIR and $MODEL_PYTHON_SCRIPT as appropriate. Bottom line is this needs to be set to a canonically CANDLE-compliant Python file
 if [ "x$(echo "$CANDLE_KEYWORD_MODEL_SCRIPT" | rev | awk -v FS="." '{print $1}' | rev)" == "xpy" ]; then # if the model script is a Python file...
     echo "NOTE: Model script '$CANDLE_KEYWORD_MODEL_SCRIPT' is a Python file"
-    if python "$CANDLE/wrappers/utilities.py" "are_functions_in_module(['initialize_parameters', 'run'], '$CANDLE_KEYWORD_MODEL_SCRIPT')"; then
+    if (source "$CANDLE/wrappers/utilities.sh"; is_model_script_canonically_candle_compliant "$CANDLE_KEYWORD_MODEL_SCRIPT"); then
         # echo "NOTE: $CANDLE_KEYWORD_MODEL_SCRIPT is likely CANDLE-compliant"
         tmp=$(dirname "$CANDLE_KEYWORD_MODEL_SCRIPT")
         export MODEL_PYTHON_DIR="$tmp"

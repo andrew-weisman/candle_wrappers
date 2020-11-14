@@ -1,6 +1,8 @@
 def are_functions_in_module(my_function_str_list, my_module_full_path):
     '''
     Determine whether all the functions in my_function_str_list are present in the model script specified by my_module_full_path.
+
+    The problem with this is that if the model script is a pure script, then importing it in order to examine its functions will actually run it!
     '''
     try:
         with open(my_module_full_path):

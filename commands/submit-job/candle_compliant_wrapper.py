@@ -46,7 +46,7 @@ def run(params):
     # Read in the history.history dictionary containing the result from the JSON file created by the model
     history = HistoryDummy(4444)
     import json
-    with open('val_to_return.json') as infile:
+    with open('candle_value_to_return.json') as infile:
         history.history = json.load(infile)
     return(history)
 

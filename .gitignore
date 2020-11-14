@@ -2,3 +2,4 @@ test_files/hello
 test_files/*.out
 *.tic
 .vscode
+__pycache__

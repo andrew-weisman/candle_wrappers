@@ -80,3 +80,16 @@ make_generated_files_dir() {
     dirname="$CANDLE_SUBMISSION_DIR/candle_generated_files"
     [ -d "$dirname" ] || mkdir "$dirname"
 }
+
+
+# ASSUMPTIONS: The input model script is accessible
+is_model_script_canonically_candle_compliant() {
+    model_script=$1
+    if (grep "^def run(" "$model_script" > /dev/null) && (grep "^def initialize_parameters(" "$model_script" > /dev/null); then
+        #echo "model script is canonically CANDLE-compliant"
+        exit 0
+    else
+        #echo "model script is NOT canonically CANDLE-compliant"
+        exit 1
+    fi
+}

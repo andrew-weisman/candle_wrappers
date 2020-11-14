@@ -70,7 +70,7 @@ elif [ "x$SITE" == "xsummit-tf1" ]; then
     export CANDLE_DEFAULT_R_MODULE="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/R-3.6.1/lib64/R/bin/R"
 
     # Note: A keyword is specified to be required by setting its default value to None
-    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None, 'dl_backend': 'keras', 'supp_modules': '', 'python_bin_path': '', 'exec_python_module': '', 'supp_pythonpath': '', 'extra_script_args': '', 'exec_r_module': '', 'supp_r_libs': '', 'run_workflow': 1, 'dry_run': 0}"
+    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None, 'dl_backend': 'keras', 'supp_modules': '', 'python_bin_path': '', 'exec_python_module': '', 'supp_pythonpath': '', 'extra_script_args': '', 'exec_r_module': '', 'supp_r_libs': '', 'run_workflow': 1, 'dry_run': 0, 'queue': 'batch'}"
     export CANDLE_VALID_WORKER_TYPES=
 
 fi

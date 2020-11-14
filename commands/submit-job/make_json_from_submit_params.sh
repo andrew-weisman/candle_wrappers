@@ -17,7 +17,7 @@ output_json_format() {
 vars="$(grep "^setenv(" $CANDLE/wrappers/lmod_modules/biowulf/dev.lua | awk -v FS="setenv\\\(\"" '{split($2,arr,"\""); print arr[1]}')"
 #vars+=" $(grep "^export " $CANDLE/wrappers/templates/scripts/submit_candle_job.sh | awk -v FS="export " '{split($2,arr,"="); print arr[1]}')"
 
-for submit_script in submit_candle_job*.sh; do
+for submit_script in candle_generated_files/submit_candle_job*.sh; do
     vars+=" $(grep "^export " $submit_script | awk -v FS="export " '{split($2,arr,"="); print arr[1]}')"
 done
 

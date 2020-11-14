@@ -178,7 +178,7 @@ This document describes and relates all files in the `candle_wrappers` repositor
 
 *Description:* Nominally a `workflow.sh`-calling script that checks input settings via preprocess.py, sources variables set to be exported in preprocess.py, sets `$MODEL_PYTHON_DIR` and `$MODEL_PYTHON_SCRIPT` to a canonically CANDLE-compliant file, creates the experiments directory if not already present, maps user-friendly workflow keywords to Supervisor workflows, generates the commands to run (the workflow.sh scripts in Supervisor/workflows, or `python` via a launcher on an interactive node), and runs the generated commands or outputs them to screen if a dry run is requested  
 *Referenced by:* `commands/submit-job/command_script.sh`  
-*References:* `site-specific_settings.sh`, `utilities.sh`, `commands/submit-job/preprocess.py`, `utilities.py`, `commands/submit-job/restart.py`, `commands/submit-job/make_json_from_submit_params.sh`, `candle_compliant_wrapper.py` (indirectly through Supervisor), `commands/submit-job/dummy_cfg-prm.sh` (indirectly through Supervisor)
+*References:* `site-specific_settings.sh`, `utilities.sh`, `commands/submit-job/preprocess.py`, `commands/submit-job/restart.py`, `commands/submit-job/make_json_from_submit_params.sh`, `candle_compliant_wrapper.py` (indirectly through Supervisor), `commands/submit-job/dummy_cfg-prm.sh` (indirectly through Supervisor)
 
     │       ├── preprocess.py
 
@@ -200,7 +200,7 @@ This document describes and relates all files in the `candle_wrappers` repositor
 
     │       ├── candle_compliant_wrapper.py
 
-*Description:* `python` script that should always be kept up-to-date-canonically-CANDLE-compliant and is probably called through the Supervisor via `model_runner.py` (by memory), which eventually gets called after the `workflow.sh` scripts are called inside `run_workflows.sh`. Note that if the model script is not canonically CANDLE-compliant, then this `candle_compliant_wrapper.py` script will never be called in the first place, which eliminates all the files below that are eventually called due to `candle_compliant_wrapper.py`. This script utilizes the CANDLE library to return the global parameters in a function called `initialize_parameters()` as usual, but further in the `run()` function defines a dummy history class, dumps the current set of HPs to a JSON file and to the screen, runs `model_wrapper.sh` (outputting its out/err to `subprocess_out_and_err.txt`), and populates and returns an instance of the HistoryDummy class with the contents of the `val_to_return.json` file that was written through `model_wrapper.sh`  
+*Description:* `python` script that should always be kept up-to-date-canonically-CANDLE-compliant and is probably called through the Supervisor via `model_runner.py` (by memory), which eventually gets called after the `workflow.sh` scripts are called inside `run_workflows.sh`. Note that if the model script is not canonically CANDLE-compliant, then this `candle_compliant_wrapper.py` script will never be called in the first place, which eliminates all the files below that are eventually called due to `candle_compliant_wrapper.py`. This script utilizes the CANDLE library to return the global parameters in a function called `initialize_parameters()` as usual, but further in the `run()` function defines a dummy history class, dumps the current set of HPs to a JSON file and to the screen, runs `model_wrapper.sh` (outputting its out/err to `subprocess_out_and_err.txt`), and populates and returns an instance of the HistoryDummy class with the contents of the `candle_value_to_return.json` file that was written through `model_wrapper.sh`  
 *Referenced by:* `commands/submit-job/run_workflows.sh` (indirectly through Supervisor)  
 *References:* `commands/submit-job/model_wrapper.sh`
 
@@ -273,12 +273,6 @@ This document describes and relates all files in the `candle_wrappers` repositor
 *Description:* Main command script that outputs to a CSV file the hyperparameter list and corresponding result from all hyperparameter sets of the CANDLE run  
 *Referenced by:* `bin/candle`  
 *References:* `utilities.sh`
-
-    ├── utilities.py
-
-*Description:* `python` module containing utility functions such as `are_functions_in_module()`  
-*Referenced by:* `commands/submit-job/run_workflows.sh`  
-*References:* NA
 
     ├── examples
 
