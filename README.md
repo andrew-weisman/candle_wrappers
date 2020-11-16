@@ -35,6 +35,7 @@ All site-specific information and settings in `candle_wrappers` should be locate
 1. the site-specific READMEs (e.g., [setup-biowulf.md](./setup-biowulf.md) or [setup-summit.md](./setup-summit.md))
 1. the file [site-specific_settings.sh](./site-specific_settings.sh)
 1. the `export_bash_variables()` function in [preprocess.py](./commands/submit-job/preprocess.py)
+1. the [examples](./examples) directory
 
 ### How to add a new keyword
 

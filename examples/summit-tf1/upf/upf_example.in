@@ -1,0 +1,54 @@
+&control
+  model_script = $CANDLE/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py
+  workflow = grid
+  nworkers = 9
+  walltime = 00:20
+  project = med106
+  run_workflow = 1
+  dry_run = 0
+  queue = batch
+/
+
+&default_model
+  data_url = 'http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/normal-tumor/'
+  train_data = 'nt_train2.csv'
+  test_data = 'nt_test2.csv'
+  model_name = 'nt3'
+  conv = [128, 20, 1, 128, 10, 1]
+  dense = [200,20]
+  activation = 'relu'
+  out_activation = 'softmax'
+  loss = 'categorical_crossentropy'
+  optimizer = 'sgd'
+  metrics = 'accuracy'
+  epochs = 5
+  batch_size = 20
+  learning_rate = 0.001
+  dropout = 0.1
+  classes = 2
+  pool = [1, 10]
+  output_dir = '.'
+  add_noise = False
+  label_noise = 0.3
+  noise_correlated = False
+  feature_col = 50
+  feature_threshold = 0.01
+  noise_gaussian = False
+  std_dev = 0.5
+  timeout = 3600
+/
+
+&param_space
+  {"id": "test0", "epochs": 1}
+  {"id": "test1", "epochs": 2}
+  {"id": "test2", "epochs": 3}
+  {"id": "test3", "epochs": 4}
+  {"id": "test4", "epochs": 5}
+  {"id": "test5", "epochs": 6}
+  {"id": "test6", "epochs": 7}
+  {"id": "test7", "epochs": 8}
+  {"id": "test8", "epochs": 9}
+  {"id": "test9", "epochs": 10}
+  {"id": "test10", "epochs": 11}
+  {"id": "test11", "epochs": 12}
+/

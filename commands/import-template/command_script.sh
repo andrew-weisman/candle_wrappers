@@ -9,7 +9,7 @@ template=$1
 echo -n "Importing the files for the CANDLE template \"$template\"... "
 
 # Check for validity of the input parameter "template"
-if ! (echo "$template" | grep -E -i "^bayesian$|^grid$|^r$|^bash$|^grid-summit$" &> /dev/null)
+if ! (echo "$template" | grep -E -i "^bayesian$|^grid$|^r$|^bash$|^upf$|^mlrmbo$" &> /dev/null)
 
 # If it's not a valid input...
 then
@@ -19,5 +19,5 @@ then
 # ...otherwise, copy over the corresponding template files
 else
     template_lower=$(echo "$template" | awk '{print(tolower($0))}')
-    cp -p "$CANDLE/wrappers/examples/$template_lower"/* . && echo "done" || echo "failed"
+    cp -pi "$CANDLE/wrappers/examples/$SITE/$template_lower"/* . && echo "done" || echo "failed"
 fi
