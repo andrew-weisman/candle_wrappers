@@ -99,4 +99,4 @@ def initialize_parameters(default_model='nt3_default_model.txt'):
 
 You may need to add `K.clear_session()` prior to, say, `model = Sequential()`. Otherwise, once the same rank runs a model script a *second* time, we get a strange `InvalidArgumentError` error that kills Supervisor (see the comments in `/gpfs/alpine/med106/world-shared/candle/2020-11-11/checkouts/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py` for more details). It is wholly possible that this is a bug that has gotten fixed in subsequent versions of Keras/Tensorflow.
 
-In addition, if you, say, pull a Benchmark model script out of the `Benchmarks` repository into your own separate directory, you may need to add a line like `sys.path.append(os.path.join(os.getenv('CANDLE'), 'Benchmarks', 'Pilot1', 'NT3'))`. This is demonstrated in the "NT3 using mlrMBO" of Section 2.
+In addition, if you, say, pull a Benchmark model script out of the `Benchmarks` repository into your own separate directory, you may need to add a line like `sys.path.append(os.path.join(os.getenv('CANDLE'), 'Benchmarks', 'Pilot1', 'NT3'))`. This is demonstrated in the "NT3 using mlrMBO" section of Step 2.
