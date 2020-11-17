@@ -1,41 +1,13 @@
 &control
-  model_script = $CANDLE/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py
+  model_script =       $CANDLE/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py
+  default_model_file = $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt # optionally replaces &default_model section containing the body of this file
   workflow = grid
   nworkers = 9
   walltime = 00:20
   project = med106
   run_workflow = 1
   dry_run = 0
-  queue = batch
-/
-
-&default_model
-  data_url = 'http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/normal-tumor/'
-  train_data = 'nt_train2.csv'
-  test_data = 'nt_test2.csv'
-  model_name = 'nt3'
-  conv = [128, 20, 1, 128, 10, 1]
-  dense = [200,20]
-  activation = 'relu'
-  out_activation = 'softmax'
-  loss = 'categorical_crossentropy'
-  optimizer = 'sgd'
-  metrics = 'accuracy'
-  epochs = 5
-  batch_size = 20
-  learning_rate = 0.001
-  dropout = 0.1
-  classes = 2
-  pool = [1, 10]
-  output_dir = '.'
-  add_noise = False
-  label_noise = 0.3
-  noise_correlated = False
-  feature_col = 50
-  feature_threshold = 0.01
-  noise_gaussian = False
-  std_dev = 0.5
-  timeout = 3600
+  queue = batch # use debug for testing
 /
 
 &param_space

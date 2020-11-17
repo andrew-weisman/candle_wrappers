@@ -112,8 +112,8 @@ for layer in candle_params['dense']:
     if layer:
         model.add(Dense(layer))
         model.add(Activation(candle_params['activation']))
-        if candle_params['drop']:
-                model.add(Dropout(candle_params['drop']))
+        if candle_params['dropout']:
+                model.add(Dropout(candle_params['dropout']))
 model.add(Dense(candle_params['classes']))
 model.add(Activation(candle_params['out_act']))
 

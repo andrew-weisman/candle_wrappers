@@ -236,6 +236,35 @@ def check_keywords(possible_keywords_and_defaults_bash_var):
     # Validate the queue keyword
     checked_keywords = check_keyword('queue', possible_keywords_and_defaults, str, no_validation('queue'), checked_keywords)
 
+    # Validate the default_model_file keyword
+    def is_valid(keyword_val):
+        if keyword_val != '': # remember its default value is probably blank
+            try:
+                with open(keyword_val):
+                    is_valid2 = True
+            except IOError:
+                print('WARNING: The file "{}" from the "default_model_file" keyword cannot be opened for reading'.format(keyword_val))
+                is_valid2 = False
+        else:
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('default_model_file', possible_keywords_and_defaults, str, is_valid, checked_keywords)
+
+    # Validate the param_space_file keyword
+    def is_valid(keyword_val):
+        if keyword_val != '': # remember its default value is probably blank
+            try:
+                with open(keyword_val):
+                    is_valid2 = True
+            except IOError:
+                print('WARNING: The file "{}" from the "param_space_file" keyword cannot be opened for reading'.format(keyword_val))
+                is_valid2 = False
+        else:
+            is_valid2 = True
+        return(is_valid2)
+    checked_keywords = check_keyword('param_space_file', possible_keywords_and_defaults, str, is_valid, checked_keywords)
+
+
     # Output the checked keywords and their validated values
     dict_output(checked_keywords, 'Checked and validated keywords from the &control section of the input file:')
 
@@ -264,6 +293,38 @@ def export_bash_variables(keywords):
     elif keywords['workflow'] == 'bayesian':
         nswift_t_processes = 2
     ntasks_total = nswift_t_processes + keywords['nworkers']
+
+    # Allow for either (1) a "default_model" section or (2) a setting of the "default_model_file" keyword in the "control" section to be present in the input file for setting the actual default model used
+    default_model_keyword = keywords['default_model_file']
+    default_model_section = os.getenv('CANDLE_DEFAULT_MODEL_FILE')
+    if (default_model_keyword == '') and (default_model_section == ''):
+        print('ERROR: Neither (1) a "default_model" section nor (2) a setting of the "default_model_file" keyword in the "control" section were present in the input file; you must set one of these!')
+        exit(1)
+    elif (default_model_keyword == '') and (default_model_section != ''):
+        print('NOTE: We are using the "default_model" section of the input file as the default model for the workflow')
+        keywords['default_model_file'] = default_model_section
+    elif (default_model_keyword != '') and (default_model_section == ''):
+        print('NOTE: We are using the setting of the "default_model_file" keyword in the "control" section of the input file as the default model for the workflow')
+        keywords['default_model_file'] = default_model_keyword # not necessary but makes this block clear and consistent
+    elif (default_model_keyword != '') and (default_model_section != ''):
+        print('WARNING: Both (1) a "default_model" section and (2) a setting of the "default_model_file" keyword in the "control" section were present in the input file; defaulting to the keyword setting')
+        keywords['default_model_file'] = default_model_keyword # not necessary but makes this block clear and consistent
+
+    # Allow for either (1) a "param_space" section or (2) a setting of the "param_space_file" keyword in the "control" section to be present in the input file for setting the actual parameter space used
+    param_space_keyword = keywords['param_space_file']
+    param_space_section = os.getenv('CANDLE_WORKFLOW_SETTINGS_FILE')
+    if (param_space_keyword == '') and (param_space_section == ''):
+        print('ERROR: Neither (1) a "param_space" section nor (2) a setting of the "param_space_file" keyword in the "control" section were present in the input file; you must set one of these!')
+        exit(1)
+    elif (param_space_keyword == '') and (param_space_section != ''):
+        print('NOTE: We are using the "param_space" section of the input file as the parameter space for the workflow')
+        keywords['param_space_file'] = param_space_section
+    elif (param_space_keyword != '') and (param_space_section == ''):
+        print('NOTE: We are using the setting of the "param_space_file" keyword in the "control" section of the input file as the parameter space for the workflow')
+        keywords['param_space_file'] = param_space_keyword # not necessary but makes this block clear and consistent
+    elif (param_space_keyword != '') and (param_space_section != ''):
+        print('WARNING: Both (1) a "param_space" section and (2) a setting of the "param_space_file" keyword in the "control" section were present in the input file; defaulting to the keyword setting')
+        keywords['param_space_file'] = param_space_keyword # not necessary but makes this block clear and consistent
 
     # Split into one block for each site
     site = os.getenv('SITE')
@@ -297,6 +358,8 @@ def export_bash_variables(keywords):
             f.write('export CANDLE_RUN_WORKFLOW={}\n'.format(keywords['run_workflow'])) # just repeating the logic here: we must export this because run_workflow is just an optional keyword so we need to *ensure* it's in the environment, i.e., we can't just rely on e.g. $CANDLE_KEYWORD_RUN_WORKFLOW, which is not necessarily set
             f.write('export CANDLE_DRY_RUN={}\n'.format(keywords['dry_run']))
             f.write('export QUEUE={}\n'.format(keywords['queue']))
+            f.write('export CANDLE_DEFAULT_MODEL_FILE={}\n'.format(keywords['default_model_file']))
+            f.write('export CANDLE_WORKFLOW_SETTINGS_FILE={}\n'.format(keywords['param_space_file']))
 
     elif site == 'biowulf':
 
@@ -355,6 +418,8 @@ def export_bash_variables(keywords):
             f.write('export CANDLE_SUPP_R_LIBS={}\n'.format(keywords['supp_r_libs']))
             f.write('export CANDLE_RUN_WORKFLOW={}\n'.format(keywords['run_workflow'])) # just repeating the logic here: we must export this because run_workflow is just an optional keyword so we need to *ensure* it's in the environment, i.e., we can't just rely on e.g. $CANDLE_KEYWORD_RUN_WORKFLOW, which is not necessarily set
             f.write('export CANDLE_DRY_RUN={}\n'.format(keywords['dry_run']))
+            f.write('export CANDLE_DEFAULT_MODEL_FILE={}\n'.format(keywords['default_model_file']))
+            f.write('export CANDLE_WORKFLOW_SETTINGS_FILE={}\n'.format(keywords['param_space_file']))
 
 
 def main():

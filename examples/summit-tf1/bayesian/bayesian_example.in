@@ -1,5 +1,6 @@
 &control
   model_script = $(pwd)/nt3_baseline_keras2.py
+  param_space_file = $CANDLE/Supervisor/workflows/mlrMBO/data/nt3_nightly.R # optionally replaces &param_space section containing the body of this file
   workflow = bayesian
   nworkers = 7
   walltime = 00:25
@@ -10,7 +11,7 @@
   project = med106
   run_workflow = 1
   dry_run = 0
-  queue = batch
+  queue = batch # use debug for testing
 /
 
 &default_model
@@ -28,17 +29,9 @@
   epochs = 6
   batch_size = 20
   learning_rate = 0.001
-  drop = 0.1
+  dropout = 0.1
   classes = 2
   pool = [1, 10]
   save = '.'
   timeout = 3600
-/
-
-&param_space
-  makeDiscreteParam("batch_size", values = c(16, 32))
-  makeIntegerParam("epochs", lower = 2, upper = 5)
-  makeDiscreteParam("optimizer", values = c("adam", "sgd", "rmsprop", "adagrad", "adadelta"))
-  makeNumericParam("drop", lower = 0, upper = 0.9)
-  makeNumericParam("learning_rate", lower = 0.00001, upper = 0.1)
 /

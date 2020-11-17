@@ -14,7 +14,11 @@ function extract_section() {
 }
 
 function generate_input_files_and_run() {
-    submission_file=$1
+
+    # Get rid of comment lines and sections
+    input_argument=$1
+    grep -E -v "^#" "$input_argument" | awk -v FS="#" '{print $1}' > tmp_submission_file.in
+    submission_file="tmp_submission_file.in"
 
     # Ensure the generated_files directory has been created
     # shellcheck source=/dev/null
@@ -38,21 +42,12 @@ function generate_input_files_and_run() {
 
     # From the WORKFLOW line determine filename of the third generated input file
     workflow=$(grep "^export CANDLE_KEYWORD_WORKFLOW=" tmp.txt | awk -v FS="=" '{gsub(/"/,""); print tolower($2)}')
-
     if [ "a$workflow" == "agrid" ]; then
         wsf_ext="txt"
     else
         wsf_ext="R"
     fi
     fn_workflow_settings_file="$CANDLE_SUBMISSION_DIR/candle_generated_files/${workflow}_workflow.${wsf_ext}"
-
-    # Insert the other two generated input filename settings into the generated submission script
-    (
-        echo "export CANDLE_DEFAULT_MODEL_FILE=\"${fn_default_model}\"" # must be a full path in order to find the default settings
-        echo "export CANDLE_WORKFLOW_SETTINGS_FILE=\"${fn_workflow_settings_file}\"" # can no longer be a full path in recent develop version of CANDLE --> I think this has been fixed
-        awk -v split_line="$split_line" '{if(NR>split_line)print}' tmp2.txt # populate the rest of the submission script and make it executable
-    ) >> "$fn_submission_script"
-    chmod u+x "$fn_submission_script"
 
     # Generate the default parameters file
     (
@@ -73,7 +68,24 @@ function generate_input_files_and_run() {
         fi
     ) > "$fn_workflow_settings_file"
 
-    rm -f tmp.txt tmp2.txt tmp3.txt
+    # Unset the $CANDLE_DEFAULT_MODEL_FILE and $CANDLE_WORKFLOW_SETTINGS_FILE variables if the corresponding input file sections are missing (we later check for keywords pointing to corresponding files in preprocess.py)
+    if [ "x$(wc -l < "$fn_default_model")" == "x1" ]; then
+        fn_default_model=""
+    fi
+    if [ "x$(wc -l < "$fn_workflow_settings_file")" == "x2" ]; then
+        fn_workflow_settings_file=""
+    fi
+
+    # Insert the other two generated input filename settings into the generated submission script
+    (
+        echo "export CANDLE_DEFAULT_MODEL_FILE=\"${fn_default_model}\"" # must be a full path in order to find the default settings
+        echo "export CANDLE_WORKFLOW_SETTINGS_FILE=\"${fn_workflow_settings_file}\"" # can no longer be a full path in recent develop version of CANDLE --> I think this has been fixed
+        awk -v split_line="$split_line" '{if(NR>split_line)print}' tmp2.txt # populate the rest of the submission script and make it executable
+    ) >> "$fn_submission_script"
+    chmod u+x "$fn_submission_script"
+
+    # Delete temporary files
+    rm -f tmp.txt tmp2.txt tmp3.txt tmp_submission_file.in
 
     # Run the submission script
     $fn_submission_script

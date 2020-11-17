@@ -6,7 +6,7 @@
   project = med106
   run_workflow = 1
   dry_run = 0
-  queue = batch
+  queue = batch # use debug for testing
 /
 
 &default_model
