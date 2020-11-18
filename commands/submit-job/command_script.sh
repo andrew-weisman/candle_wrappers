@@ -6,116 +6,96 @@
 #   (1) candle module has been loaded
 #   (2) the candle program has been called normally (so that the $CANDLE_SUBMISSION_DIR variable has been defined)
 
-# Function to extract particular sections from the input file
+
+# Function to extract particular sections (case-insensitive) from the input file
 function extract_section() {
     section_name=$1
-    submission_file=$2
-    awk -v section_name="$section_name" 'BEGIN{do_print=0; regex_start="^&"section_name"$"; regex_end="^/$"} {if($0~regex_end)do_print=0; if(do_print){sub(/^ +/,"",$0); print}; if($0~regex_start)do_print=1}' "$submission_file"
+    input_file=$2
+    awk -v section_name="$section_name" 'BEGIN{do_print=0; regex_start="^&"section_name"$"; regex_end="^/$"} {if($0~regex_end)do_print=0; if(do_print){sub(/^ +/,"",$0); print}; if(tolower($0)~regex_start)do_print=1}' "$input_file"
 }
 
+
+# Generate the three input files (the submission script, and, if necessary, the default model and parameter space files), and execute the submission script
 function generate_input_files_and_run() {
 
     # Get rid of comment lines and sections
     input_argument=$1
-    grep -E -v "^#" "$input_argument" | awk -v FS="#" '{print $1}' > tmp_submission_file.in
-    submission_file="tmp_submission_file.in"
+    grep -E -v "^#" "$input_argument" | awk -v FS="#" '{print $1}' > tmp_input_file.in
+    input_file="tmp_input_file.in" # comment-free submission file
 
     # Ensure the generated_files directory has been created
     # shellcheck source=/dev/null
     source "$CANDLE/wrappers/utilities.sh"; make_generated_files_dir
 
-    # Get the filenames of two of the three generated input files
+    # Create the beginning part of the Bash submission script from all the keywords set in the &control section
     fn_submission_script="$CANDLE_SUBMISSION_DIR/candle_generated_files/submit_candle_job.sh"
-    fn_default_model="$CANDLE_SUBMISSION_DIR/candle_generated_files/default_model.txt"
+    extract_section "control" "$input_file" | awk -v FS="=" '{loc=index($0,"="); key=$1; val=substr($0,loc+1); gsub(/ /,"",key); gsub(/^ */,"",val); print "export CANDLE_KEYWORD_" toupper(key) "=" val}' > "$fn_submission_script"
 
-    # Generate an "almost" version of the submission script, stored in tmp.txt
-    (
-        echo "#!/bin/bash"
-        extract_section "control" "$submission_file" | awk -v FS="=" '{loc=index($0,"="); key=$1; val=substr($0,loc+1); gsub(/ /,"",key); gsub(/^ */,"",val); print "export CANDLE_KEYWORD_" toupper(key) "=" val}'
-        echo "bash \$CANDLE/wrappers/commands/submit-job/run_workflows.sh"
-    ) > tmp.txt
-
-    # Extract everything but the WORKFLOW line into tmp2.txt and insert everything up to that line into the generated submission script
-    cp tmp.txt tmp2.txt
-    split_line=$(awk 'BEGIN{regex="^export CANDLE_KEYWORD_MODEL_SCRIPT="} {if($0~regex)print NR}' tmp2.txt)
-    awk -v split_line="$split_line" '{if(NR<=split_line)print}' tmp2.txt > "$fn_submission_script"
-
-    # From the WORKFLOW line determine filename of the third generated input file
-    workflow=$(grep "^export CANDLE_KEYWORD_WORKFLOW=" tmp.txt | awk -v FS="=" '{gsub(/"/,""); print tolower($2)}')
-    if [ "a$workflow" == "agrid" ]; then
-        wsf_ext="txt"
+    # Define the default model file in the submission script and if required, create it
+    if (extract_section "default_model" "$input_file" | head -n 1 | awk '{gsub(/[\t ]*/,""); print}' | grep -i "^candle_default_model_file=" > /dev/null); then
+        # Default model keyword is present
+        extract_section "default_model" "$input_file" | head -n 1 | awk '{loc=index($0,"="); val=substr($0,loc+1); gsub(/^[\t ]+|[\t ]+$/,"",val); gsub(/^[\047\042]|[\047\042]$/,"",val); print "export CANDLE_KEYWORD_DEFAULT_MODEL_FILE" "=\"" val "\""}' >> "$fn_submission_script"
     else
-        wsf_ext="R"
+        # Default model keyword is NOT present
+
+        # Define the default model filename and export it inside the submission script
+        fn_default_model_file="$CANDLE_SUBMISSION_DIR/candle_generated_files/default_model.txt"
+        echo "export CANDLE_DEFAULT_MODEL_FILE=\"$fn_default_model_file\"" >> "$fn_submission_script"
+
+        # Generate the default model file
+        (
+            echo "[Global Params]"
+            extract_section "default_model" "$input_file"
+        ) > "$fn_default_model_file"
     fi
-    fn_workflow_settings_file="$CANDLE_SUBMISSION_DIR/candle_generated_files/${workflow}_workflow.${wsf_ext}"
 
-    # Generate the default parameters file
-    (
-        echo "[Global Params]"
-        extract_section "default_model" "$submission_file"
-    ) > "$fn_default_model"
+    # Define the parameter space file in the submission script and if required, create it
+    if (extract_section "param_space" "$input_file" | head -n 1 | awk '{gsub(/[\t ]*/,""); print}' | grep -i "^candle_param_space_file=" > /dev/null); then
+        # Parameter space keyword is present
+        extract_section "param_space" "$input_file" | head -n 1 | awk '{loc=index($0,"="); val=substr($0,loc+1); gsub(/^[\t ]+|[\t ]+$/,"",val); gsub(/^[\047\042]|[\047\042]$/,"",val); print "export CANDLE_KEYWORD_PARAM_SPACE_FILE" "=\"" val "\""}' >> "$fn_submission_script"
+    else
+        # Parameter space keyword is NOT present
 
-    # Generate the workflow settings file
-    extract_section "param_space" "$submission_file" > tmp3.txt
-    nlines=$(wc -l tmp3.txt | awk '{print $1}')
-    (
+        # Define the parameter space filename and export it inside the submission script
+        workflow=$(grep "^export CANDLE_KEYWORD_WORKFLOW=" "$fn_submission_script" | awk -v FS="=" '{gsub(/"/,""); print tolower($2)}')
         if [ "a$workflow" == "agrid" ]; then
-            cat tmp3.txt
+            wsf_ext="txt"
         else
-            echo "param.set <- makeParamSet("
-            awk -v nlines="$nlines" '{if(NR<nlines){print $0 ","} else{print $0}}' tmp3.txt
-            echo ")"
+            wsf_ext="R"
         fi
-    ) > "$fn_workflow_settings_file"
+        fn_param_space_file="$CANDLE_SUBMISSION_DIR/candle_generated_files/${workflow}_workflow.${wsf_ext}"
+        echo "export CANDLE_WORKFLOW_SETTINGS_FILE=\"$fn_param_space_file\"" >> "$fn_submission_script"
 
-    # Unset the $CANDLE_DEFAULT_MODEL_FILE and $CANDLE_WORKFLOW_SETTINGS_FILE variables if the corresponding input file sections are missing (we later check for keywords pointing to corresponding files in preprocess.py)
-    if [ "x$(wc -l < "$fn_default_model")" == "x1" ]; then
-        fn_default_model=""
+        # Generate the parameter space file
+        extract_section "param_space" "$input_file" > tmp.txt
+        nlines=$(wc -l tmp.txt | awk '{print $1}')
+        (
+            if [ "a$workflow" == "agrid" ]; then
+                cat tmp.txt
+            else
+                echo "param.set <- makeParamSet("
+                awk -v nlines="$nlines" '{if(NR<nlines){print $0 ","} else{print $0}}' tmp.txt
+                echo ")"
+            fi
+        ) > "$fn_param_space_file"
+        rm -f tmp.txt
     fi
-    if [ "x$(wc -l < "$fn_workflow_settings_file")" == "x2" ]; then
-        fn_workflow_settings_file=""
-    fi
 
-    # Insert the other two generated input filename settings into the generated submission script
-    (
-        echo "export CANDLE_DEFAULT_MODEL_FILE=\"${fn_default_model}\"" # must be a full path in order to find the default settings
-        echo "export CANDLE_WORKFLOW_SETTINGS_FILE=\"${fn_workflow_settings_file}\"" # can no longer be a full path in recent develop version of CANDLE --> I think this has been fixed
-        awk -v split_line="$split_line" '{if(NR>split_line)print}' tmp2.txt # populate the rest of the submission script and make it executable
-    ) >> "$fn_submission_script"
-    chmod u+x "$fn_submission_script"
+    # Wrap up the submission file by running run_workflows.sh
+    echo "bash \$CANDLE/wrappers/commands/submit-job/run_workflows.sh" >> "$fn_submission_script"
 
-    # Delete temporary files
-    rm -f tmp.txt tmp2.txt tmp3.txt tmp_submission_file.in
+    # Delete comment-free input file
+    rm -f $input_file
 
     # Run the submission script
-    $fn_submission_script
+    bash "$fn_submission_script"
+
 }
 
 
-# Input parameter "submission_file"
-submission_file=$1
+# The .in file should be the argument to this script
+input_file=$1
 
-# Set the CANDLE input file and the directory holding it
-input_file_dir=$(dirname "$(readlink -e "$submission_file")")
-export CANDLE_INPUT_FILE="$submission_file"
-export CANDLE_INPUT_FILE_DIR="$input_file_dir"
-
-# Determine the extension of the submission file
-extension=$(echo "$submission_file" | awk -v FS="." '{print tolower($NF)}')
-
-# If the submission file is .sh, execute this submission script...
-if [ "a$extension" == "ash" ]; then
-    submission_file2="$(dirname "$submission_file")/$(basename "$submission_file")"
-    echo "Submitting the CANDLE submission script \"$submission_file2\"... "
-    $submission_file2 && echo "done" || echo "failed"
-
-# ...if the submission file is .in, first generate the input files from this single input file, and then execute the generated submission script...
-elif [ "a$extension" == "ain" ]; then
-    echo "Submitting the CANDLE input file \"$submission_file\"... "
-    generate_input_files_and_run "$submission_file" && echo "done" || echo "failed"
-
-# ...otherwise, throw an error
-else
-    echo "ERROR: Unknown extension ($extension) of submission file $submission_file"
-    exit
-fi
+# Generate the three input files from this single input file and then execute the generated submission script
+echo "Submitting the CANDLE input file \"$input_file\"... "
+generate_input_files_and_run "$input_file" && echo "Input file submitted successfully" || echo "Input file submission failed"

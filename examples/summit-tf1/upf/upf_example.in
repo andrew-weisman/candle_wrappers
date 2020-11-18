@@ -1,13 +1,16 @@
 &control
-  model_script =       $CANDLE/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py
-  default_model_file = $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt # optionally replaces &default_model section containing the body of this file
+  model_script = $CANDLE/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py
   workflow = grid
   nworkers = 9
   walltime = 00:20
   project = med106
   run_workflow = 1
   dry_run = 0
-  queue = batch # use debug for testing
+  queue = batch
+/
+
+&default_model
+  candle_default_model_file = $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt
 /
 
 &param_space

@@ -1,6 +1,5 @@
 &control
   model_script = $(pwd)/nt3_baseline_keras2.py
-  param_space_file = $CANDLE/Supervisor/workflows/mlrMBO/data/nt3_nightly.R # optionally replaces &param_space section containing the body of this file
   workflow = bayesian
   nworkers = 7
   walltime = 00:25
@@ -11,7 +10,7 @@
   project = med106
   run_workflow = 1
   dry_run = 0
-  queue = batch # use debug for testing
+  queue = batch
 /
 
 &default_model
@@ -34,4 +33,8 @@
   pool = [1, 10]
   save = '.'
   timeout = 3600
+/
+
+&param_space
+  candle_param_space_file = $CANDLE/Supervisor/workflows/mlrMBO/data/nt3_nightly.R
 /
