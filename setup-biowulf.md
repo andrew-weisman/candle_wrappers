@@ -5,7 +5,7 @@
 Choose a version name&mdash;going by the date is recommended, e.g., `2020-09-30`&mdash;and set this to the `version` Bash variable:
 
 ```bash
-version="2020-09-30"
+version="2020-11-23"
 ```
 
 On Helix or Biowulf, put the following in `/data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh`:
@@ -13,7 +13,7 @@ On Helix or Biowulf, put the following in `/data/BIDS-HPC/public/software/distri
 ```bash
 #!/bin/bash
 
-version="2020-09-30"
+version="2020-11-23"
 export CANDLE="/data/BIDS-HPC/public/software/distributions/candle/$version"
 export PATH="$PATH:$CANDLE/wrappers/bin"
 export SITE="biowulf"
@@ -36,7 +36,7 @@ git clone git@github.com:andrew-weisman/candle_wrappers "$CANDLE/checkouts/wrapp
 ## Further setup &mdash; once initial setup (above) has been done
 
 ```bash
-export version="2020-09-30"
+export version="2020-11-23"
 sinteractive -n 3 -N 3 --ntasks-per-core=1 --cpus-per-task=16 --gres=gpu:k80:1,lscratch:400 --mem=20G --no-gres-shell
 source /data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh
 bash "$CANDLE/checkouts/wrappers/setup.sh"
