@@ -42,19 +42,31 @@ source /data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version
 bash "$CANDLE/checkouts/wrappers/setup.sh"
 ```
 
+## Directory structure of `/data/BIDS-HPC/public/software/distributions/candle`
+
+* Call each new version a date in the format `2020-11-23`
+* Create the symbolic links `main` and `dev` to chosen versions, e.g.,
+
+```bash
+cd /data/BIDS-HPC/public/software/distributions/candle
+ln -s 2020-11-23 main
+```
+
+Once this is done, everything else, e.g., the `lmod` modulefiles, will fall into place.
+
 ## Setting up the `lmod` module
 
 Put a file named, e.g., `main.lua` or `dev.lua`, in `/data/BIDS-HPC/public/candle_modulefiles` with settings corresponding to `env_for_lmod-$version.sh` above. For example:
 
 ```lua
--- Andrew built this on 9/30/20
+-- Andrew built this on 11/23/20
 
-whatis("Version: dev")
+whatis("Version: main")
 whatis("URL: https://cbiit.github.com/sdsi/candle")
 whatis("Description: Open-source software platform providing highly scalable deep learning methodologies, including intelligent hyperparameter optimization. https://cbiit.github.com/sdsi/candle")
 
 local app         = "candle"
-local version     = "dev"
+local version     = "main"
 local base        = pathJoin("/data/BIDS-HPC/public/software/distributions/candle", version)
 
 -- The following block is what should match the "export ..." lines of env_for_lmod-$version.sh
@@ -72,15 +84,3 @@ end
 ```
 
 Then, instead of running e.g. `source /data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh` as above, if the filename of the above file were `XXXX.lua`, you would just load it like `module load candle/XXXX`.
-
-## Directory structure of `/data/BIDS-HPC/public/software/distributions/candle`
-
-* Call each new version a date in the format `2020-09-30`
-* Create the symbolic links `main` and `dev` to chosen versions, e.g.,
-
-```bash
-cd /data/BIDS-HPC/public/software/distributions/candle
-ln -s 2020-09-30 dev
-```
-
-Once this is done, everything else, e.g., the `lmod` modulefiles, will fall into place.

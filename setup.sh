@@ -50,7 +50,7 @@ set -e # exit when any command fails
 source "$CANDLE/checkouts/wrappers/site-specific_settings.sh"
 
 # Enter the fast-access directory in order to speed up compilation
-cd "$CANDLE_SETUP_LOCAL_DIR"
+#cd "$CANDLE_SETUP_LOCAL_DIR"
 
 
 #### Set up the directory structure and clone the necessary repositories ###########################################################
@@ -110,33 +110,37 @@ echo -e "\n\n :::: Testing MPI communications...\n"
 
 # Compile and run MPI hello world
 echo " ::::: Using mpicc: $(command -v mpicc)"
-mpicc -o "$CANDLE_SETUP_LOCAL_DIR/hello" "$CANDLE/wrappers/test_files/hello.c"
+#mpicc -o "$CANDLE_SETUP_LOCAL_DIR/hello" "$CANDLE/wrappers/test_files/hello.c"
+mpicc -o "./hello" "$CANDLE/wrappers/test_files/hello.c"
 
 if [ "x$run_launcher" == "x1" ]; then
 
-    if [ "$CANDLE_SETUP_LOCAL_DIR" != "$PWD" ]; then
-        cd - &> /dev/null
-        cp "$CANDLE_SETUP_LOCAL_DIR/hello" .
-    fi
+    # if [ "$CANDLE_SETUP_LOCAL_DIR" != "$PWD" ]; then
+    #     cd - &> /dev/null
+    #     cp "$CANDLE_SETUP_LOCAL_DIR/hello" .
+    # fi
 
     # shellcheck disable=SC2086
     $CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS ./hello
 
-    if [ "$CANDLE_SETUP_LOCAL_DIR" != "$PWD" ]; then
-        rm -f ./hello
-        cd - &> /dev/null
-    fi
+    # if [ "$CANDLE_SETUP_LOCAL_DIR" != "$PWD" ]; then
+    #     rm -f ./hello
+    #     cd - &> /dev/null
+    # fi
 
 else
     echo "Skipping actual job launching since this was not requested"
 fi
 
-rm -f "$CANDLE_SETUP_LOCAL_DIR/hello"
+#rm -f "$CANDLE_SETUP_LOCAL_DIR/hello"
+rm -f "./hello"
 ####################################################################################################################################
 
 
 #### Install the R packages needed for the Supervisor workflows ####################################################################
 echo -e "\n\n :::: Installing the R packages needed for the Supervisor workflows...\n"
+
+pushd "$CANDLE_SETUP_LOCAL_DIR"
 
 if [ "x$CANDLE_SETUP_BUILD_SUPERVISOR_R_PACKAGES" == "x1" ]; then
     if [ "$(find "$CANDLE/builds/R/libs" -maxdepth 1 | wc -l)" -eq 1 ]; then # if the directory is empty...
@@ -149,6 +153,8 @@ if [ "x$CANDLE_SETUP_BUILD_SUPERVISOR_R_PACKAGES" == "x1" ]; then
 else
     echo -e "\nSkipping installation of R packages needed for the Supervisor workflows because we're assuming they're already set up\n"
 fi
+
+popd
 ####################################################################################################################################
 
 
@@ -166,6 +172,8 @@ determine_executable python
 
 #### Build Swift/T #################################################################################################################
 echo -e "\n\n :::: Building Swift/T...\n"
+
+pushd "$CANDLE_SETUP_LOCAL_DIR"
 
 if [ "x$CANDLE_SETUP_COMPILE_SWIFT_T" == "x1" ]; then
     # Note: To rebuild Swift/T, I can do: “rm -rf $CANDLE/builds/R/libs/* $CANDLE/swift-t-install/* $CANDLE/Supervisor/workflows/common/ext/EQ-R/{libeqr.so,pkgIndex.tcl}"
@@ -191,11 +199,15 @@ if [ "x$CANDLE_SETUP_COMPILE_SWIFT_T" == "x1" ]; then
 else
     echo -e "\nSkipping build of Swift/T because we're assuming it's already set up\n"
 fi
+
+popd
 ####################################################################################################################################
 
 
 #### Build EQ-R ####################################################################################################################
 echo -e "\n\n :::: Building EQ-R...\n"
+
+pushd "$CANDLE_SETUP_LOCAL_DIR"
 
 if [ "x$CANDLE_SETUP_COMPILE_SWIFT_T" == "x1" ]; then
     if [ "$(find "$CANDLE/Supervisor/workflows/common/ext/EQ-R/" -maxdepth 1 | wc -l)" -eq 3 ]; then # if the directory is essentially empty (only containing the eqr directory and EQR.swift file)...
@@ -227,11 +239,15 @@ if [ "x$CANDLE_SETUP_COMPILE_SWIFT_T" == "x1" ]; then
 else
     echo -e "\nSkipping build of EQ-R because we're assuming it's already set up\n"
 fi
+
+popd
 ####################################################################################################################################
 
 
 #### Optionally run a CANDLE benchmark just to see if that would work ##############################################################
 echo -e "\n\n :::: Running a CANDLE benchmark on a single node...\n"
+
+pushd "$CANDLE_SETUP_LOCAL_DIR"
 
 #benchmark="$CANDLE/Benchmarks/Pilot1/P1B3/p1b3_baseline_keras2.py"
 #benchmark="$CANDLE/Benchmarks/Pilot1/Uno/uno_baseline_keras2.py"
@@ -260,6 +276,8 @@ if [ "x$response" == "xy" ]; then
 else
     echo "Okay, skipping the benchmark run"
 fi
+
+popd
 ####################################################################################################################################
 
 
