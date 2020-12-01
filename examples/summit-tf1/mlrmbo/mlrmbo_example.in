@@ -9,7 +9,6 @@
   max_budget = 180
   project = med106
   run_workflow = 1
-  dry_run = 0
   queue = batch
 /
 

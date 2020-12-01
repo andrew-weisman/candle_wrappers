@@ -1,11 +1,12 @@
 &control
   model_script="$(pwd)/feature-reduction.R"
   workflow="grid"
-  nworkers=4
+  nworkers=18
   worker_type="cpu"
-  walltime="00:20:00"
+  walltime=00:10:00
   exec_r_module="R/3.6"
   supp_r_libs="/data/BIDS-HPC/public/software/R/3.6/library"
+  run_workflow=1
 /
 
 &default_model
@@ -24,4 +25,20 @@
   {"id": "hpset_00006", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 7, "extfolds": 5}
   {"id": "hpset_00007", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 8, "extfolds": 5}
   {"id": "hpset_00008", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 9, "extfolds": 5}
+  {"id": "hpset_00009", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 2, "extfolds": 4}
+  {"id": "hpset_00010", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 3, "extfolds": 4}
+  {"id": "hpset_00011", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 4, "extfolds": 4}
+  {"id": "hpset_00012", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 5, "extfolds": 4}
+  {"id": "hpset_00013", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 6, "extfolds": 4}
+  {"id": "hpset_00014", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 7, "extfolds": 4}
+  {"id": "hpset_00015", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 8, "extfolds": 4}
+  {"id": "hpset_00016", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 9, "extfolds": 4}
+  {"id": "hpset_00017", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 2, "extfolds": 3}
+  {"id": "hpset_00018", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 3, "extfolds": 3}
+  {"id": "hpset_00019", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 4, "extfolds": 3}
+  {"id": "hpset_00020", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 5, "extfolds": 3}
+  {"id": "hpset_00021", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 6, "extfolds": 3}
+  {"id": "hpset_00022", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 7, "extfolds": 3}
+  {"id": "hpset_00023", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 8, "extfolds": 3}
+  {"id": "hpset_00024", "mincorr": 0.200000, "maxcorr": 0.80, "number_cv": 9, "extfolds": 3}
 /
