@@ -84,3 +84,7 @@ end
 ```
 
 Then, instead of running e.g. `source /data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh` as above, if the filename of the above file were `XXXX.lua`, you would just load it like `module load candle/XXXX`.
+
+## Other notes
+
+* The last time I ran the `setup.sh` script on Biowulf, EQ-R didn't seem to be actually set up even though the logs (see [here](https://github.com/andrew-weisman/candle_wrappers/blob/master/log_files/eqr_installation_out_and_err-biowulf-2020-11-23_1758.txt)) explicitly state that the built files were copied to the `EQR="$CANDLE/Supervisor/workflows/common/ext/EQ-R"` directory. So, on 11/25/20 I had to run `setup.sh` again, which seemed to produce the same exact log file but this time actually copied the built EQ-R files as expected. Just something to keep in mind going forward!
