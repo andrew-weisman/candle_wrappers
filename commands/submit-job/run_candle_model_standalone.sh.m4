@@ -6,6 +6,7 @@ export CANDLE_DL_BACKEND="syscmd(echo -n $CANDLE_DL_BACKEND)"
 export CANDLE_DEFAULT_MODEL_FILE="syscmd(echo -n $CANDLE_DEFAULT_MODEL_FILE)"
 export CANDLE_MODEL_DESCRIPTION="syscmd(echo -n $CANDLE_MODEL_DESCRIPTION)"
 export CANDLE_PROG_NAME="syscmd(echo -n $CANDLE_PROG_NAME)"
+export CANDLE_SUBMISSION_DIR="syscmd(echo -n $CANDLE_SUBMISSION_DIR)"
 
 # Needed in model_wrapper.sh and the files it calls
 # Of course none of these variables matter if the model script is canonically CANDLE-compliant

@@ -12,11 +12,12 @@ The wrapper scripts contain code that (1) helps to set up and test these scripts
 
 * **Run CANDLE as a central installation**. E.g., instead of cloning the Supervisor and Benchmarks repos as usual and then running a Supervisor workflow directly in the `Supervisor/workflows/<WORKFLOW>/test` directory, you would go to any arbitrary directory on the filesystem, create or edit a single text file ("input file"), and call CANDLE with the input file as an argument. This is similar to how other large HPC-enabled software packages are run, e.g., software for calculating electronic structure
 * **Edit only a single text input file** to modify *everything* you would need to set in order to run a job, e.g., workflow type, hyperparameter space, number of workers, walltime, "default model" settings, etc.
-* **Minimally modify a bare model script**, e.g., no need to add `initialize_parameters()` and `run()` functions (whose content occassionally changes) to a new model that you'd like to run using CANDLE. The wrapper scripts still work for canonically CANDLE-compliant model scripts such as the already-written main `.py` files used to run benchmarks
-  * An additional benefit to using the minimal modification procedure is that the output of the model using each hyperparameter set is put in its own file, `subprocess_out_and_err.txt`
+* **Minimally modify a bare model script**, e.g., no need to add `initialize_parameters()` and `run()` functions (whose content occassionally changes) to a new model that you'd like to run using CANDLE. The wrapper scripts still work for canonically CANDLE-compliant model scripts such as the already-written main `.py` files used to run benchmarks. Additional benefits of only minimally modifying a bare model script:
+  * The output of the model using each hyperparameter set is put in its own file, `subprocess_out_and_err.txt`
+  * Custom environments can be automatically defined for running the model script using e.g. the keywords `supp_modules`, `python_bin_path`, `exec_python_module`, `supp_pythonpath`, described further in the [section on input file keywords](#`&control`-section) below for keywords noted to apply for "minimal CANDLE-compliance only"
 * **Run model scripts written in other languages** such as `R` and `bash` (tested on Biowulf but not yet tested on Summit); minimal additions to the wrapper scripts are needed for adding additional language support
 * **Perform a consistent workflow for testing and production jobs**, i.e.:
-  1. *Testing:* Using `candle submit-job <INPUT-FILE>` with the input file keyword setting of `run_workflow=0` on an interactive node for testing modifications to a model script
+  1. *Testing:* Using `candle submit-job <INPUT-FILE>` with the input file keyword setting of `run_workflow=0` on an interactive node (e.g., `bsub -W 1:00 -nnodes 1 -P med106 -q debug -Is /bin/bash`) for testing modifications to a model script
   1. *Production:* Using `candle submit-job <INPUT-FILE>` this time with the default keyword setting of `run_workflow=1` on a login node for submitting a CANDLE job as usual
   * As long as the wrapper scripts are set up properly and your model script runs successfully using `run_workflow=0`, you can be pretty confident that submitting the job using `run_workflow=1` will pick up and run without dying
 
@@ -139,6 +140,17 @@ In addition, if you, say, pull a Benchmark model script out of the `Benchmarks` 
 
 This is demonstrated in [`$CANDLE/wrappers/examples/summit-tf1/grid/mnist_mlp.py`](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/grid/mnist_mlp.py).
 
+### Running a non-CANDLE-compliant model on its own, outside of Supervisor
+
+One drawback to minimally modifying a bare model script as opposed to making it fully CANDLE-compliant is that the former cannot generally run standalone (which you should only do on an interactive node), e.g., `python my_model_script.py`. There are two simple ways to handle this:
+
+1. Use the recommended workflow of setting `run_workflow=0` and then running the model script using `candle submit-job my_input_file.in`
+1. The first time a minimally CANDLE-compliant model script is run, using either setting of `run_workflow`, a file called `run_candle_model_standalone.sh` is created, which runs `candle_compliant_wrapper.py` using Python, just as you're desiring to run a fully CANDLE-compliant model script using Python in this situation. (As some environment variables are required to be set in `candle_compliant_wrapper.py` and the files it calls, `run_candle_model_standalone.sh` also sets some environment variables). Thus, you just need to run `bash run_candle_model_standalone.sh`
+
+Aside from not needing to make a model script fully CANDLE-compliant, the usual advantages of running minimally CANDLE-compliant scripts like this apply here, e.g., model scripts can be written in other languages and a custom environment can be automatically defined via, e.g., `supp_modules`, `python_bin_path`, `exec_python_module`, `supp_pythonpath`.
+
+As usual for miminally CANDLE-compliant model scripts, the output of the script is placed in `subprocess_out_and_err.txt`.
+
 ## Input file contents
 
 The input file should contain three sections: `&control`, `&default_model`, and `&param_space`. Each section should start with this header on its own line and end with `/` on its own line. (This input file format is based on the [Quantum Espresso](https://www.quantum-espresso.org/) electronic structure software.) Four sample input files, corresponding to the four examples in the [quick-start examples above](#quick-start-examples-(for-summit)), are here: [upf](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/upf/upf_example.in), [mlrmbo](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/mlrmbo/mlrmbo_example.in), [grid](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/grid/grid_example.in), [bayesian](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/bayesian/bayesian_example.in). Spaces at the beginnings of the content-containing lines are optional and are recommended for readability.
@@ -169,6 +181,12 @@ Here is a list of possible `keyword`s and their default `value`s (if `None`, the
 | `queue`   | `batch`        | Partition to use for the CANDLE job         |
 | `default_model_file`   | Empty string        | Full path to the default model text file to use         |
 | `param_space_file`   | Empty string        | Full path to the parameter space text file to use         |
+| `design_size`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; total number of points to sample within the hyperparameter space prior to running the [mlrMBO algorithm](https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html). E.g., `design_size = 9`. Note that this must be greater than or equal to the largest number of possible values for any discrete hyperparameter specified in the `&param_space` section. A reasonable value for this (and for `propose_points`, below) is 15-20         |
+| `propose_points`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; number of proposed (really evaluated) points at each [MBO iteration](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeMBOControl). E.g., `propose_points = 9`. A reasonable value for this (and for `design_size`, above) is 15-20         |
+| `max_iterations`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; maximum number of [sequential optimization steps](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination). E.g., `max_iterations = 3`         |
+| `max_budget`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; maximum total number of [function evaluations](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination) for all iterations combined. E.g., `max_budget = 180`         |
+
+``, ``, ``, ``
 
 ### `&default_model` section
 
@@ -199,3 +217,55 @@ A description of what every file does in the [wrappers repository](https://githu
   * `bin`: contains a single script called `candle` that can be accessed by typing `candle` on the command line once the CANDLE module has been loaded. You can generate a usage message by simply typing `candle` or `candle help` on the command line and hitting Enter
   * `examples`: contains sample/template input files and model scripts for different `$SITE`s
   * `commands`: contains one directory so-named for each command to the `candle` program, each containing all files related to the command. The file called `command_script.sh` in each command's folder is the main file called when the command is run using `candle <COMMAND> ...`. The only command not currently tested on Summit is `aggregate-results`. The bulk of the files involved in the functionality described in this document correspond to the `submit-job` command, i.e., are located in the `submit-job` folder
+
+## Recommendations for particular use cases
+
+### Run `grid` or `bayesian` hyperparameter searches on an already CANDLE-compliant model script such as a benchmark
+
+1. Enter a directory on Summit's Alpine filesystem such as `$MEMBERWORK`
+1. Load the `candle` module via `source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh`
+1. Import one of the [templates for running canonically CANDLE-compliant models](#step-2:-run-sample-candle-compliant-models) using `candle import-template {upf|mlrmbo}`; delete all but the input file
+1. Modify the `initialize_parameters()` function of the model script using the instructions [above](#how-a-canonically-candle-compliant-model-script-should-be-modified-for-use-with-the-wrapper-scripts); remember you can copy a benchmark to your working directory and make the modifications there, as the templates show
+1. Rename and tweak the input files to your liking using the [documentation for input files](#input-file-contents) above
+1. Ensure your model runs on an interactive node (e.g., `bsub -W 1:00 -nnodes 1 -P med106 -q debug -Is /bin/bash`) with the `run_workflow=0` keyword setting in the `&control` section
+1. Submit your job from a login node using the default setting of `run_workflow=1` in the `&control` section
+
+### Create a new model script on which you want to run `grid` or `bayesian` hyperparameter searches
+
+1. Enter a directory on Summit's Alpine filesystem such as `$MEMBERWORK`
+1. Load the `candle` module via `source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh`
+1. Create a bare model script as usual (e.g., download a model from the Internet, tweak it, and apply it on your data)
+1. Make the model script *minimally* CANDLE-compliant as described [above](#how-to-minimally-modify-a-bare-model-script-for-use-with-the-wrapper-scripts)
+1. Import one of the [templates for running minimally CANDLE-compliant models](#step-3:-run-sample-**non**-candle-compliant-model-scripts) using `candle import-template {grid|bayesian}`; delete all but the input file
+1. Rename and tweak the input files to your liking using the [documentation for input files](#input-file-contents) above
+1. Ensure your model runs on an interactive node (e.g., `bsub -W 1:00 -nnodes 1 -P med106 -q debug -Is /bin/bash`) with the `run_workflow=0` keyword setting in the `&control` section
+1. Submit your job from a login node using the default setting of `run_workflow=1` in the `&control` section
+
+### Run a model script written in another language such as `R` or `bash`
+
+[Ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to test this first because he hasn't tested it on Summit yet.
+
+### Pull updates to the central installation of CANDLE that have already been pulled into the main Supervisor/Benchmarks repositories
+
+1. Load the `candle` module via `source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh`
+1. Enter the clone you'd like to update via `cd $CANDLE/Supervisor` or `cd $CANDLE/Benchmarks`
+1. Run `git pull`, adjusting the permissions if necessary the very first time (or [ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to do this)
+
+### Commit changes to the wrapper scripts or to the Supervisor or Benchmarks clones in the central installation
+
+1. Load the `candle` module via `source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh`
+1. Enter the clone you'd like to update via `cd $CANDLE/{wrappers|Supervisor|Benchmarks}`
+1. Make your modifications to the code and commit your changes, adjust the permissions if necessary the very first time (or [ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to do this)
+1. [Ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to push the changes to newly forked versions of the corresponding repositories and submit pull requests into the main versions of the repositories
+
+## Ways to contribute
+
+* Implement workflows other than `grid` and `bayesian` (UQ would be great!) by following the instructions [here](./README.md#how-to-add-new-workflows) (and [asking Andrew](#how-to-contact-andrew-for-help-with-anything-above) for guidance if needed)
+* If this is something you personally want, allow for command-line arguments to the `candle` command, such as `run_workflow` or any other [input file keywords](#input-file-contents)
+* Check/preprocess the four mlrMBO keywords (`design_size`, `propose_points`, `max_iterations`, `max_budget`) by following the instructions [here](./README.md#how-to-add-a-new-keyword) and seeing their usage [here](https://github.com/andrew-weisman/candle_wrappers/blob/master/commands/submit-job/dummy_cfg-prm.sh) (good exercise to get familiar with the wrappers code)
+* Anything else!
+
+## How to contact Andrew for help with anything above
+
+Email: [andrew.weisman@nih.gov](mailto:andrew.weisman@nih.gov)  
+Slack (ECP-CANDLE workspace): @Andrew Weisman
