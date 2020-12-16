@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documentation for the CANDLE team</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documentation for the CANDLE team</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#documentation-for-the-candle-team">Documentation for the CANDLE team</a>
+<ul>
+<li><a href="#terminology-and-scope">Terminology and scope</a></li>
+<li><a href="#overview-of-wrapper-scripts-functionality">Overview of wrapper scripts functionality</a>
+<ul>
+<li><a href="#for-users">For users</a></li>
+<li><a href="#for-developers">For developers</a></li>
+</ul></li>
+<li><a href="#loading-the-candle-module">Loading the <code>candle</code> module</a></li>
+<li><a href="#quick-start-examples-for-summit">Quick-start examples (for Summit)</a>
+<ul>
+<li><a href="#step-1-setup">Step 1: Setup</a></li>
+<li><a href="#step-2-run-sample-candle-compliant-models">Step 2: Run sample CANDLE-compliant models</a></li>
+<li><a href="#step-3-run-sample-non-candle-compliant-model-scripts">Step 3: Run sample <strong>non</strong>-CANDLE-compliant model scripts</a></li>
+</ul></li>
+<li><a href="#how-a-canonically-candle-compliant-model-script-should-be-modified-for-use-with-the-wrapper-scripts">How a canonically CANDLE-compliant model script should be modified for use with the wrapper scripts</a>
+<ul>
+<li><a href="#specifically-required-by-the-wrapper-scripts-by-example">Specifically required by the wrapper scripts, by example</a></li>
+<li><a href="#nothing-to-do-with-the-wrapper-scripts-generally-no-need-to-do-these">Nothing to do with the wrapper scripts (generally no need to do these)</a></li>
+</ul></li>
+<li><a href="#how-to-minimally-modify-a-bare-model-script-for-use-with-the-wrapper-scripts">How to minimally modify a bare model script for use with the wrapper scripts</a>
+<ul>
+<li><a href="#running-a-non-candle-compliant-model-on-its-own-outside-of-supervisor">Running a non-CANDLE-compliant model on its own, outside of Supervisor</a></li>
+</ul></li>
+<li><a href="#input-file-contents">Input file contents</a>
+<ul>
+<li><a href="#control-section"><code>&amp;control</code> section</a></li>
+<li><a href="#default_model-section"><code>&amp;default_model</code> section</a></li>
+<li><a href="#param_space-section"><code>&amp;param_space</code> section</a></li>
+</ul></li>
+<li><a href="#code-organization">Code organization</a></li>
+<li><a href="#recommendations-for-particular-use-cases">Recommendations for particular use cases</a>
+<ul>
+<li><a href="#run-grid-or-bayesian-hyperparameter-searches-on-an-already-candle-compliant-model-script-such-as-a-benchmark">Run <code>grid</code> or <code>bayesian</code> hyperparameter searches on an already CANDLE-compliant model script such as a benchmark</a></li>
+<li><a href="#create-a-new-model-script-on-which-you-want-to-run-grid-or-bayesian-hyperparameter-searches">Create a new model script on which you want to run <code>grid</code> or <code>bayesian</code> hyperparameter searches</a></li>
+<li><a href="#run-a-model-script-written-in-another-language-such-as-r-or-bash">Run a model script written in another language such as <code>R</code> or <code>bash</code></a></li>
+<li><a href="#pull-updates-to-the-central-installation-of-candle-that-have-already-been-pulled-into-the-main-supervisorbenchmarks-repositories">Pull updates to the central installation of CANDLE that have already been pulled into the main Supervisor/Benchmarks repositories</a></li>
+<li><a href="#commit-changes-to-the-wrapper-scripts-or-to-the-supervisor-or-benchmarks-clones-in-the-central-installation">Commit changes to the wrapper scripts or to the Supervisor or Benchmarks clones in the central installation</a></li>
+</ul></li>
+<li><a href="#ways-to-contribute">Ways to contribute</a></li>
+<li><a href="#how-to-contact-andrew-for-help-with-anything-above">How to contact Andrew for help with anything above</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="documentation-for-the-candle-team">Documentation for the CANDLE team</h1>
+<h2 id="terminology-and-scope">Terminology and scope</h2>
+<p>Below I call the scripts I’m describing in this document the “wrapper scripts” or “wrappers,” but this still a working name. (“Interface” <em>may</em> be a viable alternative.) These scripts refer to the contents of the entire <a href="https://github.com/andrew-weisman/candle_wrappers">wrappers GitHub repository</a>, and I named them as such because the whole point was to add functionality to CANDLE while “wrapping” around the current Supervisor code, leaving it as untouched as possible so that it wouldn’t interfere in any way with how people currently run CANDLE.</p>
+<p>The wrapper scripts contain code that (1) helps to set up and test these scripts alongside new clones of the <a href="https://github.com/ECP-CANDLE/Supervisor/tree/develop">Supervisor</a> and <a href="https://github.com/ECP-CANDLE/Benchmarks/tree/develop">Benchmarks</a> CANDLE repos, and (2) enables the running of CANDLE by accessing a central installation of it. The documentation for setup (#1) can be found <a href="./README.md">here</a>; the documentation for usage (#2) is below.</p>
+<h2 id="overview-of-wrapper-scripts-functionality">Overview of wrapper scripts functionality</h2>
+<h3 id="for-users">For users</h3>
+<ul>
+<li><strong>Run CANDLE as a central installation</strong>. E.g., instead of cloning the Supervisor and Benchmarks repos as usual and then running a Supervisor workflow directly in the <code>Supervisor/workflows/&lt;WORKFLOW&gt;/test</code> directory, you would go to any arbitrary directory on the filesystem, create or edit a single text file (“input file”), and call CANDLE with the input file as an argument. This is similar to how other large HPC-enabled software packages are run, e.g., software for calculating electronic structure</li>
+<li><strong>Edit only a single text input file</strong> to modify <em>everything</em> you would need to set in order to run a job, e.g., workflow type, hyperparameter space, number of workers, walltime, “default model” settings, etc.</li>
+<li><strong>Minimally modify a bare model script</strong>, e.g., no need to add <code>initialize_parameters()</code> and <code>run()</code> functions (whose content occassionally changes) to a new model that you’d like to run using CANDLE. The wrapper scripts still work for canonically CANDLE-compliant model scripts such as the already-written main <code>.py</code> files used to run benchmarks. Additional benefits of only minimally modifying a bare model script:
+<ul>
+<li>The output of the model using each hyperparameter set is put in its own file, <code>subprocess_out_and_err.txt</code></li>
+<li>Custom environments can be automatically defined for running the model script using e.g. the keywords <code>supp_modules</code>, <code>python_bin_path</code>, <code>exec_python_module</code>, <code>supp_pythonpath</code>, described further in the <a href="#%60&amp;control%60-section">section on input file keywords</a> below for keywords noted to apply for “minimal CANDLE-compliance only”</li>
+</ul></li>
+<li><strong>Run model scripts written in other languages</strong> such as <code>R</code> and <code>bash</code> (tested on Biowulf but not yet tested on Summit); minimal additions to the wrapper scripts are needed for adding additional language support</li>
+<li><strong>Perform a consistent workflow for testing and production jobs</strong>, i.e.:
+<ol type="1">
+<li><em>Testing:</em> Using <code>candle submit-job &lt;INPUT-FILE&gt;</code> with the input file keyword setting of <code>run_workflow=0</code> on an interactive node (e.g., <code>bsub -W 1:00 -nnodes 1 -P med106 -q debug -Is /bin/bash</code>) for testing modifications to a model script</li>
+<li><em>Production:</em> Using <code>candle submit-job &lt;INPUT-FILE&gt;</code> this time with the default keyword setting of <code>run_workflow=1</code> on a login node for submitting a CANDLE job as usual</li>
+</ol>
+<ul>
+<li>As long as the wrapper scripts are set up properly and your model script runs successfully using <code>run_workflow=0</code>, you can be pretty confident that submitting the job using <code>run_workflow=1</code> will pick up and run without dying</li>
+</ul></li>
+</ul>
+<h3 id="for-developers">For developers</h3>
+<ul>
+<li><strong>Modify only a single file (<a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/commands/submit-job/candle_compliant_wrapper.py"><code>candle_compliant_wrapper.py</code></a>) whenever the CANDLE-compliance procedure changes</strong>. E.g., if the benchmarks used the minimal modification to the main <code>.py</code> files rather than the traditional CANDLE-compliance procedure, there would be no need to update every benchmark whenever the CANDLE-compliance procedure changed</li>
+<li><strong>Edit only a single file (<a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/commands/submit-job/preprocess.py"><code>preprocess.py</code></a>) in order to make system-specific changes</strong> such as custom modification to the <code>$TURBINE_LAUNCH_OPTIONS</code> variable; no need to edit each Supervisor workflow’s <code>workflow.sh</code> file</li>
+</ul>
+<h2 id="loading-the-candle-module">Loading the <code>candle</code> module</h2>
+<p>We are currently getting CANDLE approved as user-managed software on Summit. Once it is approved, we will be able to load the <code>candle</code> module via <code>module load candle/tf1</code>. In the interim, do this instead:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh</span></code></pre></div>
+<p>Both methods primarily do the following:</p>
+<ul>
+<li>Sets the <code>$CANDLE</code> variable to <code>/gpfs/alpine/med106/world-shared/candle/tf1</code> in order to set the top-level directory of the entire CANDLE file tree, including the <code>Supervisor</code>, <code>Benchmarks</code>, and <code>wrappers</code> GitHub repositories</li>
+<li>Appends <code>$CANDLE/wrappers/bin</code> to <code>$PATH</code> in order to be able to run <code>candle</code> from the command line</li>
+<li>Sets the <code>$SITE</code> variable to <code>summit-tf1</code> in order to specify the HPC system and environment</li>
+<li>Appends <code>$CANDLE/Benchmarks/common</code> to <code>$PYTHONPATH</code> to allow one to write a Python model script in an arbitrary directory and to be able to run <code>import candle</code> in the script</li>
+</ul>
+<h2 id="quick-start-examples-for-summit">Quick-start examples (for Summit)</h2>
+<h3 id="step-1-setup">Step 1: Setup</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the CANDLE module; do the following for the time being in lieu of &quot;module load candle&quot;, as we are currently getting CANDLE approved as user-managed software</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter a possibly empty directory that is completely outside of the Supervisor/Benchmarks repositories on the Alpine filesystem, such as $MEMBERWORK</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /gpfs/alpine/med106/scratch/weismana/notebook/2020-11-13/testing_candle_installation</span></code></pre></div>
+<h3 id="step-2-run-sample-candle-compliant-models">Step 2: Run sample CANDLE-compliant models</h3>
+<p>This refers to model scripts that the developers refer to as “CANDLE-compliant” as usual (what I call “<em>canonically</em> CANDLE-compliant”). See <a href="#how-a-canonically-candle-compliant-model-script-should-be-modified-for-use-with-the-wrapper-scripts">below</a> for the changes that should be made to canonically CANDLE-compliant scripts to get them to work with the wrapper scripts.</p>
+<h4 id="nt3-using-upf-candle-compliant-model-scripts">NT3 using UPF (CANDLE-compliant model scripts)</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the UPF example (one file will be copied over)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">candle</span> import-template upf</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Submit the job to the queue</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">candle</span> submit-job upf_example.in</span></code></pre></div>
+<h4 id="nt3-using-mlrmbo-candle-compliant-model-scripts">NT3 using mlrMBO (CANDLE-compliant model scripts)</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the mlrMBO example (two files will be copied over)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">candle</span> import-template mlrmbo</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Submit the job to the queue</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">candle</span> submit-job mlrmbo_example.in</span></code></pre></div>
+<h3 id="step-3-run-sample-non-candle-compliant-model-scripts">Step 3: Run sample <strong>non</strong>-CANDLE-compliant model scripts</h3>
+<p>This refers to model scripts that have gone from “bare” (e.g., one downloaded directly from the Internet) to “minimally modified,” a process described <a href="#how-to-minimally-modify-a-bare-model-script-for-use-with-the-wrapper-scripts">below</a>.</p>
+<h4 id="mnist-using-upf-non-candle-compliant-model-scripts">MNIST using UPF (non-CANDLE-compliant model scripts)</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-fetch the MNIST data since Summit compute nodes can&#39;t access the Internet (this obviously has nothing to do with the wrapper scripts)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> candle_generated_files</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/gpfs/alpine/world-shared/med106/sw/condaenv-200408/bin/python</span> -c <span class="st">&quot;from keras.datasets import mnist; import os; (x_train, y_train), (x_test, y_test) = mnist.load_data(os.path.join(os.getcwd(), &#39;candle_generated_files&#39;, &#39;mnist.npz&#39;))&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the grid example (two files will be copied over)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">candle</span> import-template grid</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Submit the job to the queue</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">candle</span> submit-job grid_example.in</span></code></pre></div>
+<h4 id="nt3-using-mlrmbo-non-candle-compliant-model-scripts">NT3 using mlrMBO (non-CANDLE-compliant model scripts)</h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the bayesian example (two files will be copied over)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">candle</span> import-template bayesian</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Submit the job to the queue</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">candle</span> submit-job bayesian_example.in</span></code></pre></div>
+<h2 id="how-a-canonically-candle-compliant-model-script-should-be-modified-for-use-with-the-wrapper-scripts">How a canonically CANDLE-compliant model script should be modified for use with the wrapper scripts</h2>
+<h3 id="specifically-required-by-the-wrapper-scripts-by-example">Specifically required by the wrapper scripts, by example</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_parameters(default_model<span class="op">=</span><span class="st">&#39;nt3_default_model.txt&#39;</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> os <span class="co"># ADD THIS LINE</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    nt3Bmk <span class="op">=</span> bmk.BenchmarkNT3(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        bmk.file_path,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># default_model, # ORIGINAL LINE</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        os.getenv(<span class="st">&#39;CANDLE_DEFAULT_MODEL_FILE&#39;</span>), <span class="co"># NEW LINE</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;keras&#39;</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        prog<span class="op">=</span><span class="st">&#39;nt3_baseline&#39;</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        desc<span class="op">=</span><span class="st">&#39;1D CNN to classify RNA sequence data in normal or tumor classes&#39;</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    gParameters <span class="op">=</span> candle.finalize_parameters(nt3Bmk)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> gParameters</span></code></pre></div>
+<h3 id="nothing-to-do-with-the-wrapper-scripts-generally-no-need-to-do-these">Nothing to do with the wrapper scripts (generally no need to do these)</h3>
+<p>You may need to add <code>K.clear_session()</code> prior to, say, <code>model = Sequential()</code>. Otherwise, once the same rank runs a model script a <em>second</em> time, we get a strange <code>InvalidArgumentError</code> error that kills Supervisor (see the comments in <a href="https://github.com/ECP-CANDLE/Benchmarks/blob/develop/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py"><code>$CANDLE/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py</code></a> for more details). It is wholly possible that this is a bug that has gotten fixed in subsequent versions of Keras/Tensorflow.</p>
+<p>In addition, if you, say, pull a Benchmark model script out of the <code>Benchmarks</code> repository into your own separate directory, you may need to add a line like <code>sys.path.append(os.path.join(os.getenv('CANDLE'), 'Benchmarks', 'Pilot1', 'NT3'))</code>. This is demonstrated in <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/mlrmbo/nt3_candle_wrappers_baseline_keras2.py"><code>$CANDLE/wrappers/examples/summit-tf1/mlrmbo/nt3_candle_wrappers_baseline_keras2.py</code></a>.</p>
+<h2 id="how-to-minimally-modify-a-bare-model-script-for-use-with-the-wrapper-scripts">How to minimally modify a bare model script for use with the wrapper scripts</h2>
+<ol type="1">
+<li>Set the hyperparameters in the model script using a dictionary called <code>candle_params</code></li>
+<li>Ensure somewhere near the end of the script either the normal <code>history</code> object is defined or a metric of how well the hyperparameter set performed (a value you want to minimize, such as the loss evaluated on a test set) is returned as a number in the <code>candle_value_to_return</code> variable</li>
+</ol>
+<p>This is demonstrated in <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/grid/mnist_mlp.py"><code>$CANDLE/wrappers/examples/summit-tf1/grid/mnist_mlp.py</code></a>.</p>
+<h3 id="running-a-non-candle-compliant-model-on-its-own-outside-of-supervisor">Running a non-CANDLE-compliant model on its own, outside of Supervisor</h3>
+<p>One drawback to minimally modifying a bare model script as opposed to making it fully CANDLE-compliant is that the former cannot generally run standalone (which you should only do on an interactive node), e.g., <code>python my_model_script.py</code>. There are two simple ways to handle this:</p>
+<ol type="1">
+<li>Use the recommended workflow of setting <code>run_workflow=0</code> and then running the model script using <code>candle submit-job my_input_file.in</code></li>
+<li>The first time a minimally CANDLE-compliant model script is run, using either setting of <code>run_workflow</code>, a file called <code>run_candle_model_standalone.sh</code> is created, which runs <code>candle_compliant_wrapper.py</code> using Python, just as you’re desiring to run a fully CANDLE-compliant model script using Python in this situation. (As some environment variables are required to be set in <code>candle_compliant_wrapper.py</code> and the files it calls, <code>run_candle_model_standalone.sh</code> also sets some environment variables). Thus, you just need to run <code>bash run_candle_model_standalone.sh</code></li>
+</ol>
+<p>Aside from not needing to make a model script fully CANDLE-compliant, the usual advantages of running minimally CANDLE-compliant scripts like this apply here, e.g., model scripts can be written in other languages and a custom environment can be automatically defined via, e.g., <code>supp_modules</code>, <code>python_bin_path</code>, <code>exec_python_module</code>, <code>supp_pythonpath</code>.</p>
+<p>As usual for miminally CANDLE-compliant model scripts, the output of the script is placed in <code>subprocess_out_and_err.txt</code>.</p>
+<h2 id="input-file-contents">Input file contents</h2>
+<p>The input file should contain three sections: <code>&amp;control</code>, <code>&amp;default_model</code>, and <code>&amp;param_space</code>. Each section should start with this header on its own line and end with <code>/</code> on its own line. (This input file format is based on the <a href="https://www.quantum-espresso.org/">Quantum Espresso</a> electronic structure software.) Four sample input files, corresponding to the four examples in the <a href="#quick-start-examples-(for-summit)">quick-start examples above</a>, are here: <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/upf/upf_example.in">upf</a>, <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/mlrmbo/mlrmbo_example.in">mlrmbo</a>, <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/grid/grid_example.in">grid</a>, <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/bayesian/bayesian_example.in">bayesian</a>. Spaces at the beginnings of the content-containing lines are optional and are recommended for readability.</p>
+<h3 id="control-section"><code>&amp;control</code> section</h3>
+<p>The <code>&amp;control</code> section contains all settings aside from those specified in the <code>&amp;default_model</code> and <code>&amp;param_space</code> sections (detailed below) in the format <code>keyword = value</code>. Spaces around the <code>=</code> sign are optional, and each keyword setting should be on its own line. Each <code>value</code> ultimately gets interpreted by <code>bash</code> and hence is taken to be a string by default; thus, quotes are not necessary for string <code>value</code>s.</p>
+<p>Here is a list of possible <code>keyword</code>s and their default <code>value</code>s (if <code>None</code>, then the keyword is required), as specified in <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/site-specific_settings.sh"><code>$CANDLE/wrappers/site-specific_settings.sh</code></a>:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>keyword</code></th>
+<th>Default <code>value</code></th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>model_script</code></td>
+<td><code>None</code></td>
+<td>Full path to the model script</td>
+</tr>
+<tr class="even">
+<td><code>workflow</code></td>
+<td><code>None</code></td>
+<td>Currently only <code>grid</code> and <code>bayesian</code> are enabled (which get mapped to the UPF and mlrMBO Supervisor workflows)</td>
+</tr>
+<tr class="odd">
+<td><code>project</code></td>
+<td><code>None</code></td>
+<td>OLCF project to use, e.g., <code>med106</code></td>
+</tr>
+<tr class="even">
+<td><code>walltime</code></td>
+<td><code>00:05</code></td>
+<td>In <code>HH:MM</code> format as is used on Summit</td>
+</tr>
+<tr class="odd">
+<td><code>nworkers</code></td>
+<td><code>1</code></td>
+<td>workers=GPUs. The number of nodes used will be <code>nworkers</code> + (1 (<code>grid</code>) or 2 (<code>bayesian</code>)), after which 0-5 workers will be added in order to utilize all GPUs on all nodes</td>
+</tr>
+<tr class="even">
+<td><code>dl_backend</code></td>
+<td><code>keras</code></td>
+<td>Valid backends are <code>keras</code> and <code>pytorch</code></td>
+</tr>
+<tr class="odd">
+<td><code>supp_modules</code></td>
+<td>Empty string</td>
+<td>Supplementary <code>module</code>s to load prior to executing a model script (minimal CANDLE-compliance only)</td>
+</tr>
+<tr class="even">
+<td><code>python_bin_path</code></td>
+<td>Empty string</td>
+<td>Actual Python version to use if not the one set in <code>env-$SITE.sh</code> (minimal CANDLE-compliance only)</td>
+</tr>
+<tr class="odd">
+<td><code>exec_python_module</code></td>
+<td>Empty string</td>
+<td>Actual Python <code>module</code> to use if not the Python version set in <code>env-$SITE.sh</code> (minimal CANDLE-compliance only)</td>
+</tr>
+<tr class="even">
+<td><code>supp_pythonpath</code></td>
+<td>Empty string</td>
+<td><code>:</code>-delimited list of <code>$PYTHONPATH</code> settings to append to the <code>$PYTHONPATH</code> variable (minimal CANDLE-compliance only)</td>
+</tr>
+<tr class="odd">
+<td><code>extra_script_args</code></td>
+<td>Empty string</td>
+<td>Extra arguments to the <code>python</code> or <code>R</code> programs to use when calling the corresponding model script (minimal CANDLE-compliance only)</td>
+</tr>
+<tr class="even">
+<td><code>exec_r_module</code></td>
+<td>Empty string</td>
+<td>Actual R <code>module</code> to use if not the R version set in <code>env-$SITE.sh</code> (minimal CANDLE-compliance only)</td>
+</tr>
+<tr class="odd">
+<td><code>supp_r_libs</code></td>
+<td>Empty string</td>
+<td>Full path to a supplementary <code>$R_LIBS</code> library to use (minimal CANDLE-compliance only)</td>
+</tr>
+<tr class="even">
+<td><code>run_workflow</code></td>
+<td>1</td>
+<td>0 will run your model script once using the default model parameters on the current node (so only use this on an interactive node); 1 will run the actual Supervisor workflow, submitting the job to the queue as usual</td>
+</tr>
+<tr class="odd">
+<td><code>dry_run</code></td>
+<td>0</td>
+<td>1 will set up the job but not execute it so that you can examine the settings files generated in the submission directory; 0 will run the job as usual</td>
+</tr>
+<tr class="even">
+<td><code>queue</code></td>
+<td><code>batch</code></td>
+<td>Partition to use for the CANDLE job</td>
+</tr>
+<tr class="odd">
+<td><code>default_model_file</code></td>
+<td>Empty string</td>
+<td>Full path to the default model text file to use</td>
+</tr>
+<tr class="even">
+<td><code>param_space_file</code></td>
+<td>Empty string</td>
+<td>Full path to the parameter space text file to use</td>
+</tr>
+<tr class="odd">
+<td><code>design_size</code></td>
+<td><a href="#ways-to-contribute">Not yet preprocessed</a></td>
+<td><code>bayesian</code> workflow only; total number of points to sample within the hyperparameter space prior to running the <a href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrMBO algorithm</a>. E.g., <code>design_size = 9</code>. Note that this must be greater than or equal to the largest number of possible values for any discrete hyperparameter specified in the <code>&amp;param_space</code> section. A reasonable value for this (and for <code>propose_points</code>, below) is 15-20</td>
+</tr>
+<tr class="even">
+<td><code>propose_points</code></td>
+<td><a href="#ways-to-contribute">Not yet preprocessed</a></td>
+<td><code>bayesian</code> workflow only; number of proposed (really evaluated) points at each <a href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeMBOControl">MBO iteration</a>. E.g., <code>propose_points = 9</code>. A reasonable value for this (and for <code>design_size</code>, above) is 15-20</td>
+</tr>
+<tr class="odd">
+<td><code>max_iterations</code></td>
+<td><a href="#ways-to-contribute">Not yet preprocessed</a></td>
+<td><code>bayesian</code> workflow only; maximum number of <a href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination">sequential optimization steps</a>. E.g., <code>max_iterations = 3</code></td>
+</tr>
+<tr class="even">
+<td><code>max_budget</code></td>
+<td><a href="#ways-to-contribute">Not yet preprocessed</a></td>
+<td><code>bayesian</code> workflow only; maximum total number of <a href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination">function evaluations</a> for all iterations combined. E.g., <code>max_budget = 180</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="default_model-section"><code>&amp;default_model</code> section</h3>
+<p>This can contain either a single keyword/value line containing the <code>candle_default_model_file</code> keyword pointing to the full path of the default model text file to use, e.g., <code>candle_default_model_file = $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt</code> or the <em>contents</em> of such a default model file as, e.g., in the <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/grid/grid_example.in">grid</a> or <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/bayesian/bayesian_example.in">bayesian</a> examples in the <a href="#quick-start-examples-(for-summit)">quick-start section above</a>.</p>
+<h3 id="param_space-section"><code>&amp;param_space</code> section</h3>
+<p>This can contain either a single keyword/value line containing the <code>candle_param_space_file</code> keyword pointing to the full path of the file specifying the hyperparameter space to use, e.g., <code>candle_param_space_file = $CANDLE/Supervisor/workflows/mlrMBO/data/nt3_nightly.R</code> or the <em>contents</em> of such a parameter space file as, e.g., in the <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/grid/grid_example.in">grid</a> or <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/upf/upf_example.in">upf</a> examples in the <a href="#quick-start-examples-(for-summit)">quick-start section above</a> or here:</p>
+<pre><code>&amp;param_space
+  makeDiscreteParam(&quot;batch_size&quot;, values = c(16, 32))
+  makeIntegerParam(&quot;epochs&quot;, lower = 2, upper = 5)
+  makeDiscreteParam(&quot;optimizer&quot;, values = c(&quot;adam&quot;, &quot;sgd&quot;, &quot;rmsprop&quot;, &quot;adagrad&quot;, &quot;adadelta&quot;))
+  makeNumericParam(&quot;dropout&quot;, lower = 0, upper = 0.9)
+  makeNumericParam(&quot;learning_rate&quot;, lower = 0.00001, upper = 0.1)
+/</code></pre>
+<h2 id="code-organization">Code organization</h2>
+<p>A description of what every file does in the <a href="https://github.com/andrew-weisman/candle_wrappers">wrappers repository</a>, which is cloned to <code>$CANDLE/wrappers</code>, can be found <a href="./repository_organization.md">here</a>. Some particular notes:</p>
+<ul>
+<li>All documentation is currently in the top-level directory: <code>README.md</code> (see this file for additional notes), <code>docs_for_candle_team.md</code> (this file), <code>repository_organization.md</code>, <code>setup-biowulf.md</code>, and <code>setup-summit.md</code></li>
+<li>Folders pertaining to the <strong>setup</strong> of the wrappers repository and in general of CANDLE on a new HPC system (involved in the <a href="./README.md">setup documentation</a>) are <code>log_files</code>, <code>swift-t_setup</code>, and <code>test_files</code></li>
+<li>Folders pertaining to the <strong>usage</strong> of the wrapper scripts (involved in the usage documentation that you are currently reading) are:
+<ul>
+<li><code>lmod_modules</code>: contains <code>.lua</code> files used by the <code>lmod</code> system for loading <code>module</code>s, enabling one to run, e.g., <a href="#loading-the-%60candle%60-module"><code>module load candle</code></a></li>
+<li><code>bin</code>: contains a single script called <code>candle</code> that can be accessed by typing <code>candle</code> on the command line once the CANDLE module has been loaded. You can generate a usage message by simply typing <code>candle</code> or <code>candle help</code> on the command line and hitting Enter</li>
+<li><code>examples</code>: contains sample/template input files and model scripts for different <code>$SITE</code>s</li>
+<li><code>commands</code>: contains one directory so-named for each command to the <code>candle</code> program, each containing all files related to the command. The file called <code>command_script.sh</code> in each command’s folder is the main file called when the command is run using <code>candle &lt;COMMAND&gt; ...</code>. The only command not currently tested on Summit is <code>aggregate-results</code>. The bulk of the files involved in the functionality described in this document correspond to the <code>submit-job</code> command, i.e., are located in the <code>submit-job</code> folder</li>
+</ul></li>
+</ul>
+<h2 id="recommendations-for-particular-use-cases">Recommendations for particular use cases</h2>
+<h3 id="run-grid-or-bayesian-hyperparameter-searches-on-an-already-candle-compliant-model-script-such-as-a-benchmark">Run <code>grid</code> or <code>bayesian</code> hyperparameter searches on an already CANDLE-compliant model script such as a benchmark</h3>
+<ol type="1">
+<li>Enter a directory on Summit’s Alpine filesystem such as <code>$MEMBERWORK</code></li>
+<li>Load the <code>candle</code> module via <code>source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh</code></li>
+<li>Import one of the <a href="#step-2:-run-sample-candle-compliant-models">templates for running canonically CANDLE-compliant models</a> using <code>candle import-template {upf|mlrmbo}</code>; delete all but the input file</li>
+<li>Modify the <code>initialize_parameters()</code> function of the model script using the instructions <a href="#how-a-canonically-candle-compliant-model-script-should-be-modified-for-use-with-the-wrapper-scripts">above</a>; remember you can copy a benchmark to your working directory and make the modifications there, as the templates show</li>
+<li>Rename and tweak the input files to your liking using the <a href="#input-file-contents">documentation for input files</a> above</li>
+<li>Ensure your model runs on an interactive node (e.g., <code>bsub -W 1:00 -nnodes 1 -P med106 -q debug -Is /bin/bash</code>) with the <code>run_workflow=0</code> keyword setting in the <code>&amp;control</code> section</li>
+<li>Submit your job from a login node using the default setting of <code>run_workflow=1</code> in the <code>&amp;control</code> section</li>
+</ol>
+<h3 id="create-a-new-model-script-on-which-you-want-to-run-grid-or-bayesian-hyperparameter-searches">Create a new model script on which you want to run <code>grid</code> or <code>bayesian</code> hyperparameter searches</h3>
+<ol type="1">
+<li>Enter a directory on Summit’s Alpine filesystem such as <code>$MEMBERWORK</code></li>
+<li>Load the <code>candle</code> module via <code>source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh</code></li>
+<li>Create a bare model script as usual (e.g., download a model from the Internet, tweak it, and apply it on your data)</li>
+<li>Make the model script <em>minimally</em> CANDLE-compliant as described <a href="#how-to-minimally-modify-a-bare-model-script-for-use-with-the-wrapper-scripts">above</a></li>
+<li>Import one of the <a href="#step-3:-run-sample-**non**-candle-compliant-model-scripts">templates for running minimally CANDLE-compliant models</a> using <code>candle import-template {grid|bayesian}</code>; delete all but the input file</li>
+<li>Rename and tweak the input files to your liking using the <a href="#input-file-contents">documentation for input files</a> above</li>
+<li>Ensure your model runs on an interactive node (e.g., <code>bsub -W 1:00 -nnodes 1 -P med106 -q debug -Is /bin/bash</code>) with the <code>run_workflow=0</code> keyword setting in the <code>&amp;control</code> section</li>
+<li>Submit your job from a login node using the default setting of <code>run_workflow=1</code> in the <code>&amp;control</code> section</li>
+</ol>
+<h3 id="run-a-model-script-written-in-another-language-such-as-r-or-bash">Run a model script written in another language such as <code>R</code> or <code>bash</code></h3>
+<p><a href="#how-to-contact-andrew-for-help-with-anything-above">Ask Andrew</a> to test this first because he hasn’t tested it on Summit yet.</p>
+<h3 id="pull-updates-to-the-central-installation-of-candle-that-have-already-been-pulled-into-the-main-supervisorbenchmarks-repositories">Pull updates to the central installation of CANDLE that have already been pulled into the main Supervisor/Benchmarks repositories</h3>
+<ol type="1">
+<li>Load the <code>candle</code> module via <code>source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh</code></li>
+<li>Enter the clone you’d like to update via <code>cd $CANDLE/Supervisor</code> or <code>cd $CANDLE/Benchmarks</code></li>
+<li>Run <code>git pull</code>, adjusting the permissions if necessary the very first time (or <a href="#how-to-contact-andrew-for-help-with-anything-above">ask Andrew</a> to do this)</li>
+</ol>
+<h3 id="commit-changes-to-the-wrapper-scripts-or-to-the-supervisor-or-benchmarks-clones-in-the-central-installation">Commit changes to the wrapper scripts or to the Supervisor or Benchmarks clones in the central installation</h3>
+<ol type="1">
+<li>Load the <code>candle</code> module via <code>source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh</code></li>
+<li>Enter the clone you’d like to update via <code>cd $CANDLE/{wrappers|Supervisor|Benchmarks}</code></li>
+<li>Make your modifications to the code and commit your changes, adjust the permissions if necessary the very first time (or <a href="#how-to-contact-andrew-for-help-with-anything-above">ask Andrew</a> to do this)</li>
+<li><a href="#how-to-contact-andrew-for-help-with-anything-above">Ask Andrew</a> to push the changes to newly forked versions of the corresponding repositories and submit pull requests into the main versions of the repositories</li>
+</ol>
+<h2 id="ways-to-contribute">Ways to contribute</h2>
+<ul>
+<li>Implement workflows other than <code>grid</code> and <code>bayesian</code> (UQ would be great!) by following the instructions <a href="./README.md#how-to-add-new-workflows">here</a> (and <a href="#how-to-contact-andrew-for-help-with-anything-above">asking Andrew</a> for guidance if needed)</li>
+<li>If this is something you personally want, allow for command-line arguments to the <code>candle</code> command, such as <code>run_workflow</code> or any other <a href="#input-file-contents">input file keywords</a></li>
+<li>Check/preprocess the four mlrMBO keywords (<code>design_size</code>, <code>propose_points</code>, <code>max_iterations</code>, <code>max_budget</code>) by following the instructions <a href="./README.md#how-to-add-a-new-keyword">here</a> and seeing their usage <a href="https://github.com/andrew-weisman/candle_wrappers/blob/master/commands/submit-job/dummy_cfg-prm.sh">here</a> (good exercise to get familiar with the wrappers code)</li>
+<li>Anything else!</li>
+</ul>
+<h2 id="how-to-contact-andrew-for-help-with-anything-above">How to contact Andrew for help with anything above</h2>
+<p>Email: <a href="mailto:andrew.weisman@nih.gov">andrew.weisman@nih.gov</a><br />
+Slack (ECP-CANDLE workspace): <span class="citation" data-cites="Andrew">@Andrew</span> Weisman</p>
+</body>
+</html>
