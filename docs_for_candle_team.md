@@ -307,7 +307,7 @@ A description of what every file does in the [wrappers repository](https://githu
 
 1. Load the `candle` module via `source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh`
 1. Enter the clone you'd like to update via `cd $CANDLE/{wrappers|Supervisor|Benchmarks}`
-1. Make your modifications to the code and commit your changes, adjust the permissions if necessary the very first time (or [ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to do this)
+1. Make your modifications to the code and commit your changes, adjusting the permissions if necessary the very first time (or [ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to do this)
 1. [Ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to push the changes to newly forked versions of the corresponding repositories and submit pull requests into the main versions of the repositories
 
 ## Ways to contribute
