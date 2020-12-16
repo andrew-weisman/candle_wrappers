@@ -277,8 +277,8 @@ A description of what every file does in the [wrappers repository](https://githu
 1. Enter a directory on Summit's Alpine filesystem such as `$MEMBERWORK`
 1. Load the `candle` module via `source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh`
 1. Import one of the [templates for running canonically CANDLE-compliant models](#step-2-run-sample-candle-compliant-model-scripts) using `candle import-template {upf|mlrmbo}`; delete all but the input file
+1. Rename and tweak the input file to your liking using the [documentation for input files](#input-file-contents) above
 1. Modify the `initialize_parameters()` function of the model script using the instructions [above](#how-a-canonically-candle-compliant-model-script-should-be-modified-for-use-with-the-wrapper-scripts); remember you can copy a benchmark to your working directory and make the modifications there, as the templates show
-1. Rename and tweak the input files to your liking using the [documentation for input files](#input-file-contents) above
 1. Ensure your model runs on an interactive node (e.g., `bsub -W 1:00 -nnodes 1 -P med106 -q debug -Is /bin/bash`) with the `run_workflow=0` keyword setting in the `&control` section
 1. Submit your job from a login node using the default setting of `run_workflow=1` in the `&control` section
 
@@ -289,7 +289,7 @@ A description of what every file does in the [wrappers repository](https://githu
 1. Create a bare model script as usual (e.g., download a model from the Internet, tweak it, and apply it on your data)
 1. Make the model script *minimally* CANDLE-compliant as described [above](#how-to-minimally-modify-a-bare-model-script-for-use-with-the-wrapper-scripts)
 1. Import one of the [templates for running minimally CANDLE-compliant models](#step-3-run-sample-non-candle-compliant-model-scripts) using `candle import-template {grid|bayesian}`; delete all but the input file
-1. Rename and tweak the input files to your liking using the [documentation for input files](#input-file-contents) above
+1. Rename and tweak the input file to your liking using the [documentation for input files](#input-file-contents) above
 1. Ensure your model runs on an interactive node (e.g., `bsub -W 1:00 -nnodes 1 -P med106 -q debug -Is /bin/bash`) with the `run_workflow=0` keyword setting in the `&control` section
 1. Submit your job from a login node using the default setting of `run_workflow=1` in the `&control` section
 
