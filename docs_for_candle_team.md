@@ -268,7 +268,7 @@ A description of what every file does in the [wrappers repository](https://githu
   * `lmod_modules`: contains `.lua` files used by the `lmod` system for loading `module`s, enabling one to run, e.g., [`module load candle`](#loading-the-candle-module)
   * `bin`: contains a single script called `candle` that can be accessed by typing `candle` on the command line once the CANDLE module has been loaded. You can generate a usage message by simply typing `candle` or `candle help` on the command line and hitting Enter
   * `examples`: contains sample/template input files and model scripts for different `$SITE`s
-  * `commands`: contains one directory so-named for each command to the `candle` program, each containing all files related to the command. The file called `command_script.sh` in each command's directory is the main file called when the command is run using `candle <COMMAND> ...`. The only command not currently tested on Summit is `aggregate-results`. The bulk of the files involved in the functionality described in this document correspond to the `submit-job` command, i.e., are located in the `submit-job` folder
+  * `commands`: contains one directory so-named for each command to the `candle` program, each containing all files related to the command. The file called `command_script.sh` in each command's directory is the main file called when the command is run using `candle <COMMAND> ...`. The only command not currently tested on Summit is `aggregate-results`. The bulk of the files involved in the functionality described in this document correspond to the `submit-job` command, i.e., are located in the `submit-job` subdirectory
 
 ## Recommendations for particular use cases
 
