@@ -263,8 +263,8 @@ Note there are no commas at the end of each line in the example above.
 A description of what every file does in the [wrappers repository](https://github.com/andrew-weisman/candle_wrappers), which is cloned to `$CANDLE/wrappers`, can be found [here](./repository_organization.md). Some particular notes:
 
 * All documentation is currently in the top-level directory: `README.md` (see this file for additional notes), `docs_for_candle_team.md` (this file), `repository_organization.md`, `setup-biowulf.md`, and `setup-summit.md`
-* Folders pertaining to the **setup** of the wrappers repository and in general of CANDLE on a new HPC system (involved in the [setup documentation](./README.md)) are `log_files`, `swift-t_setup`, and `test_files`
-* Folders pertaining to the **usage** of the wrapper scripts (involved in the usage documentation that you are currently reading) are:
+* Directories pertaining to the **setup** of the wrappers repository and in general of CANDLE on a new HPC system (involved in the [setup documentation](./README.md)) are `log_files`, `swift-t_setup`, and `test_files`
+* Directories pertaining to the **usage** of the wrapper scripts (involved in the usage documentation that you are currently reading) are:
   * `lmod_modules`: contains `.lua` files used by the `lmod` system for loading `module`s, enabling one to run, e.g., [`module load candle`](#loading-the-candle-module)
   * `bin`: contains a single script called `candle` that can be accessed by typing `candle` on the command line once the CANDLE module has been loaded. You can generate a usage message by simply typing `candle` or `candle help` on the command line and hitting Enter
   * `examples`: contains sample/template input files and model scripts for different `$SITE`s
