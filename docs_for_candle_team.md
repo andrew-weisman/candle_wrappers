@@ -48,7 +48,7 @@
         -   [Commit changes to the wrapper scripts or to the Supervisor
             or Benchmarks clones in the central
             installation](#commit-changes-to-the-wrapper-scripts-or-to-the-supervisor-or-benchmarks-clones-in-the-central-installation)
-    -   [Ways to contribute](#ways-to-contribute)
+    -   [Contribution ideas](#contribution-ideas)
     -   [How to contact Andrew for help with anything
         above](#how-to-contact-andrew-for-help-with-anything-above)
 
@@ -233,10 +233,10 @@ Here is a list of possible `keyword`s and their default `value`s (if `None`, the
 | `run_workflow`   | 1        | 0 will run your model script once using the default model parameters on the current node (so only use this on an interactive node); 1 will run the actual Supervisor workflow, submitting the job to the queue as usual        |
 | `dry_run`   | 0        | 1 will set up the job but not execute it so that you can examine the settings files generated in the submission directory; 0 will run the job as usual         |
 | `queue`   | `batch`        | Partition to use for the CANDLE job         |
-| `design_size`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; total number of points to sample within the hyperparameter space prior to running the [mlrMBO algorithm](https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html). E.g., `design_size = 9`. Note that this must be greater than or equal to the largest number of possible values for any discrete hyperparameter specified in the `&param_space` section. A reasonable value for this (and for `propose_points`, below) is 15-20         |
-| `propose_points`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; number of proposed (really evaluated) points at each [MBO iteration](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeMBOControl). E.g., `propose_points = 9`. A reasonable value for this (and for `design_size`, above) is 15-20         |
-| `max_iterations`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; maximum number of [sequential optimization steps](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination). E.g., `max_iterations = 3`         |
-| `max_budget`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; maximum total number of [function evaluations](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination) for all iterations combined. E.g., `max_budget = 180`         |
+| `design_size`   | [Not yet preprocessed](#contribution-ideas)        | `bayesian` workflow only; total number of points to sample within the hyperparameter space prior to running the [mlrMBO algorithm](https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html). E.g., `design_size = 9`. Note that this must be greater than or equal to the largest number of possible values for any discrete hyperparameter specified in the `&param_space` section. A reasonable value for this (and for `propose_points`, below) is 15-20         |
+| `propose_points`   | [Not yet preprocessed](#contribution-ideas)        | `bayesian` workflow only; number of proposed (really evaluated) points at each [MBO iteration](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeMBOControl). E.g., `propose_points = 9`. A reasonable value for this (and for `design_size`, above) is 15-20         |
+| `max_iterations`   | [Not yet preprocessed](#contribution-ideas)        | `bayesian` workflow only; maximum number of [sequential optimization steps](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination). E.g., `max_iterations = 3`         |
+| `max_budget`   | [Not yet preprocessed](#contribution-ideas)        | `bayesian` workflow only; maximum total number of [function evaluations](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination) for all iterations combined. E.g., `max_budget = 180`         |
 
 ### `&default_model` section
 
@@ -310,7 +310,9 @@ A description of what every file does in the [wrappers repository](https://githu
 1. Make your modifications to the code and commit your changes, adjusting the permissions if necessary the very first time (or [ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to do this)
 1. [Ask Andrew](#how-to-contact-andrew-for-help-with-anything-above) to push the changes to newly forked versions of the corresponding repositories and submit pull requests into the main versions of the repositories
 
-## Ways to contribute
+## Contribution ideas
+
+Feel free to make any changes you'd like to the code and commit them via the [preliminary workflow above](#commit-changes-to-the-wrapper-scripts-or-to-the-supervisor-or-benchmarks-clones-in-the-central-installation). Below are some ideas for particular ways to contribute:
 
 * Implement workflows other than `grid` and `bayesian` (UQ would be great!) by following the instructions [here](./README.md#how-to-add-new-workflows) (and [asking Andrew](#how-to-contact-andrew-for-help-with-anything-above) for guidance if needed)
 * If this is something you personally want, allow for command-line arguments to the `candle` command, such as `run_workflow` or any other [input file keywords](#input-file-contents)
