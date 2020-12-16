@@ -186,8 +186,6 @@ Here is a list of possible `keyword`s and their default `value`s (if `None`, the
 | `max_iterations`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; maximum number of [sequential optimization steps](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination). E.g., `max_iterations = 3`         |
 | `max_budget`   | [Not yet preprocessed](#ways-to-contribute)        | `bayesian` workflow only; maximum total number of [function evaluations](https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination) for all iterations combined. E.g., `max_budget = 180`         |
 
-``, ``, ``, ``
-
 ### `&default_model` section
 
 This can contain either a single keyword/value line containing the `candle_default_model_file` keyword pointing to the full path of the default model text file to use, e.g., `candle_default_model_file = $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt` or the *contents* of such a default model file as, e.g., in the [grid](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/grid/grid_example.in) or [bayesian](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/bayesian/bayesian_example.in) examples in the [quick-start section above](#quick-start-examples-(for-summit)).
