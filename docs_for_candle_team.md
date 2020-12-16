@@ -26,7 +26,7 @@
         scripts](#how-to-minimally-modify-a-bare-model-script-for-use-with-the-wrapper-scripts)
         -   [Running a non-CANDLE-compliant model on its own, outside of
             Supervisor](#running-a-non-candle-compliant-model-on-its-own-outside-of-supervisor)
-    -   [Input file contents](#input-file-contents)
+    -   [Input file format](#input-file-contents)
         -   [`&control` section](#control-section)
         -   [`&default_model` section](#default_model-section)
         -   [`&param_space` section](#param_space-section)
@@ -205,7 +205,7 @@ Aside from not needing to make a model script fully CANDLE-compliant, the usual 
 
 As usual for miminally CANDLE-compliant model scripts, the output of the script is placed in `subprocess_out_and_err.txt`.
 
-## Input file contents
+## Input file format
 
 The input file should contain three sections: `&control`, `&default_model`, and `&param_space`. Each section should start with this header on its own line and end with `/` on its own line. (This input file format is based on the [Quantum Espresso](https://www.quantum-espresso.org/) electronic structure software.) Four sample input files, corresponding to the four examples in the [quick-start examples above](#quick-start-examples-for-summit), are here: [upf](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/upf/upf_example.in), [mlrmbo](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/mlrmbo/mlrmbo_example.in), [grid](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/grid/grid_example.in), [bayesian](https://github.com/andrew-weisman/candle_wrappers/blob/master/examples/summit-tf1/bayesian/bayesian_example.in). Spaces at the beginnings of the content-containing lines are optional but are recommended for readability.
 
