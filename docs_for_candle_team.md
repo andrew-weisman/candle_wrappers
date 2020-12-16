@@ -256,6 +256,8 @@ This can contain either a single keyword/value line containing the `candle_param
 /
 ```
 
+Note there are no commas at the end of each line in the example above.
+
 ## Code organization
 
 A description of what every file does in the [wrappers repository](https://github.com/andrew-weisman/candle_wrappers), which is cloned to `$CANDLE/wrappers`, can be found [here](./repository_organization.md). Some particular notes:
