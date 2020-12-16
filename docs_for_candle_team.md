@@ -314,7 +314,7 @@ A description of what every file does in the [wrappers repository](https://githu
 
 Feel free to make any changes you'd like to the code and commit them via the [preliminary workflow above](#commit-changes-to-the-wrapper-scripts-or-to-the-supervisor-or-benchmarks-clones-in-the-central-installation). Below are some ideas for particular ways to contribute:
 
-* Implement workflows other than `grid` and `bayesian` (UQ would be great!) by following the instructions [here](./README.md#how-to-add-new-workflows) (and [asking Andrew](#how-to-contact-andrew-for-help-with-anything-above) for guidance if needed)
+* Implement workflows other than `grid` and `bayesian` (UQ would be great!) by following the instructions [here](./README.md#how-to-add-new-workflows)
 * If this is something you personally want, allow for command-line arguments to the `candle` command, such as `run_workflow` or any other [input file keywords](#input-file-contents)
 * Check/preprocess the four mlrMBO keywords (`design_size`, `propose_points`, `max_iterations`, `max_budget`) by following the instructions [here](./README.md#how-to-add-a-new-keyword) and seeing their usage [here](https://github.com/andrew-weisman/candle_wrappers/blob/master/commands/submit-job/dummy_cfg-prm.sh) (good exercise to get familiar with the wrappers code)
 * Anything else!
