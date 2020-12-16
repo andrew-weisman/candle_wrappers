@@ -10,7 +10,7 @@
         Summit)](#quick-start-examples-for-summit)
         -   [Step 1: Setup](#step-1-setup)
         -   [Step 2: Run sample CANDLE-compliant
-            models](#step-2-run-sample-candle-compliant-models)
+            model scripts](#step-2-run-sample-candle-compliant-model-scripts)
         -   [Step 3: Run sample **non**-CANDLE-compliant model
             scripts](#step-3-run-sample-non-candle-compliant-model-scripts)
     -   [How a canonically CANDLE-compliant model script should be
@@ -107,7 +107,7 @@ source /gpfs/alpine/med106/world-shared/candle/env_for_lmod-tf1.sh
 cd /gpfs/alpine/med106/scratch/weismana/notebook/2020-11-13/testing_candle_installation
 ```
 
-### Step 2: Run sample CANDLE-compliant models
+### Step 2: Run sample CANDLE-compliant model scripts
 
 This refers to model scripts that the developers refer to as "CANDLE-compliant" as usual (what I call "*canonically* CANDLE-compliant"). See [below](#how-a-canonically-candle-compliant-model-script-should-be-modified-for-use-with-the-wrapper-scripts) for the changes that should be made to canonically CANDLE-compliant scripts to get them to work with the wrapper scripts.
 
