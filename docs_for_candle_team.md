@@ -58,7 +58,7 @@
 
 Below I call the scripts I'm describing in this document the "wrapper scripts" or "wrappers," but this still a working name. ("Interface" *may* be a viable alternative.) These scripts refer to the contents of the entire [wrappers GitHub repository](https://github.com/andrew-weisman/candle_wrappers), and I named them as such because the whole point was to add functionality to CANDLE while "wrapping" around the current Supervisor code, leaving it as untouched as possible so that it wouldn't interfere in any way with how people currently run CANDLE.
 
-The wrapper scripts contain code that (1) helps to set up and test these scripts alongside new clones of the [Supervisor](https://github.com/ECP-CANDLE/Supervisor/tree/develop) and [Benchmarks](https://github.com/ECP-CANDLE/Benchmarks/tree/develop) CANDLE repos, and (2) enables the running of CANDLE by accessing a central installation of it. The documentation for setup (#1) can be found [here](./README.md); the documentation for usage (#2) is below.
+The wrapper scripts contain code that (1) helps to set up and test these scripts alongside new clones of the [Supervisor](https://github.com/ECP-CANDLE/Supervisor/tree/develop) and [Benchmarks](https://github.com/ECP-CANDLE/Benchmarks/tree/develop) CANDLE repos, and (2) adds various features to CANDLE. The documentation for setup (#1) can be found [here](./README.md); the documentation for usage (#2) is below.
 
 ## Overview of wrapper scripts functionality
 
