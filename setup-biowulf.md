@@ -85,6 +85,21 @@ end
 
 Then, instead of running e.g. `source /data/BIDS-HPC/public/software/distributions/candle/env_for_lmod-$version.sh` as above, if the filename of the above file were `XXXX.lua`, you would just load it like `module load candle/XXXX`.
 
-## Other notes
+### Link paths
+
+1. `/usr/local/lmod/modulefiles/candle`
+1. `/data/BIDS-HPC/public/candle_modulefiles`
+1. `/data/BIDS-HPC/public/software/distributions/candle/dev/wrappers/lmod_modules/biowulf`
+
+## Notes
+
+### Biowulf documentation
+
+* File that is rendered is located on Biowulf at `/usr/local/www/hpcweb/htdocs/apps/candle/index.html` (not a symbolic link [and neither is the `candle` directory in which it's located], and permissions are 664)
+* This file is rendered at [https://hpc.nih.gov/apps/candle](https://hpc.nih.gov/apps/candle)
+* Old location for documentation on Biowulf (both repo and checkout): `/data/BIDS-HPC/private/projects/candle_on_biowulf_docs`
+* New documentation for checkout (single file): right here in the current repository in the file [docs_for_biowulf.md](docs_for_biowulf.md)
+
+### Shorter notes
 
 * The last time I ran the `setup.sh` script on Biowulf, EQ-R didn't seem to be actually set up even though the logs (see [here](https://github.com/andrew-weisman/candle_wrappers/blob/master/log_files/eqr_installation_out_and_err-biowulf-2020-11-23_1758.txt)) explicitly state that the built files were copied to the `EQR="$CANDLE/Supervisor/workflows/common/ext/EQ-R"` directory. So, on 11/25/20 I had to run `setup.sh` again, which seemed to produce the same exact log file but this time actually copied the built EQ-R files as expected. Just something to keep in mind going forward!

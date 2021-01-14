@@ -126,3 +126,8 @@ to
 Without this change, when running `PPN != 1` as I am doing, multiple processes try to create `datadir` at the same time since it doesn't already exist, which can lead to crashing since `os.makedirs()` will die with a `FileExistsError` if the directory it's trying to make already exists (unless we use the `exist_ok=True` argument to `makedirs()`, which is probably too general of a change). While it seems like it checks for this, this is not robust to multiple processes checking the same `datadir` as when `PPN != 1`.
 
 Note that at least for the `grid-summit` example, the condition in parentheses is true, so this matters.
+
+### Shorter notes
+
+* John Gounley said during a Workflows meeting that there should be an agreement with OLCF that the directory `/gpfs/alpine/med106/world-shared` is not to be purged, so in theory we shouldn't have to worry about the CANDLE installation here disappearing
+* Table of contents were generated for the documentation file [docs_for_candle_team.md](docs_for_candle_team.md) by using Pandoc on Biowulf to convert to Markdown with a table of contents generated
