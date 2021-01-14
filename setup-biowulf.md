@@ -98,7 +98,7 @@ Then, instead of running e.g. `source /data/BIDS-HPC/public/software/distributio
 * File that is rendered is located on Biowulf at `/usr/local/www/hpcweb/htdocs/apps/candle/index.html` (not a symbolic link [and neither is the `candle` directory in which it's located], and permissions are 664)
 * This file is rendered at [https://hpc.nih.gov/apps/candle](https://hpc.nih.gov/apps/candle)
 * Old location for documentation on Biowulf (both repo and checkout): `/data/BIDS-HPC/private/projects/candle_on_biowulf_docs`
-* New documentation for checkout (single file): right here in the current repository in the file [docs_for_biowulf.md](docs_for_biowulf.md)
+* New documentation for checkout (single file): right here in the current repository in the file [docs_for_biowulf.html](docs_for_biowulf.html)
 
 ### Shorter notes
 
