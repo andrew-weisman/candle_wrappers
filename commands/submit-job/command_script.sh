@@ -96,6 +96,9 @@ function generate_input_files_and_run() {
 # The .in file should be the argument to this script
 input_file=$1
 
+# This is not actually used in the wrappers but is useful to reference in Supervisor (see e.g. workflows/common/sh/utils.sh)
+export CANDLE_INPUT_FILE=$(readlink -e "$input_file")
+
 # Generate the three input files from this single input file and then execute the generated submission script
 echo "Submitting the CANDLE input file \"$input_file\"... "
 generate_input_files_and_run "$input_file" && echo "Input file submitted successfully" || echo "Input file submission failed"
