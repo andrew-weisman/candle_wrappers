@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 # If CANDLE job results are requested to be aggregated, do so
 # Run like "bash $CANDLE/wrappers/commands/aggregate-results/command_script.sh <EXPT-DIR>", e.g.,
 # "bash $CANDLE/wrappers/commands/aggregate-results/command_script.sh /home/weismanal/notebook/2019-07-06/jurgen_benchmarking-upf/experiments/X002"
@@ -48,4 +46,5 @@ source "$CANDLE/wrappers/utilities.sh"; make_generated_files_dir
 (
     echo "$header"
     echo "$data" | sort
-) > "$CANDLE_SUBMISSION_DIR/candle_generated_files/candle_results.csv" && echo "done" || echo "failed"
+#) > "$CANDLE_SUBMISSION_DIR/candle_generated_files/candle_results.csv" && echo "done" || echo "failed"
+) > "$CANDLE_SUBMISSION_DIR/candle_generated_files/candle_results.csv"
