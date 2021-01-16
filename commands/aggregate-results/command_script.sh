@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # If CANDLE job results are requested to be aggregated, do so
 # Run like "bash $CANDLE/wrappers/commands/aggregate-results/command_script.sh <EXPT-DIR>", e.g.,
 # "bash $CANDLE/wrappers/commands/aggregate-results/command_script.sh /home/weismanal/notebook/2019-07-06/jurgen_benchmarking-upf/experiments/X002"
