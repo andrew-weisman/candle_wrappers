@@ -13,10 +13,11 @@ function get_data(){
     for run_dir in "$expt_dir/run"/*; do
 
         # Get the result
-        result=$(awk -v result_format="$result_format" '{printf(result_format,$0)}' "$expt_dir/run/$run_dir/result.txt")
+        #result=$(awk -v result_format="$result_format" '{printf(result_format,$0)}' "$expt_dir/run/$run_dir/result.txt")
+        result=$(awk -v result_format="$result_format" '{printf(result_format,$0)}' "$run_dir/result.txt")
 
         # Get the CSV-formatted data
-        hp_values=$(awk -v doprint=0 '{if($0~/^PARAMS:$/){doprint=1}; if(doprint==1 && $0~/^$/){doprint=0}; if(doprint){print}}' "$expt_dir/run/$run_dir/model.log" | tail -n +2 | awk '{printf("%s,",$2)}')
+        hp_values=$(awk -v doprint=0 '{if($0~/^PARAMS:$/){doprint=1}; if(doprint==1 && $0~/^$/){doprint=0}; if(doprint){print}}' "$run_dir/model.log" | tail -n +2 | awk '{printf("%s,",$2)}')
         hp_values="$result,$run_dir,${hp_values:0:${#hp_values}-1}"
         echo "$hp_values"
 

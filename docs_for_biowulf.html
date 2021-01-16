@@ -402,16 +402,22 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
               CANDLE input file</b>. This is easiest done by modifying
             one of the template input files that can be <a
               href="#import-template">imported using</a> <code>candle
-              import-template {grid,bayesian,r,bash}</code>.<br>
+              import-template {grid,bayesian,r,bash}</code>.</li>
+          <li><b><a href="#running_your_job">Confirm</a> your model runs
+              using CANDLE without running a full workflow.</b> Request
+            an interactive node from SLURM, set <code>run_workflow=0</code>
+            in the <code>&amp;control</code> section of the input file,
+            and run the model script using <code>candle submit-job
+              &lt;INPUT-FILE&gt;</code> as usual.<br>
           </li>
-          <li><a name="submit-job"></a><b>Submit the CANDLE job</b>
+          <li><b><a href="#running_your_job">Submit</a> the CANDLE job</b>
             using <code>candle submit-job &lt;INPUT-FILE&gt;</code>.
             Ensure this is done from the <code>/data/$USER</code>
             directory (as opposed to <code>/home/$USER</code>).<br>
           </li>
           <li><b><a href="#aggregation">Collect</a> the job results</b>
-            <a href="#aggregate-results">using</a> <code>candle
-              aggregate-results &lt;EXP-DIR&gt; [&lt;RESULT-FORMAT&gt;]</code>.<br>
+            using <code>candle aggregate-results &lt;EXP-DIR&gt;
+              [&lt;RESULT-FORMAT&gt;]</code>.<br>
           </li>
         </ul>
         <a name="already_works"></a>
@@ -976,7 +982,8 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">gri
           <code>true</code>, and <code>null</code> in the <code>&amp;param_space</code>
           section for the <code>grid</code> workflow. </p>
         <p><a name="generate-grid"></a>Alternatively, you can use the <code>generate-grid</code>
-          <code>candle</code> command to create a file called <code>grid_workflow-XXXX.txt</code>
+          <code>candle</code> command to create a file called <code>hyperparameter_grid.txt</code>
+          (inside a directory called <code>candle_generated_files</code>)
           containing a full "grid" of hyperparameters. The usage is <code>candle
 
 
@@ -1000,7 +1007,7 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">gri
         <div class="term">[user@biowulf]$ <b>candle generate-grid
             "['nlayers',np.arange(5,15,2)]" "['dir',['x','y','z']]"</b><br>
         </div>
-        <p>will create a file called <code>grid_workflow-XXXX.txt</code>
+        <p>will create a file called <code>hyperparameter_grid.txt</code>
           with the contents<br>
         </p>
         <div class="term">{"id": "hpset_00001", "nlayers": 5, "dir":
@@ -1024,10 +1031,11 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">gri
           in order to run any of the <code>candle</code> commands such
           as <code>generate-grid</code>.<br>
         </p>
-        <p>The contents of the file <code>grid_workflow-XXXX.txt</code>
+        <p>The contents of the file <code>hyperparameter_grid.txt</code>
           should then be placed in the body of the <code>&amp;param_space</code>
-          section of the input file.<br>
-        </p>
+          section of the input file, or, as mentioned above, the file
+          could be pointed to by a <code>candle_param_space_file</code>
+          keyword setting in the body of this section. </p>
         <p>A more complete example producing a 600-line file (600 sets
           of hyperparameters) is<br>
         </p>
@@ -1042,9 +1050,10 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">gri
         </p>
         <p><b>Note:</b> Use Python’s <code>False</code>, <code>True</code>,
           and <code>None</code> if using the <code>generate-grid</code>
-          command; the output in <code>grid_workflow-XXXX.txt</code>
+          command; the output in <code>hyperparameter_grid.txt</code>
           will replace these with JSON’s <code>false</code>, <code>true</code>,
-          and <code>null</code>, respectively. </p>
+          and <code>null</code>, respectively, as required in this
+          section of the input file. </p>
         <a name="workflow_settings_file-bayesian"></a>
         <h5><code>bayesian</code> workflow</h5>
         <p>The <code>bayesian</code> workflow refers to a <a
@@ -1120,7 +1129,7 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12">ParamH
             R package</a>. Each line in this section is what would be an
           argument to <code>makeParamSet()</code> (without the commas
           separating the arguments); the formatting for this section
-          should be based off this argument format. It is relatively
+          should be based on this argument format. It is relatively
           intuitive to understand; e.g., here is the <code>&amp;param_space</code>
           section in the <code>bayesian</code> template input file:<br>
         </p>
@@ -1143,81 +1152,97 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
         </p>
         <a name="running_your_job"></a>
         <div class="heading">Running the CANDLE Job<br>
-          <p><b>Note:</b> When <code>use_candle = 1</code> (default
-            behavior), the submission script (which should never be
-            called using <code>sbatch</code>) will automatically
-            request an <code>sbatch</code> job. When <code>use_candle
-              = 0</code>, the submission script should be called the the
-            same way (<code>candle submit-job &lt;INPUT-FILE&gt;</code>),
-
-
-            but from an interactive (compute) node; this is the best way
-            to test your job (with the default hyperparameter settings)
-            without actually running a CANDLE workflow. </p>
+          <p>After <a
+href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_biowulf.html#adapting_your_model">adapting</a>
+            your model script to work with CANDLE and <a
+href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_biowulf.html#modifying_a_template">creating</a>
+            a single CANDLE input file, you will almost be ready to run
+            the hyperparameter optimization (HPO) using CANDLE.<br>
+          </p>
+          <p>However, even though you should have <a
+              href="#already_works">already ensured</a> that your
+            original model ran successfully on Biowulf, you should make
+            sure that you have adapted it to work with CANDLE and
+            created the input file successfully by running your model
+            script using the default set of hyperparameters (set in the
+            <a href="#default_hyperparams_file"><code>&amp;default_model</code>
+              section</a>) without running a full HPO workflow.<br>
+          </p>
+          <p>To do this, you should request an interactive node on
+            Biowulf (using e.g. <code>sinteractive --gres=gpu:k80:1
+              --mem=20G</code>), setting the <code>run_workflow</code>
+            keyword in the <code>&amp;control</code> section of the
+            input file to <code>0</code>, and then running the model
+            script using <code>candle submit-job &lt;INPUT-FILE&gt;</code>.
+            By observing the resulting output to the screen and the
+            results of the model script in the generated file <code>subprocess_out_and_err.txt</code>,
+            you will be able to confirm whether the model ran correctly.<br>
+          </p>
+          <p>It is crucial to perform this last check because it almost
+            always catches errors in the model itself or in its
+            adaptation to CANDLE that would show up anyway when running
+            the full CANDLE job (using <code>run_workflow=1</code>).
+            However, catching the mistakes this way (using <code>run_workflow=0</code>
+            on an interactive node) allows you to correct these issues
+            quickly and to immediately test your changes. Finally, doing
+            this has the added benefit of being easily able to run the
+            full CANDLE workflow: just exit the interactive session (by
+            typing <code>exit</code>), set the <code>run_workflow</code>
+            keyword in the input file to <code>1</code>, and then
+            submit the full CANDLE job using the same exact command: <code>candle
+              submit-job &lt;INPUT-FILE&gt;</code>.<br>
+          </p>
+          <p>You will know you have successfully submitted the CANDLE
+            job to SLURM if, after all the text that is outputted to the
+            screen, you see the lines<br>
+          </p>
+          <p>JOB_ID=&lt;YOUR-SLURM-JOB-ID&gt;<br>
+            Input file submitted successfully<br>
+          </p>
+          <p>before the command prompt is returned to you. At this
+            point, the CANDLE job has been submitted to Biowulf's SLURM
+            scheduler just like any other Biowulf job, whose progress
+            you can monitor, e.g., by running <code>squeue -u
+              &lt;YOUR-BIOWULF-USERNAME&gt;</code>.</p>
+          <p>Once your job has completed running, you can check the
+            results by entering the <code>last-candle-job</code>
+            directory (a symbolic link) and ensuring the output in the
+            file <code>output.txt</code> looks reasonable (namely, ends
+            with something like)</p>
+          <p>MPIEXEC TIME: 263.763<br>
+            EXIT CODE: 0<br>
+            COMPLETE: 2021-01-14 18:56:51<br>
+          </p>
+          <p>Then, enter the <code>run</code> subdirectory, where the
+            results of your model script run using each hyperparameter
+            set will lie. In particular, you can check the output of the
+            model run using each hyperparameter set by observing the <code>subprocess_out_and_err.txt</code>
+            files using <code>less */subprocess_out_and_err.txt</code>.
+            (These files contain the model's raw output, i.e., what
+            you'd expect to be printed to the terminal if you ran the
+            model completely outside of CANDLE.) Further, for each
+            hyperparameter set using which your model ran successfully,
+            a file called <code>result.txt</code> will also be present
+            containing the value specified by <code>candle_value_to_return</code>
+            (or <code>history</code>).</p>
+          <p>See the <a href="#aggregation">following section</a> for
+            an automated way of observing the results of your HPO job.<br>
+          </p>
+          <p><b>Note:</b> Every time you submit a CANDLE job using <code>candle
+              submit-job &lt;INPUT-FILE&gt;</code>, a new subdirectory
+            in <code>candle_generated_files/experiments</code> will be
+            created with the automatically generated name of the job
+            (e.g., <code>X000</code>, <code>X001</code>, <code>X002</code>,
+            etc.). Further, the symbolic link <code>last-candle-job</code>
+            will always be updated to point to the most recently run
+            CANDLE job in this <code>experiments</code> directory.<br>
+          </p>
+          <p><b>Tip:</b> If your CANDLE job dies, looking inside the <code>subprocess_out_and_err.txt</code>
+            files will generally indicate why.</p>
         </div>
         <p> </p>
         <a name="aggregation"></a>
         <div class="heading">Aggregating CANDLE Job Results</div>
-        <p>After a CANDLE job is complete, the results of all jobs run
-          on each set of hyperparameters will be placed in a
-          subdirectory of the <code>experiments</code> directory, which
-          will be created in the directory from which the job was
-          submitted. A symbolic link called <code>last-exp</code> in
-          the same level as the <code>experiments</code> directory will
-          point to the last experiment that was run.<br>
-        </p>
-        <p>Inside one of the <code>experiments</code> subdirectories
-          will be the <code>run</code> directory, which will contain
-          one subdirectory per hyperparameter set containing the results
-          of the model script run using that hyperparameter set. In each
-          of these subdirectories will be a file called <code>subprocess_out_and_err.txt</code>
-          that will contain the model's raw output (i.e., what you'd
-          expect to be printed to the terminal if you ran the model
-          completely outside of CANDLE). If the model ran successfully
-          using that hyperparameter set, a file called <code>result.txt</code>
-          will also be present containing the value specified by <code>candle_value_to_return</code>
-          (or <code>history</code>).<br>
-        </p>
-        <p><b>Tip:</b> If your CANDLE job dies, looking inside the <code>subprocess_out_and_err.txt</code>
-          files will generally indicate why.<br>
-        </p>
-        <p>For example, here is a sample directory structure expanding
-          one of the CANDLE <code>experiments</code> directories (<code>X002</code>):<br>
-        </p>
-        <div class="term"> .<br>
-          ├── experiments<br>
-          │&nbsp;&nbsp; ├── X000<br>
-          │&nbsp;&nbsp; ├── X001<br>
-          │&nbsp;&nbsp; └── X002<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── cfg-sys-biowulf.sh<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├──
-          grid_workflow-mnist.txt<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── jobid.txt<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── metadata.json<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── output.txt<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── run<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp; ├──
-          hpset_01<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp; ├──
-          hpset_02<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp; ├──
-          hpset_03<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp; ├──
-          hpset_04<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp; ├──
-          hpset_05<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp; ├──
-          hpset_06<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │&nbsp;&nbsp; └──
-          hpset_07<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── submit.sh<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── turbine.log<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── turbine-slurm.sh<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── workflow.sh.log<br>
-          │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── workflow.tic<br>
-          ├── last-exp -&gt; /data/doeja/candle/experiments/X002<br>
-          └── submit_candle_job.sh<br>
-        </div>
         <p><a name="aggregate-results"></a>In order to collect the
           values of all the hyperparameter sets as well as the resulting
           metric for each set, run the <code>aggregate-results</code>
@@ -1227,9 +1252,9 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
             &lt;EXP-DIR&gt; [&lt;RESULT-FORMAT&gt;]<br>
           </b></div>
         <p>where <code>&lt;EXP-DIR&gt;</code> is the experiment
-          directory, i.e., that containing the <code>run</code>
-          directory, and <code>&lt;RESULT-FORMAT&gt;</code> is an
-          optional string containing the standard <code>printf()</code>-formatted
+          directory (or the symbolic link <code>last-candle-job</code>),
+          i.e., that containing the <code>run</code> directory, and <code>&lt;RESULT-FORMAT&gt;</code>
+          is an optional string containing the standard <code>printf()</code>-formatted
 
 
 
@@ -1246,7 +1271,7 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
           running<br>
         </p>
         <div class="term">[user@biowulf]$ <b>candle aggregate-results
-            /data/$USER/candle/last-exp<br>
+            /data/$USER/candle/last-candle-job<br>
           </b></div>
         <p>would produce a file called <code>candle_results.csv</code>
           in the current directory containing the data from all the
@@ -1282,10 +1307,16 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
           000.098,hpset_03,hpset_03,15,relu<br>
           000.121,hpset_04,hpset_04,30,relu<br>
         </div>
+        <p>Of course, if the <code>generate-grid</code> command to <code>candle</code>
+          were used to generate the sets of hyperparameters to run (and
+          the resulting sets were not further modified by hand), then
+          the results of the <code>aggregate-results</code> command to
+          <code>candle</code> should always make sense.<br>
+        </p>
         <p>As usual, the full pathname must be used for <code>&lt;EXP-DIR&gt;</code>.
           <b>Tip:</b> Use <code>$(pwd)</code> to automatically include
           the full path in front of a relative file, e.g., <code>candle
-            aggregate-results $(pwd)/last-exp</code>.<br>
+            aggregate-results $(pwd)/last-candle-job</code>.<br>
         </p>
         <a name="candle_commands"></a>
         <div class="heading">Summary of <code>candle</code> Commands</div>
@@ -1323,15 +1354,15 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
             <tr>
               <td width="60%"><code>candle submit-job &lt;INPUT-FILE&gt;</code>
               </td>
-              <td><a href="#submit-job">Submit</a> a CANDLE job<br>
+              <td><a href="#running_your_job">Submit</a> a CANDLE job<br>
               </td>
             </tr>
             <tr>
               <td width="60%"><code>candle aggregate-results
                   &lt;EXP-DIR&gt; [&lt;RESULT-FORMAT&gt;]</code> </td>
-              <td><a href="#aggregate-results">Create</a> a CSV file
-                called <code>candle_results.csv</code> containing the
-                hyperparameters and corresponding performance metrics<br>
+              <td><a href="#aggregation">Create</a> a CSV file called <code>candle_results.csv</code>
+                containing the hyperparameters and corresponding
+                performance metrics<br>
               </td>
             </tr>
           </tbody>
