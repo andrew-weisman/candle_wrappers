@@ -23,8 +23,7 @@
   </head>
   <body>
     <br>
-    <div id="skiplink"> <a href="#content-area" id="skiplink"></a>
-    </div>
+    <div id="skiplink"> </div>
     <!-- downtime alert banner
 <div style="display: block; top: 0; background-color: yellow; padding: 5px; border: 1px black; width: 940px; margin: auto; text-align: center;">
   <a href="/about/announcements.php?849">
@@ -41,52 +40,43 @@
             <th scope="col"><br>
             </th>
             <td scope="col" valign="bottom">
-              <div class="titleLocation">
-                <a href="/"><img src="/images/BIOWULF_LOGO" alt="Biowulf
-                    High Performance Computing at the NIH" height="72"
-                    border="0"></a>
-              </div>
+              <div class="titleLocation"> <a href="/"><img
+                    src="/images/BIOWULF_LOGO" alt="Biowulf High
+                    Performance Computing at the NIH" height="72"
+                    border="0"></a> </div>
             </td>
             <td scope="col" align="right" valign="top">
               <div class="searchCell">
                 <form
                   action="https://hpc.nih.gov/cgi-bin/search/swish.cgi"
-                  method="get">
-                  <input name="maxresultflag" value="200" type="hidden">
-                  <!-- search all three swish-e indices by default -->
-                  <input name="si" value="0" type="hidden">
-                  <input name="si" value="1" type="hidden">
-                  <input name="si" value="2" type="hidden">
-                  <input class="formfield" size="14" id="searchbox"
-                    name="query" aria-label="search NIH HPC site"
-                    placeholder=" Search " type="text">
-                </form>
+                  method="get"> <input name="maxresultflag" value="200"
+                    type="hidden">
+                  <!-- search all three swish-e indices by default --> <input
+                    name="si" value="0" type="hidden"> <input name="si"
+                    value="1" type="hidden"> <input name="si" value="2"
+                    type="hidden"> <input class="formfield" size="14"
+                    id="searchbox" name="query" aria-label="search NIH
+                    HPC site" placeholder=" Search " type="text"> </form>
                 <a href="https://github.com/NIH-HPC"> <img
                     style="position: absolute; top: 72px; right: 72px; "
                     src="/images/GitHub-Mark-Light-20px.png"
                     alt="GitHub" title="Click here to visit our GitHub
-                    repositories" border="0" align="right">
-                </a>
-                <a
+                    repositories" border="0" align="right"> </a> <a
                   href="https://www.youtube.com/channel/UCx-kNd1kBskYr5KLT9-Erew">
                   <img style="position: absolute; top: 72px; right:
                     48px; "
                     src="/images/YouTube-social-squircle_red_20px.png"
                     alt="YouTube" title="Click here to visit our YouTube
-                    channel" border="0" align="right">
-                </a>
-                <a href="https://twitter.com/nih_hpc"> <img
+                    channel" border="0" align="right"> </a> <a
+                  href="https://twitter.com/nih_hpc"> <img
                     style="position: absolute; top: 72px; right: 24px; "
                     src="/images/TwitterLogo20.png" alt="@nih_hpc"
                     title="Click here to visit our twitter feed
-                    @nih_hpc" border="0" align="right">
-                </a>
-                <a href="/hpc_RSS.xml"><img style="position: absolute;
+                    @nih_hpc" border="0" align="right"> </a> <a
+                  href="/hpc_RSS.xml"><img style="position: absolute;
                     top: 72px; right: 0px;" src="/images/RSS20.png"
                     alt="RSS Feed" title="Click here to add an RSS feed
-                    from HPC @ NIH" border="0" align="right">
-                </a>
-              </div>
+                    from HPC @ NIH" border="0" align="right"> </a> </div>
             </td>
           </tr>
         </tbody>
@@ -102,6 +92,8 @@
           <li class="has-sub"><a href="/storage/"><span>Storage</span></a>
             <span id="Storage_menulist"></span> </li>
           <li class="has-sub"><a href="/docs/user_guides.html"><span>User
+
+
                 Guides</span></a> <span id="User_Guides_menulist"></span>
           </li>
           <li class="has-sub"><a href="/training/"><span>Training</span></a>
@@ -114,8 +106,7 @@
         </ul>
       </div>
       <!-- End navigation bar -->
-      <div class="main">
-        <a name="content-area"></a>
+      <div class="main"> <a name="content-area"></a>
         <!-- Start content - do not edit above this line  -->
         <style>
   code {padding: 1px; background-color: #eeeeee; border: 1px solid #bbbbbb;}
@@ -131,8 +122,13 @@
                   <div class="tocItem"><a href="#quick_start">Quick
                       Start</a></div>
                   <div class="tocItem"><a href="#usage_summary">Usage
-                      Summary</a></div>
+                      Summary</a><br>
+                    <a href="#already_works">Ensuring Your Model Works
+                      Outside of CANDLE</a><br>
+                  </div>
                   <div class="tocItem"><a href="#adapting_your_model">Adapting
+
+
 
 
 
@@ -148,8 +144,13 @@
 
 
 
-                      the CANDLE Input File</a></div>
+
+
+                      the CANDLE Input File</a><br>
+                    <a href="#running_your_job">Running the CANDLE Job</a></div>
                   <div class="tocItem"><a href="#aggregation">Aggregating
+
+
 
 
 
@@ -184,6 +185,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
 
 
 
+
+
             top challenges</a> facing the cancer community, CANDLE
           increasingly can be used to tackle problems in other
           application areas. The SDSI team at the <a
@@ -191,11 +194,12 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
             Laboratory for Cancer Research</a>, sponsored by the <a
             href="https://www.cancer.gov">National Cancer Institute</a>,
           has installed CANDLE on NIH’s <a href="https://hpc.nih.gov">Biowulf</a>
-          supercomputer for all
-          with Biowulf access to use.</p>
+          supercomputer for all with Biowulf access to use.</p>
         <p>One of CANDLE's primary attributes is its functionality for
           performing <a
             href="https://en.wikipedia.org/wiki/Hyperparameter_optimization">hyperparameter
+
+
 
 
 
@@ -213,8 +217,9 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           optimized using algorithms such as gradient descent. Such
           optimization of the model’s weights – a process called
           "training" – is typically run very efficiently on graphics
-          processing units (GPUs) and typically takes 30 minutes to a
-          couple of days.</p>
+          processing units (GPUs) when the model is a neural network
+          (deep learning) and typically takes 30 minutes to a couple of
+          days.</p>
         <p>If a measure of loss is assigned to each model trained on the
           same set of data, we would like to ultimately choose the model
           (i.e., set of hyperparameters) that best fits that dataset by
@@ -230,17 +235,10 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           performed is used to select the next sets of hyperparameters
           to try. This type of workflow is labeled in CANDLE by "<a
             href="https://mlrmbo.mlr-org.com">bayesian</a>".</p>
-        <p>HPO need not be used for only machine/deep learning
+        <p>Finally, HPO need not be used for only machine/deep learning
           applications; it can be applied to any computational pipeline
-          that can be parametrized by a number of settings. With
-          ever-increasing amounts of data, applications like these, in
-          addition to machine/deep learning applications, are growing at
-          NCI and in the greater NIH community. If HPO is performed,
-          better models for describing relationships between data can be
-          found, and the better the model, the more accurate predictions
-          can be made given new sets of data. CANDLE is here to help
-          with this, and this web page serves as a complete guide for
-          running CANDLE on Biowulf.<br>
+          that can be parametrized by a number of settings. This web
+          page serves as a complete guide to running CANDLE on Biowulf.<br>
         </p>
         <a name="why_candle"></a>
         <div class="heading">Why Use CANDLE?</div>
@@ -251,16 +249,16 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
         <ul>
           <li><b>Load balancing.</b> CANDLE uses a program called <a
               href="http://swift-lang.org/Swift-T">Swift/T</a> to ensure
-            the resources (GPUs) allocated to you by Biowulf's batch
-            system are used as efficiently as possible with minimal
-            downtime. Since often the jobs will not take the same or
-            even similar amounts of time, using a utility like Swarm
-            could lead to significant downtime on some of the allocated
-            GPUs. CANDLE, and Swift/T in particular, will submit a job
-            to a GPU only if the GPU is ready to take another job. This
-            way, there will be no significant downtime on any of the
-            GPUs even if the individual jobs take different amounts of
-            time.</li>
+            the resources (CPUs or GPUs) allocated to you by Biowulf's
+            batch system (SLURM) are used as efficiently as possible
+            with minimal downtime. Since often the jobs will not take
+            the same or even similar amounts of time, using a utility
+            like Swarm could lead to significant downtime on some of the
+            allocated resources. CANDLE, and Swift/T in particular, will
+            submit a job to a resource only if the resource is ready to
+            take another job. This way, there will be minimal downtime
+            on any of the resources even if the individual jobs take
+            different amounts of time.</li>
           <li><b>Intelligent hyperparameter selection.</b> Further, if
             the <code>bayesian</code> workflow is selected, the sets of
             hyperparameters to run need not be known beforehand; only
@@ -274,9 +272,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
             CANDLE on Biowulf requires that you do the <a
               href="#usage_summary">absolute bare-minimum</a> needed to
             run hyperparameter optimizations. CANDLE has been, and
-            continues to be, actively developed for years and perfected
-            to perform at a high level on large HPC systems such as
-            Biowulf.<br>
+            continues to be, actively developed and perfected to perform
+            at a high level on large HPC systems such as Biowulf.<br>
           </li>
         </ul>
         <a name="quick_start"></a>
@@ -295,7 +292,7 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
         <a name="import-template"></a>
         <h4>Step 2: Copy a template submission script to the working
           directory</h4>
-        <p>Copy one of the three CANDLE templates to the working
+        <p>Copy one of the four CANDLE templates to the working
           directory:</p>
         <div class="term">[user@biowulf]$ <b>candle import-template
             &lt;TEMPLATE&gt;</b></div>
@@ -307,7 +304,7 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
             <tr>
               <td width="10%"><code>grid</code></td>
               <td>Grid search using a Python model (simple deep neural
-                network on the MNIST dataset; ~3 min. total runtime)<br>
+                network on the MNIST dataset; ~5 min. total runtime)<br>
               </td>
             </tr>
             <tr>
@@ -323,9 +320,11 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
 
 
 
+
+
                   Pilot 1</a> models, a 1D convolutional network for
                 classifying RNA-Seq gene expression profiles into normal
-                or tumor tissue categories; ~24 min. total runtime)<br>
+                or tumor tissue categories; ~40 min. total runtime)<br>
               </td>
             </tr>
             <tr>
@@ -341,8 +340,18 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
 
 
 
-                  dataset</a>; ~6 min. total runtime)<br>
+
+
+                  dataset</a>; ~5 min. total runtime)<br>
               </td>
+            </tr>
+            <tr>
+              <td valign="top"><code><tt>bash</tt></code><br>
+              </td>
+              <td valign="top">Grid search using a bash model (this is a
+                bash wrapper around the <code>grid</code> example
+                above, which is a simple deep neural network on the
+                MNIST dataset; ~5 min. total runtime)</td>
             </tr>
           </tbody>
         </table>
@@ -359,29 +368,41 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
         <ul>
           <li><b><a href="#already_works">Ensure</a> your model script
               already works on a Biowulf</b><b> compute node</b>. The
-            model must be written in Python or R.<br>
+            model must be written in Python, R, or bash.<br>
           </li>
           <li><b><a href="#adapting_your_model">Adapt</a> your model
               script to work with CANDLE</b>. Only two, minor
             modifications need be made:</li>
           <ol>
             <li><a href="#specify_the_hyperparams">Specify</a> the
-              hyperparameters using the <code>hyperparams</code>
+              hyperparameters using the <code>candle_params</code>
               dictionary (Python) or data.frame (R).<br>
             </li>
             <li><a href="#define_the_metric">Specify</a> a return value
-              using the <code>val_to_return</code> variable (or Keras <code>history</code>
-              object if using Python+Keras).<br>
+              using the <code>candle_value_to_return</code> variable
+              (or Keras <code>history</code> object if using
+              Python+Keras).</li>
+          </ol>
+          <ul>
+            <li>The <code>bash</code> example is a bit more involved;
+              see the example or <a href="mailto:george.zaki@nih.gov">email
+
+
+                us</a> for assistance.<br>
             </li>
+          </ul>
+          <ol>
           </ol>
           <li><b>Load the </b><b><code>candle</code></b><b> module</b>:
-            <code>module load candle</code>.<br>
+            <code>module load candle</code>. Among other things, this
+            sets the value of the <code>$CANDLE</code> environment
+            variable.<br>
           </li>
           <li><b><a href="#modifying_a_template">Create</a> a single
               CANDLE input file</b>. This is easiest done by modifying
             one of the template input files that can be <a
               href="#import-template">imported using</a> <code>candle
-              import-template {grid,bayesian,r}</code>.<br>
+              import-template {grid,bayesian,r,bash}</code>.<br>
           </li>
           <li><a name="submit-job"></a><b>Submit the CANDLE job</b>
             using <code>candle submit-job &lt;INPUT-FILE&gt;</code>.
@@ -393,38 +414,64 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
               aggregate-results &lt;EXP-DIR&gt; [&lt;RESULT-FORMAT&gt;]</code>.<br>
           </li>
         </ul>
-        <a name="adapting_your_model"></a>
-        <div class="heading">Adapting Your Model to Work With CANDLE</div>
-        <p>You can run a CANDLE hyperparameter optimization (HPO) on
-          your <i>own</i> machine/deep learning model or general
-          workflow (generally called a "model script") by performing two
-          minimal modifications to your model script. For HPO, CANDLE
-          accepts model scripts written in either Python or R.</p>
-        <p><a name="already_works"></a><b>Note:</b> Prior to adapting
-          your model script for use with CANDLE, you must ensure it runs
-          standalone on a Biowulf compute node. This can be tested by
-          requesting an interactive GPU node (e.g., <code>sinteractive
-            --gres=gpu:k20x:1 --mem=60G --cpus-per-task=16</code>) and
-          then running the model like, e.g., <code>python
-            my_model_script.py</code> or <code>Rscript
-            my_model_script.R</code>; don’t forget to use the correct
-          version of Python or R, if required!</p>
-        <p>Once you have confirmed that your model script runs as-is on
-          Biowulf, modify it in two simple ways:</p>
+        <a name="already_works"></a>
+        <div class="heading">Ensuring Your Model Already Works
+          Standalone<br>
+          <p>Prior to adapting your own model script (i.e., machine/deep
+            learning model or general workflow) for use with CANDLE, you
+            must ensure it runs standalone on a Biowulf compute node. <b>Skipping
+
+
+              this step is the most common error new CANDLE users make.</b>
+            If your model does not work outside of CANDLE, you cannot
+            expect it to work using CANDLE!<br>
+          </p>
+          <p>See the <a href="https://hpc.nih.gov/docs/userguide.html">Biowulf
+
+
+              user guide</a> for information on running scripts on
+            Biowulf. For example, you can test a model that utilizes a
+            GPU by requesting an interactive GPU node (e.g., <code>sinteractive
+
+
+
+              --gres=gpu:k80:1 --mem=20G</code>) and then running the
+            model like, e.g., <code>python my_model_script.py</code> or
+            <code>Rscript my_model_script.R</code>; don’t forget to use
+            the correct version of Python or R, if required!<br>
+          </p>
+          <a name="adapting_your_model"></a><br>
+          <div class="heading">Adapting Your Model to Work With CANDLE<br>
+            <p>Once you have confirmed that your model script runs as-is
+              on Biowulf, modify it in two simple ways. Note that while
+              CANDLE accepts model scripts written in Python, R, or
+              bash, the following addresses model scripts written in
+              only Python or R; as bash model scripts are more involved,
+              see the <a
+href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_biowulf.html#import-template">bash
+
+
+                example</a> or <a href="mailto:george.zaki@nih.gov">email
+
+
+                us</a> for assistance.<br>
+            </p>
+          </div>
+        </div>
         <a name="specify_the_hyperparams"></a>
         <h4>Step 1: Specify the hyperparameters</h4>
         <p>Specify the hyperparameters in your code using a variable
-          named <code>hyperparams</code> of the dictionary (Python) or
-          data.frame (R) datatypes. E.g., in Python, if your model
+          named <code>candle_params</code> of the dictionary (Python)
+          or data.frame (R) datatypes. E.g., in Python, if your model
           script <code>my_model_script.py</code> contains</p>
         <div class="term">n_convolutional_layers = 4<br>
           batch_size = 128</div>
         <p>but these are parameters that you'd like to change during the
           CANDLE workflow, you should change those lines to</p>
         <div class="term">n_convolutional_layers =
-          hyperparams['nconv_layers']<br>
-          batch_size = hyperparams['batch_size']</div>
-        <p><b>Note:</b> The "key" in the <code>hyperparams</code>
+          candle_params['nconv_layers']<br>
+          batch_size = candle_params['batch_size']</div>
+        <p><b>Note:</b> The "key" in the <code>candle_params</code>
           dictionary should match the variable names in the CANDLE input
           file (<a href="#modifying_a_template">following section</a>),
           whereas the variables to which they are assigned in the model
@@ -436,8 +483,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           batch_size &lt;- 128</div>
         <p>you should change those lines to</p>
         <div class="term">n_convolutional_layers &lt;-
-          hyperparams[["nconv_layers"]]<br>
-          batch_size &lt;- hyperparams[["batch_size"]]</div>
+          candle_params[["nconv_layers"]]<br>
+          batch_size &lt;- candle_params[["batch_size"]]</div>
         <a name="define_the_metric"></a>
         <h4>Step 2: Define the metric you would like to minimize</h4>
         <p>If your model is written in Python, either define a Keras
@@ -446,33 +493,17 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           loss will be minimized), e.g.,</p>
         <div class="term">history = model.fit(x_train, y_train,
           validation_data=(x_val, y_val), ...)</div>
-        <p>or define a single number named <code>val_to_return</code>
-          that contains the <code>val</code>ue you would like to
-          minimize, e.g.,</p>
+        <p>or define a single number named <code>candle_value_to_return</code>
+          that contains the value you would like to minimize, e.g.,</p>
         <div class="term">score = model.evaluate(x_test, y_test)<br>
-          val_to_return = score[0]</div>
-        <p><b>Note:</b> (Assuming you have named your Keras model <code>model</code>:)
-
-
-
-
-
-          If you are using as your minimization metric the return value
-          from <code>model.fit()</code> (as opposed to using <code>val_to_return</code>),
-
-
-
-
-
-          you must specify the <code>validation_data</code> keyword in
-          the call to <code>model.fit()</code> as shown above. This way
-          the <code>history</code> attribute of <code>model.fit()</code>'s
-
-
-
-
-
-
+          candle_value_to_return = score[0]</div>
+        <p><b>Note:</b> Assuming you have named your Keras model <code>model</code>
+          as in the example above, if you are using as your minimization
+          metric the return value from <code>model.fit()</code> (as
+          opposed to using <code>candle_value_to_return</code>), you
+          must specify the <code>validation_data</code> keyword in the
+          call to <code>model.fit()</code> as shown above. This way the
+          <code>history</code> attribute of <code>model.fit()</code>'s
           return value will contain a key called <code>val_loss</code>,
           which is the metric that CANDLE will use to evaluate the
           current set of hyperparameters. (Choosing the best set of
@@ -481,9 +512,10 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           still doesn't seem to generate a <code>val_loss</code> key,
           try adding <code>metrics=['accuracy']</code> in the call to <code>model.compile()</code>.)<br>
         </p>
-        <p>If your model is written in R, define a single number named <code>val_to_return</code>
+        <p>If your model is written in R, define a single number named <code>candle_value_to_return</code>
           that contains the metric you would like to minimize, e.g.,</p>
-        <div class="term">val_to_return &lt;- my_validation_loss<br>
+        <div class="term">candle_value_to_return &lt;-
+          my_validation_loss<br>
         </div>
         <h5>Note on minimization metric<br>
         </h5>
@@ -495,13 +527,13 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           definition runs training on <i>all</i> sets of
           hyperparameters regardless of any measure of how "well" prior
           sets performed, it never actually <i>uses</i> the
-          minimization metric.&nbsp; However, the <code>val_to_return</code>
+          minimization metric.&nbsp; However, the <code>candle_value_to_return</code>
           variable (or the <code>history</code> object in Python) is <u>always</u>
           required, so when running the <code>grid</code> workflow and
           you don't care to return any particular result from your model
           script, simply set it to a dummy value such as <code>-7</code>.<br>
         </p>
-        <p>Typical physical values assigned to <code>val_to_return</code>
+        <p>Typical physical values assigned to <code>candle_value_to_return</code>
           include the training, testing, or validation loss (for a
           machine/deep learning model) or the workflow runtime (for
           optimizing workflow runtimes as in, e.g., benchmarking).<br>
@@ -520,15 +552,16 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
             space of possible values of the hyperparameters<br>
           </li>
         </ol>
-        <p>The input file must have a <code>.in</code> extension. A
-          typical input file looks like:<br>
+        <p>The input file should have a <code>.in</code> extension,
+          though it is not required. A typical input file looks like:<br>
         </p>
         <div class="term">&amp;control<br>
           &nbsp; model_script="$(pwd)/mnist_mlp.py"<br>
           &nbsp; workflow="grid"<br>
           &nbsp; ngpus=2<br>
-          &nbsp; gpu_type="k80"<br>
+          &nbsp; gpu_type="k80" # this is a sample inline comment<br>
           &nbsp; walltime="00:20:00"<br>
+          &nbsp; run_workflow = 1<br>
           /<br>
           <br>
           &amp;default_model<br>
@@ -539,6 +572,7 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           &nbsp; num_filters=32<br>
           /<br>
           <br>
+          # This is a sample full-line comment<br>
           &amp;param_space<br>
           &nbsp; {"id": "hpset_01", "epochs": 15, "activation": "tanh"}<br>
           &nbsp; {"id": "hpset_02", "epochs": 30, "activation": "tanh"}<br>
@@ -556,6 +590,10 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           names must be one of <code>control</code>, <code>default_model</code>,
           or <code>param_space</code>.<br>
         </p>
+        <p>Comments preceded by pound signs <code>#</code> are allowed,
+          either on part of a line or on the entire line, just as in the
+          bash programming language; see the sample input file above.<br>
+        </p>
         <p>The three sections of the input file are explained in more
           detail below. The first two (<code>&amp;control</code> and <code>&amp;default_model</code>)
           consist of settings of the format <code>left-hand-side =
@@ -567,74 +605,73 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
         </p>
         <p>In general, files should <i>always</i> use absolute paths,
           e.g., <code>/path/to/myfile.ext</code> instead of <code>myfile.ext</code>.
-          In the <code>&amp;control</code> section it is permissible to
-          use <code>$(pwd)</code> as the path in order to use the
+          In order to enforce this for files present in the same
           directory from which <code>candle submit-job
-            &lt;INPUT-FILE&gt;</code> is called, e.g., <code>$(pwd)/myfile.ext</code>.<br>
+            &lt;INPUT-FILE&gt;</code> is called, you can use <code>$(pwd)</code>
+          as the path in the <code>&amp;control</code> section, e.g., <code>$(pwd)/myfile.ext</code>.<br>
         </p>
-        <p>As usual in programming languages, strings should be quoted
-          (err on the side of double quotes <code>"</code>). Finally,
-          whitespace preceding the section bodies does not have any
-          effect aside from making the input file easier to read.<br>
+        <p>While not necessary, strings should be quoted (err on the
+          side of double quotes <code>"</code>). Finally, whitespace at
+          the beginnings of the lines making up the section bodies does
+          not have any effect aside from making the input file easier to
+          read.<br>
         </p>
         <p><b>Tip:</b> A useful way to remember the section names,
           format, and typical settings is to adapt any of the templates
           <a href="#template_settings">above</a> (i.e., <code>grid</code>,
-          <code>bayesian</code>, or <code>r</code>) to your use case.
-          Feel free to run <code>candle import-template
-            &lt;TEMPLATE&gt;</code> with different <code>&lt;TEMPLATE&gt;</code>
+          <code>bayesian</code>, <code>r</code>, or <code>bash</code>)
+          to your use case. Feel free to run <code>candle
+            import-template &lt;TEMPLATE&gt;</code> with different <code>&lt;TEMPLATE&gt;</code>
           <a href="#template_settings">settings</a> and examine the
           input file that is copied over in order to better understand
           what it does and the types of settings it can contain.<br>
         </p>
-        <p><b>Note:</b> The old CANDLE usage, in which three input files
-          are used instead of a single input file with three sections,
-          is still supported. Just use <code>candle submit-job
-            &lt;SUBMISSION-SCRIPT&gt;</code> (a Bash script) instead of
-          <code>candle submit-job &lt;INPUT-FILE&gt;</code> (a text file
-          with a <code>.in</code> extension). The <code>candle</code>
-          program determines how to process the argument based on the
-          file's extension. (In fact, this is how <code>candle</code>
-          still works: it breaks up the input file into three files and
-          runs the generated submission script using the old method.)<br>
-        </p>
         <a name="submission_script"></a>
         <h4>Section 1: <code>&amp;control</code><br>
         </h4>
-        <p>You only <i>need</i> to modify five settings in the <code>&amp;control</code>
-          section; the rest of the settings are optional. String
-          settings in this section only can access Bash environment
-          variables, e.g., <code>model_script =
-            ”/data/$USER/candle/mnist.py"</code>. <b>Note:</b> All
-          settings in this section are converted in CANDLE to uppercase
-          Bash variables, e.g., the value assigned to the <code>model_script</code>
-          setting actually gets assigned to the Bash variable <code>$MODEL_SCRIPT</code>.<br>
+        <p><b>Notes:</b> String settings in this section only can access
+          calls to bash, e.g., <code>model_script =
+            ”/data/$USER/candle/mnist.py"</code> or <code>model_script="$(pwd)/mnist_mlp.py"</code>.
+          Internally, all settings in this section are converted to
+          uppercase bash variables prepended by "CANDLE_", e.g., the
+          value assigned to the <code>model_script</code> setting
+          actually gets assigned to the bash variable <code>$CANDLE_MODEL_SCRIPT</code>.<br>
         </p>
-        <a name="required_variables"></a>
-        <h5>Required settings</h5>
+        <p><u>Models written in either language</u></p>
         <dl>
-          <dt><b><code>model_script</code></b></dt>
-          <dd>This should point to the Python or R script that you would
-            like to run. E.g., <code>model_script =
+          <dt><b><code>model_script</code></b> <b>(Required)</b><b><br>
+            </b></dt>
+          <dd>This should point to the Python, R, or bash script that
+            you would like to run. E.g., <code>model_script =
               ”/data/$USER/candle/mnist.py"</code>. This script must
             have been adapted to work with CANDLE (see the <a
               href="#adapting_your_model">previous section</a>). The
             filename extension will automatically determine whether
-            Python or R will be used to run the model.</dd>
-          <dt><b><code>workflow</code></b></dt>
+            Python, R, or bash will be used to run the model.</dd>
+          <dt><b><code>workflow</code></b> <b>(Required)</b><b><br>
+            </b></dt>
           <dd>Which CANDLE workflow to use. Currently supported are the
             <code>grid</code> and <code>bayesian</code> workflows.
-            E.g., <code>workflow = "grid"</code>.<br>
+            E.g., <code>workflow = "grid"</code>.</dd>
+          <dt><b><code>worker_type</code></b></dt>
+          <dd>Either <code>cpu</code> or type of GPU (<code>k20x</code>,
+            <code>k80</code>, <code>p100</code>, <code>v100</code>, or
+            <code>v100x</code>) you would like to use to run each set of
+            hyperparameters on your <code>model_script</code>, the
+            number of which will be specified by the <code>nworkers</code>
+            keyword below. Default is <code>k80</code>.<br>
           </dd>
-          <dt><b><code>ngpus</code></b></dt>
-          <dd>Number of GPUs you would like to use for the CANDLE job.
-            E.g., <code>ngpus = 2</code>. <b>Note:</b> One (<code>grid</code>
-            workflow) or two (<code>bayesian</code> workflow) extra GPUs
-            will be allocated in order run background processes.</dd>
-          <dt><b><code>gpu_type</code></b></dt>
-          <dd>Type of GPU you would like to use. E.g., <code>gpu_type =
-              "k80"</code>. The choices on Biowulf are <code>k20x</code>,
-            <code>k80</code>, <code>p100</code>, and <code>v100</code>.</dd>
+          <dt><b><code>nworkers</code></b></dt>
+          <dd>Number of workers (CPUs or GPUs depending on the setting
+            of <code>worker_type</code> above) you would like to use
+            for the CANDLE job. E.g., <code>nworkers = 2</code>.
+            Default is <code>1</code>. <b>Note:</b> One (<code>grid</code>
+            workflow) or two (<code>bayesian</code> workflow) extra CPU
+            processes will be allocated in order run background
+            processes.</dd>
+          <dt><b><code>nthreads</code></b></dt>
+          <dd>The number of CPUs to use per MPI task. Default is <code>1</code>.<br>
+          </dd>
           <dt><b><code>walltime</code></b></dt>
           <dd>How long you would like your job to run (the wall time of
             your entire job including all hyperparameter sets). E.g., <code>walltime
@@ -644,91 +681,25 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
 
 
 
+
+
               = "00:20:00"</code>. Format is <code>HH:MM:SS</code>.
             When in doubt, round up so that the job is most likely to
-            complete (if it doesn't, use the <code>restart_from_exp</code>
-            setting, below).</dd>
-        </dl>
-        <h5>Optional variables</h5>
-        <p><u>Python models only</u></p>
-        <dl>
-          <dt><b><code>python_bin_path</code></b></dt>
-          <dd>If you don’t want to use the Python version with which
-            CANDLE was built (currently python/3.6), you can set this to
-            the location of the Python binary you would like to use.
-            Examples:<br>
-            <div class="term">python_bin_path =
-              "$CONDA_PREFIX/envs/&lt;YOUR_CONDA_ENVIRONMENT_NAME&gt;/bin"<br>
-              python_bin_path =
-              "/data/BIDS-HPC/public/software/conda/envs/main3.6/bin"</div>
+            complete. Default is <code>00:05:00</code>.</dd>
+          <dt><b><code>custom_sbatch_args</code></b></dt>
+          <dd>Custom arguments to SLURM's batch processor, <code>sbatch</code>,
+            such as an <code>lscratch</code> setting. Default is empty.</dd>
+          <dt><b><code>mem_per_cpu</code></b></dt>
+          <dd>Memory in GB to request from SLURM per CPU process.
+            Default is <code>7</code>.<br>
           </dd>
-          <dd>If set, it will override the setting of <code>exec_python_module</code>,
-            below.</dd>
-          <dt><b><code>exec_python_module</code></b></dt>
-          <dd>If you’d prefer loading a module rather than specifying
-            the path to the Python binary (above), set this to the name
-            of the Python module you would like to load. E.g., <code>exec_python_module
-
-
-
-
-
-
-              = "python/2.7"</code>. This setting will have no effect if
-            <code>python_bin_path</code> (above) is set. If neither <code>python_bin_path</code>
-            nor <code>exec_python_module</code> is set, then the
-            version of Python with which CANDLE was built (currently
-            python/3.6) will be used.</dd>
-          <dt><code><b>supp_pythonpath</b></code></dt>
-          <dd>This is a supplementary setting of the <code>$PYTHONPATH</code>
-            environment variable that will be searched for libraries
-            that can’t otherwise be found. Examples:</dd>
-          <dd>
-            <div class="term">supp_pythonpath =
-"/data/BIDS-HPC/public/software/conda/envs/main3.6/lib/python3.6/site-packages"<br>
-              supp_pythonpath =
-              "/data/$USER/conda/envs/my_conda_env/lib/python3.6/site-packages"<br>
-            </div>
-            <p><b>Tip:</b> Multiple paths can be set by separating them
-              with a colon.<br>
-            </p>
-          </dd>
-        </dl>
-        <dl>
-          <dt><b><code>dl_backend</code></b></dt>
-          <dd>Deep learning library to use. E.g., <code>dl_backend =
-              "pytorch"</code>. Should be either <code>keras</code>
-            (default) or <code>pytorch</code>.</dd>
-        </dl>
-        <p><u>R models only</u></p>
-        <dl>
-          <dt><b><code>exec_r_module</code></b></dt>
-          <dd>If you don’t want to use the R version with which CANDLE
-            was built (currently R/3.5.0), set this to the name of the R
-            module you would like to load. E.g., <code>exec_r_module =
-              "R/3.6"</code>.</dd>
-          <dt><b><code>supp_r_libs</code></b></dt>
-          <dd>This is a supplementary setting of the <code>$R_LIBS</code>
-            environment variable that will be searched for libraries
-            that can’t otherwise be found. E.g., <code>supp_r_libs =
-              "/data/BIDS-HPC/public/software/R/3.6/library"</code>. <b>Tip:</b>
-            R will search your standard library location on Biowulf (<code>~/R/%v/library</code>),
-
-
-
-
-
-
-            so feel free to just install your own R libraries there.</dd>
-        </dl>
-        <p><u>Models written in either language</u></p>
-        <dl>
           <dt><b><code>supp_modules</code></b></dt>
           <dd>Modules you would like to have loaded while your model is
             run. E.g., <code>supp_modules = "CUDA/10.0
               cuDNN/7.5/CUDA-10.0"</code> (these particular example
             settings may be necessary for running TensorFlow when using
-            a custom Conda installation).</dd>
+            a custom Conda installation). Default is empty.<br>
+          </dd>
           <dt><b><code>extra_script_args</code></b></dt>
           <dd>Command-line arguments you’d like to include when invoking
             <code>python</code> or <code>Rscript</code>. E.g., for R
@@ -736,94 +707,27 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
               "--max-ppsize=100000"</code>. In other words, the model
             will ultimately be run like <code>python $EXTRA_SCRIPT_ARGS
               my_model_script.py</code> or <code>Rscript
-              $EXTRA_SCRIPT_ARGS my_model_script.R</code>.</dd>
-          <dt><b><code>use_candle</code></b></dt>
-          <dd>Whether to use CANDLE to run a workflow (<code>1</code>,
-            default) or to simply run the model on the default set of
-            hyperparameters specified in the <code>&amp;default_model</code>
-            section (<code>0</code>). E.g., <code>use_candle = 0</code>.
-            If set to <code>0</code>, use an interactive node (e.g., <code>sinteractive
-
-
-
-
-
-
-
-
-              --gres=gpu:k20x:1 --mem=60G --cpus-per-task=16</code>);
-            rather than <code>candle submit-job &lt;INPUT-FILE&gt;</code>
-            (the standard way to run a CANDLE job) submitting a job to
-            the batch queue, the job will run on the current node.</dd>
-          <dt><b><code>cpus_per_task</code></b></dt>
-          <dd>Number of CPUs to request that SLURM allocate per GPU
-            (i.e., MPI process). E.g., <code>cpus_per_task = 4</code>.
-            By default CANDLE requests the number of CPUs (and memory)
-            proportional to the total number of GPUs on the node,
-            depending on the required <code>gpu_type</code> setting.
-            The default values of <code>cpus_per_task</code> and <code>mem_per_node</code>
-            (see the following setting) are:<br>
-            <table cellspacing="2" cellpadding="2" border="1"
-              width="30%">
-              <tbody>
-                <tr>
-                  <td align="center" valign="top"><b><code>gpu_type</code></b><b><br>
-                    </b></td>
-                  <td align="center" valign="top"><b><code>cpus_per_task</code></b><b><br>
-                    </b></td>
-                  <td align="center" valign="top"><b><code>mem_per_node</code></b><b><br>
-                    </b></td>
-                </tr>
-                <tr>
-                  <td align="center" valign="top"><code>k20x</code><br>
-                  </td>
-                  <td align="center" valign="top"><code>16</code><br>
-                  </td>
-                  <td align="center" valign="top"><code>60G</code><br>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" valign="top"><code>k80</code></td>
-                  <td align="center" valign="top"><code>14</code></td>
-                  <td align="center" valign="top"><code>60G</code></td>
-                </tr>
-                <tr>
-                  <td align="center" valign="top"><code>p100</code><br>
-                  </td>
-                  <td align="center" valign="top"><code>14</code></td>
-                  <td align="center" valign="top"><code>30G</code></td>
-                </tr>
-                <tr>
-                  <td align="center" valign="top"><code>v100</code><br>
-                  </td>
-                  <td align="center" valign="top"><code>14</code></td>
-                  <td align="center" valign="top"><code>30G</code></td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
+              $EXTRA_SCRIPT_ARGS my_model_script.R</code>. Default is
+            empty.<br>
           </dd>
-          <dt><b><code>mem_per_node</code></b></dt>
-          <dd>Amount of memory (including the units) to request that
-            SLURM allocate per GPU (i.e., MPI process). E.g., <code>mem_per_node
-
-
-
-
-
-              = "10G"</code>. By default CANDLE requests the amount of
-            memory (and CPUs) proportional to the total number of GPUs
-            on the node, depending on the required <code>gpu_type</code>
-            setting. The default values of <code>mem_per_node</code>
-            and <code>cpus_per_task</code> (see the previous setting)
-            are as in the table above.</dd>
-          <dt><b><code>restart_from_exp</code><br>
+          <dt><b><code>run_workflow</code><br>
             </b></dt>
-          <dd>(Experimental) If a <code>grid</code> workflow was run
-            previously but for whatever reason did not complete (such as
-            a too-low setting of <code>walltime</code>), here you can
-            specify the name of the experiment from which to resume.
-            E.g., <code>restart_from_exp = "X002"</code>.</dd>
+          <dd>Whether (<code>1</code>, default) or not (<code>0</code>)
+            to run the actual workflow specified by the <code>workflow</code>
+            keyword. If not set, a single run of the model using the
+            hyperparameters specified in the <code>&amp;default_model</code>
+            section of the input file will be run on the current
+            machine, so <code>run_workflow=0</code> must be run only on
+            an interactive node. Testing your model first with <code>run_workflow=0</code>
+            is a crucial part of the CANDLE testing procedure; see <a
+              href="#running_your_job">below</a>.</dd>
+          <dt><b><code>dry_run</code></b></dt>
+          <dd>Whether (<code>1</code>) or not (<code>0</code>, default)
+            to simply set up the CANDLE job without actually submitting
+            the job to SLURM. This allows you to study the automatically
+            generated files and settings if you suspect something in
+            CANDLE proper is going awry.<br>
+          </dd>
         </dl>
         <p><i><code>bayesian</code> workflow only</i><br>
         </p>
@@ -832,6 +736,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           <dd>Total number of points to sample within the hyperparameter
             space prior to running the <a
 href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrMBO
+
+
 
 
 
@@ -858,6 +764,8 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeM
 
 
 
+
+
               iteration</a>. E.g., <code>propose_points = 9</code>
             (default <code>10</code>). A reasonable value for this (and
             for <code>design_size</code><code></code>, above) is 15-20.</dd>
@@ -872,7 +780,11 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMB
 
 
 
+
+
               evaluations</a> for all iterations combined. E.g., <code>max_budget
+
+
 
 
 
@@ -890,18 +802,83 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMB
 
 
 
+
+
               optimization steps</a>. E.g., <code>max_iterations = 3</code>
             (default <code>10</code>).</dd>
         </dl>
-        <b>Note:</b> When <code>use_candle = 1</code> (default
-        behavior), the submission script (which should never be called
-        using <code>sbatch</code>) will automatically request an <code>sbatch</code>
-        job. When <code>use_candle = 0</code>, the submission script
-        should be called the the same way (<code>candle submit-job
-          &lt;INPUT-FILE&gt;</code>), but from an interactive (compute)
-        node; this is the best way to test your job (with the default
-        hyperparameter settings) without actually running a CANDLE
-        workflow.
+        <p><u>Python models only</u></p>
+        <dl>
+          <dt><b><code>python_bin_path</code></b></dt>
+          <dd>If you don’t want to use the Python version with which
+            CANDLE was built (currently python/3.7), you can set this to
+            the location of the Python binary you would like to use.
+            Examples:<br>
+            <div class="term">python_bin_path =
+              "$CONDA_PREFIX/envs/&lt;YOUR_CONDA_ENVIRONMENT_NAME&gt;/bin"<br>
+              python_bin_path =
+              "/data/BIDS-HPC/public/software/conda/envs/main3.6/bin"</div>
+          </dd>
+          <dd>If set, it will override the setting of <code>exec_python_module</code>,
+            below. Default is empty.<br>
+          </dd>
+          <dt><b><code>exec_python_module</code></b></dt>
+          <dd>If you’d prefer loading a module rather than specifying
+            the path to the Python binary (above), set this to the name
+            of the Python module you would like to load. E.g., <code>exec_python_module
+
+
+
+
+
+
+
+
+              = "python/3.8"</code>. This setting will have no effect if
+            <code>python_bin_path</code> (above) is set. If neither <code>python_bin_path</code>
+            nor <code>exec_python_module</code> is set, then the
+            version of Python with which CANDLE was built (currently
+            python/3.7) will be used. Default is empty.<br>
+          </dd>
+          <dt><code><b>supp_pythonpath</b></code></dt>
+          <dd>This is a supplementary setting of the <code>$PYTHONPATH</code>
+            environment variable that will be searched for libraries
+            that can’t otherwise be found. Examples:</dd>
+          <dd>
+            <div class="term">supp_pythonpath =
+"/data/BIDS-HPC/public/software/conda/envs/main3.6/lib/python3.6/site-packages"<br>
+              supp_pythonpath =
+              "/data/$USER/conda/envs/my_conda_env/lib/python3.6/site-packages"<br>
+            </div>
+            <p>Default is empty.<b><br>
+                Tip:</b> Multiple paths can be set by separating them
+              with a colon.<br>
+            </p>
+          </dd>
+          <dt><b><code>dl_backend</code></b></dt>
+          <dd>Deep learning library to use. E.g., <code>dl_backend =
+              "pytorch"</code>. Should be either <code>keras</code>
+            (default) or <code>pytorch</code>. Only required if deep
+            learning using Keras or PyTorch is requested; e.g., this is
+            not used if only machine learning using <code>scikit-learn</code>
+            is employed.</dd>
+        </dl>
+        <p><u>R models only</u></p>
+        <dl>
+          <dt><b><code>exec_r_module</code></b></dt>
+          <dd>If you don’t want to use the R version with which CANDLE
+            was built (currently R/4.0.0), set this to the name of the R
+            module you would like to load. E.g., <code>exec_r_module =
+              "R/3.6.0"</code>. Default is empty.</dd>
+          <dt><b><code>supp_r_libs</code></b></dt>
+          <dd>This is a supplementary setting of the <code>$R_LIBS</code>
+            environment variable that will be searched for libraries
+            that can’t otherwise be found. E.g., <code>supp_r_libs =
+              "/data/BIDS-HPC/public/software/R/3.6/library"</code>.
+            Default is empty. <b>Tip:</b> R will search your standard
+            library location on Biowulf (<code>~/R/%v/library</code>),
+            so feel free to just install your own R libraries there.</dd>
+        </dl>
         <p> </p>
         <a name="default_hyperparams_file"></a>
         <h4>Section 2: <code>&amp;default_model</code></h4>
@@ -925,7 +902,7 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMB
         </div>
         <p>in your Python model script with<br>
         </p>
-        <div class="term">DATA_URL = hyperparams['data_url']<br>
+        <div class="term">DATA_URL = candle_params['data_url']<br>
         </div>
         <p>and place the line<br>
         </p>
@@ -936,6 +913,13 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMB
           input file. This way, all settings can be changed from a
           single input file.<br>
         </p>
+        <p><b>Note:</b> If you wish, you can replace the contents of
+          this section with the full path to a file as a value to the <code>candle_default_model_file</code>
+          keyword, e.g., <code>candle_default_model_file =
+            $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt</code>.
+          The contents of this file should start with a line containing
+          <code>[Global_Params]</code>.<br>
+        </p>
         <a name="workflow_settings_file"></a>
         <h4>Section 3: <code>&amp;param_space</code></h4>
         <h4> </h4>
@@ -944,11 +928,17 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMB
           section) are to be varied during a hyperparameter optimization
           workflow.<br>
         </p>
+        <p><b>Note:</b> If you wish, you can replace the contents of
+          this section with the full path to a file as a value to the <code>candle_param_space_file</code>
+          keyword, e.g., <code>candle_param_space_file =
+            $CANDLE/Supervisor/workflows/mlrMBO/data/nt3_nightly.R</code>.</p>
         <a name="workflow_settings_file-grid"></a>
         <h5><code>grid</code> workflow<br>
         </h5>
         <p>The <code>grid</code> workflow refers to a "<a
 href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">grid
+
+
 
 
 
@@ -988,6 +978,8 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">gri
         <p><a name="generate-grid"></a>Alternatively, you can use the <code>generate-grid</code>
           <code>candle</code> command to create a file called <code>grid_workflow-XXXX.txt</code>
           containing a full "grid" of hyperparameters. The usage is <code>candle
+
+
 
 
 
@@ -1062,6 +1054,8 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Bayesian_optimiz
 
 
 
+
+
             hyperparameter optimization</a> in which information about
           how well prior sets of hyperparameters performed is used to
           determine the next sets of hyperparameters to try. In this way
@@ -1081,8 +1075,8 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Bayesian_optimiz
           on those <code>design_size</code> sets of hyperparameters. A
           random forest model (called a "surrogate model") then fits the
           hyperparameters run to their resulting performance metrics
-          (specified either by the <code>val_to_return</code> variable
-          or the <code>history</code> variable as explained <a
+          (specified either by the <code>candle_value_to_return</code>
+          variable or the <code>history</code> variable as explained <a
             href="#define_the_metric">above</a>) and produces <code>propose_points</code>
           new sets of hyperparameters it believes may minimize the
           metric. The model is then run on these new sets of
@@ -1105,12 +1099,16 @@ href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrM
 
 
 
+
+
             package documentation</a>.</p>
         <p>The <code>&amp;param_space</code> section for the <code>bayesian</code>
           workflow is based on the <a
 href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/makeParamSet"><code>makeParamSet</code>
             function</a> in the <a
 href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12">ParamHelpers
+
+
 
 
 
@@ -1143,6 +1141,21 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
             help page</a> for individual usage of each type of
           constructor function.<br>
         </p>
+        <a name="running_your_job"></a>
+        <div class="heading">Running the CANDLE Job<br>
+          <p><b>Note:</b> When <code>use_candle = 1</code> (default
+            behavior), the submission script (which should never be
+            called using <code>sbatch</code>) will automatically
+            request an <code>sbatch</code> job. When <code>use_candle
+              = 0</code>, the submission script should be called the the
+            same way (<code>candle submit-job &lt;INPUT-FILE&gt;</code>),
+
+
+            but from an interactive (compute) node; this is the best way
+            to test your job (with the default hyperparameter settings)
+            without actually running a CANDLE workflow. </p>
+        </div>
+        <p> </p>
         <a name="aggregation"></a>
         <div class="heading">Aggregating CANDLE Job Results</div>
         <p>After a CANDLE job is complete, the results of all jobs run
@@ -1162,7 +1175,7 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
           expect to be printed to the terminal if you ran the model
           completely outside of CANDLE). If the model ran successfully
           using that hyperparameter set, a file called <code>result.txt</code>
-          will also be present containing the value specified by <code>val_to_return</code>
+          will also be present containing the value specified by <code>candle_value_to_return</code>
           (or <code>history</code>).<br>
         </p>
         <p><b>Tip:</b> If your CANDLE job dies, looking inside the <code>subprocess_out_and_err.txt</code>
@@ -1225,6 +1238,8 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
 
 
 
+
+
           string containing the output format for the metric. For
           example, if the <code>r</code> template/example were run
           inside the <code>/data/$USER/candle</code> directory, then
@@ -1275,6 +1290,8 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
         <a name="candle_commands"></a>
         <div class="heading">Summary of <code>candle</code> Commands</div>
         <p>As long as the <code>candle</code> module is loaded (<code>module
+
+
 
 
 
@@ -1357,18 +1374,17 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
           CANDLE) or point you in the right direction. (And, we are <a
             href="mailto:andrew.weisman@nih.gov">happy to collaborate!</a>)<br>
         </p>
-        <!-- End content area - do not edit below this line -->
-      </div>
+        <!-- End content area - do not edit below this line --> </div>
       <div class="lastmod" align="right">
         <script type="text/javascript" language="JavaScript" src="/js/lastmod.js"></script></div>
       <div class="footarea">
-        <div class="footer">
-          <a href="/" class="footlink">HPC @ NIH </a> ~
-          <a href="/about/contact.html" class="footlink">Contact</a> </div>
-        <div class="footer2">
-          <a href="/docs/disclaimer.html" class="footlink">Disclaimer</a>
-          ~ <a href="/docs/privacy.html" class="footlink">Privacy</a> ~
-          <a href="/docs/accessibility.html" class="footlink">Accessibility</a>
+        <div class="footer"> <a href="/" class="footlink">HPC @ NIH </a>
+          ~ <a href="/about/contact.html" class="footlink">Contact</a>
+        </div>
+        <div class="footer2"> <a href="/docs/disclaimer.html"
+            class="footlink">Disclaimer</a> ~ <a
+            href="/docs/privacy.html" class="footlink">Privacy</a> ~ <a
+            href="/docs/accessibility.html" class="footlink">Accessibility</a>
           ~ <a href="http://cit.nih.gov/" class="footlink">CIT</a> ~ <a
             href="http://www.nih.gov/" class="footlink">NIH</a> ~ <a
             href="http://www.dhhs.gov/" class="footlink">DHHS</a> ~ <a
