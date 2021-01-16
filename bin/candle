@@ -51,7 +51,8 @@ else
     else
         # I believe that if Python is a main program run then it typically helps to run it in an empty, temporary directory
 	if (echo "$command" | grep -E "^aggregate-results$" &> /dev/null); then
-            needs_temp_dir=1
+            #needs_temp_dir=1
+            needs_temp_dir=0
         fi
 
         # Export the submission directory
