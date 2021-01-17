@@ -616,10 +616,10 @@ href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_b
             &lt;INPUT-FILE&gt;</code> is called, you can use <code>$(pwd)</code>
           as the path in the <code>&amp;control</code> section, e.g., <code>$(pwd)/myfile.ext</code>.<br>
         </p>
-        <p>While not necessary, strings should be quoted (err on the
-          side of double quotes <code>"</code>). Finally, whitespace at
-          the beginnings of the lines making up the section bodies does
-          not have any effect aside from making the input file easier to
+        <p>While not necessary, strings may be quoted (err on the side
+          of double quotes <code>"</code>). Finally, whitespace at the
+          beginnings of the lines making up the section bodies does not
+          have any effect aside from making the input file easier to
           read.<br>
         </p>
         <p><b>Tip:</b> A useful way to remember the section names,
@@ -1184,13 +1184,18 @@ href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_b
             the full CANDLE job (using <code>run_workflow=1</code>).
             However, catching the mistakes this way (using <code>run_workflow=0</code>
             on an interactive node) allows you to correct these issues
-            quickly and to immediately test your changes. Finally, doing
-            this has the added benefit of being easily able to run the
-            full CANDLE workflow: just exit the interactive session (by
-            typing <code>exit</code>), set the <code>run_workflow</code>
-            keyword in the input file to <code>1</code>, and then
-            submit the full CANDLE job using the same exact command: <code>candle
-              submit-job &lt;INPUT-FILE&gt;</code>.<br>
+            quickly and to immediately test your changes. <b>Quickly
+              using </b><b><code>run_workflow=0</code></b><b> on an
+              interactive node will almost guarantee that the full
+              CANDLE workflow will run without a hitch.</b><br>
+          </p>
+          <p>After you have successfully tested your model script using
+            <code>run_workflow=0</code> on an interactive node, then in
+            order to run the full CANDLE workflow, simply exit the
+            interactive session (by typing <code>exit</code>), set the
+            <code>run_workflow</code> keyword in the input file to <code>1</code>,
+            and then submit the full CANDLE job using the same exact
+            command: <code>candle submit-job &lt;INPUT-FILE&gt;</code>.<br>
           </p>
           <p>You will know you have successfully submitted the CANDLE
             job to SLURM if, after all the text that is outputted to the
@@ -1266,16 +1271,17 @@ href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_b
 
 
           string containing the output format for the metric. For
-          example, if the <code>r</code> template/example were run
-          inside the <code>/data/$USER/candle</code> directory, then
-          running<br>
+          example, if the <code>r</code> template/example (an older
+          version of it) were run inside the <code>/data/$USER/candle</code>
+          directory, then running<br>
         </p>
         <div class="term">[user@biowulf]$ <b>candle aggregate-results
             /data/$USER/candle/last-candle-job<br>
           </b></div>
         <p>would produce a file called <code>candle_results.csv</code>
-          in the current directory containing the data from all the
-          jobs, sorted by increasing metric value, e.g.,<br>
+          in the <code>candle_generated_files</code> directory
+          containing the data from all the jobs, sorted by increasing
+          metric value, e.g.,<br>
         </p>
         <div class="term">result,dirname,id,mincorr,maxcorr,number_cv,extfolds<br>
           000.796,hpset_00001,hpset_00001,0.200000,0.80,2,5<br>
@@ -1291,9 +1297,10 @@ href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_b
           method in order to study the results of the HPO.<br>
         </p>
         <p><b>Note:</b> Since the field names (first line above) are
-          extracted once, if the hyperparameters that are modified are
-          not the same for every set of hyperparameters run using the <code>grid</code>
-          workflow, then the results of the <code>aggregate-results</code>
+          extracted for just one of the hyperparameter sets, if the
+          hyperparameters that are run are not the same for every set of
+          hyperparameters run using the <code>grid</code> workflow,
+          then the results of the <code>aggregate-results</code>
           command will not make sense. For example, running this command
           on the results of the <code>grid</code> template/example will
           produce<br>
@@ -1314,9 +1321,10 @@ href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_b
           <code>candle</code> should always make sense.<br>
         </p>
         <p>As usual, the full pathname must be used for <code>&lt;EXP-DIR&gt;</code>.
-          <b>Tip:</b> Use <code>$(pwd)</code> to automatically include
-          the full path in front of a relative file, e.g., <code>candle
-            aggregate-results $(pwd)/last-candle-job</code>.<br>
+          <b>Tip:</b> As usual, use <code>$(pwd)</code> to
+          automatically include the full path in front of a relative
+          file, e.g., <code>candle aggregate-results
+            $(pwd)/last-candle-job</code>.<br>
         </p>
         <a name="candle_commands"></a>
         <div class="heading">Summary of <code>candle</code> Commands</div>
@@ -1395,16 +1403,12 @@ href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_b
             href="mailto:andrew.weisman@nih.gov">SDSI team</a> with any
           questions, comments, or suggestions.<br>
         </p>
-        <p> For notices, links, and updates, please go to <a
-            href="https://cbiit.github.io/sdsi/candle">https://cbiit.github.com/sdsi/candle</a>.
-        </p>
-        <p>Finally, our team has expertise in building machine/deep
-          learning models for a variety of situations (e.g., image
-          segmentation, classification from RNA-Seq data, etc.) and
-          would be happy to help you build a model (independent of
-          CANDLE) or point you in the right direction. (And, we are <a
-            href="mailto:andrew.weisman@nih.gov">happy to collaborate!</a>)<br>
-        </p>
+        In addition, our team has expertise in building machine/deep
+        learning models for a variety of situations (e.g., image
+        segmentation, classification from RNA-Seq data, etc.) and would
+        be happy to help you build a model (independent of CANDLE) or
+        point you in the right direction. (And, we are <a
+          href="mailto:andrew.weisman@nih.gov">happy to collaborate!</a>)<br>
         <!-- End content area - do not edit below this line --> </div>
       <div class="lastmod" align="right">
         <script type="text/javascript" language="JavaScript" src="/js/lastmod.js"></script></div>
