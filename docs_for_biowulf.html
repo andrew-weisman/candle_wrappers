@@ -507,7 +507,7 @@
         </div>
         <p>before the command prompt is returned to you. At this point, the CANDLE job has been submitted to Biowulf's SLURM scheduler just like any other Biowulf job, whose progress you can monitor, e.g., by running <code>squeue -u
               &lt;YOUR-BIOWULF-USERNAME&gt;</code>.</p>
-        <p>Once your job has completed running, you can check the results by entering the <code>last-candle-job</code> directory (a symbolic link) and ensuring the output in the file <code>output.txt</code> looks reasonable (namely, ends with something like)</p>
+        <p>Once your job has completed running, you can check the results by entering the <code>last-candle-job</code> directory (a symbolic link) and ensuring the output in the file <code>output.txt</code> looks reasonable; namely, it should end with something like</p>
         <div class="term">MPIEXEC TIME: 263.763<br> EXIT CODE: 0<br> COMPLETE: 2021-01-14 18:56:51<br>
         </div>
         <p>Then, enter the <code>run</code> subdirectory, where the results of your model script run using each hyperparameter set will lie. In particular, you can check the output of the model run using each hyperparameter set by observing the <code>subprocess_out_and_err.txt</code> files using <code>less */subprocess_out_and_err.txt</code>. (These files contain the model's raw output, i.e., what you'd expect to be printed to the terminal if you ran the model completely outside of CANDLE.) Further, for each hyperparameter set using which your model ran successfully, a file called <code>result.txt</code> will also be present containing the value specified by <code>candle_value_to_return</code> (or <code>history</code>).</p>
