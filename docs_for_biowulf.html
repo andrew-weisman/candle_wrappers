@@ -219,7 +219,7 @@
         </p>
         <a name="adapting_your_model"></a><br>
         <div class="heading">Adapting Your Model to Work With CANDLE</div>
-        <p>Once you have confirmed that your model script runs as-is on Biowulf, modify it in two simple ways. Note that while CANDLE accepts model scripts written in Python, R, or bash, the following addresses model scripts written in only Python or R; as bash model scripts are more involved, see the <a href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_biowulf.html#import-template">bash example</a> or <a href="mailto:george.zaki@nih.gov">email us</a> for assistance.<br>
+        <p>Once you have confirmed that your model script runs as-is on Biowulf, modify it in two simple ways. Note that while CANDLE accepts model scripts written in Python, R, or bash, the following addresses model scripts written in only Python or R; as bash model scripts are more involved, see the <a href="#import-template">bash example</a> or <a href="mailto:george.zaki@nih.gov">email us</a> for assistance.<br>
         </p>
         <a name="specify_the_hyperparams"></a>
         <h4>Step 1: Specify the hyperparameters</h4>
@@ -490,7 +490,7 @@
         </p>
         <a name="running_your_job"></a>
         <div class="heading">Running the CANDLE Job</div>
-        <p>After <a href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_biowulf.html#adapting_your_model">adapting</a> your model script to work with CANDLE and <a href="file:///C:/Users/weismanal/repos/andrew-weisman/candle_wrappers/docs_for_biowulf.html#modifying_a_template">creating</a> a single CANDLE input file, you will almost be ready to run the hyperparameter optimization (HPO) using CANDLE.<br>
+        <p>After <a href="#adapting_your_model">adapting</a> your model script to work with CANDLE and <a href="#modifying_a_template">creating</a> a single CANDLE input file, you will almost be ready to run the hyperparameter optimization (HPO) using CANDLE.<br>
         </p>
         <p>However, even though you should have <a href="#already_works">already ensured</a> that your original model ran successfully on Biowulf, you should make sure that you have adapted it to work with CANDLE and created the input file successfully by running your model script using the default set of hyperparameters (set in the <a href="#default_hyperparams_file"><code>&amp;default_model</code> section</a>) without running a full HPO workflow.<br>
         </p>
