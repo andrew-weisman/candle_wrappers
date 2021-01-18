@@ -115,6 +115,12 @@ if [ "${CANDLE_RUN_WORKFLOW:-1}" -eq 1 ]; then
 else
     echo -e "\nRunning just the model script has been requested\n"
     cmd_to_run="$CANDLE_SETUP_JOB_LAUNCHER $CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS python $MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
+
+    # If we're on Biowulf and are requesting that a workflow not be run, then since without using --no-gres-shell srun won't be able to access the GPU (see emails and the threads e.g. to Wolfgang on 1/15/21), we should run the command without the launcher
+    # Why not do this in site-specific_settings.sh? I.e., not use the launcher? Because then we wouldn't be able to test MPI communications when setting up CANDLE using setup.sh, which we would do by using srun. When running setup, we would use --no-gres-shell, but we shouldn't expect Biowulf users to use it here in case it confuses them and turns them off from CANDLE.
+    if [ "x$SITE" == "xbiowulf" ]; then
+        cmd_to_run="python $MODEL_PYTHON_DIR/$MODEL_PYTHON_SCRIPT.py"
+    fi
 fi
 
 # Run CANDLE (whether a workflow or just the model script) unless a dry run has been requested

@@ -388,7 +388,7 @@
           </dd>
           <dt><b><code>dl_backend</code></b></dt>
           <dd>Deep learning library to use. E.g., <code>dl_backend =
-              "pytorch"</code>. Should be either <code>keras</code> (default) or <code>pytorch</code>. Only required if deep learning using Keras or PyTorch is requested; e.g., this is not used if only machine learning using <code>scikit-learn</code> is employed.</dd>
+              "pytorch"</code>. Should be either <code>keras</code> (default) or <code>pytorch</code>. Only required if deep learning using Keras or PyTorch is requested; e.g., this is not used if only machine learning using <code>scikit-learn</code> is employed. <b>Note:</b> This keyword is probably unnecessary in all cases, e.g., even setting it to <code>keras</code> when PyTorch is actually used does not seem to matter.</dd>
         </dl>
         <p><u>R models only</u></p>
         <dl>
