@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,14 +13,14 @@
     <script async="" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=HHS"></script>
     <script src="/js/jquery-3.5.1.min.js" type="text/javascript"></script>
     <script src="/js/dropdown.js" type="text/javascript"></script>
-    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/font-awesome.min.css" rel="stylesheet"
+      type="text/css">
     <script src="/js/toggle.js" type="text/javascript"></script>
     <!--[if lte IE 7.]>
 <script defer type="text/javascript" src='/js/pngfix.js' ></script>
 <![endif]-->
     <title>CANDLE on Biowulf</title>
   </head>
-
   <body>
     <br>
     <div id="skiplink"> </div>
@@ -34,29 +33,50 @@
 </div>
 -->
     <div class="container">
-      <table class="head_area" cellspacing="0" cellpadding="0" border="0" width="100%">
+      <table class="head_area" cellspacing="0" cellpadding="0"
+        border="0" width="100%">
         <tbody>
           <tr>
             <th scope="col"><br>
             </th>
             <td scope="col" valign="bottom">
-              <div class="titleLocation"> <a href="/"><img src="/images/BIOWULF_LOGO" alt="Biowulf High
-                    Performance Computing at the NIH" height="72" border="0"></a> </div>
+              <div class="titleLocation"> <a href="/"><img
+                    src="/images/BIOWULF_LOGO" alt="Biowulf High
+                    Performance Computing at the NIH" height="72"
+                    border="0"></a> </div>
             </td>
             <td scope="col" align="right" valign="top">
               <div class="searchCell">
-                <form action="https://hpc.nih.gov/cgi-bin/search/swish.cgi" method="get"> <input name="maxresultflag" value="200" type="hidden">
-                  <!-- search all three swish-e indices by default --> <input name="si" value="0" type="hidden"> <input name="si" value="1" type="hidden"> <input name="si" value="2" type="hidden"> <input class="formfield" size="14" id="searchbox" name="query" aria-label="search NIH
+                <form
+                  action="https://hpc.nih.gov/cgi-bin/search/swish.cgi"
+                  method="get"> <input name="maxresultflag" value="200"
+                    type="hidden">
+                  <!-- search all three swish-e indices by default --> <input
+                    name="si" value="0" type="hidden"> <input name="si"
+                    value="1" type="hidden"> <input name="si" value="2"
+                    type="hidden"> <input class="formfield" size="14"
+                    id="searchbox" name="query" aria-label="search NIH
                     HPC site" placeholder=" Search " type="text"> </form>
-                <a href="https://github.com/NIH-HPC"> <img style="position: absolute; top: 72px; right: 72px; " src="/images/GitHub-Mark-Light-20px.png" alt="GitHub" title="Click here to visit our GitHub
-                    repositories" border="0" align="right"> </a> <a href="https://www.youtube.com/channel/UCx-kNd1kBskYr5KLT9-Erew">
+                <a href="https://github.com/NIH-HPC"> <img
+                    style="position: absolute; top: 72px; right: 72px; "
+                    src="/images/GitHub-Mark-Light-20px.png"
+                    alt="GitHub" title="Click here to visit our GitHub
+                    repositories" border="0" align="right"> </a> <a
+                  href="https://www.youtube.com/channel/UCx-kNd1kBskYr5KLT9-Erew">
                   <img style="position: absolute; top: 72px; right:
-                    48px; " src="/images/YouTube-social-squircle_red_20px.png" alt="YouTube" title="Click here to visit our YouTube
-                    channel" border="0" align="right"> </a> <a href="https://twitter.com/nih_hpc"> <img style="position: absolute; top: 72px; right: 24px; " src="/images/TwitterLogo20.png" alt="@nih_hpc" title="Click here to visit our twitter feed
-                    @nih_hpc" border="0" align="right"> </a> <a href="/hpc_RSS.xml"><img style="position: absolute;
-                    top: 72px; right: 0px;" src="/images/RSS20.png" alt="RSS Feed" title="Click here to add an RSS feed
-                    from HPC @ NIH" border="0" align="right"> </a>
-              </div>
+                    48px; "
+                    src="/images/YouTube-social-squircle_red_20px.png"
+                    alt="YouTube" title="Click here to visit our YouTube
+                    channel" border="0" align="right"> </a> <a
+                  href="https://twitter.com/nih_hpc"> <img
+                    style="position: absolute; top: 72px; right: 24px; "
+                    src="/images/TwitterLogo20.png" alt="@nih_hpc"
+                    title="Click here to visit our twitter feed
+                    @nih_hpc" border="0" align="right"> </a> <a
+                  href="/hpc_RSS.xml"><img style="position: absolute;
+                    top: 72px; right: 0px;" src="/images/RSS20.png"
+                    alt="RSS Feed" title="Click here to add an RSS feed
+                    from HPC @ NIH" border="0" align="right"> </a> </div>
             </td>
           </tr>
         </tbody>
@@ -65,25 +85,23 @@
       <div id="cssmenu">
         <ul>
           <li class="has-sub"><a href="/systems/"><span>Systems</span></a>
-            <span id="Systems_menulist"></span>
-          </li>
+            <span id="Systems_menulist"></span> </li>
           <li class="has-sub"><a href="/apps/"><span>Applications</span></a>
-            <span id="Applications_menulist"></span>
-          </li>
+            <span id="Applications_menulist"></span> </li>
           <li><a href="/apps/db.php"><span>Reference Data</span></a></li>
           <li class="has-sub"><a href="/storage/"><span>Storage</span></a>
-            <span id="Storage_menulist"></span>
-          </li>
-          <li class="has-sub"><a href="/docs/user_guides.html"><span>User Guides</span></a> <span id="User_Guides_menulist"></span>
+            <span id="Storage_menulist"></span> </li>
+          <li class="has-sub"><a href="/docs/user_guides.html"><span>User
+
+                Guides</span></a> <span id="User_Guides_menulist"></span>
           </li>
           <li class="has-sub"><a href="/training/"><span>Training</span></a>
-            <span id="Training_menulist"></span>
-          </li>
+            <span id="Training_menulist"></span> </li>
           <li><a href="/dashboard/"><span>User Dashboard</span></a></li>
           <li class="has-sub"><a href="/docs/how_to.html"><span>How To</span></a>
-            <span id="How_To_menulist"></span>
-          </li>
-          <li class="has-sub"><a href="/about/"><span>About</span></a> <span id="About_menulist"></span> </li>
+            <span id="How_To_menulist"></span> </li>
+          <li class="has-sub"><a href="/about/"><span>About</span></a> <span
+              id="About_menulist"></span> </li>
         </ul>
       </div>
       <!-- End navigation bar -->
@@ -105,207 +123,506 @@
                 <div class="toc">
                   <div class="tocHeading">Quick Links</div>
                   <div class="tocItem"><a href="#why_candle">Why CANDLE?</a></div>
-                  <div class="tocItem"><a href="#quick_start">Quick Start</a></div>
-                  <div class="tocItem"><a href="#usage_summary">Usage Summary</a></div>
-                  <div class="tocItem"><a href="#already_works">Confirming a Working Model</a></div>
-                  <div class="tocItem"><a href="#adapting_your_model">Adapting Your Model</a></div>
-                  <div class="tocItem"><a href="#modifying_a_template">Creating the Input File</a></div>
-                  <div class="tocItem"><a href="#running_your_job">Running the Job</a></div>
-                  <div class="tocItem"><a href="#aggregation">Aggregating Results</a></div>
-                  <div class="tocItem"><a href="#candle_commands">Command Summary</a></div>
+                  <div class="tocItem"><a href="#quick_start">Quick
+                      Start</a></div>
+                  <div class="tocItem"><a href="#usage_summary">Usage
+                      Summary</a></div>
+                  <div class="tocItem"><a href="#already_works">Confirming
+
+                      a Working Model</a></div>
+                  <div class="tocItem"><a href="#adapting_your_model">Adapting
+
+                      Your Model</a></div>
+                  <div class="tocItem"><a href="#modifying_a_template">Creating
+
+                      the Input File</a></div>
+                  <div class="tocItem"><a href="#running_your_job">Running
+
+                      the Job</a></div>
+                  <div class="tocItem"><a href="#aggregation">Aggregating
+
+                      Results</a></div>
+                  <div class="tocItem"><a href="#candle_commands">Command
+
+                      Summary</a></div>
                   <div class="tocItem"><a href="#promoting">Promoting</a></div>
-                  <div class="tocItem"><a href="#contact_info">Contact Info</a></div>
+                  <div class="tocItem"><a href="#contact_info">Contact
+                      Info</a></div>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-        <p> <a href="https://datascience.cancer.gov/collaborations/joint-design-advanced-computing/candle">CANDLE</a> (CANcer Distributed Learning Environment) is an open-source software platform providing deep learning methodologies that scales very efficiently on the world’s fastest supercomputers. Developed initially to address <a href="https://datascience.cancer.gov/collaborations/joint-design-advanced-computing">three top challenges</a> facing the cancer community, CANDLE increasingly can be used to tackle problems in other application areas. The SDSI team at the <a href="https://frederick.cancer.gov">Frederick National Laboratory for Cancer Research</a>, sponsored by the <a href="https://www.cancer.gov">National Cancer Institute</a>, has installed CANDLE on NIH’s <a href="https://hpc.nih.gov">Biowulf</a> supercomputer for all with Biowulf access to use.</p>
-        <p>One of CANDLE's primary attributes is its functionality for performing <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization">hyperparameter optimization</a> (HPO). In a machine/deep learning model, "hyperparameters" refer to any variables that define the model aside from the model’s "weights." For a given set of hyperparameters (typically 5-20), the corresponding model’s weights (typically tens of thousands) are iteratively optimized using algorithms such as gradient descent. Such optimization of the model’s weights – a process called "training" – is typically run very efficiently on graphics processing units (GPUs) when the model is a neural network (deep learning) and typically takes 30 minutes to a couple of days.</p>
-        <p>If a measure of loss is assigned to each model trained on the same set of data, we would like to ultimately choose the model (i.e., set of hyperparameters) that best fits that dataset by minimizing the loss. HPO is this process of choosing the best set of hyperparameters. The most common way of determining the optimal set of hyperparameters is to run one training job for every desired combination of hyperparameters and choose that which produces the lowest loss. Such a workflow is labeled in CANDLE by "grid" (it is called in other contexts "grid search"). Another way of determining the optimal set of hyperparameters is to use a Bayesian approach in which information about how well prior sets of hyperparameters performed is used to select the next sets of hyperparameters to try. This type of workflow is labeled in CANDLE by "<a href="https://mlrmbo.mlr-org.com">bayesian</a>".</p>
-        <p>Finally, HPO need not be used for only machine/deep learning applications; it can be applied to any computational pipeline that can be parametrized by a number of settings. This web page serves as a complete guide to running CANDLE on Biowulf.<br>
+        <p> <a
+href="https://datascience.cancer.gov/collaborations/joint-design-advanced-computing/candle">CANDLE</a>
+          (CANcer Distributed Learning Environment) is an open-source
+          software platform providing deep learning methodologies that
+          scales very efficiently on the world’s fastest supercomputers.
+          Developed initially to address <a
+href="https://datascience.cancer.gov/collaborations/joint-design-advanced-computing">three
+
+            top challenges</a> facing the cancer community, CANDLE
+          increasingly can be used to tackle problems in other
+          application areas. The SDSI team at the <a
+            href="https://frederick.cancer.gov">Frederick National
+            Laboratory for Cancer Research</a>, sponsored by the <a
+            href="https://www.cancer.gov">National Cancer Institute</a>,
+          has installed CANDLE on NIH’s <a href="https://hpc.nih.gov">Biowulf</a>
+          supercomputer for all with Biowulf access to use.</p>
+        <p>One of CANDLE's primary attributes is its functionality for
+          performing <a
+            href="https://en.wikipedia.org/wiki/Hyperparameter_optimization">hyperparameter
+
+            optimization</a> (HPO). In a machine/deep learning model,
+          "hyperparameters" refer to any variables that define the model
+          aside from the model’s "weights." For a given set of
+          hyperparameters (typically 5-20), the corresponding model’s
+          weights (typically tens of thousands) are iteratively
+          optimized using algorithms such as gradient descent. Such
+          optimization of the model’s weights – a process called
+          "training" – is typically run very efficiently on graphics
+          processing units (GPUs) when the model is a neural network
+          (deep learning) and typically takes 30 minutes to a couple of
+          days.</p>
+        <p>If a measure of loss is assigned to each model trained on the
+          same set of data, we would like to ultimately choose the model
+          (i.e., set of hyperparameters) that best fits that dataset by
+          minimizing the loss. HPO is this process of choosing the best
+          set of hyperparameters. The most common way of determining the
+          optimal set of hyperparameters is to run one training job for
+          every desired combination of hyperparameters and choose that
+          which produces the lowest loss. Such a workflow is labeled in
+          CANDLE by "grid" (it is called in other contexts "grid
+          search"). Another way of determining the optimal set of
+          hyperparameters is to use a Bayesian approach in which
+          information about how well prior sets of hyperparameters
+          performed is used to select the next sets of hyperparameters
+          to try. This type of workflow is labeled in CANDLE by "<a
+            href="https://mlrmbo.mlr-org.com">bayesian</a>".</p>
+        <p>Finally, HPO need not be used for only machine/deep learning
+          applications; it can be applied to any computational pipeline
+          that can be parametrized by a number of settings. This web
+          page serves as a complete guide to running CANDLE on Biowulf.<br>
         </p>
         <a name="why_candle"></a>
         <div class="heading">Why Use CANDLE?</div>
-        <p>Why use CANDLE in the first place? For example, why not just <a href="https://hpc.nih.gov/apps/swarm.html">submit a swarm of jobs</a>, each using a different set of hyperparameters?<br>
+        <p>Why use CANDLE in the first place? For example, why not just
+          <a href="https://hpc.nih.gov/apps/swarm.html">submit a swarm
+            of jobs</a>, each using a different set of hyperparameters?<br>
         </p>
         <ul>
-          <li><b>Load balancing.</b> CANDLE uses a program called <a href="http://swift-lang.org/Swift-T">Swift/T</a> to ensure the resources (CPUs or GPUs) allocated to you by Biowulf's batch system (SLURM) are used as efficiently as possible with minimal downtime. Since often the jobs will not take the same or even similar amounts of time, using a utility like Swarm could lead to significant downtime on some of the allocated resources. CANDLE, and Swift/T in particular, will submit a job to a resource only if the resource is ready to take another job. This way, there will be minimal downtime on any of the resources even if the individual jobs take different amounts of time.</li>
-          <li><b>Intelligent hyperparameter selection.</b> Further, if the <code>bayesian</code> workflow is selected, the sets of hyperparameters to run need not be known beforehand; only the <i>space</i> of hyperparameters need be specified, and only sets of hyperparameters that the Bayesian algorithm determines will most likely minimize a particular metric will be run. In other words, CANDLE allows you to intelligently generate the best sets of hyperparameters to try on-the-fly.</li>
-          <li><b>Ready-to-use framework.</b> Our implementation of CANDLE on Biowulf requires that you do the <a href="#usage_summary">absolute bare-minimum</a> needed to run hyperparameter optimizations. CANDLE has been, and continues to be, actively developed and perfected to perform at a high level on large HPC systems such as Biowulf.<br>
+          <li><b>Load balancing.</b> CANDLE uses a program called <a
+              href="http://swift-lang.org/Swift-T">Swift/T</a> to ensure
+            the resources (CPUs or GPUs) allocated to you by Biowulf's
+            batch system (SLURM) are used as efficiently as possible
+            with minimal downtime. Since often the jobs will not take
+            the same or even similar amounts of time, using a utility
+            like Swarm could lead to significant downtime on some of the
+            allocated resources. CANDLE, and Swift/T in particular, will
+            submit a job to a resource only if the resource is ready to
+            take another job. This way, there will be minimal downtime
+            on any of the resources even if the individual jobs take
+            different amounts of time.</li>
+          <li><b>Intelligent hyperparameter selection.</b> Further, if
+            the <code>bayesian</code> workflow is selected, the sets of
+            hyperparameters to run need not be known beforehand; only
+            the <i>space</i> of hyperparameters need be specified, and
+            only sets of hyperparameters that the Bayesian algorithm
+            determines will most likely minimize a particular metric
+            will be run. In other words, CANDLE allows you to
+            intelligently generate the best sets of hyperparameters to
+            try on-the-fly.</li>
+          <li><b>Ready-to-use framework.</b> Our implementation of
+            CANDLE on Biowulf requires that you do the <a
+              href="#usage_summary">absolute bare-minimum</a> needed to
+            run hyperparameter optimizations. CANDLE has been, and
+            continues to be, actively developed and perfected to perform
+            at a high level on large HPC systems such as Biowulf.<br>
           </li>
         </ul>
         <a name="quick_start"></a>
         <div class="heading">Quick Start</div>
-        <p>These steps will get you running a sample CANDLE job on Biowulf right away!</p>
+        <p>These steps will get you running a sample CANDLE job on
+          Biowulf right away!</p>
         <h4>Step 1: Set up your environment</h4>
-        <p>Once <a href="https://hpc.nih.gov/docs/connect.html">logged in to Biowulf</a>, set up your environment by creating and entering a working directory <u>in your <code>/data/$USER</code> (not <code>/home/$USER</code>) directory</u> and loading the <code>candle</code> module (user input in <b>bold</b>):</p>
-        <div class="term"> [user@biowulf]$ <b>mkdir /data/$USER/candle</b><br> [user@biowulf]$ <b>cd /data/$USER/candle</b><br> [user@biowulf]$ <b>module load candle</b> </div>
+        <p>Once <a href="https://hpc.nih.gov/docs/connect.html">logged
+            in to Biowulf</a>, set up your environment by creating and
+          entering a working directory <u>in your <code>/data/$USER</code>
+            (not <code>/home/$USER</code>) directory</u> and loading
+          the <code>candle</code> module (user input in <b>bold</b>):</p>
+        <div class="term"> [user@biowulf]$ <b>mkdir /data/$USER/candle</b><br>
+          [user@biowulf]$ <b>cd /data/$USER/candle</b><br>
+          [user@biowulf]$ <b>module load candle</b> </div>
         <a name="import-template"></a>
-        <h4>Step 2: Copy a template submission script to the working directory</h4>
-        <p>Copy one of the four CANDLE templates to the working directory:</p>
-        <div class="term">[user@biowulf]$ <b>candle import-template &lt;TEMPLATE&gt;</b></div>
-        <p><a name="template_settings"></a>Possible values of <code>&lt;TEMPLATE&gt;</code> are:</p>
+        <h4>Step 2: Copy a template submission script to the working
+          directory</h4>
+        <p>Copy one of the four CANDLE templates to the working
+          directory:</p>
+        <div class="term">[user@biowulf]$ <b>candle import-template
+            &lt;TEMPLATE&gt;</b></div>
+        <p><a name="template_settings"></a>Possible values of <code>&lt;TEMPLATE&gt;</code>
+          are:</p>
         <p> </p>
         <table border="0">
           <tbody>
             <tr>
               <td width="10%"><code>grid</code></td>
-              <td>Grid search using a Python model (simple deep neural network on the MNIST dataset; ~5 min. total runtime)<br>
+              <td>Grid search using a Python model (simple deep neural
+                network on the MNIST dataset; ~5 min. total runtime)<br>
               </td>
             </tr>
             <tr>
               <td width="10%"><code>bayesian</code> </td>
-              <td>Bayesian search using a Python model (one of the <a href="https://datascience.cancer.gov/collaborations/joint-design-advanced-computing/cellular-pilot">JDACS4C Pilot 1</a> models, a 1D convolutional network for classifying RNA-Seq gene expression profiles into normal or tumor tissue categories; ~40 min. total runtime)<br>
+              <td>Bayesian search using a Python model (one of the <a
+href="https://datascience.cancer.gov/collaborations/joint-design-advanced-computing/cellular-pilot">JDACS4C
+
+                  Pilot 1</a> models, a 1D convolutional network for
+                classifying RNA-Seq gene expression profiles into normal
+                or tumor tissue categories; ~40 min. total runtime)<br>
               </td>
             </tr>
             <tr>
               <td width="10%"><code>r</code> </td>
-              <td>Grid search using an R model (feature reduction on the <a href="https://www.ncbi.nlm.nih.gov/pubmed/25892236">TNBC dataset</a>; ~5 min. total runtime)<br>
+              <td>Grid search using an R model (feature reduction on the
+                <a href="https://www.ncbi.nlm.nih.gov/pubmed/25892236">TNBC
+
+                  dataset</a>; ~5 min. total runtime)<br>
               </td>
             </tr>
             <tr>
               <td valign="top"><code><tt>bash</tt></code><br>
               </td>
-              <td valign="top">Grid search using a bash model (this is a bash wrapper around the <code>grid</code> example above, which is a simple deep neural network on the MNIST dataset; ~5 min. total runtime)</td>
+              <td valign="top">Grid search using a bash model (this is a
+                bash wrapper around the <code>grid</code> example
+                above, which is a simple deep neural network on the
+                MNIST dataset; ~5 min. total runtime)</td>
             </tr>
           </tbody>
         </table>
         <h4>Step 3: Run the job</h4>
         <p>Submit the job by running:</p>
-        <div class="term">[user@biowulf]$ <b>candle submit-job &lt;TEMPLATE&gt;_example.in</b></div>
+        <div class="term">[user@biowulf]$ <b>candle submit-job
+            &lt;TEMPLATE&gt;_example.in</b></div>
         <p> </p>
         <a name="usage_summary"></a>
         <div class="heading">Summary of How to Use CANDLE</div>
-        <p>This section contains a summary of steps for running your own CANDLE job, which are detailed in the following sections.<br>
+        <p>This section contains a summary of steps for running your own
+          CANDLE job, which are detailed in the following sections.<br>
         </p>
         <ul>
-          <li><b><a href="#already_works">Ensure</a> your model script already works on a Biowulf</b><b> compute node</b>. The model must be written in Python, R, or bash.<br>
+          <li><b><a href="#already_works">Ensure</a> your model script
+              already works on a Biowulf</b><b> compute node</b>. The
+            model must be written in Python, R, or bash.<br>
           </li>
-          <li><b><a href="#adapting_your_model">Adapt</a> your model script to work with CANDLE</b>. Only two, minor modifications need be made:</li>
+          <li><b><a href="#adapting_your_model">Adapt</a> your model
+              script to work with CANDLE</b>. Only two, minor
+            modifications need be made:</li>
           <ol>
-            <li><a href="#specify_the_hyperparams">Specify</a> the hyperparameters using the <code>candle_params</code> dictionary (Python) or data.frame (R).<br>
+            <li><a href="#specify_the_hyperparams">Specify</a> the
+              hyperparameters using the <code>candle_params</code>
+              dictionary (Python) or data.frame (R).<br>
             </li>
-            <li><a href="#define_the_metric">Specify</a> a return value using the <code>candle_value_to_return</code> variable (or Keras <code>history</code> object if using Python+Keras).</li>
+            <li><a href="#define_the_metric">Specify</a> a return value
+              using the <code>candle_value_to_return</code> variable
+              (or Keras <code>history</code> object if using
+              Python+Keras).</li>
           </ol>
           <ul>
-            <li>The <code>bash</code> example is a bit more involved; see the example or <a href="mailto:george.zaki@nih.gov">email us</a> for assistance.<br>
+            <li>The <code>bash</code> example is a bit more involved;
+              see the example or <a href="mailto:george.zaki@nih.gov">email
+
+                us</a> for assistance.<br>
             </li>
           </ul>
           <ol>
           </ol>
-          <li><b>Load the </b><b><code>candle</code></b><b> module</b>: <code>module load candle</code>. Among other things, this sets the value of the <code>$CANDLE</code> environment variable.<br>
+          <li><b>Load the </b><b><code>candle</code></b><b> module</b>:
+            <code>module load candle</code>. Among other things, this
+            sets the value of the <code>$CANDLE</code> environment
+            variable.<br>
           </li>
-          <li><b><a href="#modifying_a_template">Create</a> a single CANDLE input file</b>. This is easiest done by modifying one of the template input files that can be <a href="#import-template">imported using</a> <code>candle
+          <li><b><a href="#modifying_a_template">Create</a> a single
+              CANDLE input file</b>. This is easiest done by modifying
+            one of the template input files that can be <a
+              href="#import-template">imported using</a> <code>candle
               import-template {grid,bayesian,r,bash}</code>.</li>
-          <li><b><a href="#running_your_job">Confirm</a> your model runs using CANDLE without running a full workflow.</b> Request an interactive node from SLURM, set <code>run_workflow=0</code> in the <code>&amp;control</code> section of the input file, and run the model script using <code>candle submit-job
+          <li><b><a href="#running_your_job">Confirm</a> your model runs
+              using CANDLE without running a full workflow.</b> Request
+            an interactive node from SLURM, set <code>run_workflow=0</code>
+            in the <code>&amp;control</code> section of the input file,
+            and run the model script using <code>candle submit-job
               &lt;INPUT-FILE&gt;</code> as usual.<br>
           </li>
-          <li><b><a href="#running_your_job">Submit</a> the CANDLE job</b> using <code>candle submit-job &lt;INPUT-FILE&gt;</code>. Ensure this is done from the <code>/data/$USER</code> directory (as opposed to <code>/home/$USER</code>).<br>
+          <li><b><a href="#running_your_job">Submit</a> the CANDLE job</b>
+            using <code>candle submit-job &lt;INPUT-FILE&gt;</code>.
+            Ensure this is done from the <code>/data/$USER</code>
+            directory (as opposed to <code>/home/$USER</code>).<br>
           </li>
-          <li><b><a href="#aggregation">Collect</a> the job results</b> using <code>candle aggregate-results &lt;EXP-DIR&gt;
+          <li><b><a href="#aggregation">Collect</a> the job results</b>
+            using <code>candle aggregate-results &lt;EXP-DIR&gt;
               [&lt;RESULT-FORMAT&gt;]</code>.<br>
           </li>
         </ul>
         <a name="already_works"></a>
-        <div class="heading">Ensuring Your Model Already Works Standalone</div>
-        <p>Prior to adapting your own model script (i.e., machine/deep learning model or general workflow) for use with CANDLE, you must ensure it runs standalone on a Biowulf compute node. <b>Skipping this step is the most common error new CANDLE users make.</b> If your model does not work outside of CANDLE, you cannot expect it to work using CANDLE!<br>
+        <div class="heading">Ensuring Your Model Already Works
+          Standalone</div>
+        <p>Prior to adapting your own model script (i.e., machine/deep
+          learning model or general workflow) for use with CANDLE, you
+          must ensure it runs standalone on a Biowulf compute node. <b>Skipping
+
+            this step is the most common error new CANDLE users make.</b>
+          If your model does not work outside of CANDLE, you cannot
+          expect it to work using CANDLE!<br>
         </p>
-        <p>See the <a href="https://hpc.nih.gov/docs/userguide.html">Biowulf user guide</a> for information on running scripts on Biowulf. For example, you can test a model that utilizes a GPU by requesting an interactive GPU node (e.g., <code>sinteractive
+        <p>See the <a href="https://hpc.nih.gov/docs/userguide.html">Biowulf
+
+            user guide</a> for information on running scripts on
+          Biowulf. For example, you can test a model that utilizes a GPU
+          by requesting an interactive GPU node (e.g., <code>sinteractive
 
 
 
-              --gres=gpu:k80:1 --mem=20G</code>) and then running the model like, e.g., <code>python my_model_script.py</code> or <code>Rscript my_model_script.R</code>; don’t forget to use the correct version of Python or R, if required!<br>
+
+
+            --gres=gpu:k80:1 --mem=20G</code>) and then running the
+          model like, e.g., <code>python my_model_script.py</code> or <code>Rscript
+
+            my_model_script.R</code>; don’t forget to use the correct
+          version of Python or R, if required!<br>
         </p>
         <a name="adapting_your_model"></a><br>
         <div class="heading">Adapting Your Model to Work With CANDLE</div>
-        <p>Once you have confirmed that your model script runs as-is on Biowulf, modify it in two simple ways. Note that while CANDLE accepts model scripts written in Python, R, or bash, the following addresses model scripts written in only Python or R; as bash model scripts are more involved, see the <a href="#import-template">bash example</a> or <a href="mailto:george.zaki@nih.gov">email us</a> for assistance.<br>
+        <p>Once you have confirmed that your model script runs as-is on
+          Biowulf, modify it in two simple ways. Note that while CANDLE
+          accepts model scripts written in Python, R, or bash, the
+          following addresses model scripts written in only Python or R;
+          as bash model scripts are more involved, see the <a
+            href="#import-template">bash example</a> or <a
+            href="mailto:george.zaki@nih.gov">email us</a> for
+          assistance.<br>
         </p>
         <a name="specify_the_hyperparams"></a>
         <h4>Step 1: Specify the hyperparameters</h4>
-        <p>Specify the hyperparameters in your code using a variable named <code>candle_params</code> of the dictionary (Python) or data.frame (R) datatypes. E.g., in Python, if your model script <code>my_model_script.py</code> contains</p>
-        <div class="term">n_convolutional_layers = 4<br> batch_size = 128</div>
-        <p>but these are parameters that you'd like to change during the CANDLE workflow, you should change those lines to</p>
-        <div class="term">n_convolutional_layers = candle_params['nconv_layers']<br> batch_size = candle_params['batch_size']</div>
-        <p><b>Note:</b> The "key" in the <code>candle_params</code> dictionary should match the variable names in the CANDLE input file (<a href="#modifying_a_template">following section</a>), whereas the variables to which they are assigned in the model script should obviously match the names used in the rest of the script.</p>
-        <p>Likewise, in R, if your model script <code>my_model_script.R</code> contains</p>
-        <div class="term">n_convolutional_layers &lt;- 4<br> batch_size &lt;- 128</div>
+        <p>Specify the hyperparameters in your code using a variable
+          named <code>candle_params</code> of the dictionary (Python)
+          or data.frame (R) datatypes. E.g., in Python, if your model
+          script <code>my_model_script.py</code> contains</p>
+        <div class="term">n_convolutional_layers = 4<br>
+          batch_size = 128</div>
+        <p>but these are parameters that you'd like to change during the
+          CANDLE workflow, you should change those lines to</p>
+        <div class="term">n_convolutional_layers =
+          candle_params['nconv_layers']<br>
+          batch_size = candle_params['batch_size']</div>
+        <p><b>Note:</b> The "key" in the <code>candle_params</code>
+          dictionary should match the variable names in the CANDLE input
+          file (<a href="#modifying_a_template">following section</a>),
+          whereas the variables to which they are assigned in the model
+          script should obviously match the names used in the rest of
+          the script.</p>
+        <p>Likewise, in R, if your model script <code>my_model_script.R</code>
+          contains</p>
+        <div class="term">n_convolutional_layers &lt;- 4<br>
+          batch_size &lt;- 128</div>
         <p>you should change those lines to</p>
-        <div class="term">n_convolutional_layers &lt;- candle_params[["nconv_layers"]]<br> batch_size &lt;- candle_params[["batch_size"]]</div>
+        <div class="term">n_convolutional_layers &lt;-
+          candle_params[["nconv_layers"]]<br>
+          batch_size &lt;- candle_params[["batch_size"]]</div>
         <a name="define_the_metric"></a>
         <h4>Step 2: Define the metric you would like to minimize</h4>
-        <p>If your model is written in Python, either define a Keras history object named <code>history</code> (as in, e.g., the return value of a <code>model.fit()</code> method; validation loss will be minimized), e.g.,</p>
-        <div class="term">history = model.fit(x_train, y_train, validation_data=(x_val, y_val), ...)</div>
-        <p>or define a single number named <code>candle_value_to_return</code> that contains the value you would like to minimize, e.g.,</p>
-        <div class="term">score = model.evaluate(x_test, y_test)<br> candle_value_to_return = score[0]</div>
-        <p><b>Note:</b> Assuming you have named your Keras model <code>model</code> as in the example above, if you are using as your minimization metric the return value from <code>model.fit()</code> (as opposed to using <code>candle_value_to_return</code>), you must specify the <code>validation_data</code> keyword in the call to <code>model.fit()</code> as shown above. This way the <code>history</code> attribute of <code>model.fit()</code>'s return value will contain a key called <code>val_loss</code>, which is the metric that CANDLE will use to evaluate the current set of hyperparameters. (Choosing the best set of hyperparameters based on a holdout dataset such as a validation dataset is good practice anyway!) (If your model still doesn't seem to generate a <code>val_loss</code> key, try adding <code>metrics=['accuracy']</code> in the call to <code>model.compile()</code>.)<br>
+        <p>If your model is written in Python, either define a Keras
+          history object named <code>history</code> (as in, e.g., the
+          return value of a <code>model.fit()</code> method; validation
+          loss will be minimized), e.g.,</p>
+        <div class="term">history = model.fit(x_train, y_train,
+          validation_data=(x_val, y_val), ...)</div>
+        <p>or define a single number named <code>candle_value_to_return</code>
+          that contains the value you would like to minimize, e.g.,</p>
+        <div class="term">score = model.evaluate(x_test, y_test)<br>
+          candle_value_to_return = score[0]</div>
+        <p><b>Note:</b> Assuming you have named your Keras model <code>model</code>
+          as in the example above, if you are using as your minimization
+          metric the return value from <code>model.fit()</code> (as
+          opposed to using <code>candle_value_to_return</code>), you
+          must specify the <code>validation_data</code> keyword in the
+          call to <code>model.fit()</code> as shown above. This way the
+          <code>history</code> attribute of <code>model.fit()</code>'s
+          return value will contain a key called <code>val_loss</code>,
+          which is the metric that CANDLE will use to evaluate the
+          current set of hyperparameters. (Choosing the best set of
+          hyperparameters based on a holdout dataset such as a
+          validation dataset is good practice anyway!) (If your model
+          still doesn't seem to generate a <code>val_loss</code> key,
+          try adding <code>metrics=['accuracy']</code> in the call to <code>model.compile()</code>.)<br>
         </p>
-        <p>If your model is written in R, define a single number named <code>candle_value_to_return</code> that contains the metric you would like to minimize, e.g.,</p>
-        <div class="term">candle_value_to_return &lt;- my_validation_loss<br>
+        <p>If your model is written in R, define a single number named <code>candle_value_to_return</code>
+          that contains the metric you would like to minimize, e.g.,</p>
+        <div class="term">candle_value_to_return &lt;-
+          my_validation_loss<br>
         </div>
         <h5>Note on minimization metric<br>
         </h5>
-        <p>Only the <code>bayesian</code> workflow actually <i>uses</i> the minimization metric since by definition in order for it to determine the next sets of hyperparameters to try it needs a measure of how "well" prior sets of hyperparameters performed.&nbsp; Since the <code>grid</code> workflow by definition runs training on <i>all</i> sets of hyperparameters regardless of any measure of how "well" prior sets performed, it never actually <i>uses</i> the minimization metric.&nbsp; However, the <code>candle_value_to_return</code> variable (or the <code>history</code> object in Python) is <u>always</u> required, so when running the <code>grid</code> workflow and you don't care to return any particular result from your model script, simply set it to a dummy value such as <code>-7</code>.<br>
+        <p>Only the <code>bayesian</code> workflow actually <i>uses</i>
+          the minimization metric since by definition in order for it to
+          determine the next sets of hyperparameters to try it needs a
+          measure of how "well" prior sets of hyperparameters
+          performed.&nbsp; Since the <code>grid</code> workflow by
+          definition runs training on <i>all</i> sets of
+          hyperparameters regardless of any measure of how "well" prior
+          sets performed, it never actually <i>uses</i> the
+          minimization metric.&nbsp; However, the <code>candle_value_to_return</code>
+          variable (or the <code>history</code> object in Python) is <u>always</u>
+          required, so when running the <code>grid</code> workflow and
+          you don't care to return any particular result from your model
+          script, simply set it to a dummy value such as <code>-7</code>.
+          However, please keep in mind that the minimization metric will
+          be utilized if using the <a href="#aggregation"><code>aggregate-results</code>
+            command to <code>candle</code></a> to automatically inspect
+          your CANDLE job; it is still good practice to define a
+          minimization metric in your model.<br>
         </p>
-        <p>Typical physical values assigned to <code>candle_value_to_return</code> include the training, testing, or validation loss (for a machine/deep learning model) or the workflow runtime (for optimizing workflow runtimes as in, e.g., benchmarking).<br>
+        <p>Typical physical values assigned to <code>candle_value_to_return</code>
+          include the training, testing, or validation loss (for a
+          machine/deep learning model) or the workflow runtime (for
+          optimizing workflow runtimes as in, e.g., benchmarking).<br>
         </p>
         <a name="modifying_a_template"></a>
         <div class="heading">Creating the CANDLE Input File</div>
-        <p>In order to use CANDLE to run your own model script, you need to create an input file containing three sections:<br>
+        <p>In order to use CANDLE to run your own model script, you need
+          to create an input file containing three sections:<br>
         </p>
         <ol>
-          <li>A <code>&amp;control</code> section containing general settings</li>
-          <li>A <code>&amp;default_model</code> section containing the default hyperparameter values</li>
-          <li>A <code>&amp;param_space</code> section specifying the space of possible values of the hyperparameters<br>
+          <li>A <code>&amp;control</code> section containing general
+            settings</li>
+          <li>A <code>&amp;default_model</code> section containing the
+            default hyperparameter values</li>
+          <li>A <code>&amp;param_space</code> section specifying the
+            space of possible values of the hyperparameters<br>
           </li>
         </ol>
-        <p>The input file should have a <code>.in</code> extension, though it is not required. A typical input file looks like:<br>
+        <p>The input file should have a <code>.in</code> extension,
+          though it is not required. A typical input file looks like:<br>
         </p>
-        <div class="term">&amp;control<br> &nbsp; model_script="$(pwd)/mnist_mlp.py"<br> &nbsp; workflow="grid"<br> &nbsp; ngpus=2<br> &nbsp; gpu_type="k80" # this is a sample inline comment<br> &nbsp; walltime="00:20:00"<br> &nbsp; run_workflow = 1<br> /<br>
-          <br> &amp;default_model<br> &nbsp; epochs=20<br> &nbsp; batch_size=128<br> &nbsp; activation='relu'<br> &nbsp; optimizer='rmsprop'<br> &nbsp; num_filters=32<br> /<br>
-          <br> # This is a sample full-line comment<br> &amp;param_space<br> &nbsp; {"id": "hpset_01", "epochs": 15, "activation": "tanh"}<br> &nbsp; {"id": "hpset_02", "epochs": 30, "activation": "tanh"}<br> &nbsp; {"id": "hpset_03", "epochs": 15, "activation": "relu"}<br> &nbsp; {"id": "hpset_04", "epochs": 30, "activation": "relu"}<br> &nbsp; {"id": "hpset_05", "epochs": 10, "batch_size": 128}<br> &nbsp; {"id": "hpset_06", "epochs": 10, "batch_size": 256}<br> &nbsp; {"id": "hpset_07", "epochs": 10, "batch_size": 512}<br> / <samp></samp><br>
+        <div class="term">&amp;control<br>
+          &nbsp; model_script="$(pwd)/mnist_mlp.py"<br>
+          &nbsp; workflow="grid"<br>
+          &nbsp; ngpus=2<br>
+          &nbsp; gpu_type="k80" # this is a sample inline comment<br>
+          &nbsp; walltime="00:20:00"<br>
+          &nbsp; run_workflow = 1<br>
+          /<br>
+          <br>
+          &amp;default_model<br>
+          &nbsp; epochs=20<br>
+          &nbsp; batch_size=128<br>
+          &nbsp; activation='relu'<br>
+          &nbsp; optimizer='rmsprop'<br>
+          &nbsp; num_filters=32<br>
+          /<br>
+          <br>
+          # This is a sample full-line comment<br>
+          &amp;param_space<br>
+          &nbsp; {"id": "hpset_01", "epochs": 15, "activation": "tanh"}<br>
+          &nbsp; {"id": "hpset_02", "epochs": 30, "activation": "tanh"}<br>
+          &nbsp; {"id": "hpset_03", "epochs": 15, "activation": "relu"}<br>
+          &nbsp; {"id": "hpset_04", "epochs": 30, "activation": "relu"}<br>
+          &nbsp; {"id": "hpset_05", "epochs": 10, "batch_size": 128}<br>
+          &nbsp; {"id": "hpset_06", "epochs": 10, "batch_size": 256}<br>
+          &nbsp; {"id": "hpset_07", "epochs": 10, "batch_size": 512}<br>
+          / <samp></samp><br>
         </div>
-        <p>Each section must be preceded by the section name (preceded with an ampersand symbol <code>&amp;</code>) on a separate line and followed by a forward slash <code>/</code> on a separate line. The sections can appear in any order and their names must be one of <code>control</code>, <code>default_model</code>, or <code>param_space</code>.<br>
+        <p>Each section must be preceded by the section name (preceded
+          with an ampersand symbol <code>&amp;</code>) on a separate
+          line and followed by a forward slash <code>/</code> on a
+          separate line. The sections can appear in any order and their
+          names must be one of <code>control</code>, <code>default_model</code>,
+          or <code>param_space</code>.<br>
         </p>
-        <p>Comments preceded by pound signs <code>#</code> are allowed, either on part of a line or on the entire line, just as in the bash programming language; see the sample input file above.<br>
+        <p>Comments preceded by pound signs <code>#</code> are allowed,
+          either on part of a line or on the entire line, just as in the
+          bash programming language; see the sample input file above.<br>
         </p>
-        <p>The three sections of the input file are explained in more detail below. The first two (<code>&amp;control</code> and <code>&amp;default_model</code>) consist of settings of the format <code>left-hand-side =
-            right-hand-side</code>. Spaces on either side of the equals sign <code>=</code> do not matter. The third section (<code>&amp;param_space</code>) has a different format depending on whether the <code>grid</code> or <code>bayesian</code> workflows are specified by the <code>workflow</code> setting in the <code>&amp;control</code> section.<br>
+        <p>The three sections of the input file are explained in more
+          detail below. The first two (<code>&amp;control</code> and <code>&amp;default_model</code>)
+          consist of settings of the format <code>left-hand-side =
+            right-hand-side</code>. Spaces on either side of the equals
+          sign <code>=</code> do not matter. The third section (<code>&amp;param_space</code>)
+          has a different format depending on whether the <code>grid</code>
+          or <code>bayesian</code> workflows are specified by the <code>workflow</code>
+          setting in the <code>&amp;control</code> section.<br>
         </p>
-        <p>In general, files should <i>always</i> use absolute paths, e.g., <code>/path/to/myfile.ext</code> instead of <code>myfile.ext</code>. In order to enforce this for files present in the same directory from which <code>candle submit-job
-            &lt;INPUT-FILE&gt;</code> is called, you can use <code>$(pwd)</code> as the path in the <code>&amp;control</code> section, e.g., <code>$(pwd)/myfile.ext</code>.<br>
+        <p>In general, files should <i>always</i> use absolute paths,
+          e.g., <code>/path/to/myfile.ext</code> instead of <code>myfile.ext</code>.
+          In order to enforce this for files present in the same
+          directory from which <code>candle submit-job
+            &lt;INPUT-FILE&gt;</code> is called, you can use <code>$(pwd)</code>
+          as the path in the <code>&amp;control</code> section, e.g., <code>$(pwd)/myfile.ext</code>.<br>
         </p>
-        <p>While not necessary, strings may be quoted (err on the side of double quotes <code>"</code>). Finally, whitespace at the beginnings of the lines making up the section bodies does not have any effect aside from making the input file easier to read.<br>
+        <p>While not necessary, strings may be quoted (err on the side
+          of double quotes <code>"</code>). Finally, whitespace at the
+          beginnings of the lines making up the section bodies does not
+          have any effect aside from making the input file easier to
+          read.<br>
         </p>
-        <p><b>Tip:</b> A useful way to remember the section names, format, and typical settings is to adapt any of the templates <a href="#template_settings">above</a> (i.e., <code>grid</code>, <code>bayesian</code>, <code>r</code>, or <code>bash</code>) to your use case. Feel free to run <code>candle
+        <p><b>Tip:</b> A useful way to remember the section names,
+          format, and typical settings is to adapt any of the templates
+          <a href="#template_settings">above</a> (i.e., <code>grid</code>,
+          <code>bayesian</code>, <code>r</code>, or <code>bash</code>)
+          to your use case. Feel free to run <code>candle
             import-template &lt;TEMPLATE&gt;</code> with different <code>&lt;TEMPLATE&gt;</code>
-          <a href="#template_settings">settings</a> and examine the input file that is copied over in order to better understand what it does and the types of settings it can contain.<br>
+          <a href="#template_settings">settings</a> and examine the
+          input file that is copied over in order to better understand
+          what it does and the types of settings it can contain.<br>
         </p>
         <a name="submission_script"></a>
         <h4>Section 1: <code>&amp;control</code><br>
         </h4>
-        <p><b>Notes:</b> String settings in this section only can access calls to bash, e.g., <code>model_script =
-            ”/data/$USER/candle/mnist.py"</code> or <code>model_script="$(pwd)/mnist_mlp.py"</code>. Internally, all settings in this section are converted to uppercase bash variables prepended by "CANDLE_", e.g., the value assigned to the <code>model_script</code> setting actually gets assigned to the bash variable <code>$CANDLE_MODEL_SCRIPT</code>.<br>
+        <p><b>Notes:</b> String settings in this section only can access
+          calls to bash, e.g., <code>model_script =
+            ”/data/$USER/candle/mnist.py"</code> or <code>model_script="$(pwd)/mnist_mlp.py"</code>.
+          Internally, all settings in this section are converted to
+          uppercase bash variables prepended by "CANDLE_", e.g., the
+          value assigned to the <code>model_script</code> setting
+          actually gets assigned to the bash variable <code>$CANDLE_MODEL_SCRIPT</code>.<br>
         </p>
         <p><u>Models written in either language</u></p>
         <dl>
           <dt><b><code>model_script</code></b> <b>(Required)</b><b><br>
             </b></dt>
-          <dd>This should point to the Python, R, or bash script that you would like to run. E.g., <code>model_script =
-              ”/data/$USER/candle/mnist.py"</code>. This script must have been adapted to work with CANDLE (see the <a href="#adapting_your_model">previous section</a>). The filename extension will automatically determine whether Python, R, or bash will be used to run the model.</dd>
+          <dd>This should point to the Python, R, or bash script that
+            you would like to run. E.g., <code>model_script =
+              ”/data/$USER/candle/mnist.py"</code>. This script must
+            have been adapted to work with CANDLE (see the <a
+              href="#adapting_your_model">previous section</a>). The
+            filename extension will automatically determine whether
+            Python, R, or bash will be used to run the model.</dd>
           <dt><b><code>workflow</code></b> <b>(Required)</b><b><br>
             </b></dt>
-          <dd>Which CANDLE workflow to use. Currently supported are the <code>grid</code> and <code>bayesian</code> workflows. E.g., <code>workflow = "grid"</code>. </dd>
+          <dd>Which CANDLE workflow to use. Currently supported are the
+            <code>grid</code> and <code>bayesian</code> workflows.
+            E.g., <code>workflow = "grid"</code>. </dd>
           <dt><b><code>worker_type</code></b></dt>
-          <dd>Either <code>cpu</code> or type of GPU (<code>k20x</code>, <code>k80</code>, <code>p100</code>, <code>v100</code>, or <code>v100x</code>) you would like to use to run each set of hyperparameters on your <code>model_script</code>, the number of which will be specified by the <code>nworkers</code> keyword below. Default is <code>k80</code>.<br>
+          <dd>Either <code>cpu</code> or type of GPU (<code>k20x</code>,
+            <code>k80</code>, <code>p100</code>, <code>v100</code>, or
+            <code>v100x</code>) you would like to use to run each set of
+            hyperparameters on your <code>model_script</code>, the
+            number of which will be specified by the <code>nworkers</code>
+            keyword below. Default is <code>k80</code>.<br>
           </dd>
           <dt><b><code>nworkers</code></b></dt>
-          <dd>Number of workers (CPUs or GPUs depending on the setting of <code>worker_type</code> above) you would like to use for the CANDLE job. E.g., <code>nworkers = 2</code>. Default is <code>1</code>. <b>Note:</b> One (<code>grid</code> workflow) or two (<code>bayesian</code> workflow) extra CPU processes will be allocated in order run background processes.</dd>
+          <dd>Number of workers (CPUs or GPUs depending on the setting
+            of <code>worker_type</code> above) you would like to use
+            for the CANDLE job. E.g., <code>nworkers = 2</code>.
+            Default is <code>1</code>. <b>Note:</b> One (<code>grid</code>
+            workflow) or two (<code>bayesian</code> workflow) extra CPU
+            processes will be allocated in order run background
+            processes.</dd>
           <dt><b><code>nthreads</code></b></dt>
           <dd>The number of CPUs to use per MPI task. Default is <code>1</code>.<br>
           </dd>
           <dt><b><code>walltime</code></b></dt>
-          <dd>How long you would like your job to run (the wall time of your entire job including all hyperparameter sets). E.g., <code>walltime
+          <dd>How long you would like your job to run (the wall time of
+            your entire job including all hyperparameter sets). E.g., <code>walltime
 
 
 
@@ -314,39 +631,83 @@
 
 
 
-              = "00:20:00"</code>. Format is <code>HH:MM:SS</code>. When in doubt, round up so that the job is most likely to complete. Default is <code>00:05:00</code>.</dd>
+
+
+              = "00:20:00"</code>. Format is <code>HH:MM:SS</code>.
+            When in doubt, round up so that the job is most likely to
+            complete. Default is <code>00:05:00</code>.</dd>
           <dt><b><code>custom_sbatch_args</code></b></dt>
-          <dd>Custom arguments to SLURM's batch processor, <code>sbatch</code>, such as an <code>lscratch</code> setting. Default is empty.</dd>
+          <dd>Custom arguments to SLURM's batch processor, <code>sbatch</code>,
+            such as an <code>lscratch</code> setting. Default is empty.</dd>
           <dt><b><code>mem_per_cpu</code></b></dt>
-          <dd>Memory in GB to request from SLURM per CPU process. Default is <code>7</code>.<br>
+          <dd>Memory in GB to request from SLURM per CPU process.
+            Default is <code>7</code>.<br>
           </dd>
           <dt><b><code>supp_modules</code></b></dt>
-          <dd>Modules you would like to have loaded while your model is run. E.g., <code>supp_modules = "CUDA/10.0
-              cuDNN/7.5/CUDA-10.0"</code> (these particular example settings may be necessary for running TensorFlow when using a custom Conda installation). Default is empty.<br>
+          <dd>Modules you would like to have loaded while your model is
+            run. E.g., <code>supp_modules = "CUDA/10.0
+              cuDNN/7.5/CUDA-10.0"</code> (these particular example
+            settings may be necessary for running TensorFlow when using
+            a custom Conda installation). Default is empty.<br>
           </dd>
           <dt><b><code>extra_script_args</code></b></dt>
-          <dd>Command-line arguments you’d like to include when invoking <code>python</code> or <code>Rscript</code>. E.g., for R model scripts, <code>extra_script_args =
-              "--max-ppsize=100000"</code>. In other words, the model will ultimately be run like <code>python $EXTRA_SCRIPT_ARGS
+          <dd>Command-line arguments you’d like to include when invoking
+            <code>python</code> or <code>Rscript</code>. E.g., for R
+            model scripts, <code>extra_script_args =
+              "--max-ppsize=100000"</code>. In other words, the model
+            will ultimately be run like <code>python $EXTRA_SCRIPT_ARGS
               my_model_script.py</code> or <code>Rscript
-              $EXTRA_SCRIPT_ARGS my_model_script.R</code>. Default is empty.<br>
+              $EXTRA_SCRIPT_ARGS my_model_script.R</code>. Default is
+            empty.<br>
           </dd>
           <dt><b><code>run_workflow</code><br>
             </b></dt>
-          <dd>Whether (<code>1</code>, default) or not (<code>0</code>) to run the actual workflow specified by the <code>workflow</code> keyword. If not set, a single run of the model using the hyperparameters specified in the <code>&amp;default_model</code> section of the input file will be run on the current machine, so <code>run_workflow=0</code> must be run only on an interactive node. Testing your model first with <code>run_workflow=0</code> is a crucial part of the CANDLE testing procedure; see <a href="#running_your_job">below</a>.</dd>
+          <dd>Whether (<code>1</code>, default) or not (<code>0</code>)
+            to run the actual workflow specified by the <code>workflow</code>
+            keyword. If not set, a single run of the model using the
+            hyperparameters specified in the <code>&amp;default_model</code>
+            section of the input file will be run on the current
+            machine, so <code>run_workflow=0</code> must be run only on
+            an interactive node. Testing your model first with <code>run_workflow=0</code>
+            is a crucial part of the CANDLE testing procedure; see <a
+              href="#running_your_job">below</a>.</dd>
           <dt><b><code>dry_run</code></b></dt>
-          <dd>Whether (<code>1</code>) or not (<code>0</code>, default) to simply set up the CANDLE job without actually submitting the job to SLURM. This allows you to study the automatically generated files and settings if you suspect something in CANDLE proper is going awry.<br>
+          <dd>Whether (<code>1</code>) or not (<code>0</code>, default)
+            to simply set up the CANDLE job without actually submitting
+            the job to SLURM. This allows you to study the automatically
+            generated files and settings if you suspect something in
+            CANDLE proper is going awry.<br>
           </dd>
         </dl>
         <p><i><code>bayesian</code> workflow only</i><br>
         </p>
         <dl>
           <dt><code><b>design_size</b></code></dt>
-          <dd>Total number of points to sample within the hyperparameter space prior to running the <a href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrMBO algorithm</a>. E.g., <code>design_size = 9</code> (default <code>10</code>). Note that this must be greater than or equal to the largest number of possible values for any discrete hyperparameter specified in the <code>&amp;param_space</code> section. A reasonable value for this (and for <code>propose_points</code>, below) is 15-20.<br>
+          <dd>Total number of points to sample within the hyperparameter
+            space prior to running the <a
+href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrMBO
+
+              algorithm</a>. E.g., <code>design_size = 9</code>
+            (default <code>10</code>). Note that this must be greater
+            than or equal to the largest number of possible values for
+            any discrete hyperparameter specified in the <code>&amp;param_space</code>
+            section. A reasonable value for this (and for <code>propose_points</code>,
+            below) is 15-20.<br>
           </dd>
           <dt><code><b>propose_points</b></code></dt>
-          <dd>Number of proposed (really evaluated) points at each <a href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeMBOControl">MBO iteration</a>. E.g., <code>propose_points = 9</code> (default <code>10</code>). A reasonable value for this (and for <code>design_size</code><code></code>, above) is 15-20.</dd>
+          <dd>Number of proposed (really evaluated) points at each <a
+href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeMBOControl">MBO
+
+              iteration</a>. E.g., <code>propose_points = 9</code>
+            (default <code>10</code>). A reasonable value for this (and
+            for <code>design_size</code><code></code>, above) is 15-20.</dd>
           <dt><code><b>max_budget</b></code></dt>
-          <dd>Maximum total number of <a href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination">function evaluations</a> for all iterations combined. E.g., <code>max_budget
+          <dd>Maximum total number of <a
+href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination">function
+
+              evaluations</a> for all iterations combined. E.g., <code>max_budget
+
+
 
 
 
@@ -356,18 +717,31 @@
 
               = 180</code> (default <code>110</code>).</dd>
           <dt><code><b>max_iterations</b></code></dt>
-          <dd>Maximum number of <a href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination">sequential optimization steps</a>. E.g., <code>max_iterations = 3</code> (default <code>10</code>).</dd>
+          <dd>Maximum number of <a
+href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination">sequential
+
+              optimization steps</a>. E.g., <code>max_iterations = 3</code>
+            (default <code>10</code>).</dd>
         </dl>
         <p><u>Python models only</u></p>
         <dl>
           <dt><b><code>python_bin_path</code></b></dt>
-          <dd>If you don’t want to use the Python version with which CANDLE was built (currently python/3.7), you can set this to the location of the Python binary you would like to use. Examples:<br>
-            <div class="term">python_bin_path = "$CONDA_PREFIX/envs/&lt;YOUR_CONDA_ENVIRONMENT_NAME&gt;/bin"<br> python_bin_path = "/data/BIDS-HPC/public/software/conda/envs/main3.6/bin"</div>
+          <dd>If you don’t want to use the Python version with which
+            CANDLE was built (currently python/3.7), you can set this to
+            the location of the Python binary you would like to use.
+            Examples:<br>
+            <div class="term">python_bin_path =
+              "$CONDA_PREFIX/envs/&lt;YOUR_CONDA_ENVIRONMENT_NAME&gt;/bin"<br>
+              python_bin_path =
+              "/data/BIDS-HPC/public/software/conda/envs/main3.6/bin"</div>
           </dd>
-          <dd>If set, it will override the setting of <code>exec_python_module</code>, below. Default is empty.<br>
+          <dd>If set, it will override the setting of <code>exec_python_module</code>,
+            below. Default is empty.<br>
           </dd>
           <dt><b><code>exec_python_module</code></b></dt>
-          <dd>If you’d prefer loading a module rather than specifying the path to the Python binary (above), set this to the name of the Python module you would like to load. E.g., <code>exec_python_module
+          <dd>If you’d prefer loading a module rather than specifying
+            the path to the Python binary (above), set this to the name
+            of the Python module you would like to load. E.g., <code>exec_python_module
 
 
 
@@ -376,40 +750,75 @@
 
 
 
-              = "python/3.8"</code>. This setting will have no effect if <code>python_bin_path</code> (above) is set. If neither <code>python_bin_path</code> nor <code>exec_python_module</code> is set, then the version of Python with which CANDLE was built (currently python/3.7) will be used. Default is empty.<br>
+
+
+              = "python/3.8"</code>. This setting will have no effect if
+            <code>python_bin_path</code> (above) is set. If neither <code>python_bin_path</code>
+            nor <code>exec_python_module</code> is set, then the
+            version of Python with which CANDLE was built (currently
+            python/3.7) will be used. Default is empty.<br>
           </dd>
           <dt><code><b>supp_pythonpath</b></code></dt>
-          <dd>This is a supplementary setting of the <code>$PYTHONPATH</code> environment variable that will be searched for libraries that can’t otherwise be found. Examples:</dd>
+          <dd>This is a supplementary setting of the <code>$PYTHONPATH</code>
+            environment variable that will be searched for libraries
+            that can’t otherwise be found. Examples:</dd>
           <dd>
-            <div class="term">supp_pythonpath = "/data/BIDS-HPC/public/software/conda/envs/main3.6/lib/python3.6/site-packages"<br> supp_pythonpath = "/data/$USER/conda/envs/my_conda_env/lib/python3.6/site-packages"<br>
+            <div class="term">supp_pythonpath =
+"/data/BIDS-HPC/public/software/conda/envs/main3.6/lib/python3.6/site-packages"<br>
+              supp_pythonpath =
+              "/data/$USER/conda/envs/my_conda_env/lib/python3.6/site-packages"<br>
             </div>
-            <p>Default is empty.<b><br> Tip:</b> Multiple paths can be set by separating them with a colon.<br>
+            <p>Default is empty.<b><br>
+                Tip:</b> Multiple paths can be set by separating them
+              with a colon.<br>
             </p>
           </dd>
           <dt><b><code>dl_backend</code></b></dt>
           <dd>Deep learning library to use. E.g., <code>dl_backend =
-              "pytorch"</code>. Should be either <code>keras</code> (default) or <code>pytorch</code>. Only required if deep learning using Keras or PyTorch is requested; e.g., this is not used if only machine learning using <code>scikit-learn</code> is employed. <b>Note:</b> This keyword is probably unnecessary in all cases, e.g., even setting it to <code>keras</code> when PyTorch is actually used does not seem to matter.</dd>
+              "pytorch"</code>. Should be either <code>keras</code>
+            (default) or <code>pytorch</code>. Only required if deep
+            learning using Keras or PyTorch is requested; e.g., this is
+            not used if only machine learning using <code>scikit-learn</code>
+            is employed. <b>Note:</b> This keyword is probably
+            unnecessary in all cases, e.g., even setting it to <code>keras</code>
+            when PyTorch is actually used does not seem to matter.</dd>
         </dl>
         <p><u>R models only</u></p>
         <dl>
           <dt><b><code>exec_r_module</code></b></dt>
-          <dd>If you don’t want to use the R version with which CANDLE was built (currently R/4.0.0), set this to the name of the R module you would like to load. E.g., <code>exec_r_module =
+          <dd>If you don’t want to use the R version with which CANDLE
+            was built (currently R/4.0.0), set this to the name of the R
+            module you would like to load. E.g., <code>exec_r_module =
               "R/3.6.0"</code>. Default is empty.</dd>
           <dt><b><code>supp_r_libs</code></b></dt>
-          <dd>This is a supplementary setting of the <code>$R_LIBS</code> environment variable that will be searched for libraries that can’t otherwise be found. E.g., <code>supp_r_libs =
-              "/data/BIDS-HPC/public/software/R/3.6/library"</code>. Default is empty. <b>Tip:</b> R will search your standard library location on Biowulf (<code>~/R/%v/library</code>), so feel free to just install your own R libraries there.</dd>
+          <dd>This is a supplementary setting of the <code>$R_LIBS</code>
+            environment variable that will be searched for libraries
+            that can’t otherwise be found. E.g., <code>supp_r_libs =
+              "/data/BIDS-HPC/public/software/R/3.6/library"</code>.
+            Default is empty. <b>Tip:</b> R will search your standard
+            library location on Biowulf (<code>~/R/%v/library</code>),
+            so feel free to just install your own R libraries there.</dd>
         </dl>
         <p> </p>
         <a name="default_hyperparams_file"></a>
         <h4>Section 2: <code>&amp;default_model</code></h4>
         <h4> </h4>
-        <p>This section contains the default settings of the hyperparameters defined in the model script, some or all of whose values will be overwritten by those specified in the <code>&amp;param_space</code> section, below. Every hyperparameter specified in the model script must have a default setting specified here.<br>
+        <p>This section contains the default settings of the
+          hyperparameters defined in the model script, some or all of
+          whose values will be overwritten by those specified in the <code>&amp;param_space</code>
+          section, below. Every hyperparameter specified in the model
+          script must have a default setting specified here.<br>
         </p>
-        <p>This section should be otherwise self-explanatory from the sample <code>&amp;default_model</code> section above.<br>
+        <p>This section should be otherwise self-explanatory from the
+          sample <code>&amp;default_model</code> section above.<br>
         </p>
-        <p><b>Tip:</b> This is a great place to define constants in your model script (such as a URL from where the training data should be downloaded), rather than hardcoding them in to the model script. E.g., you can replace the line<br>
+        <p><b>Tip:</b> This is a great place to define constants in your
+          model script (such as a URL from where the training data
+          should be downloaded), rather than hardcoding them in to the
+          model script. E.g., you can replace the line<br>
         </p>
-        <div class="term">DATA_URL = 'http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/combo/'<br>
+        <div class="term">DATA_URL =
+          'http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/combo/'<br>
         </div>
         <p>in your Python model script with<br>
         </p>
@@ -417,34 +826,75 @@
         </div>
         <p>and place the line<br>
         </p>
-        <div class="term">data_url = 'http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/combo/'<br>
+        <div class="term">data_url =
+          'http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/combo/'<br>
         </div>
-        <p>in the <code>&amp;default_model</code> section of the CANDLE input file. This way, all settings can be changed from a single input file.<br>
+        <p>in the <code>&amp;default_model</code> section of the CANDLE
+          input file. This way, all settings can be changed from a
+          single input file.<br>
         </p>
-        <p><b>Note:</b> If you wish, you can replace the contents of this section with the full path to a file as a value to the <code>candle_default_model_file</code> keyword, e.g., <code>candle_default_model_file =
-            $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt</code>. The contents of this file should start with a line containing <code>[Global_Params]</code>.<br>
+        <p><b>Note:</b> If you wish, you can replace the contents of
+          this section with the full path to a file as a value to the <code>candle_default_model_file</code>
+          keyword, e.g., <code>candle_default_model_file =
+            $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt</code>.
+          The contents of this file should start with a line containing
+          <code>[Global_Params]</code>.<br>
         </p>
         <a name="workflow_settings_file"></a>
         <h4>Section 3: <code>&amp;param_space</code></h4>
         <h4> </h4>
-        <p>This section contains how some or all of the hyperparameters defined in the model script (and the <code>&amp;default_model</code> section) are to be varied during a hyperparameter optimization workflow.<br>
+        <p>This section contains how some or all of the hyperparameters
+          defined in the model script (and the <code>&amp;default_model</code>
+          section) are to be varied during a hyperparameter optimization
+          workflow.<br>
         </p>
-        <p><b>Note:</b> If you wish, you can replace the contents of this section with the full path to a file as a value to the <code>candle_param_space_file</code> keyword, e.g., <code>candle_param_space_file =
+        <p><b>Note:</b> If you wish, you can replace the contents of
+          this section with the full path to a file as a value to the <code>candle_param_space_file</code>
+          keyword, e.g., <code>candle_param_space_file =
             $CANDLE/Supervisor/workflows/mlrMBO/data/nt3_nightly.R</code>.</p>
         <a name="workflow_settings_file-grid"></a>
         <h5><code>grid</code> workflow<br>
         </h5>
-        <p>The <code>grid</code> workflow refers to a "<a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">grid search</a>" hyperparameter optimization in which generally the hyperparameters are varied evenly throughout a specified parameter space.<br>
+        <p>The <code>grid</code> workflow refers to a "<a
+href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">grid
+
+            search</a>" hyperparameter optimization in which generally
+          the hyperparameters are varied evenly throughout a specified
+          parameter space.<br>
         </p>
-        <p>In the <code>&amp;param_space</code> section for this workflow, each line must be a JSON string specifying the values of the hyperparameters to use in each job, and each string must contain an <code>id</code> key containing a unique name for the hyperparameter set, e.g.:<br>
+        <p>In the <code>&amp;param_space</code> section for this
+          workflow, each line must be a JSON string specifying the
+          values of the hyperparameters to use in each job, and each
+          string must contain an <code>id</code> key containing a
+          unique name for the hyperparameter set, e.g.:<br>
         </p>
-        <div class="term">{"id": "hpset_01", "epochs": 15, "activation": "tanh"}<br> {"id": "hpset_02", "epochs": 30, "activation": "tanh"}<br> {"id": "hpset_03", "epochs": 15, "activation": "relu"}<br> {"id": "hpset_04", "epochs": 30, "activation": "relu"}<br> {"id": "hpset_05", "epochs": 10, "batch_size": 128}<br> {"id": "hpset_06", "epochs": 10, "batch_size": 256}<br> {"id": "hpset_07", "epochs": 10, "batch_size": 512}<br>
+        <div class="term">{"id": "hpset_01", "epochs": 15, "activation":
+          "tanh"}<br>
+          {"id": "hpset_02", "epochs": 30, "activation": "tanh"}<br>
+          {"id": "hpset_03", "epochs": 15, "activation": "relu"}<br>
+          {"id": "hpset_04", "epochs": 30, "activation": "relu"}<br>
+          {"id": "hpset_05", "epochs": 10, "batch_size": 128}<br>
+          {"id": "hpset_06", "epochs": 10, "batch_size": 256}<br>
+          {"id": "hpset_07", "epochs": 10, "batch_size": 512}<br>
         </div>
-        <p><b>Note:</b> This example implies that the <code>epochs</code>, <code>activation</code>, and <code>batch_size</code> hyperparameters must be defined in the <code>&amp;default_model</code> section. It further shows that the full "grid" of values need not be run in the <code>grid</code> workflow; in fact, you can customize by hand every set of hyperparameter values that you'd like to run.<br>
+        <p><b>Note:</b> This example implies that the <code>epochs</code>,
+          <code>activation</code>, and <code>batch_size</code>
+          hyperparameters must be defined in the <code>&amp;default_model</code>
+          section. It further shows that the full "grid" of values need
+          not be run in the <code>grid</code> workflow; in fact, you
+          can customize by hand every set of hyperparameter values that
+          you'd like to run.<br>
         </p>
-        <p><b>Note:</b> Python’s <code>False</code>, <code>True</code>, and <code>None</code>, should be replaced by JSON’s <code>false</code>, <code>true</code>, and <code>null</code> in the <code>&amp;param_space</code> section for the <code>grid</code> workflow. </p>
+        <p><b>Note:</b> Python’s <code>False</code>, <code>True</code>,
+          and <code>None</code>, should be replaced by JSON’s <code>false</code>,
+          <code>true</code>, and <code>null</code> in the <code>&amp;param_space</code>
+          section for the <code>grid</code> workflow. </p>
         <p><a name="generate-grid"></a>Alternatively, you can use the <code>generate-grid</code>
-          <code>candle</code> command to create a file called <code>hyperparameter_grid.txt</code> (inside a directory called <code>candle_generated_files</code>) containing a full "grid" of hyperparameters. The usage is <code>candle
+          <code>candle</code> command to create a file called <code>hyperparameter_grid.txt</code>
+          (inside a directory called <code>candle_generated_files</code>)
+          containing a full "grid" of hyperparameters. The usage is <code>candle
+
+
 
 
 
@@ -457,90 +907,303 @@
 
 
             generate-grid &lt;PYTHON-LIST-1&gt; &lt;PYTHON-LIST-2&gt;
-            ...</code>, where each <code>&lt;PYTHON-LIST&gt;</code> is a Python <code>list</code> whose first element is a string containing the hyperparameter name and the second argument is an iterable of hyperparameter values (<code>numpy</code> functions can be accessed using the <code>np</code> variable). For example, running<br>
+            ...</code>, where each <code>&lt;PYTHON-LIST&gt;</code> is
+          a Python <code>list</code> whose first element is a string
+          containing the hyperparameter name and the second argument is
+          an iterable of hyperparameter values (<code>numpy</code>
+          functions can be accessed using the <code>np</code>
+          variable). For example, running<br>
         </p>
-        <div class="term">[user@biowulf]$ <b>candle generate-grid "['nlayers',np.arange(5,15,2)]" "['dir',['x','y','z']]"</b><br>
+        <div class="term">[user@biowulf]$ <b>candle generate-grid
+            "['nlayers',np.arange(5,15,2)]" "['dir',['x','y','z']]"</b><br>
         </div>
-        <p>will create a file called <code>hyperparameter_grid.txt</code> with the contents<br>
+        <p>will create a file called <code>hyperparameter_grid.txt</code>
+          with the contents<br>
         </p>
-        <div class="term">{"id": "hpset_00001", "nlayers": 5, "dir": "x"}<br> {"id": "hpset_00002", "nlayers": 5, "dir": "y"}<br> {"id": "hpset_00003", "nlayers": 5, "dir": "z"}<br> {"id": "hpset_00004", "nlayers": 7, "dir": "x"}<br> {"id": "hpset_00005", "nlayers": 7, "dir": "y"}<br> {"id": "hpset_00006", "nlayers": 7, "dir": "z"}<br> {"id": "hpset_00007", "nlayers": 9, "dir": "x"}<br> {"id": "hpset_00008", "nlayers": 9, "dir": "y"}<br> {"id": "hpset_00009", "nlayers": 9, "dir": "z"}<br> {"id": "hpset_00010", "nlayers": 11, "dir": "x"}<br> {"id": "hpset_00011", "nlayers": 11, "dir": "y"}<br> {"id": "hpset_00012", "nlayers": 11, "dir": "z"}<br> {"id": "hpset_00013", "nlayers": 13, "dir": "x"}<br> {"id": "hpset_00014", "nlayers": 13, "dir": "y"}<br> {"id": "hpset_00015", "nlayers": 13, "dir": "z"}<br>
+        <div class="term">{"id": "hpset_00001", "nlayers": 5, "dir":
+          "x"}<br>
+          {"id": "hpset_00002", "nlayers": 5, "dir": "y"}<br>
+          {"id": "hpset_00003", "nlayers": 5, "dir": "z"}<br>
+          {"id": "hpset_00004", "nlayers": 7, "dir": "x"}<br>
+          {"id": "hpset_00005", "nlayers": 7, "dir": "y"}<br>
+          {"id": "hpset_00006", "nlayers": 7, "dir": "z"}<br>
+          {"id": "hpset_00007", "nlayers": 9, "dir": "x"}<br>
+          {"id": "hpset_00008", "nlayers": 9, "dir": "y"}<br>
+          {"id": "hpset_00009", "nlayers": 9, "dir": "z"}<br>
+          {"id": "hpset_00010", "nlayers": 11, "dir": "x"}<br>
+          {"id": "hpset_00011", "nlayers": 11, "dir": "y"}<br>
+          {"id": "hpset_00012", "nlayers": 11, "dir": "z"}<br>
+          {"id": "hpset_00013", "nlayers": 13, "dir": "x"}<br>
+          {"id": "hpset_00014", "nlayers": 13, "dir": "y"}<br>
+          {"id": "hpset_00015", "nlayers": 13, "dir": "z"}<br>
         </div>
-        <p><b>Note:</b> The <code>candle</code> module must be loaded in order to run any of the <code>candle</code> commands such as <code>generate-grid</code>.<br>
+        <p><b>Note:</b> The <code>candle</code> module must be loaded
+          in order to run any of the <code>candle</code> commands such
+          as <code>generate-grid</code>.<br>
         </p>
-        <p>The contents of the file <code>hyperparameter_grid.txt</code> should then be placed in the body of the <code>&amp;param_space</code> section of the input file, or, as mentioned above, the file could be pointed to by a <code>candle_param_space_file</code> keyword setting in the body of this section. </p>
-        <p>A more complete example producing a 600-line file (600 sets of hyperparameters) is<br>
+        <p>The contents of the file <code>hyperparameter_grid.txt</code>
+          should then be placed in the body of the <code>&amp;param_space</code>
+          section of the input file, or, as mentioned above, the file
+          could be pointed to by a <code>candle_param_space_file</code>
+          keyword setting in the body of this section. </p>
+        <p>A more complete example producing a 600-line file (600 sets
+          of hyperparameters) is<br>
         </p>
-        <div class="term">[user@biowulf]$ <b>candle generate-grid "['john',np.arange(5,15,2)]" "['single_num',[4]]" "['letter',['x','y','z']]" "['arr',[[2,2],None,[2,2,2],[2,2,2,2]]]" "['smith',np.arange(-1,1,0.2)]"<br>
+        <div class="term">[user@biowulf]$ <b>candle generate-grid
+            "['john',np.arange(5,15,2)]" "['single_num',[4]]"
+            "['letter',['x','y','z']]"
+            "['arr',[[2,2],None,[2,2,2],[2,2,2,2]]]"
+            "['smith',np.arange(-1,1,0.2)]"<br>
           </b></div>
-        <p>No spaces can be present in any of the arguments to the <code>generate-grid</code> command.<br>
+        <p>No spaces can be present in any of the arguments to the <code>generate-grid</code>
+          command.<br>
         </p>
-        <p><b>Note:</b> Use Python’s <code>False</code>, <code>True</code>, and <code>None</code> if using the <code>generate-grid</code> command; the output in <code>hyperparameter_grid.txt</code> will replace these with JSON’s <code>false</code>, <code>true</code>, and <code>null</code>, respectively, as required in this section of the input file. </p>
+        <p><b>Note:</b> Use Python’s <code>False</code>, <code>True</code>,
+          and <code>None</code> if using the <code>generate-grid</code>
+          command; the output in <code>hyperparameter_grid.txt</code>
+          will replace these with JSON’s <code>false</code>, <code>true</code>,
+          and <code>null</code>, respectively, as required in this
+          section of the input file. </p>
         <a name="workflow_settings_file-bayesian"></a>
         <h5><code>bayesian</code> workflow</h5>
-        <p>The <code>bayesian</code> workflow refers to a <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Bayesian_optimization">Bayesian-based hyperparameter optimization</a> in which information about how well prior sets of hyperparameters performed is used to determine the next sets of hyperparameters to try. In this way the HPO algorithm does not sample the full space of hyperparameter values and instead iteratively homes in on the best set of hyperparameters. Compared to a full grid search, this can save significant time when the hyperparameter space is large and the model takes a long time to run on the training data. One drawback is that it is more difficult to observe exactly how each hyperparameter or hyperparameter combination directly affects the model's performance.<br>
+        <p>The <code>bayesian</code> workflow refers to a <a
+href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Bayesian_optimization">Bayesian-based
+
+            hyperparameter optimization</a> in which information about
+          how well prior sets of hyperparameters performed is used to
+          determine the next sets of hyperparameters to try. In this way
+          the HPO algorithm does not sample the full space of
+          hyperparameter values and instead iteratively homes in on the
+          best set of hyperparameters. Compared to a full grid search,
+          this can save significant time when the hyperparameter space
+          is large and the model takes a long time to run on the
+          training data. One drawback is that it is more difficult to
+          observe exactly how each hyperparameter or hyperparameter
+          combination directly affects the model's performance.<br>
         </p>
-        <p>The Bayesian algorithm used in CANDLE is an R package called mlrMBO. Briefly, after the (hyper)parameter space has been defined, the algorithm chooses <code>design_size</code> evenly-spaced points throughout the space and runs the model on those <code>design_size</code> sets of hyperparameters. A random forest model (called a "surrogate model") then fits the hyperparameters run to their resulting performance metrics (specified either by the <code>candle_value_to_return</code> variable or the <code>history</code> variable as explained <a href="#define_the_metric">above</a>) and produces <code>propose_points</code> new sets of hyperparameters it believes may minimize the metric. The model is then run on these new sets of hyperparameters, after which the algorithm incorporates these hyperparameters and their resulting performance metrics into the surrogate model and then proposes <code>propose_points</code> new sets of hyperparameters to try within the defined parameter space. This process is repeated until convergence to the "best" set of hyperparameters or if <code>max_iterations</code> iterations have been run or <code>max_budget</code> total model runs have been performed.<br>
+        <p>The Bayesian algorithm used in CANDLE is an R package called
+          mlrMBO. Briefly, after the (hyper)parameter space has been
+          defined, the algorithm chooses <code>design_size</code>
+          evenly-spaced points throughout the space and runs the model
+          on those <code>design_size</code> sets of hyperparameters. A
+          random forest model (called a "surrogate model") then fits the
+          hyperparameters run to their resulting performance metrics
+          (specified either by the <code>candle_value_to_return</code>
+          variable or the <code>history</code> variable as explained <a
+            href="#define_the_metric">above</a>) and produces <code>propose_points</code>
+          new sets of hyperparameters it believes may minimize the
+          metric. The model is then run on these new sets of
+          hyperparameters, after which the algorithm incorporates these
+          hyperparameters and their resulting performance metrics into
+          the surrogate model and then proposes <code>propose_points</code>
+          new sets of hyperparameters to try within the defined
+          parameter space. This process is repeated until convergence to
+          the "best" set of hyperparameters or if <code>max_iterations</code>
+          iterations have been run or <code>max_budget</code> total
+          model runs have been performed.<br>
         </p>
-        <p>For more details, please see the <a href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrMBO package documentation</a>.</p>
-        <p>The <code>&amp;param_space</code> section for the <code>bayesian</code> workflow is based on the <a href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/makeParamSet"><code>makeParamSet</code> function</a> in the <a href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12">ParamHelpers R package</a>. Each line in this section is what would be an argument to <code>makeParamSet()</code> (without the commas separating the arguments); the formatting for this section should be based on this argument format. It is relatively intuitive to understand; e.g., here is the <code>&amp;param_space</code> section in the <code>bayesian</code> template input file:<br>
+        <p>For more details, please see the <a
+href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrMBO
+
+            package documentation</a>.</p>
+        <p>The <code>&amp;param_space</code> section for the <code>bayesian</code>
+          workflow is based on the <a
+href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/makeParamSet"><code>makeParamSet</code>
+            function</a> in the <a
+href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12">ParamHelpers
+
+            R package</a>. Each line in this section is what would be an
+          argument to <code>makeParamSet()</code> (without the commas
+          separating the arguments); the formatting for this section
+          should be based on this argument format. It is relatively
+          intuitive to understand; e.g., here is the <code>&amp;param_space</code>
+          section in the <code>bayesian</code> template input file:<br>
         </p>
-        <div class="term">makeDiscreteParam("batch_size", values = c(16, 32))<br> makeIntegerParam("epochs", lower = 2, upper = 5)<br> makeDiscreteParam("optimizer", values = c("adam", "sgd", "rmsprop", "adagrad", "adadelta"))<br> makeNumericParam("drop", lower = 0, upper = 0.9)<br> makeNumericParam("learning_rate", lower = 0.00001, upper = 0.1)<br>
+        <div class="term">makeDiscreteParam("batch_size", values = c(16,
+          32))<br>
+          makeIntegerParam("epochs", lower = 2, upper = 5)<br>
+          makeDiscreteParam("optimizer", values = c("adam", "sgd",
+          "rmsprop", "adagrad", "adadelta"))<br>
+          makeNumericParam("drop", lower = 0, upper = 0.9)<br>
+          makeNumericParam("learning_rate", lower = 0.00001, upper =
+          0.1)<br>
         </div>
-        <p>This defines the possible values that the hyperparameters <code>batch_size</code>, <code>epochs</code>, <code>optimizer</code>, <code>drop</code>, and <code>learning_rate</code> can take on during the running of the <code>bayesian</code> workflow. Please see the <a href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/Param"><code>Param</code> help page</a> for individual usage of each type of constructor function.<br>
+        <p>This defines the possible values that the hyperparameters <code>batch_size</code>,
+          <code>epochs</code>, <code>optimizer</code>, <code>drop</code>,
+          and <code>learning_rate</code> can take on during the running
+          of the <code>bayesian</code> workflow. Please see the <a
+href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/Param"><code>Param</code>
+            help page</a> for individual usage of each type of
+          constructor function.<br>
         </p>
         <a name="running_your_job"></a>
         <div class="heading">Running the CANDLE Job</div>
-        <p>After <a href="#adapting_your_model">adapting</a> your model script to work with CANDLE and <a href="#modifying_a_template">creating</a> a CANDLE input file, you will almost be ready to run the hyperparameter optimization (HPO) using CANDLE.<br>
+        <p>After <a href="#adapting_your_model">adapting</a> your model
+          script to work with CANDLE and <a
+            href="#modifying_a_template">creating</a> a CANDLE input
+          file, you will almost be ready to run the hyperparameter
+          optimization (HPO) using CANDLE.<br>
         </p>
-        <p>However, even though you should have <a href="#already_works">already ensured</a> that your original model ran successfully on Biowulf, you should make sure that you have adapted it to work with CANDLE and created the input file successfully by running your model script using the default set of hyperparameters (set in the <a href="#default_hyperparams_file"><code>&amp;default_model</code> section</a>) without running a full HPO workflow.<br>
+        <p>However, even though you should have <a
+            href="#already_works">already ensured</a> that your original
+          model ran successfully on Biowulf, you should make sure that
+          you have adapted it to work with CANDLE and created the input
+          file successfully by running your model script using the
+          default set of hyperparameters (set in the <a
+            href="#default_hyperparams_file"><code>&amp;default_model</code>
+            section</a>) without running a full HPO workflow.<br>
         </p>
-        <p>To do this, you should request an interactive node on Biowulf (using e.g. <code>sinteractive --gres=gpu:k80:1
-              --mem=20G</code>), setting the <code>run_workflow</code> keyword in the <code>&amp;control</code> section of the input file to <code>0</code>, and then running the model script using <code>candle submit-job &lt;INPUT-FILE&gt;</code>. By observing the resulting output to the screen and the results of the model script in the generated file <code>subprocess_out_and_err.txt</code>, you will be able to confirm whether the model ran correctly.<br>
+        <p>To do this, you should request an interactive node on Biowulf
+          (using e.g. <code>sinteractive --gres=gpu:k80:1 --mem=20G</code>),
+
+          setting the <code>run_workflow</code> keyword in the <code>&amp;control</code>
+          section of the input file to <code>0</code>, and then running
+          the model script using <code>candle submit-job
+            &lt;INPUT-FILE&gt;</code>. By observing the resulting output
+          to the screen and the results of the model script in the
+          generated file <code>subprocess_out_and_err.txt</code>, you
+          will be able to confirm whether the model ran correctly.<br>
         </p>
-        <p>It is crucial to perform this last check because it almost always catches errors in the model itself or in its adaptation to CANDLE that would show up anyway when running the full CANDLE job (using <code>run_workflow=1</code>). However, catching the mistakes this way (using <code>run_workflow=0</code> on an interactive node) allows you to correct these issues quickly and to immediately test your changes. <b>Quickly using </b><b><code>run_workflow=0</code></b><b> on an interactive node will almost guarantee that the full CANDLE workflow will run without a hitch.</b><br>
+        <p>It is crucial to perform this last check because it almost
+          always catches errors in the model itself or in its adaptation
+          to CANDLE that would show up anyway when running the full
+          CANDLE job (using <code>run_workflow=1</code>). However,
+          catching the mistakes this way (using <code>run_workflow=0</code>
+          on an interactive node) allows you to correct these issues
+          quickly and to immediately test your changes. <b>Quickly
+            using </b><b><code>run_workflow=0</code></b><b> on an
+            interactive node will almost guarantee that the full CANDLE
+            workflow will run without a hitch.</b><br>
         </p>
-        <p>After you have successfully tested your model script using <code>run_workflow=0</code> on an interactive node, then in order to run the full CANDLE workflow, simply exit the interactive session (by typing <code>exit</code>), set the <code>run_workflow</code> keyword in the input file to <code>1</code>, and then submit the full CANDLE job using the same exact command: <code>candle submit-job &lt;INPUT-FILE&gt;</code>.<br>
+        <p>After you have successfully tested your model script using <code>run_workflow=0</code>
+          on an interactive node, then in order to run the full CANDLE
+          workflow, simply exit the interactive session (by typing <code>exit</code>),
+
+          set the <code>run_workflow</code> keyword in the input file
+          to <code>1</code>, and then submit the full CANDLE job using
+          the same exact command: <code>candle submit-job
+            &lt;INPUT-FILE&gt;</code>.<br>
         </p>
-        <p>You will know you have successfully submitted the CANDLE job to SLURM if, after all the text that is outputted to the screen, you see the lines<br>
+        <p>You will know you have successfully submitted the CANDLE job
+          to SLURM if, after all the text that is outputted to the
+          screen, you see the lines<br>
         </p>
-        <div class="term">JOB_ID=&lt;YOUR-SLURM-JOB-ID&gt;<br> Input file submitted successfully<br>
+        <div class="term">JOB_ID=&lt;YOUR-SLURM-JOB-ID&gt;<br>
+          Input file submitted successfully<br>
         </div>
-        <p>before the command prompt is returned to you. At this point, the CANDLE job has been submitted to Biowulf's SLURM scheduler just like any other Biowulf job, whose progress you can monitor, e.g., by running <code>squeue -u
-              &lt;YOUR-BIOWULF-USERNAME&gt;</code>.</p>
-        <p>Once your job has completed running, you can check the results by entering the <code>last-candle-job</code> directory (a symbolic link) and ensuring the output in the file <code>output.txt</code> looks reasonable; namely, it should end with something like</p>
-        <div class="term">MPIEXEC TIME: 263.763<br> EXIT CODE: 0<br> COMPLETE: 2021-01-14 18:56:51<br>
+        <p>before the command prompt is returned to you. At this point,
+          the CANDLE job has been submitted to Biowulf's SLURM scheduler
+          just like any other Biowulf job, whose progress you can
+          monitor, e.g., by running <code>squeue -u
+            &lt;YOUR-BIOWULF-USERNAME&gt;</code>.</p>
+        <p>Once your job has completed running, you can check the
+          results by entering the <code>last-candle-job</code>
+          directory (a symbolic link) and ensuring the output in the
+          file <code>output.txt</code> looks reasonable; namely, it
+          should end with something like</p>
+        <div class="term">MPIEXEC TIME: 263.763<br>
+          EXIT CODE: 0<br>
+          COMPLETE: 2021-01-14 18:56:51<br>
         </div>
-        <p>Then, enter the <code>run</code> subdirectory, where the results of your model script run using each hyperparameter set will lie. In particular, you can check the output of the model run using each hyperparameter set by observing the <code>subprocess_out_and_err.txt</code> files using <code>less */subprocess_out_and_err.txt</code>. (These files contain the model's raw output, i.e., what you'd expect to be printed to the terminal if you ran the model completely outside of CANDLE.) Further, for each hyperparameter set using which your model ran successfully, a file called <code>result.txt</code> will also be present containing the value specified by <code>candle_value_to_return</code> (or <code>history</code>).</p>
-        <p>See the <a href="#aggregation">following section</a> for an automated way of observing the results of your HPO job.<br>
+        <p>Then, enter the <code>run</code> subdirectory, where the
+          results of your model script run using each hyperparameter set
+          will lie. In particular, you can check the output of the model
+          run using each hyperparameter set by observing the <code>subprocess_out_and_err.txt</code>
+          files using <code>less */subprocess_out_and_err.txt</code>.
+          (These files contain the model's raw output, i.e., what you'd
+          expect to be printed to the terminal if you ran the model
+          completely outside of CANDLE.) Further, for each
+          hyperparameter set using which your model ran successfully, a
+          file called <code>result.txt</code> will also be present
+          containing the value specified by <code>candle_value_to_return</code>
+          (or <code>history</code>).</p>
+        <p>See the <a href="#aggregation">following section</a> for an
+          automated way of observing the results of your HPO job.<br>
         </p>
         <p><b>Note:</b> Every time you submit a CANDLE job using <code>candle
-              submit-job &lt;INPUT-FILE&gt;</code>, a new subdirectory in <code>candle_generated_files/experiments</code> will be created with the automatically generated name of the job (e.g., <code>X000</code>, <code>X001</code>, <code>X002</code>, etc.). Further, the symbolic link <code>last-candle-job</code> will always be updated to point to the most recently run CANDLE job in this <code>experiments</code> directory.<br>
+
+
+            submit-job &lt;INPUT-FILE&gt;</code>, a new subdirectory in
+          <code>candle_generated_files/experiments</code> will be
+          created with the automatically generated name of the job
+          (e.g., <code>X000</code>, <code>X001</code>, <code>X002</code>,
+          etc.). Further, the symbolic link <code>last-candle-job</code>
+          will always be updated to point to the most recently run
+          CANDLE job in this <code>experiments</code> directory.<br>
         </p>
-        <p><b>Tip:</b> If your CANDLE job dies, looking inside the <code>subprocess_out_and_err.txt</code> files will generally indicate why.</p>
+        <p><b>Tip:</b> If your CANDLE job dies, looking inside the <code>subprocess_out_and_err.txt</code>
+          files will generally indicate why.</p>
         <p> </p>
         <a name="aggregation"></a>
         <div class="heading">Aggregating CANDLE Job Results</div>
-        <p><a name="aggregate-results"></a>In order to collect the values of all the hyperparameter sets as well as the resulting metric for each set, run the <code>aggregate-results</code> command to <code>candle</code>:<br>
+        <p><a name="aggregate-results"></a>In order to collect the
+          values of all the hyperparameter settings as well as the
+          resulting metric for each set, run the <code>aggregate-results</code>
+          command to <code>candle</code>:<br>
         </p>
-        <div class="term">[user@biowulf]$ <b>candle aggregate-results &lt;EXP-DIR&gt; [&lt;RESULT-FORMAT&gt;]<br>
+        <div class="term">[user@biowulf]$ <b>candle aggregate-results
+            &lt;EXP-DIR&gt; [&lt;RESULT-FORMAT&gt;]<br>
           </b></div>
-        <p>where <code>&lt;EXP-DIR&gt;</code> is the experiment directory (or the symbolic link <code>last-candle-job</code>), i.e., that containing the <code>run</code> directory, and <code>&lt;RESULT-FORMAT&gt;</code> is an optional string containing the standard <code>printf()</code>-formatted string containing the output format for the metric. For example, if the <code>r</code> template/example (an older version of it) were run inside the <code>/data/$USER/candle</code> directory, then running<br>
+        <p>where <code>&lt;EXP-DIR&gt;</code> is the experiment
+          directory (or the symbolic link <code>last-candle-job</code>),
+
+          i.e., that containing the <code>run</code> directory, and <code>&lt;RESULT-FORMAT&gt;</code>
+          is an optional string containing the standard <code>printf()</code>-formatted
+
+          string containing the output format for the metric. For
+          example, if the <code>r</code> template/example (an older
+          version of it) were run inside the <code>/data/$USER/candle</code>
+          directory, then running<br>
         </p>
-        <div class="term">[user@biowulf]$ <b>candle aggregate-results /data/$USER/candle/last-candle-job<br>
+        <div class="term">[user@biowulf]$ <b>candle aggregate-results
+            /data/$USER/candle/last-candle-job<br>
           </b></div>
-        <p>would produce a file called <code>candle_results.csv</code> in the <code>candle_generated_files</code> directory containing the data from all the jobs, sorted by increasing metric value, e.g.,<br>
+        <p>would produce a file called <code>candle_results.csv</code>
+          in the <code>candle_generated_files</code> directory
+          containing the data from all the jobs, sorted by increasing
+          metric value, e.g.,<br>
         </p>
-        <div class="term">result,dirname,id,mincorr,maxcorr,number_cv,extfolds<br> 000.796,hpset_00001,hpset_00001,0.200000,0.80,2,5<br> 000.796,hpset_00004,hpset_00004,0.200000,0.80,5,5<br> 000.837,hpset_00002,hpset_00002,0.200000,0.80,3,5<br> 000.878,hpset_00003,hpset_00003,0.200000,0.80,4,5<br> 000.905,hpset_00007,hpset_00007,0.200000,0.80,8,5<br> 000.964,hpset_00005,hpset_00005,0.200000,0.80,6,5<br> 000.964,hpset_00006,hpset_00006,0.200000,0.80,7,5<br> 001.000,hpset_00008,hpset_00008,0.200000,0.80,9,5<br>
+        <div class="term">result,dirname,id,mincorr,maxcorr,number_cv,extfolds<br>
+          000.796,hpset_00001,hpset_00001,0.200000,0.80,2,5<br>
+          000.796,hpset_00004,hpset_00004,0.200000,0.80,5,5<br>
+          000.837,hpset_00002,hpset_00002,0.200000,0.80,3,5<br>
+          000.878,hpset_00003,hpset_00003,0.200000,0.80,4,5<br>
+          000.905,hpset_00007,hpset_00007,0.200000,0.80,8,5<br>
+          000.964,hpset_00005,hpset_00005,0.200000,0.80,6,5<br>
+          000.964,hpset_00006,hpset_00006,0.200000,0.80,7,5<br>
+          001.000,hpset_00008,hpset_00008,0.200000,0.80,9,5<br>
         </div>
-        <p>This file can be further processed using Excel or any other method in order to study the results of the HPO.<br>
+        <p>This file can be further processed using Excel or any other
+          method in order to study the results of the HPO.<br>
         </p>
-        <p><b>Note:</b> Since the field names (first line above) are extracted for just one of the hyperparameter sets, if the hyperparameters that are run are not the same for every set of hyperparameters run using the <code>grid</code> workflow, then the results of the <code>aggregate-results</code> command will not make sense. For example, running this command on the results of the <code>grid</code> template/example will produce<br>
+        <p><b>Note:</b> Since the field names (first line above) are
+          extracted for just one of the hyperparameter sets, if the
+          hyperparameters that are run are not the same for every set of
+          hyperparameters run using the <code>grid</code> workflow,
+          then the results of the <code>aggregate-results</code>
+          command will not make sense. For example, running this command
+          on the results of the <code>grid</code> template/example will
+          produce<br>
         </p>
-        <div class="term">result,dirname,id,epochs,activation<br> 000.064,hpset_01,hpset_01,15,tanh<br> 000.066,hpset_07,hpset_07,10,512<br> 000.074,hpset_06,hpset_06,10,256<br> 000.080,hpset_02,hpset_02,30,tanh<br> 000.081,hpset_05,hpset_05,10,128<br> 000.098,hpset_03,hpset_03,15,relu<br> 000.121,hpset_04,hpset_04,30,relu<br>
+        <div class="term">result,dirname,id,epochs,activation<br>
+          000.064,hpset_01,hpset_01,15,tanh<br>
+          000.066,hpset_07,hpset_07,10,512<br>
+          000.074,hpset_06,hpset_06,10,256<br>
+          000.080,hpset_02,hpset_02,30,tanh<br>
+          000.081,hpset_05,hpset_05,10,128<br>
+          000.098,hpset_03,hpset_03,15,relu<br>
+          000.121,hpset_04,hpset_04,30,relu<br>
         </div>
-        <p>Of course, if the <code>generate-grid</code> command to <code>candle</code> were used to generate the sets of hyperparameters to run (and the resulting sets were not further modified by hand), then the results of the <code>aggregate-results</code> command to <code>candle</code> should always make sense.<br>
+        <p>Of course, if the <code>generate-grid</code> command to <code>candle</code>
+          were used to generate the sets of hyperparameters to run (and
+          the resulting sets were not further modified by hand), then
+          the results of the <code>aggregate-results</code> command to
+          <code>candle</code> should always make sense.<br>
         </p>
-        <p>As usual, the full pathname must be used for <code>&lt;EXP-DIR&gt;</code>. <b>Tip:</b> As usual, use <code>$(pwd)</code> to automatically include the full path in front of a relative file, e.g., <code>candle aggregate-results
+        <p>As usual, the full pathname must be used for <code>&lt;EXP-DIR&gt;</code>.
+          <b>Tip:</b> As usual, use <code>$(pwd)</code> to
+          automatically include the full path in front of a relative
+          file, e.g., <code>candle aggregate-results
             $(pwd)/last-candle-job</code>.<br>
         </p>
         <a name="candle_commands"></a>
@@ -556,20 +1219,26 @@
 
 
 
-            load candle</code>), the available commands to the <code>candle</code> program (in the format <code>candle &lt;COMMAND&gt;
-            &lt;COMMAND-ARG-1&gt; &lt;COMMAND-ARG-2&gt; ...</code>) are as follows:</p>
+
+
+            load candle</code>), the available commands to the <code>candle</code>
+          program (in the format <code>candle &lt;COMMAND&gt;
+            &lt;COMMAND-ARG-1&gt; &lt;COMMAND-ARG-2&gt; ...</code>) are
+          as follows:</p>
         <table border="0">
           <tbody>
             <tr>
               <td width="60%"><code>candle import-template
                   &lt;grid|bayesian|r|bash&gt;</code></td>
-              <td><a href="#import-template">Copy</a> a CANDLE template to the current directory<br>
+              <td><a href="#import-template">Copy</a> a CANDLE template
+                to the current directory<br>
               </td>
             </tr>
             <tr>
               <td width="60%"><code>candle generate-grid
                   &lt;PYTHON-LIST-1&gt; &lt;PYTHON-LIST-2&gt; ...</code></td>
-              <td><a href="#generate-grid">Generate</a> a hyperparameter grid for the <code>grid</code> search workflow<br>
+              <td><a href="#generate-grid">Generate</a> a hyperparameter
+                grid for the <code>grid</code> search workflow<br>
               </td>
             </tr>
             <tr>
@@ -581,38 +1250,66 @@
             <tr>
               <td width="60%"><code>candle aggregate-results
                   &lt;EXP-DIR&gt; [&lt;RESULT-FORMAT&gt;]</code> </td>
-              <td><a href="#aggregation">Create</a> a CSV file called <code>candle_results.csv</code> containing the hyperparameters and corresponding performance metrics<br>
+              <td><a href="#aggregation">Create</a> a CSV file called <code>candle_results.csv</code>
+                containing the hyperparameters and corresponding
+                performance metrics<br>
               </td>
             </tr>
           </tbody>
         </table>
-        <p><b>Tip:</b> Leaving <code>&lt;COMMAND&gt;</code> blank or setting it to <code>help</code> will display this usage menu.<br>
+        <p><b>Tip:</b> Leaving <code>&lt;COMMAND&gt;</code> blank or
+          setting it to <code>help</code> will display this usage menu.<br>
         </p>
         <a name="promoting"></a>
         <div class="heading">Promoting CANDLE and Your Work</div>
-        <p> If you've successfully used CANDLE to advance your work and you're willing to tell us about it, please email the <a href="mailto:andrew.weisman@nih.gov">SDSI team</a> to tell us what you've done! We'd love to learn how users are using CANDLE to address their needs so that we can continue to improve CANDLE and its implementation on Biowulf.</p>
+        <p> If you've successfully used CANDLE to advance your work and
+          you're willing to tell us about it, please email the <a
+            href="mailto:andrew.weisman@nih.gov">SDSI team</a> to tell
+          us what you've done! We'd love to learn how users are using
+          CANDLE to address their needs so that we can continue to
+          improve CANDLE and its implementation on Biowulf.</p>
         <p> </p>
-        <p>Further, if you're willing to have your work promoted online, please include an exemplary graphic of your work, and upon review we'll post it here as an exemplar CANDLE success story.&nbsp; More exposure for you, more exposure for us!<br>
+        <p>Further, if you're willing to have your work promoted online,
+          please include an exemplary graphic of your work, and upon
+          review we'll post it here as an exemplar CANDLE success
+          story.&nbsp; More exposure for you, more exposure for us!<br>
         </p>
-        <p>Or, if you've <b>un</b>successfully used CANDLE to advance your work, we'd love to help you out; please <a href="mailto:andrew.weisman@nih.gov">let us know</a> what didn't work for you!</p>
+        <p>Or, if you've <b>un</b>successfully used CANDLE to advance
+          your work, we'd love to help you out; please <a
+            href="mailto:andrew.weisman@nih.gov">let us know</a> what
+          didn't work for you!</p>
         <p> </p>
         <a name="contact_info"></a>
         <div class="heading">Contact Information</div>
-        <p>Feel free to email the <a href="mailto:andrew.weisman@nih.gov">SDSI team</a> with any questions, comments, or suggestions.<br>
-        </p> In addition, our team has expertise in building machine/deep learning models for a variety of situations (e.g., image segmentation, classification from RNA-Seq data, etc.) and would be happy to help you build a model (independent of CANDLE) or point you in the right direction. (And, we are <a href="mailto:andrew.weisman@nih.gov">happy to collaborate!</a>)<br>
-        <!-- End content area - do not edit below this line -->
-      </div>
+        <p>Feel free to email the <a
+            href="mailto:andrew.weisman@nih.gov">SDSI team</a> with any
+          questions, comments, or suggestions.<br>
+        </p>
+        In addition, our team has expertise in building machine/deep
+        learning models for a variety of situations (e.g., image
+        segmentation, classification from RNA-Seq data, etc.) and would
+        be happy to help you build a model (independent of CANDLE) or
+        point you in the right direction. (And, we are <a
+          href="mailto:andrew.weisman@nih.gov">happy to collaborate!</a>)<br>
+        <!-- End content area - do not edit below this line --> </div>
       <div class="lastmod" align="right">
         <script type="text/javascript" language="JavaScript" src="/js/lastmod.js"></script>
       </div>
       <div class="footarea">
-        <div class="footer"> <a href="/" class="footlink">HPC @ NIH </a> ~ <a href="/about/contact.html" class="footlink">Contact</a>
+        <div class="footer"> <a href="/" class="footlink">HPC @ NIH </a>
+          ~ <a href="/about/contact.html" class="footlink">Contact</a>
         </div>
-        <div class="footer2"> <a href="/docs/disclaimer.html" class="footlink">Disclaimer</a> ~ <a href="/docs/privacy.html" class="footlink">Privacy</a> ~ <a href="/docs/accessibility.html" class="footlink">Accessibility</a> ~ <a href="http://cit.nih.gov/" class="footlink">CIT</a> ~ <a href="http://www.nih.gov/" class="footlink">NIH</a> ~ <a href="http://www.dhhs.gov/" class="footlink">DHHS</a> ~ <a href="http://www.firstgov.gov/" class="footlink">USA.gov</a>
+        <div class="footer2"> <a href="/docs/disclaimer.html"
+            class="footlink">Disclaimer</a> ~ <a
+            href="/docs/privacy.html" class="footlink">Privacy</a> ~ <a
+            href="/docs/accessibility.html" class="footlink">Accessibility</a>
+          ~ <a href="http://cit.nih.gov/" class="footlink">CIT</a> ~ <a
+            href="http://www.nih.gov/" class="footlink">NIH</a> ~ <a
+            href="http://www.dhhs.gov/" class="footlink">DHHS</a> ~ <a
+            href="http://www.firstgov.gov/" class="footlink">USA.gov</a>
         </div>
       </div>
     </div>
     <br>
   </body>
-
 </html>
