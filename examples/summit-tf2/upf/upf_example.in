@@ -1,0 +1,28 @@
+&control
+  model_script = $CANDLE/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py
+  workflow = grid
+  nworkers = 9
+  walltime = 00:20
+  project = med106
+  run_workflow = 1
+  queue = batch
+/
+
+&default_model
+  candle_default_model_file = $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt
+/
+
+&param_space
+  {"id": "test0", "epochs": 1}
+  {"id": "test1", "epochs": 2}
+  {"id": "test2", "epochs": 3}
+  {"id": "test3", "epochs": 4}
+  {"id": "test4", "epochs": 5}
+  {"id": "test5", "epochs": 6}
+  {"id": "test6", "epochs": 7}
+  {"id": "test7", "epochs": 8}
+  {"id": "test8", "epochs": 9}
+  {"id": "test9", "epochs": 10}
+  {"id": "test10", "epochs": 11}
+  {"id": "test11", "epochs": 12}
+/

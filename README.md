@@ -27,6 +27,13 @@ in order to output usage information to the screen. There are four commands (`im
 * Each of the four `candle` commands has its own directory in the `commands` folder of this repository. The primary thing run when a command is called is the file `commands/<COMMAND>/command_script.sh`, which is the driver script for all other files in the `commands/<COMMAND>` directory.
 * Keywords and workflows, discussed below, only apply to the `submit-job` command to `candle` and refer to settings in the `&control` section of the input file (a `.in` file). The `submit-job` command is the only `candle` command that utilizes an input file.
 * See the file `repository_organization.md` for an overview of all the files in this repository, as well as the relationships between files.
+* When adding new sites or environments, we may need to add the line in the corresponding `cfg-sys-XXXX.sh` (or else the wrapper scripts seem to not submit and die upon submission with the error `/gpfs/alpine/med106/world-shared/candle/2021-04-13/Supervisor/workflows/upf/swift/workflow.sh: line 72: BENCHMARK_TIMEOUT: unbound variable`):
+
+```bash
+BENCHMARK_TIMEOUT=${BENCHMARK_TIMEOUT:-3600} # probably not needed but this variable is baked into rest of code, e.g., workflow.sh
+```
+
+* These `cfg-sys-XXXX.sh` scripts need to be created for new sites/environments in `$CANDLE/checkouts/Supervisor/workflows/common/sh`
 
 ### Site-specific settings
 

@@ -1,0 +1,21 @@
+&control
+  model_script = $(pwd)/nt3_candle_wrappers_baseline_keras2.py
+  workflow = bayesian
+  nworkers = 5
+  walltime = 00:35
+  design_size = 9
+  propose_points = 9
+  max_iterations = 3
+  max_budget = 180
+  project = med106
+  run_workflow = 1
+  queue = batch
+/
+
+&default_model
+  candle_default_model_file = $CANDLE/Benchmarks/Pilot1/NT3/nt3_default_model.txt
+/
+
+&param_space
+  candle_param_space_file = $CANDLE/Supervisor/workflows/mlrMBO/data/nt3_nightly.R
+/

@@ -277,7 +277,7 @@ def export_bash_variables(keywords):
 
     The following can be obtained by reading the HPC system user guides (e.g., [Summit user guide](https://docs.olcf.ornl.gov/systems/summit_user_guide.html), [Biowulf user guide](https://hpc.nih.gov/docs/userguide.html)) and by carefully observing $CANDLE/swift-t/turbine/code/scripts/submit/lsf/turbine-lsf.sh.m4 and $CANDLE/swift-t/turbine/code/scripts/submit/slurm/turbine-slurm.sh.m4 (see e.g. `turbine-lsf.sh` and `turbine-slurm.sh` in /home/weismanal/notebook/2020-10-12 on Biowulf/Helix). Confirm variable settings by looking in, e.g., $CANDLE/Supervisor/workflows/upf/test.
 
-    Also note that I anticipate some of the CANDLE calls to die upon submission to Summit due to PPN=6 below, as I have noticed Summit's scheduler being sensitive to the --rs_per_host option, to which $PPN gets mapped. This should probably lead to some simple logic in this script, preprocess.py, that checks that a reasonable value for the nworkers keyword is set. (This is probably not currently an issue due to PPN=1 being used by default.)
+    Also note that I anticipate some of the CANDLE calls to die upon submission to Summit due to PPN=6 below, as I have noticed Summit's scheduler being sensitive to the --rs_per_host option, to which $PPN gets mapped. This should probably lead to some simple logic in this script, preprocess.py, that checks that a reasonable value for the nworkers keyword is set. (This is probably not currently an issue due to PPN=1 being used by default.) <-- Note, by memory, I believe I fixed this or that it doesn't matter anymore (ALW 4/13/21)
     """
 
     # Import relevant libraries
@@ -302,7 +302,7 @@ def export_bash_variables(keywords):
 
     # Split into one block for each site
     site = os.getenv('SITE')
-    if site == 'summit-tf1':
+    if site == 'summit-tf1' or site == 'summit-tf2':
 
         ## Site-dependent logic
         nnodes = int(np.ceil(ntasks_total/6))
@@ -394,6 +394,11 @@ def export_bash_variables(keywords):
             f.write('export CANDLE_DRY_RUN={}\n'.format(keywords['dry_run']))
             f.write('export CANDLE_DEFAULT_MODEL_FILE={}\n'.format(keywords['default_model_file']))
             f.write('export CANDLE_WORKFLOW_SETTINGS_FILE={}\n'.format(keywords['param_space_file']))
+
+    else:
+
+        print('ERROR: site ({}) is unknown in preprocess.py'.format(site))
+        exit(1)
 
 
 def main():

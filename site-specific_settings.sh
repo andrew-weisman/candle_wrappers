@@ -73,4 +73,40 @@ elif [ "x$SITE" == "xsummit-tf1" ]; then
     export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None, 'dl_backend': 'keras', 'supp_modules': '', 'python_bin_path': '', 'exec_python_module': '', 'supp_pythonpath': '', 'extra_script_args': '', 'exec_r_module': '', 'supp_r_libs': '', 'run_workflow': 1, 'dry_run': 0, 'queue': 'batch', 'default_model_file': '', 'param_space_file': ''}"
     export CANDLE_VALID_WORKER_TYPES=
 
+elif [ "x$SITE" == "xsummit-tf2" ]; then
+
+    CANDLE_SETUP_LOCAL_DIR=$(pwd)
+
+    CANDLE_SETUP_COMPILE_SWIFT_T=0
+    # CANDLE_SETUP_SWIFT_T="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/swift-t/2020-09-02" # tf1 version
+    CANDLE_SETUP_SWIFT_T="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/swift-t/2020-10-22" # tf2 version
+    export CANDLE_DEP_MPI=
+    export CANDLE_DEP_TCL=
+    export CANDLE_DEP_PY=
+    export CANDLE_DEP_R=
+    export CANDLE_DEP_R_SITE=
+    export CANDLE_DEP_ANT=
+    export CANDLE_LAUNCHER_OPTION=
+
+    CANDLE_SETUP_BUILD_SUPERVISOR_R_PACKAGES=0
+    CANDLE_SETUP_R_LIBS="/gpfs/alpine/world-shared/med106/sw/R-190927/lib64/R/library"
+
+    export CANDLE_TURBINE_LAUNCH_OPTIONS=
+    CANDLE_SETUP_JOB_LAUNCHER="jsrun"
+    CANDLE_SETUP_MPI_HELLO_WORLD_LAUNCHER_OPTIONS="--nrs=12 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=6 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7" # this should be consistent with the call to the interactive scheduler command in setup-$SITE.md
+    CANDLE_SETUP_SINGLE_TASK_LAUNCHER_OPTIONS="--nrs=1 --tasks_per_rs=1 --cpu_per_rs=7 --gpu_per_rs=1 --rs_per_host=1 --bind=packed:7 --launch_distribution=packed -E OMP_NUM_THREADS=7"
+
+    # export CANDLE_DEFAULT_PYTHON_MODULE="/gpfs/alpine/world-shared/med106/sw/condaenv-200408/bin/python3.6" # tf1 version
+    export CANDLE_DEFAULT_PYTHON_MODULE="/gpfs/alpine/world-shared/med106/sw2/opence010env/bin/python3.6" # tf2 version
+    export CANDLE_DEFAULT_R_MODULE="/gpfs/alpine/world-shared/med106/wozniak/sw/gcc-6.4.0/R-3.6.1/lib64/R/bin/R"
+
+    # Note: A keyword is specified to be required by setting its default value to None
+    export CANDLE_POSSIBLE_KEYWORDS_AND_DEFAULTS="{'model_script': None, 'workflow': None, 'walltime': '00:05', 'nworkers': 1, 'project': None, 'dl_backend': 'keras', 'supp_modules': '', 'python_bin_path': '', 'exec_python_module': '', 'supp_pythonpath': '', 'extra_script_args': '', 'exec_r_module': '', 'supp_r_libs': '', 'run_workflow': 1, 'dry_run': 0, 'queue': 'batch', 'default_model_file': '', 'param_space_file': ''}"
+    export CANDLE_VALID_WORKER_TYPES=
+
+else
+
+    echo "ERROR: \$SITE variable (which has a setting of $SITE) has no corresponding section in \$CANDLE/checkouts/wrappers/site-specific_settings.sh"
+    exit
+
 fi

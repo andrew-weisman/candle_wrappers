@@ -1,0 +1,39 @@
+&control
+  model_script = $(pwd)/nt3_baseline_keras2.py
+  workflow = bayesian
+  nworkers = 7
+  walltime = 00:25
+  design_size = 9
+  propose_points = 9
+  max_iterations = 3
+  max_budget = 180
+  project = med106
+  run_workflow = 1
+  queue = batch
+/
+
+&default_model
+  data_url = 'ftp://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/normal-tumor/'
+  train_data = 'nt_train2.csv'
+  test_data = 'nt_test2.csv'
+  model_name = 'nt3'
+  conv = [128, 20, 1, 128, 10, 1]
+  dense = [200,20]
+  activation = 'relu'
+  out_act = 'softmax'
+  loss = 'categorical_crossentropy'
+  optimizer = 'sgd'
+  metrics = 'accuracy'
+  epochs = 6
+  batch_size = 20
+  learning_rate = 0.001
+  dropout = 0.1
+  classes = 2
+  pool = [1, 10]
+  save = '.'
+  timeout = 3600
+/
+
+&param_space
+  candle_param_space_file = $CANDLE/Supervisor/workflows/mlrMBO/data/nt3_nightly.R
+/

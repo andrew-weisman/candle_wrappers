@@ -60,10 +60,11 @@ echo -e "\n\n :::: Setting up directory structure and cloning necessary reposito
 [ -d "$CANDLE/builds" ] || mkdir "$CANDLE/builds"
 
 # Check out the necessary software from GitHub
-[ -d "$CANDLE/checkouts/Supervisor" ] || git clone --branch develop https://github.com/ECP-CANDLE/Supervisor "$CANDLE/checkouts/Supervisor"
-[ -d "$CANDLE/checkouts/Benchmarks" ] || git clone --branch develop https://github.com/ECP-CANDLE/Benchmarks "$CANDLE/checkouts/Benchmarks"
+[ -d "$CANDLE/checkouts/Supervisor" ] || git clone --branch develop git@github.com:ECP-CANDLE/Supervisor.git "$CANDLE/checkouts/Supervisor"
+#[ -d "$CANDLE/checkouts/Benchmarks" ] || git clone --branch develop https://github.com/ECP-CANDLE/Benchmarks "$CANDLE/checkouts/Benchmarks"
+[ -d "$CANDLE/checkouts/Benchmarks" ] || git clone --branch develop git@github.com:ECP-CANDLE/Benchmarks.git "$CANDLE/checkouts/Benchmarks"
 if [ "x$CANDLE_SETUP_COMPILE_SWIFT_T" == "x1" ]; then
-    [ -d "$CANDLE/checkouts/swift-t" ] || git clone https://github.com/swift-lang/swift-t "$CANDLE/checkouts/swift-t"
+    [ -d "$CANDLE/checkouts/swift-t" ] || git clone git@github.com:swift-lang/swift-t.git "$CANDLE/checkouts/swift-t"
 fi
 
 # Create the build subdirectories
@@ -245,6 +246,14 @@ popd
 
 
 #### Optionally run a CANDLE benchmark just to see if that would work ##############################################################
+
+# Note for machines such as Summit that require data to be downloaded beforehand since compute nodes can't access the Internet, you may have to run something like this from the login node (for the NT3 $benchmark below):
+# 
+#   /gpfs/alpine/world-shared/med106/sw2/opence010env/bin/python
+#   import candle
+#   train_file = candle.get_file('nt_train2.csv', 'http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/normal-tumor/' + 'nt_train2.csv', cache_subdir='Pilot1')
+#   test_file = candle.get_file('nt_test2.csv', 'http://ftp.mcs.anl.gov/pub/candle/public/benchmarks/Pilot1/normal-tumor/' + 'nt_test2.csv', cache_subdir='Pilot1')
+
 echo -e "\n\n :::: Running a CANDLE benchmark on a single node...\n"
 
 pushd "$CANDLE_SETUP_LOCAL_DIR"
