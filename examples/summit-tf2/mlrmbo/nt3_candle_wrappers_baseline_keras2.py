@@ -25,13 +25,10 @@ import candle
 
 def initialize_parameters(default_model='nt3_default_model.txt'):
 
-    import os # ADD THIS LINE
-
     # Build benchmark object
     nt3Bmk = bmk.BenchmarkNT3(
         bmk.file_path,
-        # default_model, # ORIGINAL LINE
-        os.getenv('CANDLE_DEFAULT_MODEL_FILE'), # NEW LINE
+        default_model,
         'keras',
         prog='nt3_baseline',
         desc='1D CNN to classify RNA sequence data in normal or tumor classes')

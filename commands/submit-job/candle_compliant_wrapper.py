@@ -1,13 +1,13 @@
 # This file should follow the current standard CANDLE-compliance procedure (what I'm calling to be "canonically CANDLE-compliant" to contrast it with the easier "CANDLE-compliance" that these wrapper scripts enable)
 
-def initialize_parameters():
+def initialize_parameters(default_model = 'should_get_set_in_model_runner_py.txt'):
 
     # Import relevant libraries
     import os, candle # note "candle" is put in the path by the lmod module file
 
     # Set variables from environment variables
     dl_backend = os.getenv('CANDLE_DL_BACKEND') # set in input file (and checked and exported in preprocess.py)
-    default_model = os.getenv('CANDLE_DEFAULT_MODEL_FILE') # set in submit-job/command_script.sh
+    #default_model = os.getenv('CANDLE_DEFAULT_MODEL_FILE') # set in submit-job/command_script.sh
     desc = os.getenv('CANDLE_MODEL_DESCRIPTION') # set in run_workflows.sh
     prog_name = os.getenv('CANDLE_PROG_NAME') # set in run_workflows.sh
 
