@@ -1,5 +1,5 @@
 &control
-  model_script = $CANDLE/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py
+  model_script = $CANDLE/Benchmarks/Pilot1/NT3/nt3_baseline_keras2.py
   workflow = grid
   nworkers = 9
   walltime = 00:20

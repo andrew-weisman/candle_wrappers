@@ -1,15 +1,26 @@
 # This file should follow the current standard CANDLE-compliance procedure (what I'm calling to be "canonically CANDLE-compliant" to contrast it with the easier "CANDLE-compliance" that these wrapper scripts enable)
 
-def initialize_parameters(default_model = 'should_get_set_in_model_runner_py.txt'):
+def initialize_parameters():
 
     # Import relevant libraries
-    import os, candle # note "candle" is put in the path by the lmod module file
+    import os # note "candle" is put in the path by the lmod module file
 
     # Set variables from environment variables
     dl_backend = os.getenv('CANDLE_DL_BACKEND') # set in input file (and checked and exported in preprocess.py)
-    #default_model = os.getenv('CANDLE_DEFAULT_MODEL_FILE') # set in submit-job/command_script.sh
+    default_model = os.getenv('CANDLE_DEFAULT_MODEL_FILE') # set in submit-job/command_script.sh... note that this is needed here for running in interactive mode, where default_model is NOT automatically set in model_runner.py per Justin's recent ~5/13/21 fix
     desc = os.getenv('CANDLE_MODEL_DESCRIPTION') # set in run_workflows.sh
     prog_name = os.getenv('CANDLE_PROG_NAME') # set in run_workflows.sh
+
+    # Adding this block on 5/15/21 because now, once candle is imported (right after this block), if a backend has not yet been imported, then $CANDLE/Benchmarks/common/candle/__init__.py will die with "No backend has been specified."
+    # This doesn't matter for canonically CANDLE-compliant scripts because it is assumed that keras or pytorch have been imported at the top of these .py files.
+    # However, for non-CANDLE-compliant scripts in which this script, candle_compliant_wrapper.py, is called instead, it is not assumed that one of these libraries has been imported at the top, by the more natural nature of doing so below in the run() function. This is more natural because, e.g., the entire model should be self-contained, only after which you should have to (if you should have to at all) wrap it in the CANDLE-compliant functions initialize_parameters() and run().
+    # Note that this issue only occurs when running interactively. I'm not exactly sure why the same issue does not occur in batch mode off the top of my head, and I did not look into it.
+    if dl_backend == 'keras':
+        import tensorflow.keras
+    elif dl_backend == 'pytorch':
+        import torch
+
+    import candle # note "candle" is put in the path by the lmod module file
 
     # Build benchmark object
     myBmk = candle.Benchmark(os.path.dirname(os.path.realpath(__file__)), default_model, dl_backend, prog=prog_name, desc=desc)
