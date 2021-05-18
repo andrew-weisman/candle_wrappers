@@ -23,4 +23,4 @@ export CANDLE_SUPP_R_LIBS="syscmd(echo -n $CANDLE_SUPP_R_LIBS)"
 source "$CANDLE/wrappers/utilities.sh"; load_python_env --set-pythonhome
 
 # The point is to call a CANDLE-compliant script here
-python "syscmd(echo -n $MODEL_PYTHON_DIR)/syscmd(echo -n $MODEL_PYTHON_SCRIPT).py"
+python "syscmd(echo -n $MODEL_PYTHON_DIR)/syscmd(echo -n $MODEL_PYTHON_SCRIPT).py --config_file=$CANDLE_DEFAULT_MODEL_FILE"

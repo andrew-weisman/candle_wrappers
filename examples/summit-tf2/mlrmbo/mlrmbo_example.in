@@ -1,5 +1,5 @@
 &control
-  model_script = $(pwd)/nt3_candle_wrappers_baseline_keras2.py
+  model_script = $(pwd)/nt3_baseline_keras2.py
   workflow = bayesian
   nworkers = 5
   walltime = 00:35

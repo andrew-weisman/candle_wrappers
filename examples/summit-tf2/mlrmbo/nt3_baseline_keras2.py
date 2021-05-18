@@ -3,20 +3,18 @@ from __future__ import print_function
 import pandas as pd
 import numpy as np
 import os
+
+from tensorflow.keras import backend as K
+
+from tensorflow.keras.layers import Dense, Dropout, Activation, Conv1D, MaxPooling1D, Flatten, LocallyConnected1D
+from tensorflow.keras.models import Sequential, model_from_json, model_from_yaml
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.callbacks import CSVLogger, ReduceLROnPlateau
+
+from sklearn.preprocessing import MaxAbsScaler
+
+# The following two lines are the only changes relative to $CANDLE/Benchmarks/Pilot1/NT3/nt3_baseline_keras2.py, required only because we are pulling the model script out of the Benchmarks repository, so this script otherwise does not know where nt3.py is
 import sys
-import gzip
-
-from keras import backend as K
-
-from keras.layers import Input, Dense, Dropout, Activation, Conv1D, MaxPooling1D, Flatten
-from keras.optimizers import SGD, Adam, RMSprop
-from keras.models import Sequential, Model, model_from_json, model_from_yaml
-from keras.utils import np_utils
-from keras.callbacks import ModelCheckpoint, CSVLogger, ReduceLROnPlateau
-
-from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, MaxAbsScaler
-
 sys.path.append(os.path.join(os.getenv('CANDLE'), 'Benchmarks', 'Pilot1', 'NT3'))
 
 import nt3 as bmk
@@ -55,8 +53,8 @@ def load_data(train_path, test_path, gParameters):
     df_y_test = df_test[:, 0].astype('int')
 
     # only training set has noise
-    Y_train = np_utils.to_categorical(df_y_train, gParameters['classes'])
-    Y_test = np_utils.to_categorical(df_y_test, gParameters['classes'])
+    Y_train = to_categorical(df_y_train, gParameters['classes'])
+    Y_test = to_categorical(df_y_test, gParameters['classes'])
 
     df_x_train = df_train[:, 1:seqlen].astype(np.float32)
     df_x_test = df_test[:, 1:seqlen].astype(np.float32)
@@ -86,7 +84,7 @@ def load_data(train_path, test_path, gParameters):
     # check if noise is on for RNA-seq data
     elif gParameters['noise_gaussian']:
         X_train = candle.add_gaussian_noise(X_train, 0, gParameters['std_dev'])
-	    
+
     return X_train, Y_train, X_test, Y_test
 
 
@@ -100,6 +98,11 @@ def run(gParameters):
 
     train_file = candle.get_file(file_train, url + file_train, cache_subdir='Pilot1')
     test_file = candle.get_file(file_test, url + file_test, cache_subdir='Pilot1')
+
+    model = Sequential()
+
+    initial_epoch = 0
+    best_metric_last = None
 
     X_train, Y_train, X_test, Y_test = load_data(train_file, test_file, gParameters)
 
@@ -118,34 +121,6 @@ def run(gParameters):
 
     print('X_train shape:', X_train.shape)
     print('X_test shape:', X_test.shape)
-
-    # Have to add this line or else ALW on 2020-11-15 finds Supervisor jobs using canonically CANDLE-compliant model scripts die as soon as a particular task is used a second time:
-    # EXCEPTION:
-    # InvalidArgumentError() ...
-    # File "<string>", line 23, in <module>
-    # File "/gpfs/alpine/med106/world-shared/candle/2020-11-11/checkouts/Supervisor/workflows/common/python/model_runner.py", line 241, in run_model
-    #     result, history = run(hyper_parameter_map, obj_return)
-    # File "/gpfs/alpine/med106/world-shared/candle/2020-11-11/checkouts/Supervisor/workflows/common/python/model_runner.py", line 169, in run
-    #     history = pkg.run(params)
-    # File "/gpfs/alpine/med106/world-shared/candle/2020-11-11/checkouts/Benchmarks/Pilot1/NT3/nt3_candle_wrappers_baseline_keras2.py", line 211, in run
-    #     callbacks=[csv_logger, reduce_lr, candleRemoteMonitor, timeoutMonitor])
-    # File "/gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/python3.6/site-packages/keras/engine/training.py", line 1178, in fit
-    #     validation_freq=validation_freq)
-    # File "/gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/python3.6/site-packages/keras/engine/training_arrays.py", line 204, in fit_loop
-    #     outs = fit_function(ins_batch)
-    # File "/gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py", line 2979, in __call__
-    #     return self._call(inputs)
-    # File "/gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py", line 2933, in _call
-    #     session)
-    # File "/gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py", line 2885, in _make_callable
-    #     callable_fn = session._make_callable_from_options(callable_opts)
-    # File "/gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/python3.6/site-packages/tensorflow_core/python/client/session.py", line 1505, in _make_callable_from_options
-    #     return BaseSession._Callable(self, callable_options)
-    # File "/gpfs/alpine/world-shared/med106/sw/condaenv-200408/lib/python3.6/site-packages/tensorflow_core/python/client/session.py", line 1460, in __init__
-    #     session._session, options_ptr)
-    K.clear_session()
-    
-    model = Sequential()
 
     layer_list = list(range(0, len(gParameters['conv']), 3))
     for _, i in enumerate(layer_list):
@@ -182,6 +157,19 @@ def run(gParameters):
                 model.add(Dropout(gParameters['dropout']))
     model.add(Dense(gParameters['classes']))
     model.add(Activation(gParameters['out_activation']))
+
+    gParameters['ckpt_checksum'] = False
+    gParameters['ckpt_restart_mode'] = "auto"
+
+    J = candle.restart(gParameters, model)
+    if J is not None:
+        initial_epoch = J['epoch']
+        best_metric_last = J['best_metric_last']
+        gParameters['ckpt_best_metric_last'] = best_metric_last
+        print('initial_epoch: %i' % initial_epoch)
+
+    ckpt = candle.CandleCheckpointCallback(gParameters,
+                                           verbose=True)
 
 # Reference case
 # model.add(Conv1D(filters=128, kernel_size=20, strides=1, padding='valid', input_shape=(P, 1)))
@@ -222,18 +210,21 @@ def run(gParameters):
 
     # set up a bunch of callbacks to do work during model training..
     model_name = gParameters['model_name']
-    path = '{}/{}.autosave.model.h5'.format(output_dir, model_name)
+    # path = '{}/{}.autosave.model.h5'.format(output_dir, model_name)
     # checkpointer = ModelCheckpoint(filepath=path, verbose=1, save_weights_only=False, save_best_only=True)
     csv_logger = CSVLogger('{}/training.log'.format(output_dir))
     reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=10, verbose=1, mode='auto', epsilon=0.0001, cooldown=0, min_lr=0)
     candleRemoteMonitor = candle.CandleRemoteMonitor(params=gParameters)
     timeoutMonitor = candle.TerminateOnTimeOut(gParameters['timeout'])
+
     history = model.fit(X_train, Y_train,
                         batch_size=gParameters['batch_size'],
                         epochs=gParameters['epochs'],
+                        initial_epoch=initial_epoch,
                         verbose=1,
                         validation_data=(X_test, Y_test),
-                        callbacks=[csv_logger, reduce_lr, candleRemoteMonitor, timeoutMonitor])
+                        callbacks=[csv_logger, reduce_lr, candleRemoteMonitor, timeoutMonitor,
+                                   ckpt])
 
     score = model.evaluate(X_test, Y_test, verbose=0)
 
