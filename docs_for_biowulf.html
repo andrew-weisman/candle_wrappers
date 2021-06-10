@@ -94,6 +94,8 @@
           <li class="has-sub"><a href="/docs/user_guides.html"><span>User
 
 
+
+
                 Guides</span></a> <span id="User_Guides_menulist"></span>
           </li>
           <li class="has-sub"><a href="/training/"><span>Training</span></a>
@@ -125,6 +127,8 @@
                   <div class="tocHeading">Quick Links<br>
                     <a
                       href="docs_for_biowulf.html#presentation_materials">Presentation
+
+
                       Materials<br>
                     </a></div>
                   <div class="tocItem"><a href="#why_candle">Why CANDLE?</a></div>
@@ -135,24 +139,36 @@
                   <div class="tocItem"><a href="#already_works">Confirming
 
 
+
+
                       a Working Model</a></div>
                   <div class="tocItem"><a href="#adapting_your_model">Adapting
+
+
 
 
                       Your Model</a></div>
                   <div class="tocItem"><a href="#modifying_a_template">Creating
 
 
+
+
                       the Input File</a></div>
                   <div class="tocItem"><a href="#running_your_job">Running
+
+
 
 
                       the Job</a></div>
                   <div class="tocItem"><a href="#aggregation">Aggregating
 
 
+
+
                       Results</a></div>
                   <div class="tocItem"><a href="#candle_commands">Command
+
+
 
 
                       Summary</a></div>
@@ -173,6 +189,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
 href="https://datascience.cancer.gov/collaborations/joint-design-advanced-computing">three
 
 
+
+
             top challenges</a> facing the cancer community, CANDLE
           increasingly can be used to tackle problems in other
           application areas. The SDSI team at the <a
@@ -184,6 +202,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
         <p>One of CANDLE's primary attributes is its functionality for
           performing <a
             href="https://en.wikipedia.org/wiki/Hyperparameter_optimization">hyperparameter
+
+
 
 
             optimization</a> (HPO). In a machine/deep learning model,
@@ -218,19 +238,19 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           page serves as a complete guide to running CANDLE on Biowulf.<br>
         </p>
         <a name="presentation_materials"></a>
-        <div class="heading">Presentation Materials<br>
-          <p>Click <a
+        <div class="heading">Presentation Materials</div>
+        <p>Click <a
 href="https://github.com/CBIIT/p2p-datasci/raw/gh-pages/attachments/hpo_on_biowulf_using_candle-2021-01-19.pdf">here</a>
-            for the slides and <a
-              href="https://www.youtube.com/watch?v=BkOeS2LLjyQ">here</a>
-            for the recording of the talk <a
+          for the slides and <a
+            href="https://www.youtube.com/watch?v=BkOeS2LLjyQ">here</a>
+          for the recording of the talk <a
 href="https://cbiit.github.io/p2p-datasci/2021-01-04-hyperparameter_optimization_using_candle">Hyperparameter
-              Optimization Using CANDLE on Biowulf</a> presented on
-            1/19/21 by the <a
-              href="https://cbiit.github.io/p2p-datasci">NCI Data
-              Science Learning Exchange</a>.</p>
-        </div>
-        <p> </p>
+
+
+            Optimization Using CANDLE on Biowulf</a> presented on
+          1/19/21 by the <a href="https://cbiit.github.io/p2p-datasci">NCI
+
+            Data Science Learning Exchange</a>.</p>
         <a name="why_candle"></a>
         <div class="heading">Why Use CANDLE?</div>
         <p>Why use CANDLE in the first place? For example, why not just
@@ -304,6 +324,8 @@ href="https://cbiit.github.io/p2p-datasci/2021-01-04-hyperparameter_optimization
 href="https://datascience.cancer.gov/collaborations/joint-design-advanced-computing/cellular-pilot">JDACS4C
 
 
+
+
                   Pilot 1</a> models, a 1D convolutional network for
                 classifying RNA-Seq gene expression profiles into normal
                 or tumor tissue categories; ~40 min. total runtime)<br>
@@ -313,6 +335,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
               <td width="10%"><code>r</code> </td>
               <td>Grid search using an R model (feature reduction on the
                 <a href="https://www.ncbi.nlm.nih.gov/pubmed/25892236">TNBC
+
+
 
 
                   dataset</a>; ~5 min. total runtime)<br>
@@ -361,6 +385,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
               see the example or <a href="mailto:george.zaki@nih.gov">email
 
 
+
+
                 us</a> for assistance.<br>
             </li>
           </ul>
@@ -401,11 +427,15 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
           must ensure it runs standalone on a Biowulf compute node. <b>Skipping
 
 
+
+
             this step is the most common error new CANDLE users make.</b>
           If your model does not work outside of CANDLE, you cannot
           expect it to work using CANDLE!<br>
         </p>
         <p>See the <a href="https://hpc.nih.gov/docs/userguide.html">Biowulf
+
+
 
 
             user guide</a> for information on running scripts on
@@ -417,8 +447,12 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
 
 
 
+
+
             --gres=gpu:k80:1 --mem=20G</code>) and then running the
           model like, e.g., <code>python my_model_script.py</code> or <code>Rscript
+
+
 
 
             my_model_script.R</code>; don’t forget to use the correct
@@ -668,6 +702,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
 
 
 
+
+
               = "00:20:00"</code>. Format is <code>HH:MM:SS</code>.
             When in doubt, round up so that the job is most likely to
             complete. Default is <code>00:05:00</code>.</dd>
@@ -723,6 +759,8 @@ href="https://datascience.cancer.gov/collaborations/joint-design-advanced-comput
 href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrMBO
 
 
+
+
               algorithm</a>. E.g., <code>design_size = 9</code>
             (default <code>10</code>). Note that this must be greater
             than or equal to the largest number of possible values for
@@ -735,6 +773,8 @@ href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrM
 href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeMBOControl">MBO
 
 
+
+
               iteration</a>. E.g., <code>propose_points = 9</code>
             (default <code>10</code>). A reasonable value for this (and
             for <code>design_size</code><code></code>, above) is 15-20.</dd>
@@ -743,7 +783,11 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/makeM
 href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination">function
 
 
+
+
               evaluations</a> for all iterations combined. E.g., <code>max_budget
+
+
 
 
 
@@ -758,6 +802,8 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMB
           <dt><code><b>max_iterations</b></code></dt>
           <dd>Maximum number of <a
 href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMBOControlTermination">sequential
+
+
 
 
               optimization steps</a>. E.g., <code>max_iterations = 3</code>
@@ -782,6 +828,8 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMB
           <dd>If you’d prefer loading a module rather than specifying
             the path to the Python binary (above), set this to the name
             of the Python module you would like to load. E.g., <code>exec_python_module
+
+
 
 
 
@@ -900,6 +948,8 @@ href="https://www.rdocumentation.org/packages/mlrMBO/versions/1.1.2/topics/setMB
 href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">grid
 
 
+
+
             search</a>" hyperparameter optimization in which generally
           the hyperparameters are varied evenly throughout a specified
           parameter space.<br>
@@ -935,6 +985,8 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">gri
           <code>candle</code> command to create a file called <code>hyperparameter_grid.txt</code>
           (inside a directory called <code>candle_generated_files</code>)
           containing a full "grid" of hyperparameters. The usage is <code>candle
+
+
 
 
 
@@ -1013,6 +1065,8 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">gri
 href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Bayesian_optimization">Bayesian-based
 
 
+
+
             hyperparameter optimization</a> in which information about
           how well prior sets of hyperparameters performed is used to
           determine the next sets of hyperparameters to try. In this way
@@ -1050,12 +1104,16 @@ href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Bayesian_optimiz
 href="https://cran.r-project.org/web/packages/mlrMBO/vignettes/mlrMBO.html">mlrMBO
 
 
+
+
             package documentation</a>.</p>
         <p>The <code>&amp;param_space</code> section for the <code>bayesian</code>
           workflow is based on the <a
 href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/makeParamSet"><code>makeParamSet</code>
             function</a> in the <a
 href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12">ParamHelpers
+
+
 
 
             R package</a>. Each line in this section is what would be an
@@ -1103,6 +1161,8 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
           (using e.g. <code>sinteractive --gres=gpu:k80:1 --mem=20G</code>),
 
 
+
+
           setting the <code>run_workflow</code> keyword in the <code>&amp;control</code>
           section of the input file to <code>0</code>, and then running
           the model script using <code>candle submit-job
@@ -1125,6 +1185,8 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
         <p>After you have successfully tested your model script using <code>run_workflow=0</code>
           on an interactive node, then in order to run the full CANDLE
           workflow, simply exit the interactive session (by typing <code>exit</code>),
+
+
 
 
           set the <code>run_workflow</code> keyword in the input file
@@ -1172,6 +1234,8 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
 
 
 
+
+
             submit-job &lt;INPUT-FILE&gt;</code>, a new subdirectory in
           <code>candle_generated_files/experiments</code> will be
           created with the automatically generated name of the job
@@ -1197,8 +1261,12 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
           directory (or the symbolic link <code>last-candle-job</code>),
 
 
+
+
           i.e., that containing the <code>run</code> directory, and <code>&lt;RESULT-FORMAT&gt;</code>
           is an optional string containing the standard <code>printf()</code>-formatted
+
+
 
 
           string containing the output format for the metric. For
@@ -1260,6 +1328,8 @@ href="https://www.rdocumentation.org/packages/ParamHelpers/versions/1.12/topics/
         <a name="candle_commands"></a>
         <div class="heading">Summary of <code>candle</code> Commands</div>
         <p>As long as the <code>candle</code> module is loaded (<code>module
+
+
 
 
 
